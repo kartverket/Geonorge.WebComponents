@@ -5,7 +5,8 @@ const DESTINATION = path.resolve(__dirname, 'public');
 module.exports = {
    context: ROOT,
    entry: {
-      'main': './index.ts'
+      'main': './index.ts',
+      'main-navigation': './custom-elements/main-navigation/main-navigation.element.ts'
    },
    output: {
       path: `${DESTINATION}/lib`,
