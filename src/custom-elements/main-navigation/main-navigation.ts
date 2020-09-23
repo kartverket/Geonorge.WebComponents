@@ -17,8 +17,8 @@ import { fetchMenuItems } from 'functions/apiHelpers';
   
   @Component({
      tag: 'main-navigation',
-     template: import('./main-navigation.element.html'),
-     style: import('./main-navigation.element.scss')
+     template: import('./main-navigation.html'),
+     style: import('./main-navigation.scss')
   })
 
   export class MainNavigation extends CustomElement {

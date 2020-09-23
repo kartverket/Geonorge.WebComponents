@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "outDir": "./public/",
+    "outDir": "./lib/",
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
     "target": "es2015",
     "declaration": true,
+    "declarationDir": "./lib/typings/",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
