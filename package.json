@@ -1,16 +1,20 @@
 {
   "name": "geonorge-web-components",
-  "version": "0.0.1",
-  "description": "",
-  "keywords": [],
+  "version": "0.0.2",
+  "description": "Geonorge Web Components",
+  "keywords": ["Web Components, Custom Elements"],
   "author": "Kartverket",
-  "license": "GPL",
+  "license": "GPL-3.0",
   "main": "index.js",
   "repository": "https://github.com/kartverket/Geonorge.WebComponents.git",
   "scripts": {
     "start": "webpack-dev-server --port 9000 --inline --progress --profile --colors --watch --content-base demo/ --mode development",
-    "build": "npm run clean && webpack --config webpack.config.js --mode production",
-    "clean": "shx rm -rf lib"
+    "build": "npm run clean:lib && webpack --config webpack.config.js --mode production",
+    "release": "npm run build && npm run copy-files && npm run clean-package && npm publish ./tmp --dry-run && npm run clean:tmp",
+    "copy-files": "copyfiles -f ./lib/**/* ./package.json tmp",
+    "clean-package": "json -I -f ./tmp/package.json -e \"delete this.devDependencies; delete this.scripts\"",
+    "clean:lib": "shx rm -rf lib",
+    "clean:tmp": "shx rm -rf tmp"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
@@ -20,10 +24,10 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@types/node": "14.10.3",
-    "clean-package": "^1.0.1",
     "copyfiles": "^2.3.0",
     "css-loader": "^4.3.0",
     "html-loader": "^1.3.0",
+    "json": "^10.0.0",
     "raw-loader": "^4.0.1",
     "sass": "^1.26.10",
     "sass-loader": "^10.0.2",
@@ -35,12 +39,5 @@
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
-  },
-  "clean-package": {
-    "remove": [
-      "clean-package",
-      "scripts",
-      "devDependencies"
-    ]
   }
 }
