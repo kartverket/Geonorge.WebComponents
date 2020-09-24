@@ -1,8 +1,13 @@
 {
   "name": "geonorge-web-components",
   "version": "0.0.2",
+<<<<<<< HEAD
   "description": "Geonorge Web Components",
   "keywords": ["Web Components, Custom Elements"],
+=======
+  "description": "",
+  "keywords": [],
+>>>>>>> 89261b800399e1b23719ecab90ba121f5693d356
   "author": "Kartverket",
   "license": "GPL-3.0",
   "main": "index.js",

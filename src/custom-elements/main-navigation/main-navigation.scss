@@ -1,0 +1,96 @@
+@import "../../style/all";
+
+.main-navigation-container {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    background-color: $primary-background;
+    @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
+    @media print {
+        position: relative;
+        margin-bottom: -100px;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    .main-navigation-content {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 10px 20px;
+        @include breakpoint(phablet) {
+            flex-wrap: nowrap;
+        }
+        .logo {
+            flex: 1;
+            min-width: 150px;
+            @include breakpoint(phablet) {
+                flex: 0;
+                min-width: 200px;
+            }
+            @include breakpoint(laptop) {
+                min-width: 248px;
+            }
+            a {
+                display: inline-block;
+            }
+            img {
+                height: 24px;
+                width: 150px;
+                @include breakpoint(phablet) {
+                    height: 28px;
+                    width: 175px;
+                }
+                @include breakpoint(laptop) {
+                    height: 37px;
+                    width: 233px;
+                }
+            }
+        }
+        .search {
+            @media print {
+                display: none;
+            }
+            order: 3;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            @include breakpoint(phablet) {
+                flex: 1;
+                order: 0;
+                padding: 0 1em;
+            }
+            @include breakpoint(tablet) {
+                flex-direction: row;
+            }
+        }
+    }
+    .menu-container {
+        @media print {
+            display: none;
+        }
+        overflow: hidden;
+        width: auto;
+        transition: all 0.3s ease-in-out;
+        height: 0;
+        position: absolute;
+        right: 0;
+        @include breakpoint(laptop) {
+            right: 10%;
+        }
+        padding: 0;
+        border: 1px solid #e5e5e5;
+        border-radius: 3px;
+        top: 50px;
+        border-width: 0;
+        background-color: white;
+        &.open {
+            border-width: 2px;
+            height: auto;
+            max-height: 800px;
+            padding: 5px;
+            overflow: auto;
+        }
+    }
+}
