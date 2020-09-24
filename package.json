@@ -1,13 +1,8 @@
 {
   "name": "geonorge-web-components",
   "version": "0.0.2",
-<<<<<<< HEAD
   "description": "Geonorge Web Components",
   "keywords": ["Web Components, Custom Elements"],
-=======
-  "description": "",
-  "keywords": [],
->>>>>>> 89261b800399e1b23719ecab90ba121f5693d356
   "author": "Kartverket",
   "license": "GPL-3.0",
   "main": "index.js",
@@ -15,7 +10,7 @@
   "scripts": {
     "start": "webpack-dev-server --port 9000 --inline --progress --profile --colors --watch --content-base demo/ --mode development",
     "build": "npm run clean:lib && webpack --config webpack.config.js --mode production",
-    "release": "npm run build && npm run copy-files && npm run clean-package && npm publish ./tmp --dry-run && npm run clean:tmp",
+    "release": "npm run build && npm run copy-files && npm run clean-package && npm publish ./tmp && npm run clean:tmp",
     "copy-files": "copyfiles -f ./lib/**/* ./package.json tmp",
     "clean-package": "json -I -f ./tmp/package.json -e \"delete this.devDependencies; delete this.scripts\"",
     "clean:lib": "shx rm -rf lib",
