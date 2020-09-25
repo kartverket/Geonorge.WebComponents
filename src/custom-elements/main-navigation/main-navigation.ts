@@ -1,7 +1,11 @@
 import {
    Component, CustomElement, CustomElementOptions, Prop, Dispatch, DispatchEmitter,
-   Listen, Watch, getElement, getShadowRootElement
+   Listen, Watch, getElement, getShadowRootElement, Toggle
 } from 'super-custom-elements';
+
+import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
+
+import { MainSearchField } from 'custom-elements/main-search-field/main-search-field';
 
 import { fetchMenuItems } from 'functions/apiHelpers';
 
@@ -26,11 +30,13 @@ export class MainNavigation extends CustomElement {
    private static readonly elementSelector = 'main-navigation';
    private searchField: HTMLInputElement;
    private menuButton: HTMLInputElement;
+   private menuContainer: HTMLElement;
+   private logoElement: HTMLImageElement;
 
    @Prop() id: string;
-   @Prop() showMenu: boolean;
    @Prop() searchString: string;
    @Prop() language: string;
+   @Toggle() showMenu: boolean;
    @Prop() menuItems: Array<MenuItem>;
    @Dispatch('textChanged') onTextChanged: DispatchEmitter;
 
@@ -47,25 +53,27 @@ export class MainNavigation extends CustomElement {
 
    connectedCallback() {
       this.searchField = getShadowRootElement(this, 'input');
-      this.menuButton = getShadowRootElement(this, 'button');
+      this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
+      this.menuContainer = getShadowRootElement(this, '#menu-container');
+      this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       fetchMenuItems(this.language).then(menuItems => {
          this.menuItems = menuItems;
       });
       if (this.searchField) {
          this.searchField.setAttribute('value', this.searchString);
       }
+      this.logoElement.src = GeonorgeLogo;
+      const mainSearch = new MainSearchField();
    }
 
-   @Listen('keypress', 'input')
-   anchorClicked(event: KeyboardEvent) {
-      this.onTextChanged.emit({ detail: event.key });
+   @Listen('click', '#menu-toggle-button')
+   buttonClicked(event: MouseEvent) {
+      this.showMenu = !this.showMenu;
    }
 
-   @Watch('value')
-   valueChanged() {
-      if (this.searchField) {
-         this.searchField.setAttribute('value', this.searchString)
-      }
+   @Watch('showmenu')
+   showMenuChanged() {
+      this.showMenu ? this.menuContainer.classList.add('open') : this.menuContainer.classList.remove('open');
    }
 
    renderMenuItems = (menuItems: Array<MenuItem>) => {
@@ -81,10 +89,7 @@ export class MainNavigation extends CustomElement {
    @Watch('menuItems')
    menuItemsChanged() {
       if (this.menuItems && this.menuItems.length) {
-         const template = document.createElement('template');
-         template.innerHTML = this.renderMenuItems(this.menuItems);
-         const div = getShadowRootElement(this, '#menu-container');
-         div.appendChild(template.content.cloneNode(true));
+         this.menuContainer.innerHTML = this.renderMenuItems(this.menuItems);
       }
    }
 
