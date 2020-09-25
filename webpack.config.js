@@ -28,6 +28,15 @@ module.exports = {
         use: 'raw-loader',
       },
       {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            name: 'assets/[folder]/[name].[ext]',
+          }
+        }]
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           'css-loader',
