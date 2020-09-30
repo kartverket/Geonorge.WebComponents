@@ -85,8 +85,6 @@ export class MainSearchField extends CustomElement {
    }
 
    renderSearchResults = (searchResultsResponses: Array<SearchResultsResponseForType>) => {
-      console.log(searchResultsResponses);
-
       const searchResultsListElements = searchResultsResponses.map((searchResultsResponseForType: SearchResultsResponseForType) => {
          return this.renderSearchResultsForType(searchResultsResponseForType);
       }).join('');
