@@ -20,7 +20,8 @@ interface SearchResultsForType extends Object {
 
 interface SearchResultsResponseForType extends Object {
    NumFound: number,
-   Results: Array<SearchResultsForType>
+   Results: Array<SearchResultsForType>,
+   searchResultsType: string
 }
 
 @Component({
@@ -65,15 +66,29 @@ export class MainSearchField extends CustomElement {
 
    renderSearchResultsForType = (searchResultsResponseForType: SearchResultsResponseForType) => {
       const searchResultsTypeName = searchResultsResponseForType.Results[0].TypeTranslated;
+      const searchResultsType = searchResultsResponseForType.searchResultsType;
       const searchResultsListElements = searchResultsResponseForType.Results.map((searchResult: SearchResultsForType) => {
-         return `<li>${searchResult.Title} (${searchResult.TypeTranslated})</li>`;
+         return `<li>${searchResult.Title}</li>`;
       }).join('');
-      return `<div>${searchResultsTypeName}<ul>${searchResultsListElements}</ul></div>`;
+      return `
+      <div class="search-results-for-type">
+         <a href="/metadata?text=${this.searchString}&type=${searchResultsType}" class="search-results-for-type-title">
+            ${searchResultsTypeName}
+            <span class="search-results-for-type-number-badge">
+               ${searchResultsResponseForType.NumFound}
+            </span>
+         </a>
+         <ul class="search-results-for-type-list">
+            ${searchResultsListElements}
+         </ul>
+      </div>`;
    }
 
    renderSearchResults = (searchResultsResponses: Array<SearchResultsResponseForType>) => {
+      console.log(searchResultsResponses);
+
       const searchResultsListElements = searchResultsResponses.map((searchResultsResponseForType: SearchResultsResponseForType) => {
-         return `<div>${this.renderSearchResultsForType(searchResultsResponseForType)}</div>`;
+         return this.renderSearchResultsForType(searchResultsResponseForType);
       }).join('');
       return `<div>${searchResultsListElements}</div>`;
    }
