@@ -37,7 +37,10 @@ export const fetchDropdownSearchResults = async (searchString: string = "", lang
         return fetch(`${kartkatalogApiUrl}/${urlParameterString}&${limitParameterString}`, fetchOptions)
             .then(res => res.json())
             .then(searchResults => {
-                return searchResults;
+                return {
+                    ...searchResults,
+                    searchResultsType
+                };
             })
     }))
 };
