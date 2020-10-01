@@ -3,25 +3,18 @@ import {
    Listen, Watch, getElement, getShadowRootElement, Toggle
 } from 'super-custom-elements';
 
-import { fetchDropdownSearchResults } from 'functions/apiHelpers';
+// Interfaces
+import {SearchResultsForType, SearchResultsResponseForType} from 'interfaces/search';
 
+// Helpers
+import { fetchDropdownSearchResults } from 'functions/apiHelpers';
+import { renderDropdownResultLink } from 'functions/urlHelpers';
 
 interface MainSearchFieldOptions extends CustomElementOptions {
    active?: boolean,
    value?: string,
    onSearchStringChange?: () => void,
    onClick?: () => void
-}
-
-interface SearchResultsForType extends Object {
-   Title: string,
-   TypeTranslated: string
-}
-
-interface SearchResultsResponseForType extends Object {
-   NumFound: number,
-   Results: Array<SearchResultsForType>,
-   searchResultsType: string
 }
 
 @Component({
@@ -69,7 +62,7 @@ export class MainSearchField extends CustomElement {
       const searchResultsTypeName = searchResultsResponseForType.Results[0].TypeTranslated;
       const searchResultsType = searchResultsResponseForType.searchResultsType;
       const searchResultsListElements = searchResultsResponseForType.Results.map((searchResult: SearchResultsForType) => {
-         return `<li>${searchResult.Title}</li>`;
+         return `<li>${renderDropdownResultLink(searchResult, searchResultsType, this.searchString, this.environment)}</li>`;
       }).join('');
       return `
       <div class="search-results-for-type">
@@ -102,7 +95,7 @@ export class MainSearchField extends CustomElement {
       if (this.searchField && this.searchString) {
          this.searchField.setAttribute('value', this.searchString)
       }
-      fetchDropdownSearchResults(this.searchString).then(searchResultsResponses => {
+      fetchDropdownSearchResults(this.searchString, this.language, this.environment).then(searchResultsResponses => {
          this.searchResultsResponses = searchResultsResponses;
       });
    }
