@@ -37,6 +37,7 @@ export class MainSearchField extends CustomElement {
    private searchResultsContainer: HTMLInputElement;
 
    @Prop() id: string;
+   @Prop() environment: string;
    @Toggle() showSearchResults: boolean;
    @Prop() searchString: string = '';
    @Prop() language: string;

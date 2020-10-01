@@ -31,7 +31,7 @@ export const fetchDropdownSearchResults = async (searchString: string = "", lang
     };
     const limitParameterString = 'limit=5';
 
-    return await Promise.all(Object.keys(urlParameterStrings).map(async (searchResultsType) => {
+    return searchString && searchString.length ? await Promise.all(Object.keys(urlParameterStrings).map(async (searchResultsType) => {
         const kartkatalogApiUrl = getKartkatalogApiUrl(environment);
         let urlParameterString = urlParameterStrings[searchResultsType];
         return fetch(`${kartkatalogApiUrl}/${urlParameterString}&${limitParameterString}`, fetchOptions)
@@ -42,5 +42,5 @@ export const fetchDropdownSearchResults = async (searchString: string = "", lang
                     searchResultsType
                 };
             })
-    }))
+    })) : null;
 };

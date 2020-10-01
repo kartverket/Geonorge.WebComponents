@@ -34,6 +34,7 @@ export class MainNavigation extends CustomElement {
    private logoElement: HTMLImageElement;
 
    @Prop() id: string;
+   @Prop() environment: string;
    @Prop() searchString: string;
    @Prop() language: string;
    @Toggle() showMenu: boolean;
@@ -56,11 +57,13 @@ export class MainNavigation extends CustomElement {
       this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
       this.menuContainer = getShadowRootElement(this, '#menu-container');
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
+      this.searchField = getShadowRootElement(this, 'main-search-field');
       fetchMenuItems(this.language).then(menuItems => {
          this.menuItems = menuItems;
       });
       if (this.searchField) {
          this.searchField.setAttribute('value', this.searchString);
+         this.searchField.setAttribute('environment', this.environment);
       }
       this.logoElement.src = GeonorgeLogo;
       const mainSearch = new MainSearchField();
