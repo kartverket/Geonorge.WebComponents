@@ -4,6 +4,9 @@ import {
 } from 'super-custom-elements';
 
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
+import MapIcon from 'assets/svg/map-icon.svg';
+import DownloadIcon from 'assets/svg/download-icon.svg';
+import MenuIcon from 'assets/svg/menu-icon.svg';
 
 import { MainSearchField } from 'custom-elements/main-search-field/main-search-field';
 
@@ -29,8 +32,10 @@ interface MenuItem extends Object {
 export class MainNavigation extends CustomElement {
    private static readonly elementSelector = 'main-navigation';
    private searchField: HTMLInputElement;
-   private menuButton: HTMLInputElement;
+   private menuButton: HTMLButtonElement;
    private menuContainer: HTMLElement;
+   private mapButton: HTMLButtonElement
+   private downloadButton: HTMLButtonElement
    private logoElement: HTMLImageElement;
 
    @Prop() id: string;
@@ -53,9 +58,10 @@ export class MainNavigation extends CustomElement {
    }
 
    connectedCallback() {
-      this.searchField = getShadowRootElement(this, 'input');
       this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
       this.menuContainer = getShadowRootElement(this, '#menu-container');
+      this.mapButton = getShadowRootElement(this, '#map-toggle-button');
+      this.downloadButton = getShadowRootElement(this, '#download-toggle-button');
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
       fetchMenuItems(this.language).then(menuItems => {
@@ -65,6 +71,19 @@ export class MainNavigation extends CustomElement {
          this.searchField.setAttribute('value', this.searchString);
          this.searchField.setAttribute('environment', this.environment);
       }
+      const menuIconElement = document.createElement("img");
+      menuIconElement.src = MenuIcon;
+      this.menuButton.appendChild(menuIconElement);
+
+      const mapIconElement = document.createElement("img");
+      mapIconElement.src = MapIcon;
+      this.mapButton.appendChild(mapIconElement);
+
+      const downloadIconElement = document.createElement("img");
+      downloadIconElement.src = DownloadIcon;
+      this.downloadButton.appendChild(downloadIconElement);
+
+
       this.logoElement.src = GeonorgeLogo;
       const mainSearch = new MainSearchField();
    }

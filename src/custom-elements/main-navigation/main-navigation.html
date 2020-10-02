@@ -1,14 +1,22 @@
 <template>
-   <div class="main-navigation-container">
-      <div class="main-navigation-content">
-         <div class="logo">
-            <img id="main-navigation-logo" />
+   <div class="main-navigation">
+      <div class="main-navigation-container">
+         <div class="main-navigation-content">
+            <div class="logo">
+               <img id="main-navigation-logo" />
+            </div>
+            <main-search-field class="search-container"></main-search-field>
+            <button id="map-toggle-button" class="icon-toggle-button map-icon"></button>
+            <button id="download-toggle-button" class="icon-toggle-button download-icon"></button>
+            <button id="menu-toggle-button" class="menu-toggle-button">
+               <span>
+                  Meny
+               </span>
+            </button>
          </div>
-         <main-search-field class="search-container"></main-search-field>
-         <button id="menu-toggle-button">Meny</button>
-      </div>
-      <div id="menu-container" class="menu-container open">
-         
+         <div id="menu-container" class="menu-container open">
+
+         </div>
       </div>
    </div>
 </template>

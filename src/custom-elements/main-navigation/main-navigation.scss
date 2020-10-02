@@ -1,13 +1,15 @@
 @import "../../style/all";
 
-.main-navigation-container {
+.main-navigation {
+    @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
+    background-color: $primary-background;
+
+    font-family: $default-font;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
     z-index: 2;
-    background-color: $primary-background;
-    @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
     @media print {
         position: relative;
         margin-bottom: -100px;
@@ -15,82 +17,168 @@
         -moz-box-shadow: none;
         box-shadow: none;
     }
-    .main-navigation-content {
-        display: flex;
-        flex-wrap: wrap;
-        padding: 10px 20px;
-        @include breakpoint(phablet) {
-            flex-wrap: nowrap;
+
+    .main-navigation-container {
+        margin: auto;
+
+        @include breakpoint(tablet) {
+            width: 750px;
         }
-        .logo {
-            flex: 1;
-            min-width: 150px;
+        @include breakpoint(laptop) {
+            width: 970px;
+        }
+        @include breakpoint(desktop) {
+            width: 1170px;
+        }
+        .main-navigation-content {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 10px 15px;
             @include breakpoint(phablet) {
-                flex: 0;
-                min-width: 200px;
+                flex-wrap: nowrap;
             }
-            @include breakpoint(laptop) {
-                min-width: 248px;
-            }
-            a {
-                display: inline-block;
-            }
-            img {
-                height: 24px;
-                width: 150px;
+
+            .logo {
+                flex: 1;
+                min-width: 150px;
                 @include breakpoint(phablet) {
-                    height: 28px;
-                    width: 175px;
+                    flex: 0;
+                    min-width: 200px;
                 }
                 @include breakpoint(laptop) {
-                    height: 37px;
-                    width: 233px;
+                    min-width: 248px;
+                }
+                a {
+                    display: inline-block;
+                }
+                img {
+                    height: 24px;
+                    width: 150px;
+                    @include breakpoint(phablet) {
+                        height: 28px;
+                        width: 175px;
+                    }
+                    @include breakpoint(laptop) {
+                        height: 37px;
+                        width: 233px;
+                    }
+                }
+            }
+            .search-container {
+                @media print {
+                    display: none;
+                }
+                order: 3;
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                @include breakpoint(phablet) {
+                    flex: 1;
+                    order: 0;
+                    padding: 0 1em;
+                }
+                @include breakpoint(tablet) {
+                    flex-direction: row;
+                }
+            }
+            .icon-toggle-button {
+                transition: all 0.3s ease-in-out;
+                border: none;
+                background: transparent;
+                color: #7d746d;
+                padding: 0 4px;
+                &.download-icon {
+                    img {
+                        width: 52px;
+                        height: 37px;
+                    }
+                }
+                &.map-icon {
+                    img {
+                        width: 36px;
+                        height: 37px;
+                    }
+                }
+            }
+
+            .menu-toggle-button {
+                border: none;
+                background: transparent;
+                background-color: rgb(125, 116, 109);
+                border-radius: 2px;
+                color: rgb(255, 255, 255);
+                cursor: pointer;
+                width: 95px;
+                height: 37px;
+                &.open {
+                    background-color: #414042;
+                }
+                span {
+                    font-size: 1.2em;
+                    font-weight: 700;
+                    padding: 2px;
+                    vertical-align: middle;
+                }
+                img {
+                    height: 29px;
+                    padding: 2px;
+                    vertical-align: middle;
                 }
             }
         }
-        .search-container {
+        .menu-container {
+            box-sizing: border-box;
+
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            height: 0;
+            width: 100%;
+            position: absolute;
+            background-color: #dfdcda;
+            border-radius: 3px;
             @media print {
                 display: none;
             }
-            order: 3;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            @include breakpoint(phablet) {
-                flex: 1;
-                order: 0;
-                padding: 0 1em;
-            }
             @include breakpoint(tablet) {
-                flex-direction: row;
+                width: inherit;
             }
-        }
-    }
-    .menu-container {
-        @media print {
-            display: none;
-        }
-        overflow: hidden;
-        width: auto;
-        transition: all 0.3s ease-in-out;
-        height: 0;
-        position: absolute;
-        right: 0;
-        @include breakpoint(laptop) {
-            right: 10%;
-        }
-        padding: 0;
-        border: 1px solid #e5e5e5;
-        border-radius: 3px;
-        top: 50px;
-        border-width: 0;
-        background-color: white;
-        &.open {
-            border-width: 2px;
-            height: auto;
-            max-height: 800px;
-            padding: 5px;
-            overflow: auto;
+            &.open {
+                height: auto;
+                max-height: 800px;
+                overflow: auto;
+                padding: 15px;
+            }
+            .menuItemList {
+                list-style: none;
+                margin: 0;
+                color: #414042;
+                &:first-child {
+                    padding: 15px 0 0;
+                }
+                a {
+                    color: #414042;
+                    text-decoration: none;
+                }
+                &.hierarchy-level-0 {
+                    display: flex;
+                    > li {
+                        flex: 1;
+
+                        > a {
+                            border-bottom: 1px solid #b6afa8;
+                            font-weight: 700;
+                            padding-bottom: 0.75em;
+                            display: block;
+                        }
+                        > ul {
+                            padding: 0;
+                            li {
+                                margin-bottom: 8px;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
