@@ -1,15 +1,19 @@
+// Dependencies
 import {
    Component, CustomElement, CustomElementOptions, Prop, Dispatch, DispatchEmitter,
    Listen, Watch, getElement, getShadowRootElement, Toggle
 } from 'super-custom-elements';
 
+// Components
+import { MainSearchField } from 'custom-elements/main-search-field/main-search-field';
+
+// Assets
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
 import MapIcon from 'assets/svg/map-icon.svg';
 import DownloadIcon from 'assets/svg/download-icon.svg';
 import MenuIcon from 'assets/svg/menu-icon.svg';
 
-import { MainSearchField } from 'custom-elements/main-search-field/main-search-field';
-
+// Functions
 import { fetchMenuItems } from 'functions/apiHelpers';
 
 interface MainNavigationOptions extends CustomElementOptions {
@@ -88,6 +92,16 @@ export class MainNavigation extends CustomElement {
       const mainSearch = new MainSearchField();
    }
 
+   renderMenuItems = (menuItems: Array<MenuItem>, hierarchyLevel: number = 0, maxHierarchyLevel: number = 1) => {
+      const menuItemsListElement = menuItems.map((menuItem: MenuItem) => {
+         const subItems = menuItem.SubMenuItem && menuItem.SubMenuItem.length ? menuItem.SubMenuItem : null;
+         const menuItemElement = `<a href="${menuItem.Url}">${menuItem.Name}</a>`;
+         const subItemElements = subItems && hierarchyLevel + 1 <= maxHierarchyLevel ? this.renderMenuItems(subItems, hierarchyLevel + 1, maxHierarchyLevel) : '';
+         return `<li>${menuItemElement}${subItemElements}</li>`;
+      }).join('');
+      return `<ul class="menuItemList hierarchy-level-${hierarchyLevel}">${menuItemsListElement}</ul>`;
+   }
+
    @Listen('click', '#menu-toggle-button')
    buttonClicked(event: MouseEvent) {
       this.showMenu = !this.showMenu;
@@ -96,16 +110,6 @@ export class MainNavigation extends CustomElement {
    @Watch('showmenu')
    showMenuChanged() {
       this.showMenu ? this.menuContainer.classList.add('open') : this.menuContainer.classList.remove('open');
-   }
-
-   renderMenuItems = (menuItems: Array<MenuItem>) => {
-      const menuItemsListElement = menuItems.map((menuItem: MenuItem) => {
-         const subItems = menuItem.SubMenuItem && menuItem.SubMenuItem.length ? menuItem.SubMenuItem : null;
-         const menuItemElement = `<a href="${menuItem.Url}">${menuItem.Name}</a>`;
-         const subItemElements = subItems ? this.renderMenuItems(subItems) : '';
-         return `<li>${menuItemElement}${subItemElements}</li>`;
-      }).join('');
-      return `<ul>${menuItemsListElement}</ul>`;
    }
 
    @Watch('menuItems')
