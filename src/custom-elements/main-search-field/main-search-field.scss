@@ -3,12 +3,11 @@
 .main-search-field {
   font-family: $default-font;
   display: flex;
-  height: 3.5em;
+  height: 37px;
   padding-top: 0.75em;
   position: relative;
   width: 100%;
   @media (min-width: 35em) {
-    height: 100%;
     padding-top: 0;
   }
 
@@ -20,7 +19,7 @@
   }
 
   input {
-    height: 44px;
+    height: 37px;
     outline-offset: -2px;
     -webkit-appearance: none;
     background: #fff;
@@ -45,8 +44,8 @@
     height: 100%;
 
     img {
-      height: 1.544em;
-      width: 1.5em;
+      height: 22px;
+      width: 21px;
     }
   }
 }

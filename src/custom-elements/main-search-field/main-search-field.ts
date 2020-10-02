@@ -10,6 +10,9 @@ import {SearchResultsForType, SearchResultsResponseForType} from 'interfaces/sea
 import { fetchDropdownSearchResults } from 'functions/apiHelpers';
 import { renderDropdownResultLink } from 'functions/urlHelpers';
 
+// Assets
+import SearchIcon from 'assets/svg/search-icon.svg';
+
 interface MainSearchFieldOptions extends CustomElementOptions {
    active?: boolean,
    value?: string,
@@ -54,6 +57,11 @@ export class MainSearchField extends CustomElement {
    connectedCallback() {
       this.searchField = getShadowRootElement(this, 'input');
       this.searchButton = getShadowRootElement(this, 'button');
+      
+      const searchIconElement = document.createElement("img");
+      searchIconElement.src = SearchIcon;
+      this.searchButton.appendChild(searchIconElement);
+
       this.searchResultsContainer = getShadowRootElement(this, '#search-results-container');
       if (this.searchField && this.searchString) {
          this.searchField.setAttribute('value', this.searchString);
