@@ -40,6 +40,8 @@ export class MainSearchField extends CustomElement {
 
    constructor() {
       super();
+      
+      this.clickOutsideSearchResultsContainer = this.clickOutsideSearchResultsContainer.bind(this);
    }
 
    setup(options?: MainSearchFieldOptions): void {
@@ -56,6 +58,11 @@ export class MainSearchField extends CustomElement {
       if (this.searchField && this.searchString) {
          this.searchField.setAttribute('value', this.searchString);
       }
+      document.addEventListener('click', this.clickOutsideSearchResultsContainer);
+   }
+
+   disconnectedCallback() {
+      document.removeEventListener('click', this.clickOutsideSearchResultsContainer);
    }
 
    renderSearchResultsForType = (searchResultsResponseForType: SearchResultsResponseForType) => {
@@ -85,10 +92,21 @@ export class MainSearchField extends CustomElement {
       return `<div>${searchResultsListElements}</div>`;
    }
 
+   hideSearchResultsContainer = () => {
+      this.showSearchResults = false;
+   }
+
+   clickOutsideSearchResultsContainer(event: MouseEvent){
+      const targetElement = event.composedPath()[0] as Element;
+      if (targetElement.closest('#search-results-container')) return
+         this.hideSearchResultsContainer();
+   }
+
    @Listen('keyup', 'input')
    searchFieldKeyUp(event: KeyboardEvent) {
       this.searchString = this.searchField.value;
    }
+   
 
    @Watch('searchString')
    searchStringChanged() {
@@ -99,6 +117,7 @@ export class MainSearchField extends CustomElement {
          this.searchResultsResponses = searchResultsResponses;
       });
    }
+
 
    @Watch('showsearchresults')
    showSearchResultsChanged() {
