@@ -65,6 +65,11 @@
     overflow-y: auto;
   }
 
+  a {
+    color: $anchor-active;
+    text-decoration: none;
+  }
+
   div.search-results-for-type {
     &:nth-child(odd) {
       background-color: #f5f6f7;
@@ -73,23 +78,30 @@
       background-color: #fbfcfd;
     }
     a.search-results-for-type-title {
-      padding: 4px 10px;
-      font-size: 1em;
+      padding: 8px 16px;
+      font-size: 1.2em;
       display: inline-block;
       color: $anchor-active;
       span.search-results-for-type-number-badge {
-        @include border-radius(4px);
+        @include border-radius(6px);
         padding: 2px 4px;
         color: #fff;
         background-color: $primary-brand;
         display: inline-block;
-        font-size: 1em;
+        font-size: .8em;
         vertical-align: text-bottom;
-        margin-left: 4px;
       }
     }
     ul.search-results-for-type-list {
       list-style: none;
+      padding: 0 16px 8px 32px;
+      margin: 0;
+      li {
+        a {
+          padding: 4px 0;
+          display: block;
+        }
+      }
     }
   }
 }
