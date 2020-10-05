@@ -12,6 +12,7 @@ import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
 import MapIcon from 'assets/svg/map-icon.svg';
 import DownloadIcon from 'assets/svg/download-icon.svg';
 import MenuIcon from 'assets/svg/menu-icon.svg';
+import CloseIcon from 'assets/svg/close-icon.svg';
 
 // Functions
 import { fetchMenuItems } from 'functions/apiHelpers';
@@ -37,6 +38,7 @@ export class MainNavigation extends CustomElement {
    private static readonly elementSelector = 'main-navigation';
    private searchField: HTMLInputElement;
    private menuButton: HTMLButtonElement;
+   private menuIcon: HTMLImageElement;
    private menuContainer: HTMLElement;
    private mapButton: HTMLButtonElement
    private downloadButton: HTMLButtonElement
@@ -76,9 +78,10 @@ export class MainNavigation extends CustomElement {
          this.searchField.setAttribute('value', this.searchString);
          this.searchField.setAttribute('environment', this.environment);
       }
-      const menuIconElement = document.createElement("img");
-      menuIconElement.src = MenuIcon;
-      this.menuButton.appendChild(menuIconElement);
+      this.menuIcon = document.createElement("img");
+      this.menuIcon.id = "menu-icon"
+      this.menuIcon.src = MenuIcon;
+      this.menuButton.appendChild(this.menuIcon);
 
       const mapIconElement = document.createElement("img");
       mapIconElement.src = MapIcon;
@@ -127,6 +130,8 @@ export class MainNavigation extends CustomElement {
    @Watch('showmenu')
    showMenuChanged() {
       this.showMenu ? this.menuContainer.classList.add('open') : this.menuContainer.classList.remove('open');
+      this.showMenu ? this.menuButton.classList.add('open') : this.menuButton.classList.remove('open');
+      this.menuIcon.src = this.showMenu ? CloseIcon : MenuIcon;
    }
 
    @Watch('menuItems')
