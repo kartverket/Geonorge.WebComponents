@@ -52,6 +52,7 @@ export class MainNavigation extends CustomElement {
 
    constructor() {
       super();
+      this.clickOutsideMenuContainer = this.clickOutsideMenuContainer.bind(this);
    }
 
    setup(options?: MainNavigationOptions): void {
@@ -90,6 +91,22 @@ export class MainNavigation extends CustomElement {
 
       this.logoElement.src = GeonorgeLogo;
       const mainSearch = new MainSearchField();
+
+      document.addEventListener('click', this.clickOutsideMenuContainer);
+   }
+
+   disconnectedCallback() {
+      document.removeEventListener('click', this.clickOutsideMenuContainer);
+   }
+
+   hideMenuContainer = () => {
+      this.showMenu = false;
+   }
+
+   clickOutsideMenuContainer(event: MouseEvent){
+      const targetElement = event.composedPath()[0] as Element;
+      if (targetElement.closest('#menu-container') || targetElement.closest('#menu-toggle-button')) return
+         this.hideMenuContainer();
    }
 
    renderMenuItems = (menuItems: Array<MenuItem>, hierarchyLevel: number = 0, maxHierarchyLevel: number = 1) => {
