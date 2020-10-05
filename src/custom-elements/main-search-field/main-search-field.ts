@@ -55,7 +55,7 @@ export class MainSearchField extends CustomElement {
    }
 
    connectedCallback() {
-      this.searchField = getShadowRootElement(this, 'input');
+      this.searchField = getShadowRootElement(this, '#main-search-input');
       this.searchButton = getShadowRootElement(this, 'button');
       
       const searchIconElement = document.createElement("img");
@@ -106,7 +106,7 @@ export class MainSearchField extends CustomElement {
 
    clickOutsideSearchResultsContainer(event: MouseEvent){
       const targetElement = event.composedPath()[0] as Element;
-      if (targetElement.closest('#search-results-container')) return
+      if (targetElement.closest('#search-results-container') || targetElement.closest('#main-search-input')) return
          this.hideSearchResultsContainer();
    }
 
