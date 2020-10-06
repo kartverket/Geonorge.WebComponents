@@ -43,7 +43,11 @@ export class MainNavigation extends CustomElement {
    private menuItemListContainer: HTMLElement;
    private menuActionsRow: HTMLElement;
    private mapButton: HTMLButtonElement
+   private mapIcon: HTMLButtonElement
+   private mapIconCounter: HTMLButtonElement
    private downloadButton: HTMLButtonElement
+   private downloadIcon: HTMLButtonElement
+   private downloadIconCounter: HTMLButtonElement
    private logoElement: HTMLImageElement;
 
    @Prop() id: string;
@@ -75,7 +79,11 @@ export class MainNavigation extends CustomElement {
       this.menuItemListContainer = getShadowRootElement(this, '#menu-item-list-container');
       this.menuActionsRow = getShadowRootElement(this, '#menu-actions-row');
       this.mapButton = getShadowRootElement(this, '#map-toggle-button');
+      this.mapIcon = getShadowRootElement(this, '#map-toggle-button-icon');
+      this.mapIconCounter = getShadowRootElement(this, '#map-toggle-button-counter');
       this.downloadButton = getShadowRootElement(this, '#download-toggle-button');
+      this.downloadIcon = getShadowRootElement(this, '#download-toggle-button-icon');
+      this.downloadIconCounter = getShadowRootElement(this, '#download-toggle-button-counter');
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
       fetchMenuItems(this.language).then(menuItems => {
@@ -92,11 +100,11 @@ export class MainNavigation extends CustomElement {
 
       const mapIconElement = document.createElement("img");
       mapIconElement.src = MapIcon;
-      this.mapButton.appendChild(mapIconElement);
+      this.mapIcon.appendChild(mapIconElement);
 
       const downloadIconElement = document.createElement("img");
       downloadIconElement.src = DownloadIcon;
-      this.downloadButton.appendChild(downloadIconElement);
+      this.downloadIcon.appendChild(downloadIconElement);
 
       this.logoElement.src = GeonorgeLogo;
 

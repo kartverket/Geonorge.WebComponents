@@ -1,5 +1,9 @@
 @import "../../style/all";
 
+* {
+    box-sizing: border-box;
+}
+
 .main-navigation {
     @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
     background-color: $primary-background;
@@ -87,13 +91,27 @@
                 background: transparent;
                 color: #7d746d;
                 padding: 0 4px;
-                &.download-icon {
+                cursor: pointer;
+                .counter {
+                    background-color: $primary-brand;
+                    border-radius: 50%;
+                    color: #fff;
+                    font-size: 1em;
+                    height: 1.5em;
+                    line-height: 1.5;
+                    margin-top: -.25em;
+                    margin-left: -.2em;
+                    position: absolute;
+                    text-align: center;
+                    width: 1.5em;
+                }
+                .download-icon {
                     img {
                         width: 52px;
                         height: 37px;
                     }
                 }
-                &.map-icon {
+                .map-icon {
                     img {
                         width: 36px;
                         height: 37px;
