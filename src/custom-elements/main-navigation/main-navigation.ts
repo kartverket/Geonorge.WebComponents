@@ -6,6 +6,7 @@ import {
 
 // Components
 import { MainSearchField } from 'custom-elements/main-navigation/main-search-field/main-search-field';
+import { DownloadItems } from 'custom-elements/main-navigation/download-items/download-items';
 
 // Assets
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
@@ -16,6 +17,7 @@ import CloseIcon from 'assets/svg/close-icon.svg';
 
 // Functions
 import { fetchMenuItems } from 'functions/apiHelpers';
+import { getDownloadItems, getDownloadItemMetadata } from 'functions/downloadItemHelpers';
 
 interface MainNavigationOptions extends CustomElementOptions {
    active?: boolean,
@@ -42,12 +44,9 @@ export class MainNavigation extends CustomElement {
    private menuContainer: HTMLElement;
    private menuItemListContainer: HTMLElement;
    private menuActionsRow: HTMLElement;
-   private mapButton: HTMLButtonElement
-   private mapIcon: HTMLButtonElement
-   private mapIconCounter: HTMLButtonElement
-   private downloadButton: HTMLButtonElement
-   private downloadIcon: HTMLButtonElement
-   private downloadIconCounter: HTMLButtonElement
+   private mapButton: HTMLButtonElement;
+   private mapIcon: HTMLButtonElement;
+   private mapIconCounter: HTMLButtonElement;
    private logoElement: HTMLImageElement;
 
    @Prop() id: string;
@@ -81,14 +80,14 @@ export class MainNavigation extends CustomElement {
       this.mapButton = getShadowRootElement(this, '#map-toggle-button');
       this.mapIcon = getShadowRootElement(this, '#map-toggle-button-icon');
       this.mapIconCounter = getShadowRootElement(this, '#map-toggle-button-counter');
-      this.downloadButton = getShadowRootElement(this, '#download-toggle-button');
-      this.downloadIcon = getShadowRootElement(this, '#download-toggle-button-icon');
-      this.downloadIconCounter = getShadowRootElement(this, '#download-toggle-button-counter');
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
+      
       fetchMenuItems(this.language).then(menuItems => {
          this.menuItems = menuItems;
       });
+      
+
       if (this.searchField) {
          this.searchField.setAttribute('value', this.searchString);
          this.searchField.setAttribute('environment', this.environment);
@@ -102,9 +101,7 @@ export class MainNavigation extends CustomElement {
       mapIconElement.src = MapIcon;
       this.mapIcon.appendChild(mapIconElement);
 
-      const downloadIconElement = document.createElement("img");
-      downloadIconElement.src = DownloadIcon;
-      this.downloadIcon.appendChild(downloadIconElement);
+      
 
       this.logoElement.src = GeonorgeLogo;
 
@@ -121,6 +118,7 @@ export class MainNavigation extends CustomElement {
       }
 
       const mainSearch = new MainSearchField();
+      const downloadItems = new DownloadItems();
 
       document.addEventListener('click', this.clickOutsideMenuContainer);
    }
