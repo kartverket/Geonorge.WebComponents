@@ -4,7 +4,7 @@ import {
 } from 'super-custom-elements';
 
 // Interfaces
-import {SearchResultsForType, SearchResultsResponseForType} from 'interfaces/search';
+import { SearchResultsForType, SearchResultsResponseForType } from 'interfaces/search';
 
 // Helpers
 import { fetchDropdownSearchResults } from 'functions/apiHelpers';
@@ -43,7 +43,7 @@ export class MainSearchField extends CustomElement {
 
    constructor() {
       super();
-      
+
       this.clickOutsideSearchResultsContainer = this.clickOutsideSearchResultsContainer.bind(this);
    }
 
@@ -57,7 +57,7 @@ export class MainSearchField extends CustomElement {
    connectedCallback() {
       this.searchField = getShadowRootElement(this, '#main-search-input');
       this.searchButton = getShadowRootElement(this, 'button');
-      
+
       const searchIconElement = document.createElement("img");
       searchIconElement.src = SearchIcon;
       this.searchButton.appendChild(searchIconElement);
@@ -104,17 +104,17 @@ export class MainSearchField extends CustomElement {
       this.showSearchResults = false;
    }
 
-   clickOutsideSearchResultsContainer(event: MouseEvent){
+   clickOutsideSearchResultsContainer(event: MouseEvent) {
       const targetElement = event.composedPath()[0] as Element;
       if (targetElement.closest('#search-results-container') || targetElement.closest('#main-search-input')) return
-         this.hideSearchResultsContainer();
+      this.hideSearchResultsContainer();
    }
 
    @Listen('keyup', 'input')
    searchFieldKeyUp(event: KeyboardEvent) {
       this.searchString = this.searchField.value;
    }
-   
+
 
    @Watch('searchString')
    searchStringChanged() {

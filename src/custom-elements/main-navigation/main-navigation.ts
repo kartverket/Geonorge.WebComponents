@@ -5,7 +5,7 @@ import {
 } from 'super-custom-elements';
 
 // Components
-import { MainSearchField } from 'custom-elements/main-search-field/main-search-field';
+import { MainSearchField } from 'custom-elements/main-navigation/main-search-field/main-search-field';
 
 // Assets
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
