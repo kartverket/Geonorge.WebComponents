@@ -40,6 +40,8 @@ export class MainNavigation extends CustomElement {
    private menuButton: HTMLButtonElement;
    private menuIcon: HTMLImageElement;
    private menuContainer: HTMLElement;
+   private menuItemListContainer: HTMLElement;
+   private menuActionsRow: HTMLElement;
    private mapButton: HTMLButtonElement
    private downloadButton: HTMLButtonElement
    private logoElement: HTMLImageElement;
@@ -48,6 +50,9 @@ export class MainNavigation extends CustomElement {
    @Prop() environment: string;
    @Prop() searchString: string;
    @Prop() language: string;
+   @Toggle() multilingual: boolean;
+   @Toggle() supportsLogin: boolean;
+   @Toggle() isLoggedIn: boolean;
    @Toggle() showMenu: boolean;
    @Prop() menuItems: Array<MenuItem>;
    @Dispatch('textChanged') onTextChanged: DispatchEmitter;
@@ -67,6 +72,8 @@ export class MainNavigation extends CustomElement {
    connectedCallback() {
       this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
       this.menuContainer = getShadowRootElement(this, '#menu-container');
+      this.menuItemListContainer = getShadowRootElement(this, '#menu-item-list-container');
+      this.menuActionsRow = getShadowRootElement(this, '#menu-actions-row');
       this.mapButton = getShadowRootElement(this, '#map-toggle-button');
       this.downloadButton = getShadowRootElement(this, '#download-toggle-button');
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
@@ -91,8 +98,20 @@ export class MainNavigation extends CustomElement {
       downloadIconElement.src = DownloadIcon;
       this.downloadButton.appendChild(downloadIconElement);
 
-
       this.logoElement.src = GeonorgeLogo;
+
+      if (this.supportsLogin){
+         const loginToggleElement = document.createElement("a");
+         loginToggleElement.innerText = this.isLoggedIn ? "Logg ut" : "Logg inn"
+         this.menuActionsRow.appendChild(loginToggleElement);
+      }
+      
+      if (this.multilingual){
+         const languageToggleElement = document.createElement("a");
+         languageToggleElement.innerText = "English"
+         this.menuActionsRow.appendChild(languageToggleElement);
+      }
+
       const mainSearch = new MainSearchField();
 
       document.addEventListener('click', this.clickOutsideMenuContainer);
@@ -137,7 +156,7 @@ export class MainNavigation extends CustomElement {
    @Watch('menuItems')
    menuItemsChanged() {
       if (this.menuItems && this.menuItems.length) {
-         this.menuContainer.innerHTML = this.renderMenuItems(this.menuItems);
+         this.menuItemListContainer.innerHTML = this.renderMenuItems(this.menuItems);
       }
    }
 
