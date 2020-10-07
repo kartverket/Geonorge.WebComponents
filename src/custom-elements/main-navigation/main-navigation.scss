@@ -140,6 +140,7 @@
             }
         }
         .menu-container {
+            @include border-radius(0 0 3px 3px);
             box-sizing: border-box;
             overflow: hidden;
             transition: all 0.3s ease-in-out;
@@ -147,7 +148,6 @@
             width: 100%;
             position: absolute;
             background-color: #dfdcda;
-            border-radius: 3px;
             @media print {
                 display: none;
             }

@@ -58,7 +58,6 @@ import {
        this.downloadItemListContainer = getShadowRootElement(this, '#download-item-list-container');
        
        const downloadItemUuids = getDownloadItems();
-       console.log(downloadItemUuids);
        if (downloadItemUuids && downloadItemUuids.length) {
           this.downloadItems = downloadItemUuids.map(uuid => {
              return getDownloadItemMetadata(uuid);
@@ -90,7 +89,7 @@ import {
           const downloadItemElement = `<span>${downloadItem.name}</span>`;
           return `<li>${downloadItemElement}</li>`;
        }).join('');
-       return `<ul class="menuItemList">${downloadItemsListElement}</ul>`;
+       return `<ul>${downloadItemsListElement}</ul>`;
     }
  
     @Listen('click', '#download-toggle-button')

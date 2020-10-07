@@ -52,7 +52,7 @@
 
 .search-results-container {
   @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
-  @include border-radius(2px 0 0 2px);
+  @include border-radius(0 0 3px 3px);
   position: absolute;
   background: #fbfcfd;
   display: none;

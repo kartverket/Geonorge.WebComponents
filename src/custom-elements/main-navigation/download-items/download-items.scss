@@ -12,7 +12,7 @@
         color: #7d746d;
         padding: 0 4px;
         cursor: pointer;
-        &.open{
+        &.open {
             color: #414042;
         }
         .counter {
@@ -35,25 +35,39 @@
             }
         }
     }
-    .download-item-list-container{
-        box-sizing: border-box;
-        overflow: hidden;
-        transition: all 0.3s ease-in-out;
-        max-height: 0;
-        width: 100%;
+    .download-item-list-wrapper {
         position: absolute;
-        background-color: #dfdcda;
-        border-radius: 3px;
-        @media print {
-            display: none;
-        }
-        @include breakpoint(tablet) {
-            width: inherit;
-        }
-        &.open {
-            height: auto;
-            max-height: 300px;
-            overflow: auto;
+        .download-item-list-container {
+            @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
+            @include border-radius(0 0 3px 3px);
+            box-sizing: border-box;
+            overflow: hidden;
+            transition: all 0.3s ease-in-out;
+            max-height: 0;
+            width: 100%;
+            position: relative;
+            right: 245px;
+            top: 10px;
+            background-color: #fbfcfd;
+            @media print {
+                display: none;
+            }
+            @include breakpoint(tablet) {
+                width: 300px;
+            }
+            &.open {
+                height: auto;
+                max-height: 300px;
+                overflow: auto;
+            }
+            ul {
+                list-style: none;
+                padding: 0;
+                margin: 0;
+                li {
+                    padding: 8px 16px;
+                }
+            }
         }
     }
 }
