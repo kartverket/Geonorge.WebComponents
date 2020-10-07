@@ -29,7 +29,11 @@ module.exports = {
         use: 'raw-loader',
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.svg$/,
+        loader: 'svg-inline-loader?classPrefix'
+      },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
         use: [{
           loader: 'file-loader',
           options: {
