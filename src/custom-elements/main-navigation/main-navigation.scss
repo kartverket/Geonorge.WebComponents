@@ -55,7 +55,7 @@
                 a {
                     display: inline-block;
                 }
-                img {
+                svg {
                     height: 24px;
                     width: 150px;
                     @include breakpoint(phablet) {
@@ -105,14 +105,8 @@
                     text-align: center;
                     width: 1.5em;
                 }
-                .download-icon {
-                    img {
-                        width: 52px;
-                        height: 37px;
-                    }
-                }
                 .map-icon {
-                    img {
+                    svg {
                         width: 36px;
                         height: 37px;
                     }
@@ -137,7 +131,7 @@
                     padding: 2px;
                     vertical-align: middle;
                 }
-                img {
+                svg {
                     height: 29px;
                     width: 29px;
                     padding: 2px;

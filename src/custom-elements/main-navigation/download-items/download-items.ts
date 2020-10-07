@@ -64,9 +64,7 @@ import {
              return getDownloadItemMetadata(uuid);
           })
        }
-       const downloadIconElement = document.createElement("img");
-       downloadIconElement.src = DownloadIcon;
-       this.downloadIcon.appendChild(downloadIconElement);
+       this.downloadIcon.innerHTML = DownloadIcon;
  
        this.downloadIconCounter.innerHTML = this.downloadItems && this.downloadItems.length ? this.downloadItems.length.toString() : '';
  

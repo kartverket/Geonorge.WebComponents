@@ -40,12 +40,12 @@ export class MainNavigation extends CustomElement {
    private static readonly elementSelector = 'main-navigation';
    private searchField: HTMLInputElement;
    private menuButton: HTMLButtonElement;
-   private menuIcon: HTMLImageElement;
+   private menuIcon: HTMLSpanElement;
    private menuContainer: HTMLElement;
    private menuItemListContainer: HTMLElement;
    private menuActionsRow: HTMLElement;
    private mapButton: HTMLButtonElement;
-   private mapIcon: HTMLButtonElement;
+   private mapIcon: HTMLSpanElement;
    private mapIconCounter: HTMLButtonElement;
    private logoElement: HTMLImageElement;
 
@@ -74,6 +74,7 @@ export class MainNavigation extends CustomElement {
 
    connectedCallback() {
       this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
+      this.menuIcon = getShadowRootElement(this, '#menu-icon');
       this.menuContainer = getShadowRootElement(this, '#menu-container');
       this.menuItemListContainer = getShadowRootElement(this, '#menu-item-list-container');
       this.menuActionsRow = getShadowRootElement(this, '#menu-actions-row');
@@ -92,18 +93,11 @@ export class MainNavigation extends CustomElement {
          this.searchField.setAttribute('value', this.searchString);
          this.searchField.setAttribute('environment', this.environment);
       }
-      this.menuIcon = document.createElement("img");
-      this.menuIcon.id = "menu-icon"
-      this.menuIcon.src = MenuIcon;
-      this.menuButton.appendChild(this.menuIcon);
+      this.menuIcon.innerHTML= MenuIcon;
 
-      const mapIconElement = document.createElement("img");
-      mapIconElement.src = MapIcon;
-      this.mapIcon.appendChild(mapIconElement);
+      this.mapIcon.innerHTML = MapIcon;
 
-      
-
-      this.logoElement.src = GeonorgeLogo;
+      this.logoElement.innerHTML = GeonorgeLogo;
 
       if (this.supportsLogin){
          const loginToggleElement = document.createElement("a");
@@ -156,7 +150,7 @@ export class MainNavigation extends CustomElement {
    showMenuChanged() {
       this.showMenu ? this.menuContainer.classList.add('open') : this.menuContainer.classList.remove('open');
       this.showMenu ? this.menuButton.classList.add('open') : this.menuButton.classList.remove('open');
-      this.menuIcon.src = this.showMenu ? CloseIcon : MenuIcon;
+      this.menuIcon.innerHTML = this.showMenu ? CloseIcon : MenuIcon;
    }
 
    @Watch('menuItems')

@@ -58,9 +58,7 @@ export class MainSearchField extends CustomElement {
       this.searchField = getShadowRootElement(this, '#main-search-input');
       this.searchButton = getShadowRootElement(this, 'button');
 
-      const searchIconElement = document.createElement("img");
-      searchIconElement.src = SearchIcon;
-      this.searchButton.appendChild(searchIconElement);
+      this.searchButton.innerHTML = SearchIcon;
 
       this.searchResultsContainer = getShadowRootElement(this, '#search-results-container');
       if (this.searchField && this.searchString) {
