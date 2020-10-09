@@ -11,12 +11,15 @@
   "repository": "https://github.com/kartverket/Geonorge.WebComponents.git",
   "scripts": {
     "start": "webpack-dev-server --port 9000 --inline --progress --profile --colors --watch --content-base demo/ --mode development",
-    "build": "npm run clean:lib && webpack --config webpack.config.js --mode production",
+    "build": "npm run clean && webpack --config webpack.config.js --mode production && npm run copy-demo-files",
     "release": "npm run build && npm run copy-files && npm run clean-package && npm publish ./tmp && npm run clean:tmp",
     "copy-files": "copyfiles -f \"./lib/**/*\" \"./package.json\" tmp",
     "clean-package": "json -I -f ./tmp/package.json -e \"delete this.devDependencies; delete this.scripts\"",
     "clean:lib": "shx rm -rf lib",
-    "clean:tmp": "shx rm -rf tmp"
+    "clean:tmp": "shx rm -rf tmp",
+    "clean:docs": "shx rm -rf docs",
+    "copy-demo-files": "copyfiles -f \"./lib/*\" \"./demo/**/*\" docs",
+    "clean": "npm run clean:lib && npm run clean:docs"
   },
   "devDependencies": {
     "@babel/cli": "^7.11.6",
