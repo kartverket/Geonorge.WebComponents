@@ -6,7 +6,7 @@
 
 .download-items-container {
     .icon-toggle-button {
-        transition: all 0.3s ease-in-out;
+        @include transition(all 0.1s ease-in-out);
         border: none;
         background: transparent;
         color: #7d746d;
@@ -43,9 +43,9 @@
         .download-item-list-container {
             @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
             @include border-radius(0 0 3px 3px);
+            @include transition(all 0.1s ease-in-out);
             box-sizing: border-box;
             overflow: hidden;
-            transition: all 0.3s ease-in-out;
             max-height: 0;
             width: 100%;
             position: relative;
