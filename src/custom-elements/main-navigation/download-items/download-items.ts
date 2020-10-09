@@ -143,7 +143,6 @@ export class DownloadItems extends CustomElement {
 
    @Watch('downloadItems')
    downloadItemsChanged() {
-      console.log("downloadItemsChanged", this.downloadItems);
       if (this.downloadItems && this.downloadItems.length) {
          this.renderDownloadItems(this.downloadItems);
          this.renderDownloadItemsCounter();

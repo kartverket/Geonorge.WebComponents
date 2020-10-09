@@ -11,7 +11,6 @@ import { DownloadItems } from 'custom-elements/main-navigation/download-items/do
 // Assets
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
 import MapIcon from 'assets/svg/map-icon.svg';
-import DownloadIcon from 'assets/svg/download-icon.svg';
 import MenuIcon from 'assets/svg/menu-icon.svg';
 import CloseIcon from 'assets/svg/close-icon.svg';
 

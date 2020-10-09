@@ -14,9 +14,7 @@ export const removeDownloadItem = (itemToRemove) => {
     let selectedItems = localStorage.orderItems && Array.isArray(JSON.parse(localStorage.orderItems))
       ? JSON.parse(localStorage.orderItems)
       : [];
-    console.log("selectedItems", selectedItems);
     localStorage.orderItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep !== itemToRemove.uuid));
-  
     localStorage.removeItem(itemToRemove.uuid + ".metadata")
 
 
