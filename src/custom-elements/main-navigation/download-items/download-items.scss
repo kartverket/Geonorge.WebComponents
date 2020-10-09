@@ -27,6 +27,9 @@
             position: absolute;
             text-align: center;
             width: 1.5em;
+            &.hidden {
+                display: none;
+            }
         }
         .download-icon {
             svg {
