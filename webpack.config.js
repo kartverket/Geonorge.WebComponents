@@ -7,7 +7,9 @@ module.exports = {
   entry: {
     'index': './index.ts',
     'main-navigation': './custom-elements/main-navigation/main-navigation.ts',
-    'main-search-field': './custom-elements/main-navigation/main-search-field/main-search-field.ts'
+    'main-search-field': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
+    'download-item': './custom-elements/main-navigation/download-items/download-items.ts',
+    'map-item': './custom-elements/main-navigation/map-items/map-items.ts'
   },
   output: {
     path: DESTINATION,

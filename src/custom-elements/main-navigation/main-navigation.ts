@@ -7,6 +7,7 @@ import {
 // Components
 import { MainSearchField } from 'custom-elements/main-navigation/main-search-field/main-search-field';
 import { DownloadItems } from 'custom-elements/main-navigation/download-items/download-items';
+import { MapItems } from 'custom-elements/main-navigation/map-items/map-items';
 
 // Assets
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
@@ -77,9 +78,6 @@ export class MainNavigation extends CustomElement {
       this.menuContainer = getShadowRootElement(this, '#menu-container');
       this.menuItemListContainer = getShadowRootElement(this, '#menu-item-list-container');
       this.menuActionsRow = getShadowRootElement(this, '#menu-actions-row');
-      this.mapButton = getShadowRootElement(this, '#map-toggle-button');
-      this.mapIcon = getShadowRootElement(this, '#map-toggle-button-icon');
-      this.mapIconCounter = getShadowRootElement(this, '#map-toggle-button-counter');
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
       
@@ -93,8 +91,6 @@ export class MainNavigation extends CustomElement {
          this.searchField.setAttribute('environment', this.environment);
       }
       this.menuIcon.innerHTML= MenuIcon;
-
-      this.mapIcon.innerHTML = MapIcon;
 
       this.logoElement.innerHTML = GeonorgeLogo;
 
@@ -111,6 +107,7 @@ export class MainNavigation extends CustomElement {
       }
 
       const mainSearch = new MainSearchField();
+      const mapItems = new MapItems();
       const downloadItems = new DownloadItems();
 
       document.addEventListener('click', this.clickOutsideMenuContainer);
