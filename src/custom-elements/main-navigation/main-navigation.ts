@@ -127,6 +127,7 @@ export class MainNavigation extends CustomElement {
 
    clickOutsideMenuContainer(event: MouseEvent){
       const targetElement = event.composedPath()[0] as Element;
+      targetElement.closest('#menu-container');
       if (targetElement.closest('#menu-container') || targetElement.closest('#menu-toggle-button')) return
          this.hideMenuContainer();
    }
@@ -143,6 +144,7 @@ export class MainNavigation extends CustomElement {
 
    @Listen('click', '#menu-toggle-button')
    buttonClicked(event: MouseEvent) {
+      event.stopPropagation();
       this.showMenu = !this.showMenu;
    }
 
