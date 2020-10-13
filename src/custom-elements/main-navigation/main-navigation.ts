@@ -58,6 +58,7 @@ export class MainNavigation extends CustomElement {
    @Toggle() supportsLogin: boolean;
    @Toggle() isLoggedIn: boolean;
    @Toggle() showMenu: boolean;
+   @Toggle() staticPosition: boolean;
    @Prop() menuItems: Array<MenuItem>;
    @Dispatch('onSearch') onSearch: DispatchEmitter;
 
@@ -105,6 +106,10 @@ export class MainNavigation extends CustomElement {
          const languageToggleElement = document.createElement("a");
          languageToggleElement.innerText = "English"
          this.menuActionsRow.appendChild(languageToggleElement);
+      }
+
+      if(this.staticPosition) {
+         getShadowRootElement(this, '#main-navigation').classList.add('static-position');
       }
 
       const mapItems = new MapItems();
