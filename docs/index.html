@@ -4,14 +4,75 @@
 <head>
   <meta charset="utf-8">
   <title>Geonorge Web Components</title>
+  <link href="prism.css" rel="stylesheet" type="text/css" />
+  <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <!-- Demonstrasjon av Web Components: -->
+  <main>
+    <h1>geonorge-web-components</h1>
+    <h2>main-navigation</h2>
+    <h3 class="example-title">
+      Preview
+    </h3>
+    <div class="example-preview">
+      <main-navigation multilingual supportsLogin language="no" environment="dev" staticPosition></main-navigation>
+    </div>
+    <h3 class="example-title">
+      Attributes
+    </h3>
+    <pre class="example-code">
+      <code class="language-js">
+{
+  id: string;
+  environment: string;
+  searchString: string;
+  language: string;
+  multilingual: boolean;
+  supportsLogin: boolean;
+  isLoggedIn: boolean;
+  showMenu: boolean;
+  staticPosition: boolean;
+}
+      </code>
+    </pre>
+    
+    <h3 class="example-title">HTML</h3>
+    <pre class="example-code">
+      <code class="language-html"><script type="prism-html-markup">
+<main-navigation multilingual supportsLogin language="no" environment="dev"></main-navigation>
+</script></code>
+    </pre>
 
-  <main-navigation multilingual supportsLogin language="no" environment="dev"></main-navigation>
+    <h3 class="example-title">JavaScript</h3>
+    <pre class="example-code">
+      <code class="language-js">
+geonorge.MainNavigation.setup('main-navigation', {
+  onSearch: event => {
+    const searchEvent = event.detail.ohouho.gfdgi || null;
+    if (searchEvent){
+      // do stuff
+    }
+  }
+});
+      </code>
+    </pre>
+  </main>
+
   <script src="localStorage.js"></script>
-  <script src="main-navigation.js"></script>  
+  <script src="main-navigation.js"></script>
+  <script>
+    geonorge.MainNavigation.setup('main-navigation', {
+      onSearch: (event) => {
+        const searchEvent = event.detail || null;
+        if (searchEvent) {
+          console.log(searchEvent);
+        }
+      }
+    })
+  </script>
+  <script src="prism.js"></script>
 </body>
 
 </html>
