@@ -17,7 +17,8 @@ interface MainSearchFieldOptions extends CustomElementOptions {
    active?: boolean,
    value?: string,
    onSearchStringChange?: () => void,
-   onClick?: () => void
+   onClick?: () => void,
+   onSearch?: () => void
 }
 
 @Component({
@@ -40,10 +41,10 @@ export class MainSearchField extends CustomElement {
    @Prop() searchResultsResponses: Array<SearchResultsResponseForType>;
    @Dispatch('searchResultsChanged') onTextChanged: DispatchEmitter;
    @Dispatch('onSearchStringChange') onSearchStringChange: DispatchEmitter;
+   @Dispatch('onSearch') onSearch: DispatchEmitter;
 
    constructor() {
       super();
-
       this.clickOutsideSearchResultsContainer = this.clickOutsideSearchResultsContainer.bind(this);
    }
 
@@ -56,7 +57,7 @@ export class MainSearchField extends CustomElement {
 
    connectedCallback() {
       this.searchField = getShadowRootElement(this, '#main-search-input');
-      this.searchButton = getShadowRootElement(this, 'button');
+      this.searchButton = getShadowRootElement(this, '#search-submit-button');
 
       this.searchButton.innerHTML = SearchIcon;
 
@@ -111,6 +112,16 @@ export class MainSearchField extends CustomElement {
    @Listen('keyup', 'input')
    searchFieldKeyUp(event: KeyboardEvent) {
       this.searchString = this.searchField.value;
+   }
+
+   @Listen('click', '#search-submit-button')
+   onSearchSubmitted(event: MouseEvent) {
+      this.onSearch.emit({
+         detail: {
+            searchString: this.searchString,
+            searchResultsResponses: this.searchResultsResponses
+         }
+      });
    }
 
 

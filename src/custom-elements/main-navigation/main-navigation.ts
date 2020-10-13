@@ -21,7 +21,8 @@ import { getDownloadItems, getDownloadItemMetadata } from 'functions/downloadIte
 
 interface MainNavigationOptions extends CustomElementOptions {
    active?: boolean,
-   onClick?: () => void
+   onClick?: () => void,
+   onSearch?: () => void
 }
 
 interface MenuItem extends Object {
@@ -58,7 +59,7 @@ export class MainNavigation extends CustomElement {
    @Toggle() isLoggedIn: boolean;
    @Toggle() showMenu: boolean;
    @Prop() menuItems: Array<MenuItem>;
-   @Dispatch('textChanged') onTextChanged: DispatchEmitter;
+   @Dispatch('onSearch') onSearch: DispatchEmitter;
 
    constructor() {
       super();
@@ -80,35 +81,37 @@ export class MainNavigation extends CustomElement {
       this.menuActionsRow = getShadowRootElement(this, '#menu-actions-row');
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
-      
+
       fetchMenuItems(this.language).then(menuItems => {
          this.menuItems = menuItems;
       });
-      
+
 
       if (this.searchField) {
          this.searchField.setAttribute('value', this.searchString);
          this.searchField.setAttribute('environment', this.environment);
       }
-      this.menuIcon.innerHTML= MenuIcon;
+      this.menuIcon.innerHTML = MenuIcon;
 
       this.logoElement.innerHTML = GeonorgeLogo;
 
-      if (this.supportsLogin){
+      if (this.supportsLogin) {
          const loginToggleElement = document.createElement("a");
          loginToggleElement.innerText = this.isLoggedIn ? "Logg ut" : "Logg inn"
          this.menuActionsRow.appendChild(loginToggleElement);
       }
-      
-      if (this.multilingual){
+
+      if (this.multilingual) {
          const languageToggleElement = document.createElement("a");
          languageToggleElement.innerText = "English"
          this.menuActionsRow.appendChild(languageToggleElement);
       }
 
-      const mainSearch = new MainSearchField();
       const mapItems = new MapItems();
       const downloadItems = new DownloadItems();
+      const mainSearchField = new MainSearchField();
+
+
 
       document.addEventListener('click', this.clickOutsideMenuContainer);
    }
@@ -121,11 +124,11 @@ export class MainNavigation extends CustomElement {
       this.showMenu = false;
    }
 
-   clickOutsideMenuContainer(event: MouseEvent){
+   clickOutsideMenuContainer(event: MouseEvent) {
       const targetElement = event.composedPath()[0] as Element;
       targetElement.closest('#menu-container');
       if (targetElement.closest('#menu-container') || targetElement.closest('#menu-toggle-button')) return
-         this.hideMenuContainer();
+      this.hideMenuContainer();
    }
 
    renderMenuItems = (menuItems: Array<MenuItem>, hierarchyLevel: number = 0, maxHierarchyLevel: number = 1) => {
@@ -166,6 +169,10 @@ export class MainNavigation extends CustomElement {
       }
       if (options.active) {
          element.showMenu = options.active;
+      }
+      if (options.onSearch) {
+         const mainSearchField = getShadowRootElement<MainSearchField>(element, 'main-search-field');
+         mainSearchField.addEventListener('onSearch', options.onSearch)
       }
    }
 }
