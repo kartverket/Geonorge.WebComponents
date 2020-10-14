@@ -166,7 +166,7 @@ export class MainNavigation extends CustomElement {
       }
    }
 
-   public static async setup(selector: string, options: MainNavigationOptions) {
+   public static setup(selector: string, options: MainNavigationOptions) {
       const element = getElement<MainNavigation>(selector);
 
       if (options.onClick) {
@@ -176,9 +176,10 @@ export class MainNavigation extends CustomElement {
          element.showMenu = options.active;
       }
       if (options.onSearch) {
-         await customElements.whenDefined('main-search-field');
-         const mainSearchField = getShadowRootElement<MainSearchField>(element, 'main-search-field');
-         mainSearchField.addEventListener('onSearch', options.onSearch)
+         setTimeout(() => {
+            const mainSearchField = getShadowRootElement<MainSearchField>(element, 'main-search-field');
+            mainSearchField.addEventListener('onSearch', options.onSearch)
+         }, 1)
       }
    }
 }
