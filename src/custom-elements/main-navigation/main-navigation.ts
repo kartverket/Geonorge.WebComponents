@@ -179,7 +179,8 @@ export class MainNavigation extends CustomElement {
          setTimeout(() => {
             const mainSearchField = getShadowRootElement<MainSearchField>(element, 'main-search-field');
             mainSearchField.addEventListener('onSearch', options.onSearch)
-         }, 1)
+         })
+         
       }
    }
 }
