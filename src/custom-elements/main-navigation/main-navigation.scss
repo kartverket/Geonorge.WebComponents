@@ -59,15 +59,13 @@
                     display: inline-block;
                 }
                 svg {
-                    height: 24px;
+                    height: 37px;
                     width: 150px;
                     @include breakpoint(phablet) {
-                        height: 28px;
-                        width: 175px;
+                        width: 200px;
                     }
                     @include breakpoint(laptop) {
-                        height: 37px;
-                        width: 233px;
+                        width: 248px;
                     }
                 }
             }
@@ -88,59 +86,52 @@
                     flex-direction: row;
                 }
             }
-            .icon-toggle-button {
-                transition: all 0.3s ease-in-out;
-                border: none;
-                background: transparent;
-                color: #7d746d;
-                padding: 0 4px;
-                cursor: pointer;
-                .counter {
-                    background-color: $primary-brand;
-                    border-radius: 50%;
-                    color: #fff;
-                    font-size: 1em;
-                    height: 1.5em;
-                    line-height: 1.5;
-                    margin-top: -.25em;
-                    margin-left: -.2em;
-                    position: absolute;
-                    text-align: center;
-                    width: 1.5em;
+            .button-row {
+                width: 160px;
+                display: flex;
+                justify-content: space-between;
+                @include breakpoint(laptop) {
+                    width: 210px;
                 }
-                .map-icon {
+                .menu-toggle-button {
+                    border: none;
+                    background: transparent;
+                    background-color: rgb(125, 116, 109);
+                    border-radius: 2px;
+                    color: rgb(255, 255, 255);
+                    cursor: pointer;
+                    width: 45px;
+                    height: 37px;
+                    @include breakpoint(laptop) {
+                        width: 95px;
+                        background-color: rgb(125, 116, 109);
+                        color: #fff;
+                    }
+                    &.open {
+                        background-color: #414042;
+                    }
+                    span {
+                        font-size: 1.2em;
+                        font-weight: 700;
+                        padding: 2px;
+                        vertical-align: middle;
+                        &.menu-title {
+                            display: none;
+                            @include breakpoint(laptop) {
+                                display: inline-block;
+                            }
+                        }
+                    }
                     svg {
-                        width: 36px;
-                        height: 37px;
+                        height: 29px;
+                        width: 29px;
+                        padding: 2px;
+                        vertical-align: middle;
                     }
                 }
             }
 
-            .menu-toggle-button {
-                border: none;
-                background: transparent;
-                background-color: rgb(125, 116, 109);
-                border-radius: 2px;
-                color: rgb(255, 255, 255);
-                cursor: pointer;
-                width: 95px;
-                height: 37px;
-                &.open {
-                    background-color: #414042;
-                }
-                span {
-                    font-size: 1.2em;
-                    font-weight: 700;
-                    padding: 2px;
-                    vertical-align: middle;
-                }
-                svg {
-                    height: 29px;
-                    width: 29px;
-                    padding: 2px;
-                    vertical-align: middle;
-                }
-            }
+           
         }
         .menu-container {
             @include border-radius(0 0 3px 3px);
