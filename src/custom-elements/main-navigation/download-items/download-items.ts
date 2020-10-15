@@ -59,8 +59,8 @@ export class DownloadItems extends CustomElement {
       this.downloadItemListContainer = getShadowRootElement(this, '#download-item-list-container');
 
       this.getUpdatedDownloadItems();
-
       this.downloadIcon.innerHTML = DownloadIcon;
+      this.renderDownloadItemsCounter();
 
       document.addEventListener('click', this.clickOutsideDownloadItemsContainer);
    }

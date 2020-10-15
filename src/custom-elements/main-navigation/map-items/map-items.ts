@@ -59,9 +59,9 @@ import {
        this.mapItemListContainer = getShadowRootElement(this, '#map-item-list-container');
  
        this.getUpdatedMapItems();
- 
        this.mapIcon.innerHTML = MapIcon;
- 
+       this.renderMapItemsCounter();
+
        document.addEventListener('click', this.clickOutsideMapItemsContainer);
     }
  
