@@ -9,7 +9,8 @@ module.exports = {
     'main-navigation': './custom-elements/main-navigation/main-navigation.ts',
     'main-search-field': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
     'download-item': './custom-elements/main-navigation/download-items/download-items.ts',
-    'map-item': './custom-elements/main-navigation/map-items/map-items.ts'
+    'map-item': './custom-elements/main-navigation/map-items/map-items.ts',
+    'main-menu': './custom-elements/main-navigation/main-menu/main-menu.ts'
   },
   output: {
     path: DESTINATION,
