@@ -33,7 +33,10 @@ module.exports = {
       },
       {
         test: /\.svg$/,
-        loader: 'svg-inline-loader?classPrefix'
+        loader: 'svg-inline-loader',
+        options: {
+          classPrefix: true
+        }
       },
       {
         test: /\.(png|jpe?g|gif)$/i,
