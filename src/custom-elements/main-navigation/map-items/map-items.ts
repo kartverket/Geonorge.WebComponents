@@ -10,12 +10,11 @@ import {
  import TrashIcon from 'assets/svg/trash-icon.svg';
  
  // Functions
- import { getMapItems, getMapItemMetadata, removeMapItem } from 'functions/mapItemHelpers';
+ import { getMapItems, removeMapItem } from 'functions/mapItemHelpers';
  
  interface MapItem extends Object {
-    name: string,
-    organizationName: string,
-    uuid: string
+    Title: string,
+    Uuid: string
  }
  
  interface MapItemsOptions extends CustomElementOptions {
@@ -66,10 +65,7 @@ import {
     }
  
     getUpdatedMapItems(){
-       const mapItemUuids = getMapItems();
-       this.mapItems = mapItemUuids.map(uuid => {
-          return getMapItemMetadata(uuid);
-       })
+       this.mapItems = getMapItems();
     }
  
     disconnectedCallback() {
@@ -99,7 +95,7 @@ import {
     renderMapItems = (mapItems: Array<MapItem>) => {
        const mapItemsListElement = mapItems.map((mapItem: MapItem) => {
           const mapItemElement = document.createElement('span');
-          mapItemElement.innerText = mapItem.name;
+          mapItemElement.innerText = mapItem.Title;
  
           const removeMapItemElement = document.createElement('button');
           removeMapItemElement.classList.add('list-icon');

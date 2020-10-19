@@ -4,18 +4,11 @@ export const getMapItems = () => {
         : [];
 }
 
-export const getMapItemMetadata = (itemUuid: string) => {
-    return localStorage[itemUuid + '.mapItem.metadata']
-        ? JSON.parse(localStorage[itemUuid + '.mapItem.metadata'])
-        : null;
-}
-
 export const removeMapItem = (itemToRemove) => {
     let selectedItems = localStorage.mapItems && Array.isArray(JSON.parse(localStorage.mapItems))
       ? JSON.parse(localStorage.mapItems)
       : [];
-    localStorage.mapItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep !== itemToRemove.uuid));
-    localStorage.removeItem(itemToRemove.uuid + ".mapItem.metadata")
+    localStorage.mapItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep.Uuid !== itemToRemove.Uuid));
 
 
     /*const tagData = {
