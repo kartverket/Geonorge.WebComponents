@@ -13,6 +13,7 @@
     "start": "webpack serve --port 9000 --inline --progress --profile --content-base demo/ --mode development",
     "build": "npm run clean && webpack --config webpack.config.js --mode production && npm run copy-demo-files",
     "release": "npm run build && npm run copy-files && npm run clean-package && npm publish ./tmp && npm run clean:tmp",
+    "release:test": "npm run build && npm run copy-files && npm run clean-package",
     "copy-files": "copyfiles -f \"./lib/**/*\" \"./package.json\" tmp",
     "clean-package": "json -I -f ./tmp/package.json -e \"delete this.devDependencies; delete this.scripts\"",
     "clean:lib": "shx rm -rf lib",
