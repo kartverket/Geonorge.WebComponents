@@ -39,6 +39,7 @@ export class MainNavigation extends CustomElement {
    private static readonly elementSelector = 'main-navigation';
    private searchField: HTMLInputElement;
    private logoElement: HTMLAnchorElement;
+   private mainMenu: HTMLElement;
 
    @Prop() id: string;
    @Prop() environment: string;
@@ -66,6 +67,7 @@ export class MainNavigation extends CustomElement {
    connectedCallback() {
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
+      this.mainMenu = getShadowRootElement(this, '#main-menu');
 
       if (this.searchField) {
          this.searchField.setAttribute('value', this.searchString);
@@ -79,6 +81,19 @@ export class MainNavigation extends CustomElement {
       if(this.staticPosition) {
          getShadowRootElement(this, '#main-navigation').classList.add('static-position');
          getShadowRootElement(this, 'main-menu').setAttribute('staticPosition', '');
+      }
+
+      if(this.multilingual){
+         this.mainMenu.setAttribute('multilingual', '');
+      }
+      if (this.language){
+         this.mainMenu.setAttribute('language', this.language);
+      }
+      if (this.supportsLogin){
+         this.mainMenu.setAttribute('supportsLogin', '');
+      }
+      if (this.isLoggedIn){
+         this.mainMenu.setAttribute('isLoggedIn', '');
       }
 
       const mapItems = new MapItems();
