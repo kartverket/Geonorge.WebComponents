@@ -105,13 +105,12 @@ export class MainNavigation extends CustomElement {
 
    public static setup(selector: string, options: MainNavigationOptions) {
       const element = getElement<MainNavigation>(selector);
-
       if (options.onSearch) {
          setTimeout(() => {
             const mainSearchField = getShadowRootElement<MainSearchField>(element, 'main-search-field');
-            mainSearchField.addEventListener('onSearch', options.onSearch)
+            mainSearchField.addEventListener('onSearch', options.onSearch);
+            mainSearchField.setAttribute('preventRedirect', '');
          })
-         
       }
    }
 }

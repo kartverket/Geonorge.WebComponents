@@ -14,11 +14,11 @@
   <main>
     <h1>geonorge-web-components</h1>
     <h2>main-navigation</h2>
-    <h3 class="example-title">
+    <h3 class="example-title"> 
       Preview
     </h3>
     <div class="example-preview">
-      <main-navigation multilingual supportsLogin language="no" environment="dev" staticPosition></main-navigation>
+      <main-navigation id="main-navigation" multilingual supportsLogin language="no" environment="dev" staticPosition></main-navigation>
     </div>
     <h3 class="example-title">HTML</h3>
     <pre class="example-code">
@@ -64,7 +64,7 @@ geonorge.MainNavigation.setup('main-navigation', {
   <script src="localStorage.js"></script>
   <script src="main-navigation.js"></script>
   <script>
-    geonorge.MainNavigation.setup('main-navigation', {
+    geonorge.MainNavigation.setup('#main-navigation', {
       onSearch: (event) => {
         const searchEvent = event.detail || null;
         if (searchEvent) {

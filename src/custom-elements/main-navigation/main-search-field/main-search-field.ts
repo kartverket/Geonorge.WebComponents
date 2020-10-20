@@ -8,7 +8,7 @@ import { SearchResultsForType, SearchResultsResponseForType } from 'interfaces/s
 
 // Helpers
 import { fetchDropdownSearchResults } from 'functions/apiHelpers';
-import { renderDropdownResultLink } from 'functions/urlHelpers';
+import { renderDropdownResultLink, getKartkatalogUrl } from 'functions/urlHelpers';
 
 // Assets
 import SearchIcon from 'assets/svg/search-icon.svg';
@@ -36,6 +36,7 @@ export class MainSearchField extends CustomElement {
    @Prop() id: string;
    @Prop() environment: string;
    @Toggle() showSearchResults: boolean;
+   @Toggle() preventRedirect: boolean;
    @Prop() searchString: string = '';
    @Prop() language: string;
    @Prop() searchResultsResponses: Array<SearchResultsResponseForType>;
@@ -110,11 +111,16 @@ export class MainSearchField extends CustomElement {
    }
 
    submitSearch() {
-      this.onSearch.emit({
-         detail: {
-            searchString: this.searchString
-         }
-      });
+      if (this.preventRedirect){
+         this.onSearch.emit({
+            detail: {
+               searchString: this.searchString
+            }
+         });
+      } else {
+         window.location.href = `${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchString}`
+      }
+      
    }
 
    @Listen('keyup', 'input')
