@@ -12,12 +12,10 @@ import { MainMenu } from 'custom-elements/main-navigation/main-menu/main-menu';
 
 // Assets
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
-import MenuIcon from 'assets/svg/menu-icon.svg';
-import CloseIcon from 'assets/svg/close-icon.svg';
 
 // Functions
-import { fetchMenuItems } from 'functions/apiHelpers';
-import { getDownloadItems, getDownloadItemMetadata } from 'functions/downloadItemHelpers';
+import { getGeonorgeUrl } from 'functions/urlHelpers';
+
 
 interface MainNavigationOptions extends CustomElementOptions {
    active?: boolean,
@@ -40,7 +38,7 @@ interface MenuItem extends Object {
 export class MainNavigation extends CustomElement {
    private static readonly elementSelector = 'main-navigation';
    private searchField: HTMLInputElement;
-   private logoElement: HTMLImageElement;
+   private logoElement: HTMLAnchorElement;
 
    @Prop() id: string;
    @Prop() environment: string;
@@ -75,6 +73,7 @@ export class MainNavigation extends CustomElement {
       }
 
       this.logoElement.innerHTML = GeonorgeLogo;
+      this.logoElement.href = getGeonorgeUrl(this.environment);
 
 
       if(this.staticPosition) {
