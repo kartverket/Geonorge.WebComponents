@@ -109,19 +109,26 @@ export class MainSearchField extends CustomElement {
       this.hideSearchResultsContainer();
    }
 
+   submitSearch() {
+      this.onSearch.emit({
+         detail: {
+            searchString: this.searchString
+         }
+      });
+   }
+
    @Listen('keyup', 'input')
    searchFieldKeyUp(event: KeyboardEvent) {
-      this.searchString = this.searchField.value;
+      if (event.code && event.key === 'Enter'){
+         this.submitSearch();
+      }else {
+         this.searchString = this.searchField.value;
+      }
    }
 
    @Listen('click', '#search-submit-button')
    onSearchSubmitted(event: MouseEvent) {
-      this.onSearch.emit({
-         detail: {
-            searchString: this.searchString,
-            searchResultsResponses: this.searchResultsResponses
-         }
-      });
+      this.submitSearch();
    }
 
 
