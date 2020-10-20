@@ -6,6 +6,11 @@ export const getKartkatalogUrl = (environment: string) => {
     return `https://kartkatalog.${environmentSlug}geonorge.no`;
 };
 
+export const getGeonorgeUrl = (environment: string) => {
+    const environmentSlug = environment === 'dev' || environment === 'test' ? 'test.' : '';
+    return `https://www.${environmentSlug}geonorge.no`;
+};
+
 const replaceAndAddSpace = (text: string, replace: string, replaceWith: string) => {
     text = text.replace(new RegExp(`([^s])([${replace}])([^s])`, 'ig'), `$1 ${replaceWith} $3`); // Character right before and after
     text = text.replace(new RegExp(`([^s])([${replace}])`, 'ig'), `$1 ${replaceWith}`); // Character right before
