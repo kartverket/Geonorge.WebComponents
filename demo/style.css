@@ -9,7 +9,7 @@ body {
 }
 
 main {
-    margin: auto;
+    margin: 61px auto 0;
     padding: 16px;
     max-width: 1200px;
 }
