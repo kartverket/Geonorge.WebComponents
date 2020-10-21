@@ -15,6 +15,8 @@ import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
 
 // Functions
 import { getGeonorgeUrl } from 'functions/urlHelpers';
+import { getLanguage } from 'functions/cookieHelpers';
+
 
 
 interface MainNavigationOptions extends CustomElementOptions {
@@ -45,12 +47,14 @@ export class MainNavigation extends CustomElement {
    @Prop() environment: string;
    @Prop() searchString: string;
    @Prop() language: string;
-   @Toggle() multilingual: boolean;
-   @Toggle() supportsLogin: boolean;
-   @Toggle() isLoggedIn: boolean;
-   @Toggle() showMenu: boolean;
-   @Toggle() staticPosition: boolean;
-   @Prop() menuItems: Array<MenuItem>;
+   @Prop() signinurl: string;
+   @Prop() signouturl: string;
+   @Prop() englishurl: string;
+   @Prop() norwegianurl: string;
+   @Toggle() isloggedin: boolean;
+   @Toggle() showmenu: boolean;
+   @Toggle() staticposition: boolean;
+   @Prop() menuitems: Array<MenuItem>;
    @Dispatch('onSearch') onSearch: DispatchEmitter;
 
    constructor() {
@@ -78,23 +82,20 @@ export class MainNavigation extends CustomElement {
       this.logoElement.href = getGeonorgeUrl(this.environment);
 
 
-      if(this.staticPosition) {
+      if (this.staticposition) {
          getShadowRootElement(this, '#main-navigation').classList.add('static-position');
-         getShadowRootElement(this, 'main-menu').setAttribute('staticPosition', '');
+         getShadowRootElement(this, 'main-menu').setAttribute('staticposition', '');
       }
 
-      if(this.multilingual){
-         this.mainMenu.setAttribute('multilingual', '');
-      }
-      if (this.language){
-         this.mainMenu.setAttribute('language', this.language);
-      }
-      if (this.supportsLogin){
-         this.mainMenu.setAttribute('supportsLogin', '');
-      }
-      if (this.isLoggedIn){
-         this.mainMenu.setAttribute('isLoggedIn', '');
-      }
+      // Pass properties
+      const language = this.language ? this.language : getLanguage();
+      if (language) { this.mainMenu.setAttribute('language', language); }
+      if (this.englishurl) { this.mainMenu.setAttribute('englishurl', this.englishurl); }
+      if (this.norwegianurl) { this.mainMenu.setAttribute('norwegianurl', this.norwegianurl); }
+      if (this.signinurl) {this.mainMenu.setAttribute('signinurl', this.signinurl);}
+      if (this.signouturl) {this.mainMenu.setAttribute('signouturl', this.signouturl);}
+      if (this.isloggedin) {this.mainMenu.setAttribute('isLoggedIn', '');}
+      
 
       const mapItems = new MapItems();
       const downloadItems = new DownloadItems();

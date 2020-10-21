@@ -11,7 +11,7 @@ import CloseIcon from 'assets/svg/close-icon.svg';
 
 // Functions
 import { fetchMenuItems } from 'functions/apiHelpers';
-import { watch } from 'fs';
+import { setLanguage } from 'functions/cookieHelpers';
 
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
@@ -34,19 +34,20 @@ export class MainMenu extends CustomElement {
     private static readonly elementSelector = 'main-menu';
     private menuButton: HTMLButtonElement;
     private menuIcon: HTMLSpanElement;
-    private menuWrapper: HTMLElement;
     private menuContainer: HTMLElement;
     private menuItemListContainer: HTMLElement;
     private menuActionsRow: HTMLElement;
 
     @Prop() id: string;
     @Prop() language: string;
-    @Toggle() multilingual: boolean;
-    @Toggle() supportsLogin: boolean;
-    @Toggle() isLoggedIn: boolean;
-    @Toggle() showMenu: boolean;
-    @Prop() menuItems: Array<MenuItem>;
-    @Toggle() staticPosition: boolean;
+    @Prop() environment: string;
+    @Prop() signinurl: string;
+    @Prop() signouturl: string;
+    @Prop() norwegianurl: string;
+    @Prop() englishurl: string;
+    @Toggle() isloggedin: boolean;
+    @Toggle() showmenu: boolean;
+    @Prop() menuitems: Array<MenuItem>;
 
 
     constructor() {
@@ -64,31 +65,31 @@ export class MainMenu extends CustomElement {
     connectedCallback() {
         this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
         this.menuIcon = getShadowRootElement(this, '#menu-icon');
-        this.menuWrapper = getShadowRootElement(this, '#menu-wrapper');
         this.menuContainer = getShadowRootElement(this, '#menu-container');
         this.menuItemListContainer = getShadowRootElement(this, '#menu-item-list-container');
         this.menuActionsRow = getShadowRootElement(this, '#menu-actions-row');
         this.menuIcon.innerHTML = MenuIcon;
 
         fetchMenuItems(this.language).then(menuItems => {
-            this.menuItems = menuItems;
+            this.menuitems = menuItems;
         });
 
-        if (this.supportsLogin) {
+        const supportsSignIn = this.signinurl && this.signouturl;
+        if (supportsSignIn) {
             const loginToggleElement = document.createElement("a");
-            loginToggleElement.innerText = this.isLoggedIn ? "Logg ut" : "Logg inn"
+            loginToggleElement.innerText = this.isloggedin ? "Logg ut" : "Logg inn"
+            loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl; 
             this.menuActionsRow.appendChild(loginToggleElement);
         }
 
-        if (this.multilingual) {
+        const supportsLanguages = this.englishurl && this.norwegianurl;
+        if (supportsLanguages) {
             const languageToggleElement = document.createElement("a");
-            languageToggleElement.innerText = "English"
+            languageToggleElement.innerText = this.language === 'en' ? 'Norsk' : 'English';
+            languageToggleElement.href = this.language === 'en' ? this.norwegianurl : this.englishurl;
+            languageToggleElement.id = 'language-toggle-element';
             this.menuActionsRow.appendChild(languageToggleElement);
         }
-
-        if(this.staticPosition) {
-            this.menuWrapper.classList.add('static-position');
-         }
 
         document.addEventListener('click', this.clickOutsideMenuContainer);
     }
@@ -98,7 +99,7 @@ export class MainMenu extends CustomElement {
     }
 
     hideMenuContainer = () => {
-        this.showMenu = false;
+        this.showmenu = false;
     }
 
 
@@ -122,25 +123,27 @@ export class MainMenu extends CustomElement {
     @Listen('click', '#menu-toggle-button')
     buttonClicked(event: MouseEvent) {
         event.stopPropagation();
-        this.showMenu = !this.showMenu;
+        this.showmenu = !this.showmenu;
+    }
+
+    @Listen('click', '#language-toggle-element')
+    languageToggleClicker(event: MouseEvent) {
+        this.language === 'en' ? setLanguage('no') : setLanguage('en');
     }
 
     @Watch('showmenu')
     showMenuChanged() {
-        this.showMenu ? this.menuContainer.classList.add('open') : this.menuContainer.classList.remove('open');
-        this.showMenu ? this.menuButton.classList.add('open') : this.menuButton.classList.remove('open');
-        this.menuIcon.innerHTML = this.showMenu ? CloseIcon : MenuIcon;
+        this.showmenu ? this.menuContainer.classList.add('open') : this.menuContainer.classList.remove('open');
+        this.showmenu ? this.menuButton.classList.add('open') : this.menuButton.classList.remove('open');
+        this.menuIcon.innerHTML = this.showmenu ? CloseIcon : MenuIcon;
     }
 
-    @Watch('menuItems')
+    @Watch('menuitems')
     menuItemsChanged() {
-        if (this.menuItems && this.menuItems.length) {
-            this.menuItemListContainer.innerHTML = this.renderMenuItems(this.menuItems);
+        if (this.menuitems && this.menuitems.length) {
+            this.menuItemListContainer.innerHTML = this.renderMenuItems(this.menuitems);
         }
     }
-
-   
-
 
     public static setup(selector: string, options: MainMenuOptions) {
         const element = getElement<MainMenu>(selector);
@@ -149,7 +152,7 @@ export class MainMenu extends CustomElement {
             element.addEventListener('menuButtonClick', options.onClick);
         }
         if (options.active) {
-            element.showMenu = options.active;
+            element.showmenu = options.active;
         }
     }
 }
