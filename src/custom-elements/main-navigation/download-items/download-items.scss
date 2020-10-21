@@ -46,16 +46,13 @@
             box-sizing: border-box;
             overflow: hidden;
             max-height: 0;
-            width: 100%;
             position: relative;
             right: 245px;
             top: 10px;
             background-color: #fbfcfd;
+            width: 300px;
             @media print {
                 display: none;
-            }
-            @include breakpoint(tablet) {
-                width: 300px;
             }
             &.open {
                 @include box-shadow(

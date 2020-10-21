@@ -44,8 +44,6 @@
     position: absolute;
     left: 0;
     width: 100%;
-    &.static-position{
-    }
 
     .menu-container {
         @include border-radius(0 0 3px 3px);

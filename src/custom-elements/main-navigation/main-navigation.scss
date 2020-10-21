@@ -50,7 +50,7 @@
                 min-width: 150px;
                 @include breakpoint(phablet) {
                     flex: 0;
-                    min-width: 200px;
+                    min-width: 165px;
                 }
                 @include breakpoint(laptop) {
                     min-width: 248px;
