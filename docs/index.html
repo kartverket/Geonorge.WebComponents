@@ -4,13 +4,14 @@
 <head>
   <meta charset="utf-8">
   <title>Geonorge Web Components</title>
+  <meta content="width=device-width,initial-scale=1" name="viewport">
   <link href="prism.css" rel="stylesheet" type="text/css" />
   <link href="style.css" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
   <!-- Demonstrasjon av Web Components: -->
-  <main-navigation multilingual supportsLogin language="no" environment="dev"></main-navigation>
+  <main-navigation englishurl="/" norwegianurl="/"  environment="dev" ></main-navigation>
   <main>
     <h1>geonorge-web-components</h1>
     <h2>main-navigation</h2>
@@ -18,12 +19,12 @@
       Preview
     </h3>
     <div class="example-preview">
-      <main-navigation id="main-navigation" multilingual supportsLogin language="no" environment="dev" staticPosition></main-navigation>
+      <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" staticposition></main-navigation>
     </div>
     <h3 class="example-title">HTML</h3>
     <pre class="example-code">
       <code class="language-html"><script type="prism-html-markup">
-<main-navigation multilingual supportsLogin language="no" environment="dev"></main-navigation>
+<main-navigation englishurl="/en" norwegianurl="/" environment="dev"></main-navigation>
 </script></code>
     </pre>
 
