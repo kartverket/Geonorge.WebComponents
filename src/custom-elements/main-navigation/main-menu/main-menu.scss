@@ -37,6 +37,9 @@
                 display: inline-block;
             }
         }
+        &.hidden {
+            display: none;
+        }
     }
     svg {
         height: 24px;
@@ -61,7 +64,7 @@
         background-color: #dfdcda;
         margin: auto;
         position: relative;
-        top: 59px;
+        top: 57px;
         @include breakpoint(phablet) {
             top: 14px;
         }

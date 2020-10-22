@@ -34,6 +34,7 @@ export class MainMenu extends CustomElement {
     private static readonly elementSelector = 'main-menu';
     private menuButton: HTMLButtonElement;
     private menuIcon: HTMLSpanElement;
+    private closeIcon: HTMLSpanElement;
     private menuContainer: HTMLElement;
     private menuItemListContainer: HTMLElement;
     private menuActionsRow: HTMLElement;
@@ -65,10 +66,15 @@ export class MainMenu extends CustomElement {
     connectedCallback() {
         this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
         this.menuIcon = getShadowRootElement(this, '#menu-icon');
+        this.closeIcon = getShadowRootElement(this, '#close-icon');
         this.menuContainer = getShadowRootElement(this, '#menu-container');
         this.menuItemListContainer = getShadowRootElement(this, '#menu-item-list-container');
         this.menuActionsRow = getShadowRootElement(this, '#menu-actions-row');
         this.menuIcon.innerHTML = MenuIcon;
+        this.closeIcon.innerHTML = CloseIcon;
+
+        this.showmenu ? this.menuIcon.classList.add('hidden') : this.closeIcon.classList.add('hidden');
+
 
         fetchMenuItems(this.language).then(menuItems => {
             this.menuitems = menuItems;
@@ -78,7 +84,7 @@ export class MainMenu extends CustomElement {
         if (supportsSignIn) {
             const loginToggleElement = document.createElement("a");
             loginToggleElement.innerText = this.isloggedin ? "Logg ut" : "Logg inn"
-            loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl; 
+            loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl;
             this.menuActionsRow.appendChild(loginToggleElement);
         }
 
@@ -122,9 +128,9 @@ export class MainMenu extends CustomElement {
 
     @Listen('click', '#menu-toggle-button')
     buttonClicked(event: MouseEvent) {
-        event.stopPropagation();
         this.showmenu = !this.showmenu;
     }
+
 
     @Listen('click', '#language-toggle-element')
     languageToggleClicker(event: MouseEvent) {
@@ -137,7 +143,8 @@ export class MainMenu extends CustomElement {
         this.showmenu ? this.menuButton.classList.add('open') : this.menuButton.classList.remove('open');
         this.showmenu ? this.menuItemListContainer.classList.add('open') : this.menuItemListContainer.classList.remove('open');
         this.showmenu ? this.menuActionsRow.classList.add('open') : this.menuActionsRow.classList.remove('open');
-        this.menuIcon.innerHTML = this.showmenu ? CloseIcon : MenuIcon;
+        this.showmenu ? this.menuIcon.classList.add('hidden') : this.menuIcon.classList.remove('hidden');
+        this.showmenu ? this.closeIcon.classList.remove('hidden') : this.closeIcon.classList.add('hidden');
     }
 
     @Watch('menuitems')
