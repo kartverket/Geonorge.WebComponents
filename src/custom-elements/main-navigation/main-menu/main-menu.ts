@@ -135,6 +135,8 @@ export class MainMenu extends CustomElement {
     showMenuChanged() {
         this.showmenu ? this.menuContainer.classList.add('open') : this.menuContainer.classList.remove('open');
         this.showmenu ? this.menuButton.classList.add('open') : this.menuButton.classList.remove('open');
+        this.showmenu ? this.menuItemListContainer.classList.add('open') : this.menuItemListContainer.classList.remove('open');
+        this.showmenu ? this.menuActionsRow.classList.add('open') : this.menuActionsRow.classList.remove('open');
         this.menuIcon.innerHTML = this.showmenu ? CloseIcon : MenuIcon;
     }
 

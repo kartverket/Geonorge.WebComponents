@@ -10,8 +10,11 @@
         border: none;
         background: transparent;
         color: #7d746d;
-        padding: 0 4px;
         cursor: pointer;
+        padding: 0;
+        @include breakpoint(phablet) {
+            padding: 0 4px;
+        }
         &.open {
             color: #414042;
         }
@@ -19,22 +22,32 @@
             background-color: $primary-brand;
             border-radius: 50%;
             color: #fff;
-            font-size: 1em;
-            height: 1.5em;
-            line-height: 1.5;
             margin-top: -0.25em;
             margin-left: -0.2em;
             position: absolute;
             text-align: center;
-            width: 1.5em;
+            width: 1.4em;
+            line-height: 1.4;
+            height: 1.4em;
+            font-size: .9em;
+            @include breakpoint(phablet) {
+                height: 1.5em;
+                width: 1.5em;
+                line-height: 1.5;
+                font-size: 1em;
+            }
             &.hidden {
                 display: none;
             }
         }
         .map-icon {
             svg {
-                width: 36px;
-                height: 37px;
+                width: 31px;
+                height: 32px;
+                @include breakpoint(phablet) {
+                    width: 36px;
+                    height: 37px;
+                }
             }
         }
     }
@@ -47,10 +60,14 @@
             overflow: hidden;
             max-height: 0;
             position: relative;
-            right: 245px;
             top: 10px;
             background-color: #fbfcfd;
-            width: 300px;
+            right: 205px;
+            width: 260px;
+            @include breakpoint(phablet) {
+                right: 245px;
+                width: 300px;
+            }
             @media print {
                 display: none;
             }

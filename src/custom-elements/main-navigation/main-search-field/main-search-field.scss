@@ -1,14 +1,18 @@
 @import "../../../style/all";
 
+* {
+  box-sizing: border-box;
+}
+
 .main-search-field {
   font-family: $default-font;
   display: flex;
   height: 37px;
-  padding-top: 0.75em;
+  margin-top: 0.25em;
   position: relative;
   width: 100%;
-  @media (min-width: 35em) {
-    padding-top: 0;
+  @include breakpoint(phablet) {
+    margin-top: 0;
   }
 
   .mainSearchLabel {
@@ -20,6 +24,7 @@
 
   input {
     height: 37px;
+    width: 100%;
     outline-offset: -2px;
     -webkit-appearance: none;
     background: #fff;
