@@ -125,8 +125,8 @@ export class MainSearchField extends CustomElement {
 
    @Listen('keyup', 'input')
    searchFieldKeyUp(event: KeyboardEvent) {
-      if (event.code && event.key === 'Enter'){
-         this.submitSearch();
+      if (event.key && event.key === 'Enter' && this.searchString && this.searchString.length){
+         this.submitSearch() 
       }else {
          this.searchString = this.searchField.value;
       }
