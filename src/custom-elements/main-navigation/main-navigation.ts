@@ -12,6 +12,8 @@ import { MainMenu } from 'custom-elements/main-navigation/main-menu/main-menu';
 
 // Assets
 import GeonorgeLogo from 'assets/svg/geonorge-navbar-logo.svg';
+import GeonorgeLogoTest from 'assets/svg/geonorge-navbar-logo_test.svg';
+import GeonorgeLogoDev from 'assets/svg/geonorge-navbar-logo_dev.svg';
 
 // Functions
 import { getGeonorgeUrl } from 'functions/urlHelpers';
@@ -70,6 +72,17 @@ export class MainNavigation extends CustomElement {
       }
    }
 
+   getGeonorgeLogoVariant(environment: string) {
+      switch(environment) {
+         case 'dev':
+            return GeonorgeLogoDev
+         case 'test':
+            return GeonorgeLogoTest
+         default:
+            return GeonorgeLogo
+      }
+   }
+
    connectedCallback() {
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
@@ -85,7 +98,7 @@ export class MainNavigation extends CustomElement {
       this.mapItems.setAttribute('environment', this.environment);
       this.downloadItems.setAttribute('environment', this.environment);
 
-      this.logoElement.innerHTML = GeonorgeLogo;
+      this.logoElement.innerHTML = this.getGeonorgeLogoVariant(this.environment);
       this.logoElement.href = getGeonorgeUrl(this.environment);
 
 

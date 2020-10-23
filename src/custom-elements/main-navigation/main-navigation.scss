@@ -48,10 +48,6 @@
 
             .logo {
                 flex: 1;
-                min-width: 175px;
-                @include breakpoint(laptop) {
-                    min-width: 212px;
-                }
                 a {
                     display: inline-block;
                 }
