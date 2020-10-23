@@ -42,6 +42,8 @@ export class DownloadItems extends CustomElement {
    @Prop() id: string;
    @Prop() environment: string;
    @Toggle() showList: boolean;
+   @Toggle() preventRedirect: boolean;
+   @Dispatch('onOpenEmptyDownloadItemsList') onOpenEmptyDownloadItemsList: DispatchEmitter;
 
    constructor() {
       super();
@@ -68,7 +70,7 @@ export class DownloadItems extends CustomElement {
       document.addEventListener('click', this.clickOutsideDownloadItemsContainer);
    }
 
-   getUpdatedDownloadItems(){
+   getUpdatedDownloadItems() {
       const downloadItemUuids = getDownloadItems();
       this.downloadItems = downloadItemUuids.map(uuid => {
          return getDownloadItemMetadata(uuid);
@@ -89,8 +91,8 @@ export class DownloadItems extends CustomElement {
       this.hideListContainer();
    }
 
-   renderDownloadItemsCounter(){
-      if (this.downloadItems && this.downloadItems.length){
+   renderDownloadItemsCounter() {
+      if (this.downloadItems && this.downloadItems.length) {
          this.downloadIconCounter.innerHTML = this.downloadItems.length.toString();
          this.downloadIconCounter.classList.remove('hidden');
       } else {
@@ -117,11 +119,15 @@ export class DownloadItems extends CustomElement {
 
    @Listen('click', '#download-toggle-button')
    buttonClicked(event: MouseEvent) {
-      if (this.downloadItems && this.downloadItems.length ){
+      if (this.downloadItems && this.downloadItems.length) {
          this.showList = !this.showList;
       } else {
          this.showList = false;
-         window.location.href = `${getKartkatalogUrl(this.environment)}/nedlasting`
+         if (this.preventRedirect){
+            this.onOpenEmptyDownloadItemsList.emit();
+         } else {
+            window.location.href = `${getKartkatalogUrl(this.environment)}/nedlasting`
+         }
       }
    }
 

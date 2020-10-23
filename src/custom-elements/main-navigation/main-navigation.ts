@@ -25,7 +25,8 @@ interface MainNavigationOptions extends CustomElementOptions {
    active?: boolean,
    onClick?: () => void,
    onSearch?: () => void,
-   onOpenEmptyMapItemsList?: () => void
+   onOpenEmptyMapItemsList?: () => void,
+   onOpenEmptyDownloadItemsList?: () => void
 }
 
 interface MenuItem extends Object {
@@ -139,6 +140,13 @@ export class MainNavigation extends CustomElement {
             const mapItems = getShadowRootElement<MapItems>(element, 'map-items');
             mapItems.addEventListener('onOpenEmptyMapItemsList', options.onOpenEmptyMapItemsList);
             mapItems.setAttribute('preventRedirect', '');
+         })
+      }
+      if (options.onOpenEmptyDownloadItemsList) {
+         setTimeout(() => {
+            const downloadItems = getShadowRootElement<DownloadItems>(element, 'download-items');
+            downloadItems.addEventListener('onOpenEmptyDownloadItemsList', options.onOpenEmptyDownloadItemsList);
+            downloadItems.setAttribute('preventRedirect', '');
          })
       }
    }
