@@ -42,6 +42,7 @@ export class MainNavigation extends CustomElement {
    private searchField: HTMLInputElement;
    private logoElement: HTMLAnchorElement;
    private mainMenu: HTMLElement;
+   private mapItems: HTMLElement;
 
    @Prop() id: string;
    @Prop() environment: string;
@@ -72,12 +73,14 @@ export class MainNavigation extends CustomElement {
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
       this.mainMenu = getShadowRootElement(this, '#main-menu');
+      this.mapItems = getShadowRootElement(this, '#map-items');
 
       if (this.searchField) {
          this.searchField.setAttribute('value', this.searchString);
          this.searchField.setAttribute('environment', this.environment);
       }
 
+      this.mapItems.setAttribute('environment', this.environment);
       this.logoElement.innerHTML = GeonorgeLogo;
       this.logoElement.href = getGeonorgeUrl(this.environment);
 
