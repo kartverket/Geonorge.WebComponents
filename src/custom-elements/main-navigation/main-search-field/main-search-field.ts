@@ -6,7 +6,7 @@ import {
 // Interfaces
 import { SearchResultsForType, SearchResultsResponseForType } from 'interfaces/search';
 
-// Helpers
+// Functions
 import { fetchDropdownSearchResults } from 'functions/apiHelpers';
 import { renderDropdownResultLink, getKartkatalogUrl } from 'functions/urlHelpers';
 
