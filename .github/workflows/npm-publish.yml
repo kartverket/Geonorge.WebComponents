@@ -41,6 +41,7 @@ jobs:
           node-version: 12
           registry-url: https://npm.pkg.github.com/
       - run: yarn
+      - run: echo registry=https://npm.pkg.github.com >> .npmrc
       - run: npm run release
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_GITHUB_TOKEN}}

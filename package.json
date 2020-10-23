@@ -13,9 +13,6 @@
     "url": "ssh://git@github.com/kartverket/Geonorge.WebComponents.git",
     "directory": "packages/geonorge-web-components"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
   "scripts": {
     "start": "webpack serve --port 9000 --host 0.0.0.0 --public --inline --progress --profile --content-base demo/ --mode development",
     "build": "npm run clean && webpack --config webpack.config.js --mode production && npm run copy-demo-files",
