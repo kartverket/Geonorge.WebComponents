@@ -6,10 +6,10 @@ Geonorge Web Components is available as an [npm package](https://www.npmjs.com/p
 
 ```sh
 // with npm
-npm install geonorge-web-components
+npm install @kartverket/geonorge-web-components
 
 // with yarn
-yarn add geonorge-web-components
+yarn add @kartverket/geonorge-web-components
 ```
 
 
@@ -36,14 +36,14 @@ yarn add geonorge-web-components
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MainNavigation } from 'geonorge-web-components/main-navigation';
+import { MainNavigation } from '@kartverket/geonorge-web-components/main-navigation';
 
 
 function App() {
   return (<React.Fragment>
     <main-navigation environment="dev"></main-navigation>
     /* Content here */
-    </React.Fragment>;
+    </React.Fragment>);
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));
