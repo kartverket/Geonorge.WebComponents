@@ -11,6 +11,8 @@ import TrashIcon from 'assets/svg/trash-icon.svg';
 
 // Functions
 import { getDownloadItems, getDownloadItemMetadata, removeDownloadItem } from 'functions/downloadItemHelpers';
+import { getKartkatalogUrl } from 'functions/urlHelpers';
+
 
 interface DownloadItem extends Object {
    name: string,
@@ -38,6 +40,7 @@ export class DownloadItems extends CustomElement {
    private downloadItems: Array<DownloadItem>;
 
    @Prop() id: string;
+   @Prop() environment: string;
    @Toggle() showList: boolean;
 
    constructor() {
@@ -114,7 +117,12 @@ export class DownloadItems extends CustomElement {
 
    @Listen('click', '#download-toggle-button')
    buttonClicked(event: MouseEvent) {
-      this.showList = !this.showList;
+      if (this.downloadItems && this.downloadItems.length ){
+         this.showList = !this.showList;
+      } else {
+         this.showList = false;
+         window.location.href = `${getKartkatalogUrl(this.environment)}/nedlasting`
+      }
    }
 
    @Listen('click', '#download-item-list-container')
@@ -131,6 +139,9 @@ export class DownloadItems extends CustomElement {
             this.getUpdatedDownloadItems();
             this.renderDownloadItems(this.downloadItems);
             this.renderDownloadItemsCounter();
+            if (!this.downloadItems || !this.downloadItems.length) {
+               this.showList = false;
+            }
          }
       }
    }
