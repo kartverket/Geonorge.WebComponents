@@ -9,6 +9,7 @@
   "license": "GPL-3.0",
   "main": "index.js",
   "repository": "https://github.com/kartverket/Geonorge.WebComponents.git",
+  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
   "scripts": {
     "start": "webpack serve --port 9000 --host 0.0.0.0 --public --inline --progress --profile --content-base demo/ --mode development",
     "build": "npm run clean && webpack --config webpack.config.js --mode production && npm run copy-demo-files",
