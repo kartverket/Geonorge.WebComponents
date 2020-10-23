@@ -24,7 +24,8 @@ import { getLanguage } from 'functions/cookieHelpers';
 interface MainNavigationOptions extends CustomElementOptions {
    active?: boolean,
    onClick?: () => void,
-   onSearch?: () => void
+   onSearch?: () => void,
+   onOpenEmptyMapItemsList?: () => void
 }
 
 interface MenuItem extends Object {
@@ -131,6 +132,13 @@ export class MainNavigation extends CustomElement {
             const mainSearchField = getShadowRootElement<MainSearchField>(element, 'main-search-field');
             mainSearchField.addEventListener('onSearch', options.onSearch);
             mainSearchField.setAttribute('preventRedirect', '');
+         })
+      }
+      if (options.onOpenEmptyMapItemsList) {
+         setTimeout(() => {
+            const mapItems = getShadowRootElement<MapItems>(element, 'map-items');
+            mapItems.addEventListener('onOpenEmptyMapItemsList', options.onOpenEmptyMapItemsList);
+            mapItems.setAttribute('preventRedirect', '');
          })
       }
    }

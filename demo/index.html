@@ -71,6 +71,9 @@ geonorge.MainNavigation.setup('main-navigation', {
         if (searchEvent) {
           console.log(searchEvent);
         }
+      },
+      onOpenEmptyMapItemsList: (event) => {
+        console.log("onOpenEmptyMapItemsList");
       }
     })
   </script>

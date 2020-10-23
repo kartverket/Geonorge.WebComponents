@@ -40,6 +40,8 @@ export class MapItems extends CustomElement {
    @Prop() id: string;
    @Prop() environment: string;
    @Toggle() showList: boolean;
+   @Toggle() preventRedirect: boolean;
+   @Dispatch('onOpenEmptyMapItemsList') onOpenEmptyMapItemsList: DispatchEmitter;
 
    constructor() {
       super();
@@ -112,11 +114,16 @@ export class MapItems extends CustomElement {
 
    @Listen('click', '#map-toggle-button')
    buttonClicked(event: MouseEvent) {
+
       if (this.mapItems && this.mapItems.length) {
          this.showList = !this.showList;
       } else {
          this.showList = false;
-         window.location.href = `${getKartkatalogUrl(this.environment)}/kart`
+         if (this.preventRedirect){
+            this.onOpenEmptyMapItemsList.emit();
+         } else {
+            window.location.href = `${getKartkatalogUrl(this.environment)}/kart`
+         }
       }
    }
 
