@@ -77,6 +77,10 @@
   a {
     color: $anchor-active;
     text-decoration: none;
+    &:hover {
+      color: $anchor-active-hover;
+      text-decoration: underline;
+    }
   }
 
   div.search-results-for-type {
@@ -90,7 +94,6 @@
       padding: 8px 16px;
       font-size: 1.2em;
       display: inline-block;
-      color: $anchor-active;
       span.search-results-for-type-number-badge {
         @include border-radius(6px);
         padding: 2px 4px;

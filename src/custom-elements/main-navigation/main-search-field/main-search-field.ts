@@ -63,6 +63,7 @@ export class MainSearchField extends CustomElement {
       this.searchButton.innerHTML = SearchIcon;
 
       this.searchResultsContainer = getShadowRootElement(this, '#search-results-container');
+      this.searchResultsContainer.style.maxHeight = `${window.innerHeight - 61}px`;
       if (this.searchField && this.searchString) {
          this.searchField.setAttribute('value', this.searchString);
       }
