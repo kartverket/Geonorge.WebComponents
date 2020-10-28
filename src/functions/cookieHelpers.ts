@@ -18,7 +18,8 @@ export const setCookie = (cname: string, cvalue: string, exdays: number) => {
     let expireDate = new Date();
     expireDate.setTime(expireDate.getTime() + (exdays * 24 * 60 * 60 * 1000));
     const expires = `expires=${expireDate.toUTCString()}`;
-    document.cookie = `${cname}=${cvalue};${expires};path=/;`;
+    const domain = window.location.hostname === 'localhost' ? '' : 'domain=-geonorge.no';
+    document.cookie = `${cname}=${cvalue};${expires};path=/;${domain}`;
 }
 
 export const getLanguage = () => {
