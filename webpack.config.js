@@ -10,7 +10,10 @@ module.exports = {
     'main-search-field': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
     'download-item': './custom-elements/main-navigation/download-items/download-items.ts',
     'map-item': './custom-elements/main-navigation/map-items/map-items.ts',
-    'main-menu': './custom-elements/main-navigation/main-menu/main-menu.ts'
+    'main-menu': './custom-elements/main-navigation/main-menu/main-menu.ts',
+    'navigation-tabs': './custom-elements/navigation-tabs/navigation-tabs.ts',
+    'navigation-tab-heading': './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
+    'navigation-tab-content': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts'
   },
   output: {
     path: DESTINATION,
