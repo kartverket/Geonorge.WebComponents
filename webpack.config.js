@@ -6,6 +6,7 @@ module.exports = {
   context: ROOT,
   entry: {
     'index': './index.ts',
+    'init': './init.ts',
     'main-navigation': './custom-elements/main-navigation/main-navigation.ts',
     'main-search-field': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
     'download-item': './custom-elements/main-navigation/download-items/download-items.ts',

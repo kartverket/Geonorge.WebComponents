@@ -1,3 +1,5 @@
+export * from './init';
+
 export * from './custom-elements/main-navigation/main-navigation';
 export * from './custom-elements/main-navigation/main-search-field/main-search-field';
 export * from './custom-elements/main-navigation/download-items/download-items';
