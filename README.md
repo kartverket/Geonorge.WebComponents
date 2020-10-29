@@ -27,7 +27,7 @@ yarn add @kartverket/geonorge-web-components
   <body>
     <main-navigation englishurl="/" norwegianurl="/"  environment="dev" ></main-navigation>
     <!-- Content here -->
-    <script src="main-navigation.js"></script>
+    <script src="MainNavigation.js"></script>
   </body>
 </html>
 ```
@@ -36,7 +36,7 @@ yarn add @kartverket/geonorge-web-components
 ```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { MainNavigation } from '@kartverket/geonorge-web-components/main-navigation';
+import { MainNavigation } from '@kartverket/geonorge-web-components/MainNavigation';
 
 
 function App() {
