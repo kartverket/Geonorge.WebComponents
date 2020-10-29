@@ -2,12 +2,12 @@
 
 :host {
     font-family: $default-font;
-    display: flex;
-    flex-wrap: wrap;
-    width: 100%;
 
-    ::slotted(navigation-tab-heading) {
+    .navigation-tab-headings {
+        width: 100%;
         border-bottom: 1px solid #414042;
         margin-bottom: 10px;
+        display: flex;
+        flex-wrap: wrap;
     }
 }
