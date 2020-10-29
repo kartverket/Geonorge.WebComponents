@@ -1,0 +1,16 @@
+.search-type-selector{
+    width: 180px;
+    label {
+        display: block;
+        cursor: pointer;
+        .search-type-counter {
+            font-size: .9em;
+            &::before{
+                content: "(";
+            }
+            &::after{
+                content: ")";
+            }
+        }
+    }
+}

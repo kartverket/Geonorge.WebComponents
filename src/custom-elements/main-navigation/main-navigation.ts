@@ -6,6 +6,7 @@ import {
 
 // Components
 import { MainSearchField } from 'custom-elements/main-navigation/main-search-field/main-search-field';
+import { SearchTypeSelector } from 'custom-elements/main-navigation/search-type-selector/search-type-selector';
 import { DownloadItems } from 'custom-elements/main-navigation/download-items/download-items';
 import { MapItems } from 'custom-elements/main-navigation/map-items/map-items';
 import { MainMenu } from 'custom-elements/main-navigation/main-menu/main-menu';
@@ -26,7 +27,8 @@ interface MainNavigationOptions extends CustomElementOptions {
    onClick?: () => void,
    onSearch?: () => void,
    onOpenEmptyMapItemsList?: () => void,
-   onOpenEmptyDownloadItemsList?: () => void
+   onOpenEmptyDownloadItemsList?: () => void,
+   onSearchTypeChange?: () => void
 }
 
 interface MenuItem extends Object {
@@ -44,6 +46,7 @@ interface MenuItem extends Object {
 export class MainNavigation extends CustomElement {
    private static readonly elementSelector = 'main-navigation';
    private searchField: HTMLInputElement;
+   private searchTypeSelector: HTMLElement;
    private logoElement: HTMLAnchorElement;
    private mainMenu: HTMLElement;
    private mapItems: HTMLElement;
@@ -57,11 +60,15 @@ export class MainNavigation extends CustomElement {
    @Prop() signouturl: string;
    @Prop() englishurl: string;
    @Prop() norwegianurl: string;
+   @Prop() metadataresultsfound: string;
+   @Prop() articleresultsfound: string;
    @Toggle() isloggedin: boolean;
    @Toggle() showmenu: boolean;
+   @Toggle() showSearchTypeSelector: boolean;
    @Toggle() staticposition: boolean;
    @Prop() menuitems: Array<MenuItem>;
    @Dispatch('onSearch') onSearch: DispatchEmitter;
+   @Dispatch('onSearchTypeChange') onSearchTypeChange: DispatchEmitter;
 
    constructor() {
       super();
@@ -117,6 +124,14 @@ export class MainNavigation extends CustomElement {
       if (this.signinurl) {this.mainMenu.setAttribute('signinurl', this.signinurl);}
       if (this.signouturl) {this.mainMenu.setAttribute('signouturl', this.signouturl);}
       if (this.isloggedin) {this.mainMenu.setAttribute('isLoggedIn', '');}
+      if (this.showSearchTypeSelector) {
+         this.searchTypeSelector = document.createElement('search-type-selector');
+         if (this.metadataresultsfound) {this.searchTypeSelector.setAttribute('metadataresultsfound', this.metadataresultsfound);}
+         if (this.articleresultsfound) {this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound);}
+         if (language) {this.searchTypeSelector.setAttribute('language', language);}
+         this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
+         const searchTypeSelector = new SearchTypeSelector();
+      }
       
 
       const mapItems = new MapItems();
@@ -147,6 +162,12 @@ export class MainNavigation extends CustomElement {
             const downloadItems = getShadowRootElement<DownloadItems>(element, 'download-items');
             downloadItems.addEventListener('onOpenEmptyDownloadItemsList', options.onOpenEmptyDownloadItemsList);
             downloadItems.setAttribute('preventRedirect', '');
+         })
+      }
+      if (options.onSearchTypeChange) {
+         setTimeout(() => {
+            const searchTypeSelector = getShadowRootElement<SearchTypeSelector>(element, 'search-type-selector');
+            searchTypeSelector.addEventListener('onSearchTypeChange', options.onSearchTypeChange);
          })
       }
    }
