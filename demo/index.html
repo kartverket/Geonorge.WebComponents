@@ -11,7 +11,7 @@
 
 <body>
   <!-- Demonstrasjon av Web Components: -->
-  <main-navigation englishurl="/" norwegianurl="/" environment="dev"></main-navigation>
+  <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector metadataresultsfound="3245" articleresultsfound="17"></main-navigation>
   <main>
     <h1>geonorge-web-components</h1>
     <h2>main-navigation</h2>
@@ -19,7 +19,7 @@
       <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
       <navigation-tab-content slot="tab-content">
         <div class="example-preview">
-          <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" staticposition>
+          <main-navigation englishurl="/" norwegianurl="/" environment="dev" staticposition>
           </main-navigation>
         </div>
       </navigation-tab-content>
@@ -35,7 +35,7 @@
       <navigation-tab-content slot="tab-content">
         <pre class="example-code">
           <code class="language-js">
-geonorge.MainNavigation.setup('main-navigation', {
+geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
   onSearch: event => {
     const searchEvent = event.detail || null;
     if (searchEvent){
@@ -60,6 +60,9 @@ geonorge.MainNavigation.setup('main-navigation', {
   id: string,
   environment: string,
   searchString: string,
+  showsearchtypeselector: boolean,
+  metadataresultsfound: string,
+  articleresultsfound: string,
   language: string,
   multilingual: boolean,
   supportsLogin: boolean,
@@ -94,14 +97,15 @@ geonorge.MainNavigation.setup('main-navigation', {
 
   <script src="localStorage.js"></script>
   <script src="init.js"></script>
-  <script src="main-navigation.js"></script>
-  <script src="navigation-tabs.js"></script>
+  <script src="MainNavigation.js"></script>
+  <script src="NavigationTabs.js"></script>
+
   <script>
-    geonorge.MainNavigation.setup('#main-navigation', {
+    geonorge.MainNavigation.MainNavigation.setup('#main-navigation', {
       onSearch: (event) => {
-        const searchEvent = event.detail || null;
-        if (searchEvent) {
-          console.log(searchEvent);
+        const searchString = event.detail && event.detail.searchString || null;
+        if (searchString) {
+          console.log(searchString);
         }
       },
       onOpenEmptyMapItemsList: (event) => {
@@ -109,9 +113,16 @@ geonorge.MainNavigation.setup('main-navigation', {
       },
       onOpenEmptyDownloadItemsList: (event) => {
         console.log("onOpenEmptyDownloadItemsList");
+      },
+      onSearchTypeChange: (event) => {
+        const searchType = event.detail && event.detail.value || null;
+        if (searchType) {
+          console.log(searchType);
+        }
       }
-    })
+    });
   </script>
+  
   <script src="prism.js"></script>
 </body>
 
