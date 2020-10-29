@@ -1,26 +1,26 @@
 const path = require('path');
 const ROOT = path.resolve(__dirname, 'src');
 const DESTINATION = path.resolve(__dirname, 'lib');
-
 module.exports = {
   context: ROOT,
   entry: {
     'index': './index.ts',
     'init': './init.ts',
-    'main-navigation': './custom-elements/main-navigation/main-navigation.ts',
-    'main-search-field': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
-    'download-item': './custom-elements/main-navigation/download-items/download-items.ts',
-    'map-item': './custom-elements/main-navigation/map-items/map-items.ts',
-    'main-menu': './custom-elements/main-navigation/main-menu/main-menu.ts',
-    'navigation-tabs': './custom-elements/navigation-tabs/navigation-tabs.ts',
-    'navigation-tab-heading': './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
-    'navigation-tab-content': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts'
+    'MainNavigation': './custom-elements/main-navigation/main-navigation.ts',
+    'MainSearchField': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
+    'SearchTypeSelector': './custom-elements/main-navigation/search-type-selector/search-type-selector.ts',
+    'DownloadItem': './custom-elements/main-navigation/download-items/download-items.ts',
+    'MapItem': './custom-elements/main-navigation/map-items/map-items.ts',
+    'MainMenu': './custom-elements/main-navigation/main-menu/main-menu.ts',
+    'NavigationTabs': './custom-elements/navigation-tabs/navigation-tabs.ts',
+    'NavigationTabHeading': './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
+    'NavigationTabContent': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts'
   },
   output: {
     path: DESTINATION,
     filename: '[name].js',
-    library: 'geonorge',
-    libraryTarget: 'umd'
+    library: ['geonorge', '[name]'],
+    libraryTarget: 'umd',
   },
   resolve: {
     extensions: ['.ts', '.js'],
