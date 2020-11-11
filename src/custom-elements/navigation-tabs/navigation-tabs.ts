@@ -87,18 +87,12 @@ export class NavigationTabs extends CustomElement {
       const navigationTabContent = new NavigationTabContent();
 
       Promise.all([
-         customElements.whenDefined('navigation-tab-content'),
+         customElements.whenDefined('navigation-tab-heading'),
          customElements.whenDefined('navigation-tab-content')
       ]).then(() => {
          this.linkPanels()
 
       });
-
-      this.linkPanels()
-
-
-    
-
    }
 
    disconnectedCallback() {
