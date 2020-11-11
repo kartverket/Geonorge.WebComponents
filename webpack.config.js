@@ -14,7 +14,8 @@ module.exports = {
     'MainMenu': './custom-elements/main-navigation/main-menu/main-menu.ts',
     'NavigationTabs': './custom-elements/navigation-tabs/navigation-tabs.ts',
     'NavigationTabHeading': './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
-    'NavigationTabContent': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts'
+    'NavigationTabContent': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts',
+    'DataTable': './custom-elements/data-table/data-table.ts'
   },
   output: {
     path: DESTINATION,

@@ -10,3 +10,5 @@ export * from './custom-elements/main-navigation/main-menu/main-menu';
 export * from './custom-elements/navigation-tabs/navigation-tabs';
 export * from './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading';
 export * from './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content';
+
+export * from './custom-elements/data-table/data-table';
