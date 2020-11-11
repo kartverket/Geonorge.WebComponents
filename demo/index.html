@@ -11,7 +11,8 @@
 
 <body>
   <!-- Demonstrasjon av Web Components: -->
-  <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector metadataresultsfound="3245" articleresultsfound="17"></main-navigation>
+  <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector
+    metadataresultsfound="3245" articleresultsfound="17"></main-navigation>
   <main>
     <h1>geonorge-web-components</h1>
     <h2>main-navigation</h2>
@@ -77,7 +78,6 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 
     <h2>navigation-tabs</h2>
     <navigation-tabs>
-
       <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
       <navigation-tab-content slot="tab-content">
         <pre class="example-code">
@@ -92,12 +92,86 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
       </pre>
       </navigation-tab-content>
     </navigation-tabs>
+
+    <h2>data-table</h2>
+    <navigation-tabs>
+      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+      <navigation-tab-content slot="tab-content">
+        <div class="example-preview">
+          <data-table hoverable>
+            <table>
+              <thead>
+                <tr>
+                  <th>Heading 1</th>
+                  <th>Heading 2</th>
+                  <th>Heading 3</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Row 1 Data 1</td>
+                  <td>Row 1 Data 2</td>
+                  <td>Row 1 Data 3</td>
+                </tr>
+                <tr>
+                  <td>Row 2 Data 1</td>
+                  <td>Row 2 Data 2</td>
+                  <td>Row 2 Data 3</td>
+                </tr>
+              </tbody>
+            </table>
+          </data-table>
+        </div>
+      </navigation-tab-content>
+      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+      <navigation-tab-content slot="tab-content">
+        <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<data-table hoverable>
+  <table>
+    <thead>
+      <tr>
+        <th>Heading 1</th>
+        <th>Heading 2</th>
+        <th>Heading 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Row 1 Data 1</td>
+        <td>Row 1 Data 2</td>
+        <td>Row 1 Data 3</td>
+      </tr>
+      <tr>
+        <td>Row 2 Data 1</td>
+        <td>Row 2 Data 2</td>
+        <td>Row 2 Data 3</td>
+      </tr>
+    </tbody>
+  </table>
+</data-table>
+  </script></code>
+      </pre>
+      </navigation-tab-content>
+      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+      <navigation-tab-content slot="tab-content">
+        <pre class="example-code">
+            <code class="language-json">
+{
+  hoverable: boolean
+}
+            </code>
+          </pre>
+      </navigation-tab-content>
+    </navigation-tabs>
+
   </main>
 
   <script src="localStorage.js"></script>
   <script src="init.js"></script>
   <script src="MainNavigation.js"></script>
   <script src="NavigationTabs.js"></script>
+  <script src="DataTable.js"></script>
 
   <script>
     geonorge.MainNavigation.MainNavigation.setup('#main-navigation', {
@@ -121,7 +195,7 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
       }
     });
   </script>
-  
+
   <script src="prism.js"></script>
 </body>
 
