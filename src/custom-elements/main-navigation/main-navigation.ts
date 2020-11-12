@@ -54,19 +54,18 @@ export class MainNavigation extends CustomElement {
 
    @Prop() id: string;
    @Prop() environment: string;
-   @Prop() searchString: string;
    @Prop() language: string;
+   @Prop() searchString: string;
+   @Prop() metadataresultsfound: string;
+   @Prop() articleresultsfound: string;
    @Prop() signinurl: string;
    @Prop() signouturl: string;
    @Prop() englishurl: string;
    @Prop() norwegianurl: string;
-   @Prop() metadataresultsfound: string;
-   @Prop() articleresultsfound: string;
    @Toggle() isloggedin: boolean;
    @Toggle() showmenu: boolean;
    @Toggle() showSearchTypeSelector: boolean;
    @Toggle() staticposition: boolean;
-   @Prop() menuitems: Array<MenuItem>;
    @Dispatch('onSearch') onSearch: DispatchEmitter;
    @Dispatch('onSearchTypeChange') onSearchTypeChange: DispatchEmitter;
 
