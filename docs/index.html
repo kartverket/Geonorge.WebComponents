@@ -20,7 +20,7 @@
       <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
       <navigation-tab-content slot="tab-content">
         <div class="example-preview">
-          <main-navigation englishurl="/" norwegianurl="/" environment="dev" staticposition>
+          <main-navigation englishurl="/" norwegianurl="/" environment="dev" language="no" staticposition>
           </main-navigation>
         </div>
       </navigation-tab-content>
@@ -28,7 +28,7 @@
       <navigation-tab-content slot="tab-content">
         <pre class="example-code">
           <code class="language-html"><script type="prism-html-markup">
-<main-navigation englishurl="/en" norwegianurl="/" environment="dev"></main-navigation>
+<main-navigation englishurl="/en" norwegianurl="/" environment="dev" language="no"></main-navigation>
 </script></code>
     </pre>
       </navigation-tab-content>
@@ -60,16 +60,22 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 {
   id: string,
   environment: string,
+  language: string,
   searchString: string,
-  showsearchtypeselector: boolean,
   metadataresultsfound: string,
   articleresultsfound: string,
-  language: string,
-  multilingual: boolean,
-  supportsLogin: boolean,
+  signinurl: string,
+  signouturl: string,
+  englishurl: string,
+  norwegianurl: string,
   isLoggedIn: boolean,
   showMenu: boolean,
-  staticPosition: boolean
+  showsearchtypeselector: boolean,
+  staticPosition: boolean,
+  onSearch: function,
+  onSearchTypeChange: function,
+  onOpenEmptyMapItemsList: function,
+  onOpenEmptyDownloadItemsList: function
 }
             </code>
           </pre>
