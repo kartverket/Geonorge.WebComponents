@@ -11,7 +11,7 @@
           color: $anchor-active;
           font-weight: normal;
           height: 27px;
-          line-height: 18.6667px;
+          line-height: 20px;
           text-align: left;
           text-transform: uppercase;
           padding: 8px 8px 0;
@@ -23,10 +23,14 @@
         td {
           padding: 8px;
           border-bottom: 1px solid $primary-border;
+          line-height: 20px;
         }
       }
     }
-
+    img,
+    svg {
+      max-height: 20px;
+    }
     &.hoverable {
       tbody {
         tr {
