@@ -15,7 +15,8 @@ module.exports = {
     'NavigationTabs': './custom-elements/navigation-tabs/navigation-tabs.ts',
     'NavigationTabHeading': './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
     'NavigationTabContent': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts',
-    'DataTable': './custom-elements/data-table/data-table.ts'
+    'DataTable': './custom-elements/data-table/data-table.ts',
+    'StandardButton': './custom-elements/standard-button/standard-button'
   },
   output: {
     path: DESTINATION,

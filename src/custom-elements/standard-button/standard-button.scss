@@ -1,0 +1,78 @@
+@import "../../style/all";
+
+* {
+    box-sizing: border-box;
+}
+
+button {
+    @include transition(all 0.35s linear 0s);
+    font-family: $default-font;
+    font-weight: 400;
+    font-size: 12pt;
+    font-style: normal;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    border-radius: 0;
+    cursor: pointer;
+    display: inline-block;
+    height: 34px;
+    line-height: 16pt;
+    text-decoration: none;
+    background-position: 50%;
+    &:hover {
+        background-color: $primary-brand;
+    }
+    &:disabled {
+        background-color: $disabled-background;
+        color: $disabled-text;
+        border: 1px solid $disabled-text;
+        cursor: not-allowed;
+        &:hover,
+        &:focus {
+            background-color: $disabled-background;
+        }
+    }
+    &.default:not(:disabled) {
+        background-color: $default-background;
+        color: $default-text;
+        border-color: $default-border;
+        &:hover,
+        &:focus {
+            background-color: $default-background-hover;
+        }
+    }
+    &.primary:not(:disabled) {
+        background-color: $primary-background;
+        color: #fff;
+
+        &:hover,
+        &:focus {
+            background-color: $primary-background-hover;
+        }
+    }
+    &.success:not(:disabled) {
+        background-color: $success-background;
+        color: #fff;
+        &:hover,
+        &:focus {
+            background-color: $success-background-hover;
+        }
+    }
+    &.warning:not(:disabled) {
+        background-color: $warning-background;
+        color: #fff;
+        &:hover,
+        &:focus {
+            background-color: $warning-background-hover;
+        }
+    }
+    &.danger:not(:disabled) {
+        background-color: $danger-background;
+        color: #fff;
+        &:hover,
+        &:focus {
+            background-color: $danger-background-hover;
+        }
+    }
+}

@@ -12,3 +12,5 @@ export * from './custom-elements/navigation-tabs/navigation-tab-heading/navigati
 export * from './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content';
 
 export * from './custom-elements/data-table/data-table';
+
+export * from './custom-elements/standard-button/standard-button';
