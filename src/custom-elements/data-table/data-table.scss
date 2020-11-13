@@ -8,7 +8,7 @@
       tr {
         th {
           border-bottom: 2px solid $primary-brand;
-          color: $anchor-active;
+          color: $primary-text;
           font-weight: normal;
           height: 27px;
           line-height: 20px;
@@ -22,7 +22,7 @@
       tr {
         td {
           padding: 8px;
-          border-bottom: 1px solid $primary-border;
+          border-bottom: 1px solid $default-border;
           line-height: 20px;
         }
       }

@@ -6,7 +6,7 @@
 
 .main-navigation {
     @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
-    background-color: $primary-background;
+    background-color: $navigation-bar-background;
     font-family: $default-font;
     position: fixed;
     width: 100%;

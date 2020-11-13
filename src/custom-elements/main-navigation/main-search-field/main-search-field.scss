@@ -75,10 +75,10 @@
   }
 
   a {
-    color: $anchor-active;
+    color: $primary-text;
     text-decoration: none;
     &:hover {
-      color: $anchor-active-hover;
+      color: $primary-text-hover;
       text-decoration: underline;
     }
   }
