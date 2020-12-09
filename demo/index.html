@@ -48,6 +48,18 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
   },
   onOpenEmptyDownloadItemsList: event => {
     // do stuff
+  },
+  onSearchTypeChange: (event) => {
+    const searchType = event.detail && event.detail.value || null;
+    if (searchType) {
+      // do stuff
+    }
+  },
+  onSignInClick: (event) => {
+    // do stuff
+  },
+  onSignOutClick: (event) => {
+    // do stuff
   }
 });
           </code>
@@ -239,6 +251,12 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
         if (searchType) {
           console.log(searchType);
         }
+      },
+      onSignInClick: (event) => {
+        console.log("sign in");
+      },
+      onSignOutClick: (event) => {
+        console.log("sign out");
       }
     });
   </script>
