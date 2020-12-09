@@ -15,7 +15,9 @@ import { setLanguage } from 'functions/cookieHelpers';
 
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
-    onClick?: () => void
+    onClick?: () => void,
+    onSignInClick?: () => void,
+    onSignOutClick?: () => void
 }
 
 interface MenuItem extends Object {
@@ -48,7 +50,10 @@ export class MainMenu extends CustomElement {
     @Prop() englishurl: string;
     @Toggle() isloggedin: boolean;
     @Toggle() showmenu: boolean;
+    @Toggle() hasAuthenticationFunction: boolean;
     @Prop() menuitems: Array<MenuItem>;
+    @Dispatch('onSignInClick') onSignInClick: DispatchEmitter;
+    @Dispatch('onSignOutClick') onSignOutClick: DispatchEmitter;
 
 
     constructor() {
@@ -80,12 +85,9 @@ export class MainMenu extends CustomElement {
             this.menuitems = menuItems;
         });
 
-        const supportsSignIn = this.signinurl && this.signouturl;
-        if (supportsSignIn) {
-            const loginToggleElement = document.createElement("a");
-            loginToggleElement.innerText = this.isloggedin ? "Logg ut" : "Logg inn"
-            loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl;
-            this.menuActionsRow.appendChild(loginToggleElement);
+        const hasAuthenticationUrls = this.signinurl && this.signouturl;
+        if (hasAuthenticationUrls) {
+            this.addAuthenticationLinks();
         }
 
         const supportsLanguages = this.englishurl && this.norwegianurl;
@@ -126,6 +128,22 @@ export class MainMenu extends CustomElement {
         return `<ul class="menuItemList hierarchy-level-${hierarchyLevel}">${menuItemsListElement}</ul>`;
     }
 
+    addAuthenticationLinks(hasAuthenticationFunction = false) {
+        let loginToggleElement;
+        if (hasAuthenticationFunction) {
+            loginToggleElement = document.createElement("span");
+            loginToggleElement.addEventListener("click", () => {
+                this.isloggedin ? this.onSignOutClick.emit() : this.onSignInClick.emit();
+            });
+        } else {
+            loginToggleElement = document.createElement("a");
+            loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl;
+        }
+        loginToggleElement.innerText = this.isloggedin ? "Logg ut" : "Logg inn"
+        loginToggleElement.id = 'authentication-toggle-element';
+        this.menuActionsRow.appendChild(loginToggleElement);
+    }
+
     @Listen('click', '#menu-toggle-button')
     buttonClicked(event: MouseEvent) {
         this.showmenu = !this.showmenu;
@@ -135,6 +153,14 @@ export class MainMenu extends CustomElement {
     @Listen('click', '#language-toggle-element')
     languageToggleClicker(event: MouseEvent) {
         this.language === 'en' ? setLanguage('no') : setLanguage('en');
+    }
+
+
+    @Watch('hasauthenticationfunction')
+    hasAuthenticationFunctionChanged() {
+        if (this.hasAuthenticationFunction) {
+            this.addAuthenticationLinks(true);
+        }
     }
 
     @Watch('showmenu')

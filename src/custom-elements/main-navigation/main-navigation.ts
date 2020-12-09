@@ -28,7 +28,9 @@ interface MainNavigationOptions extends CustomElementOptions {
    onSearch?: () => void,
    onOpenEmptyMapItemsList?: () => void,
    onOpenEmptyDownloadItemsList?: () => void,
-   onSearchTypeChange?: () => void
+   onSearchTypeChange?: () => void,
+   onSignInClick?: () => void,
+   onSignOutClick?: () => void
 }
 
 interface MenuItem extends Object {
@@ -68,6 +70,8 @@ export class MainNavigation extends CustomElement {
    @Toggle() staticposition: boolean;
    @Dispatch('onSearch') onSearch: DispatchEmitter;
    @Dispatch('onSearchTypeChange') onSearchTypeChange: DispatchEmitter;
+   @Dispatch('onSignInClick') onSignInClick: DispatchEmitter;
+   @Dispatch('onSignOutClick') onSignOutClick: DispatchEmitter;
 
    constructor() {
       super();
@@ -167,6 +171,14 @@ export class MainNavigation extends CustomElement {
          setTimeout(() => {
             const searchTypeSelector = getShadowRootElement<SearchTypeSelector>(element, 'search-type-selector');
             searchTypeSelector.addEventListener('onSearchTypeChange', options.onSearchTypeChange);
+         })
+      }
+      if (options.onSignInClick && options.onSignOutClick) {
+         setTimeout(() => {
+            const mainMenu = getShadowRootElement<SearchTypeSelector>(element, 'main-menu');
+            mainMenu.setAttribute('hasAuthenticationFunction', '');
+            mainMenu.addEventListener('onSignInClick', options.onSignInClick);
+            mainMenu.addEventListener('onSignOutClick', options.onSignOutClick);
          })
       }
    }

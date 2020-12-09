@@ -152,12 +152,13 @@
             &.open {
                 max-height: 56px;
             }
-            a {
+            a, span {
                 display: inline-block;
                 padding: 0.25em 1em 0.25em 1.1em;
                 margin: 15px 0;
                 text-decoration: none;
                 color: #414042;
+                cursor: pointer;
                 &:hover {
                     text-decoration: underline;
                 }
