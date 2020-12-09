@@ -175,7 +175,7 @@ export class MainNavigation extends CustomElement {
       }
       if (options.onSignInClick && options.onSignOutClick) {
          setTimeout(() => {
-            const mainMenu = getShadowRootElement<SearchTypeSelector>(element, 'main-menu');
+            const mainMenu = getShadowRootElement<MainMenu>(element, 'main-menu');
             mainMenu.setAttribute('hasAuthenticationFunction', '');
             mainMenu.addEventListener('onSignInClick', options.onSignInClick);
             mainMenu.addEventListener('onSignOutClick', options.onSignOutClick);
