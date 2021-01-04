@@ -85,7 +85,7 @@ export class MainNavigation extends CustomElement {
    }
 
    getGeonorgeLogoVariant(environment: string) {
-      switch(environment) {
+      switch (environment) {
          case 'dev':
             return GeonorgeLogoDev
          case 'test':
@@ -124,24 +124,31 @@ export class MainNavigation extends CustomElement {
       if (language) { this.mainMenu.setAttribute('language', language); }
       if (this.englishurl) { this.mainMenu.setAttribute('englishurl', this.englishurl); }
       if (this.norwegianurl) { this.mainMenu.setAttribute('norwegianurl', this.norwegianurl); }
-      if (this.signinurl) {this.mainMenu.setAttribute('signinurl', this.signinurl);}
-      if (this.signouturl) {this.mainMenu.setAttribute('signouturl', this.signouturl);}
-      if (this.isloggedin) {this.mainMenu.setAttribute('isLoggedIn', '');}
+      if (this.signinurl) { this.mainMenu.setAttribute('signinurl', this.signinurl); }
+      if (this.signouturl) { this.mainMenu.setAttribute('signouturl', this.signouturl); }
+      if (this.isloggedin) { this.mainMenu.setAttribute('isLoggedIn', ''); }
       if (this.showSearchTypeSelector) {
          this.searchTypeSelector = document.createElement('search-type-selector');
-         if (this.metadataresultsfound) {this.searchTypeSelector.setAttribute('metadataresultsfound', this.metadataresultsfound);}
-         if (this.articleresultsfound) {this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound);}
-         if (language) {this.searchTypeSelector.setAttribute('language', language);}
+         if (this.metadataresultsfound) { this.searchTypeSelector.setAttribute('metadataresultsfound', this.metadataresultsfound); }
+         if (this.articleresultsfound) { this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound); }
+         if (language) { this.searchTypeSelector.setAttribute('language', language); }
          this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
          const searchTypeSelector = new SearchTypeSelector();
       }
-      
+
 
       const mapItems = new MapItems();
       const downloadItems = new DownloadItems();
       const mainSearchField = new MainSearchField();
       const mainMenu = new MainMenu();
 
+   }
+
+   @Watch('isloggedin')
+   isLoggedInChanged() {
+      if (this.isloggedin) {
+         this.mainMenu.setAttribute('isLoggedIn', '');
+      }
    }
 
    public static setup(selector: string, options: MainNavigationOptions) {

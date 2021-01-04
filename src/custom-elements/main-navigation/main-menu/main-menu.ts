@@ -130,6 +130,7 @@ export class MainMenu extends CustomElement {
 
     addAuthenticationLinks(hasAuthenticationFunction = false) {
         let loginToggleElement;
+
         if (hasAuthenticationFunction) {
             loginToggleElement = document.createElement("span");
             loginToggleElement.addEventListener("click", () => {
@@ -140,7 +141,17 @@ export class MainMenu extends CustomElement {
             loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl;
         }
         loginToggleElement.innerText = this.isloggedin ? "Logg ut" : "Logg inn"
+
         loginToggleElement.id = 'authentication-toggle-element';
+
+        // Remove previously added login toggle element if exists
+        for (const childElement of this.menuActionsRow.children) {
+            if (childElement.getAttribute('id') === loginToggleElement.id) {
+                childElement.remove()
+            }
+        }
+
+        // Add login toggle element
         this.menuActionsRow.appendChild(loginToggleElement);
     }
 
@@ -161,6 +172,11 @@ export class MainMenu extends CustomElement {
         if (this.hasAuthenticationFunction) {
             this.addAuthenticationLinks(true);
         }
+    }
+
+    @Watch('isloggedin')
+    isLoggedInChanged() {
+        this.addAuthenticationLinks(this.hasAuthenticationFunction);
     }
 
     @Watch('showmenu')
