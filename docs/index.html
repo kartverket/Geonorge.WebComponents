@@ -60,6 +60,12 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
   },
   onSignOutClick: (event) => {
     // do stuff
+  },
+  onNorwegianLanguageSelect: (event) => {
+    // do stuff
+  },
+  onEnglishLanguageSelect: (event) => {
+    // do stuff
   }
 });
           </code>
@@ -87,7 +93,11 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
   onSearch: function,
   onSearchTypeChange: function,
   onOpenEmptyMapItemsList: function,
-  onOpenEmptyDownloadItemsList: function
+  onOpenEmptyDownloadItemsList: function,
+  onSignInClick: function,
+  onSignOutClick: function,
+  onNorwegianLanguageSelect: function,
+  onEnglishLanguageSelect: function
 }
             </code>
           </pre>
@@ -257,6 +267,12 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
       },
       onSignOutClick: (event) => {
         console.log("sign out");
+      },
+      onNorwegianLanguageSelect: (event) => {
+        console.log("norwegian language selected");
+      },
+      onEnglishLanguageSelect: (event) => {
+        console.log("english language selected");
       }
     });
   </script>
