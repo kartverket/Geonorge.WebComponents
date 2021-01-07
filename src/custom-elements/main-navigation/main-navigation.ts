@@ -30,7 +30,9 @@ interface MainNavigationOptions extends CustomElementOptions {
    onOpenEmptyDownloadItemsList?: () => void,
    onSearchTypeChange?: () => void,
    onSignInClick?: () => void,
-   onSignOutClick?: () => void
+   onSignOutClick?: () => void,
+   onNorwegianLanguageSelect?: () => void,
+   onEnglishLanguageSelect?: () => void
 }
 
 interface MenuItem extends Object {
@@ -72,6 +74,8 @@ export class MainNavigation extends CustomElement {
    @Dispatch('onSearchTypeChange') onSearchTypeChange: DispatchEmitter;
    @Dispatch('onSignInClick') onSignInClick: DispatchEmitter;
    @Dispatch('onSignOutClick') onSignOutClick: DispatchEmitter;
+   @Dispatch('onNorwegianLanguageSelect') onNorwegianLanguageSelect: DispatchEmitter;
+   @Dispatch('onEnglishLanguageSelect') onEnglishLanguageSelect: DispatchEmitter;
 
    constructor() {
       super();
@@ -186,6 +190,20 @@ export class MainNavigation extends CustomElement {
             mainMenu.setAttribute('hasAuthenticationFunction', '');
             mainMenu.addEventListener('onSignInClick', options.onSignInClick);
             mainMenu.addEventListener('onSignOutClick', options.onSignOutClick);
+         })
+      }
+      if (options.onNorwegianLanguageSelect) {
+         setTimeout(() => {
+            const mainMenu = getShadowRootElement<MainMenu>(element, 'main-menu');
+            mainMenu.setAttribute('hasLanguageSelectFunctions', '');
+            mainMenu.addEventListener('onNorwegianLanguageSelect', options.onNorwegianLanguageSelect);
+         })
+      }
+      if (options.onEnglishLanguageSelect) {
+         setTimeout(() => {
+            const mainMenu = getShadowRootElement<MainMenu>(element, 'main-menu');
+            mainMenu.setAttribute('hasLanguageSelectFunctions', '');
+            mainMenu.addEventListener('onEnglishLanguageSelect', options.onEnglishLanguageSelect);
          })
       }
    }

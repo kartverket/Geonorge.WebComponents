@@ -17,7 +17,9 @@ interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
     onClick?: () => void,
     onSignInClick?: () => void,
-    onSignOutClick?: () => void
+    onSignOutClick?: () => void,
+    onNorwegianLanguageSelect?: () => void,
+    onEnglishLanguageSelect?: () => void
 }
 
 interface MenuItem extends Object {
@@ -51,9 +53,12 @@ export class MainMenu extends CustomElement {
     @Toggle() isloggedin: boolean;
     @Toggle() showmenu: boolean;
     @Toggle() hasAuthenticationFunction: boolean;
+    @Toggle() hasLanguageSelectFunctions: boolean;
     @Prop() menuitems: Array<MenuItem>;
     @Dispatch('onSignInClick') onSignInClick: DispatchEmitter;
     @Dispatch('onSignOutClick') onSignOutClick: DispatchEmitter;
+    @Dispatch('onNorwegianLanguageSelect') onNorwegianLanguageSelect: DispatchEmitter;
+    @Dispatch('onEnglishLanguageSelect') onEnglishLanguageSelect: DispatchEmitter;
 
 
     constructor() {
@@ -90,14 +95,16 @@ export class MainMenu extends CustomElement {
             this.addAuthenticationLinks();
         }
 
+
+
         const supportsLanguages = this.englishurl && this.norwegianurl;
         if (supportsLanguages) {
-            const languageToggleElement = document.createElement("a");
-            languageToggleElement.innerText = this.language === 'en' ? 'Norsk' : 'English';
-            languageToggleElement.href = this.language === 'en' ? this.norwegianurl : this.englishurl;
-            languageToggleElement.id = 'language-toggle-element';
-            this.menuActionsRow.appendChild(languageToggleElement);
+            this.addLanguageSelectLinks();
+           
         }
+
+
+
 
         document.addEventListener('click', this.clickOutsideMenuContainer);
     }
@@ -141,7 +148,6 @@ export class MainMenu extends CustomElement {
             loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl;
         }
         loginToggleElement.innerText = this.isloggedin ? "Logg ut" : "Logg inn"
-
         loginToggleElement.id = 'authentication-toggle-element';
 
         // Remove previously added login toggle element if exists
@@ -155,17 +161,37 @@ export class MainMenu extends CustomElement {
         this.menuActionsRow.appendChild(loginToggleElement);
     }
 
+    addLanguageSelectLinks(hasLanguageSelectFunctions = false) {
+        let languageToggleElement;
+
+        if (hasLanguageSelectFunctions) {
+            languageToggleElement = document.createElement("span");
+            languageToggleElement.addEventListener("click", () => {
+                this.language === 'en' ? this.onNorwegianLanguageSelect.emit() : this.onEnglishLanguageSelect.emit();
+            });
+        } else {
+            languageToggleElement = document.createElement("a");
+            languageToggleElement.href = this.language === 'en' ? this.norwegianurl : this.englishurl;
+        }
+
+        languageToggleElement.innerText = this.language === 'en' ? 'Norsk' : 'English';
+        languageToggleElement.id = 'language-toggle-element';
+
+        // Remove previously added language toggle element if exists
+        for (const childElement of this.menuActionsRow.children) {
+            if (childElement.getAttribute('id') === languageToggleElement.id) {
+                childElement.remove()
+            }
+        }
+
+        // Add language toggle element
+        this.menuActionsRow.appendChild(languageToggleElement);
+    }
+
     @Listen('click', '#menu-toggle-button')
     buttonClicked(event: MouseEvent) {
         this.showmenu = !this.showmenu;
     }
-
-
-    @Listen('click', '#language-toggle-element')
-    languageToggleClicker(event: MouseEvent) {
-        this.language === 'en' ? setLanguage('no') : setLanguage('en');
-    }
-
 
     @Watch('hasauthenticationfunction')
     hasAuthenticationFunctionChanged() {
@@ -177,6 +203,18 @@ export class MainMenu extends CustomElement {
     @Watch('isloggedin')
     isLoggedInChanged() {
         this.addAuthenticationLinks(this.hasAuthenticationFunction);
+    }
+
+    @Watch('haslanguageselectfunctions')
+    hasLanguageSelectFunctionsChanged() {
+        if (this.hasLanguageSelectFunctions) {
+            this.addLanguageSelectLinks(true);
+        }
+    }
+
+    @Watch('language')
+    languageChanged() {
+        this.addLanguageSelectLinks(this.hasLanguageSelectFunctions);
     }
 
     @Watch('showmenu')
