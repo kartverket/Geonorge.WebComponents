@@ -155,6 +155,11 @@ export class MainNavigation extends CustomElement {
       }
    }
 
+   @Watch('language')
+   languageChanged() {
+      this.mainMenu.setAttribute('language', this.language);
+   }
+
    public static setup(selector: string, options: MainNavigationOptions) {
       const element = getElement<MainNavigation>(selector);
       if (options.onSearch) {
