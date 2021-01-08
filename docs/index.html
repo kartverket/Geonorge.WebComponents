@@ -13,9 +13,17 @@
   <!-- Demonstrasjon av Web Components: -->
   <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector
     metadataresultsfound="3245" articleresultsfound="17"></main-navigation>
+    <script>
+      const element = document.getElementById('main-navigation');
+      const changeLanguage = (language) => {
+        element.setAttribute('language', language);
+      }
+    </script>
   <main>
     <h1>geonorge-web-components</h1>
     <h2>main-navigation</h2>
+    <button onclick="changeLanguage('en')">Engelsk</button>
+    <button onclick="changeLanguage('no')">Norsk</button>
     <navigation-tabs>
       <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
       <navigation-tab-content slot="tab-content">
@@ -263,16 +271,17 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
         }
       },
       onSignInClick: (event) => {
-        console.log("sign in");
+        event.target.setAttribute('isLoggedIn', '');
       },
       onSignOutClick: (event) => {
-        console.log("sign out");
+        event.target.setAttribute('isLoggedIn', false);
+
       },
       onNorwegianLanguageSelect: (event) => {
-        console.log("norwegian language selected");
+        event.target.setAttribute('language', 'no');
       },
       onEnglishLanguageSelect: (event) => {
-        console.log("english language selected");
+        event.target.setAttribute('language', 'en');
       }
     });
   </script>
