@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.main-navigation {
+div.main-navigation {
     @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
     background-color: $navigation-bar-background;
     font-family: $default-font;

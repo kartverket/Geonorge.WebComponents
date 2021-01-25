@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-.map-items-container {
+div.map-items-container {
     .icon-toggle-button {
         @include transition(all 0.1s ease-in-out);
         border: none;
