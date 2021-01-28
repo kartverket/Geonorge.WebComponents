@@ -11,7 +11,6 @@ import CloseIcon from 'assets/svg/close-icon.svg';
 
 // Functions
 import { fetchMenuItems } from 'functions/apiHelpers';
-import { setLanguage } from 'functions/cookieHelpers';
 
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
