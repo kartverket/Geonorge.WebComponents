@@ -126,6 +126,7 @@ export class MainNavigation extends CustomElement {
       // Pass properties
       const language = this.language ? this.language : getLanguage();
       if (language) { this.mainMenu.setAttribute('language', language); }
+      if (this.environment) { this.mainMenu.setAttribute('environment', this.environment); }
       if (this.englishurl) { this.mainMenu.setAttribute('englishurl', this.englishurl); }
       if (this.norwegianurl) { this.mainMenu.setAttribute('norwegianurl', this.norwegianurl); }
       if (this.signinurl) { this.mainMenu.setAttribute('signinurl', this.signinurl); }

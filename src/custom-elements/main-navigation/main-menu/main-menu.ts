@@ -85,7 +85,7 @@ export class MainMenu extends CustomElement {
         this.showmenu ? this.menuIcon.classList.add('hidden') : this.closeIcon.classList.add('hidden');
 
 
-        fetchMenuItems(this.language).then(menuItems => {
+        fetchMenuItems(this.language, this.environment).then(menuItems => {
             this.menuitems = menuItems;
         });
 
