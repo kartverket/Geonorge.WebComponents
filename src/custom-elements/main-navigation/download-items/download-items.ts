@@ -121,9 +121,21 @@ export class DownloadItems extends CustomElement {
 
          return `<li>${downloadItemElement.innerHTML}</li>`;
       }).join('');
-      const downloadItemsLinkUrl = `${getKartkatalogUrl(this.environment)}/nedlasting`;
-      const downloadItemsLinkName = this.language === 'en' ? 'Go to download' : 'Til nedlasting';
-      this.downloadItemListContainer.innerHTML = `<a href='${downloadItemsLinkUrl}'>${downloadItemsLinkName}</a><ul>${downloadItemsListElement}</ul>`;
+      
+      let downloadItemLinkElement;
+      if (this.preventRedirect) {
+         downloadItemLinkElement = document.createElement('span');
+         downloadItemLinkElement.addEventListener("click", () => {
+            this.onOpenEmptyDownloadItemsList.emit();
+         });
+      } else {
+         downloadItemLinkElement = document.createElement('a');
+         downloadItemLinkElement.href = `${getKartkatalogUrl(this.environment)}/nedlasting`;
+      }
+      downloadItemLinkElement.innerText = this.language === 'en' ? 'Go to download' : 'Til nedlasting';
+      downloadItemLinkElement.classList.add('page-link-element');
+      this.downloadItemListContainer.innerHTML = `<ul>${downloadItemsListElement}</ul>`;
+      this.downloadItemListContainer.prepend(downloadItemLinkElement);
    }
 
    @Listen('click', '#download-toggle-button')
@@ -177,6 +189,14 @@ export class DownloadItems extends CustomElement {
 
    @Watch('language')
    languageChanged() {
+      if (this.downloadItems && this.downloadItems.length) {
+         this.renderDownloadItems(this.downloadItems);
+         this.renderDownloadItemsCounter();
+      }
+   }
+
+   @Watch('preventredirect')
+   preventRedirectChanged(){
       if (this.downloadItems && this.downloadItems.length) {
          this.renderDownloadItems(this.downloadItems);
          this.renderDownloadItemsCounter();

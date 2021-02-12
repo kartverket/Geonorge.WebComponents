@@ -71,17 +71,6 @@
             @media print {
                 display: none;
             }
-            > a {
-                display: block;
-                text-align: center;
-                padding: 8px 16px;
-                color: $primary-text;
-                text-decoration: none;
-                &:hover {
-                    text-decoration: underline;
-                    color: $primary-text-hover;
-                }
-            }
             &.open {
                 @include box-shadow(
                     0 5px 5px -3px rgba(0, 0, 0, 0.2),
@@ -91,6 +80,18 @@
                 height: auto;
                 max-height: 300px;
                 overflow: auto;
+            }
+            .page-link-element {
+                display: block;
+                text-align: center;
+                padding: 8px 16px;
+                color: $primary-text;
+                text-decoration: none;
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                    color: $primary-text-hover;
+                }
             }
             ul {
                 list-style: none;
