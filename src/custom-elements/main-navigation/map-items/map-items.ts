@@ -19,8 +19,7 @@ interface MapItem extends Object {
 }
 
 interface MapItemsOptions extends CustomElementOptions {
-   active?: boolean,
-   onClick?: () => void
+   active?: boolean
 }
 
 @Component({
@@ -39,6 +38,7 @@ export class MapItems extends CustomElement {
 
    @Prop() id: string;
    @Prop() environment: string;
+   @Prop() language: string;
    @Toggle() showList: boolean;
    @Toggle() preventRedirect: boolean;
    @Dispatch('onOpenEmptyMapItemsList') onOpenEmptyMapItemsList: DispatchEmitter;
@@ -116,7 +116,20 @@ export class MapItems extends CustomElement {
 
          return `<li>${mapItemElement.innerHTML}</li>`;
       }).join('');
+      let mapItemLinkElement;
+      if (this.preventRedirect) {
+         mapItemLinkElement = document.createElement('span');
+         mapItemLinkElement.addEventListener("click", () => {
+            this.onOpenEmptyMapItemsList.emit();
+         });
+      } else {
+         mapItemLinkElement = document.createElement('a');
+         mapItemLinkElement.href = `${getKartkatalogUrl(this.environment)}/kart`;
+      }
+      mapItemLinkElement.innerText = this.language === 'en' ? 'Show map' : 'Vis kart';
+      mapItemLinkElement.classList.add('page-link-element');
       this.mapItemListContainer.innerHTML = `<ul>${mapItemsListElement}</ul>`;
+      this.mapItemListContainer.prepend(mapItemLinkElement);
    }
 
    @Listen('click', '#map-toggle-button')
@@ -169,12 +182,16 @@ export class MapItems extends CustomElement {
       }
    }
 
+   @Watch('preventredirect')
+   preventRedirectChanged(){
+      if (this.mapItems && this.mapItems.length) {
+         this.renderMapItems(this.mapItems);
+         this.renderMapItemsCounter();
+      }
+   }
+
    public static setup(selector: string, options: MapItemsOptions) {
       const element = getElement<MapItems>(selector);
-
-      if (options.onClick) {
-         element.addEventListener('menuButtonClick', options.onClick);
-      }
       if (options.active) {
          element.showList = options.active;
       }

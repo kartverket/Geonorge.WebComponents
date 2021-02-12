@@ -29,7 +29,7 @@ div.map-items-container {
             width: 1.4em;
             line-height: 1.4;
             height: 1.4em;
-            font-size: .9em;
+            font-size: 0.9em;
             @include breakpoint(phablet) {
                 height: 1.5em;
                 width: 1.5em;
@@ -80,6 +80,18 @@ div.map-items-container {
                 height: auto;
                 max-height: 300px;
                 overflow: auto;
+            }
+            .page-link-element {
+                display: block;
+                text-align: center;
+                padding: 8px 16px;
+                color: $primary-text;
+                text-decoration: none;
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                    color: $primary-text-hover;
+                }
             }
             ul {
                 list-style: none;

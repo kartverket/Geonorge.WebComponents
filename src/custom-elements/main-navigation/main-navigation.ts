@@ -53,7 +53,7 @@ export class MainNavigation extends CustomElement {
    private searchTypeSelector: HTMLElement;
    private logoElement: HTMLAnchorElement;
    private mainMenu: HTMLElement;
-   private mapItems: HTMLElement;
+   private mapItemsElement: HTMLElement;
    private downloadItemsElement: HTMLElement;
 
    @Prop() id: string;
@@ -103,7 +103,7 @@ export class MainNavigation extends CustomElement {
       this.logoElement = getShadowRootElement(this, '#main-navigation-logo');
       this.searchField = getShadowRootElement(this, 'main-search-field');
       this.mainMenu = getShadowRootElement(this, '#main-menu');
-      this.mapItems = getShadowRootElement(this, '#map-items');
+      this.mapItemsElement = getShadowRootElement(this, '#map-items');
       this.downloadItemsElement = getShadowRootElement(this, '#download-items');
 
       if (this.searchField) {
@@ -111,10 +111,11 @@ export class MainNavigation extends CustomElement {
          this.searchField.setAttribute('environment', this.environment);
       }
 
-      this.mapItems.setAttribute('environment', this.environment);
+      this.mapItemsElement.setAttribute('environment', this.environment);
 
       this.downloadItemsElement.setAttribute('environment', this.environment);
       this.downloadItemsElement.setAttribute('language', this.language);
+
       this.logoElement.innerHTML = this.getGeonorgeLogoVariant(this.environment);
       this.logoElement.href = getGeonorgeUrl(this.environment);
 
@@ -173,9 +174,9 @@ export class MainNavigation extends CustomElement {
       }
       if (options.onOpenEmptyMapItemsList) {
          setTimeout(() => {
-            const mapItems = getShadowRootElement<MapItems>(element, 'map-items');
-            mapItems.addEventListener('onOpenEmptyMapItemsList', options.onOpenEmptyMapItemsList);
-            mapItems.setAttribute('preventRedirect', '');
+            const mapItemsElement = getShadowRootElement<MapItems>(element, 'map-items');
+            mapItemsElement.addEventListener('onOpenEmptyMapItemsList', options.onOpenEmptyMapItemsList);
+            mapItemsElement.setAttribute('preventRedirect', '');
          })
       }
       if (options.onOpenEmptyDownloadItemsList) {
