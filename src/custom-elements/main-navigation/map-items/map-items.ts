@@ -66,6 +66,13 @@ export class MapItems extends CustomElement {
       this.renderMapItemsCounter();
 
       document.addEventListener('click', this.clickOutsideMapItemsContainer);
+
+      document.addEventListener('mapItemsChanged', () => {
+         if (this.mapItems && this.mapItems.length) {
+            this.renderMapItems(this.mapItems);
+            this.renderMapItemsCounter();
+         }
+      });
    }
 
    getUpdatedMapItems() {
