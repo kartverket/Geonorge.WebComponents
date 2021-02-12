@@ -29,7 +29,7 @@
             width: 1.4em;
             line-height: 1.4;
             height: 1.4em;
-            font-size: .9em;
+            font-size: 0.9em;
             @include breakpoint(phablet) {
                 height: 1.5em;
                 width: 1.5em;
@@ -70,6 +70,17 @@
             }
             @media print {
                 display: none;
+            }
+            > a {
+                display: block;
+                text-align: center;
+                padding: 8px 16px;
+                color: $primary-text;
+                text-decoration: none;
+                &:hover {
+                    text-decoration: underline;
+                    color: $primary-text-hover;
+                }
             }
             &.open {
                 @include box-shadow(

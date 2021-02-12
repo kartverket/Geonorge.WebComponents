@@ -40,6 +40,7 @@ export class DownloadItems extends CustomElement {
 
    @Prop() id: string;
    @Prop() environment: string;
+   @Prop() language: string;
    @Toggle() showList: boolean;
    @Toggle() preventRedirect: boolean;
    @Dispatch('onOpenEmptyDownloadItemsList') onOpenEmptyDownloadItemsList: DispatchEmitter;
@@ -120,7 +121,9 @@ export class DownloadItems extends CustomElement {
 
          return `<li>${downloadItemElement.innerHTML}</li>`;
       }).join('');
-      this.downloadItemListContainer.innerHTML = `<ul>${downloadItemsListElement}</ul>`;
+      const downloadItemsLinkUrl = `${getKartkatalogUrl(this.environment)}/nedlasting`;
+      const downloadItemsLinkName = this.language === 'en' ? 'Go to download' : 'Til nedlasting';
+      this.downloadItemListContainer.innerHTML = `<a href='${downloadItemsLinkUrl}'>${downloadItemsLinkName}</a><ul>${downloadItemsListElement}</ul>`;
    }
 
    @Listen('click', '#download-toggle-button')
@@ -129,7 +132,7 @@ export class DownloadItems extends CustomElement {
          this.showList = !this.showList;
       } else {
          this.showList = false;
-         if (this.preventRedirect){
+         if (this.preventRedirect) {
             this.onOpenEmptyDownloadItemsList.emit();
          } else {
             window.location.href = `${getKartkatalogUrl(this.environment)}/nedlasting`
@@ -166,6 +169,14 @@ export class DownloadItems extends CustomElement {
 
    @Watch('downloadItems')
    downloadItemsChanged() {
+      if (this.downloadItems && this.downloadItems.length) {
+         this.renderDownloadItems(this.downloadItems);
+         this.renderDownloadItemsCounter();
+      }
+   }
+
+   @Watch('language')
+   languageChanged() {
       if (this.downloadItems && this.downloadItems.length) {
          this.renderDownloadItems(this.downloadItems);
          this.renderDownloadItemsCounter();

@@ -54,7 +54,7 @@ export class MainNavigation extends CustomElement {
    private logoElement: HTMLAnchorElement;
    private mainMenu: HTMLElement;
    private mapItems: HTMLElement;
-   private downloadItems: HTMLElement;
+   private downloadItemsElement: HTMLElement;
 
    @Prop() id: string;
    @Prop() environment: string;
@@ -104,7 +104,7 @@ export class MainNavigation extends CustomElement {
       this.searchField = getShadowRootElement(this, 'main-search-field');
       this.mainMenu = getShadowRootElement(this, '#main-menu');
       this.mapItems = getShadowRootElement(this, '#map-items');
-      this.downloadItems = getShadowRootElement(this, '#download-items');
+      this.downloadItemsElement = getShadowRootElement(this, '#download-items');
 
       if (this.searchField) {
          this.searchField.setAttribute('value', this.searchString);
@@ -112,8 +112,9 @@ export class MainNavigation extends CustomElement {
       }
 
       this.mapItems.setAttribute('environment', this.environment);
-      this.downloadItems.setAttribute('environment', this.environment);
 
+      this.downloadItemsElement.setAttribute('environment', this.environment);
+      this.downloadItemsElement.setAttribute('language', this.language);
       this.logoElement.innerHTML = this.getGeonorgeLogoVariant(this.environment);
       this.logoElement.href = getGeonorgeUrl(this.environment);
 
@@ -143,7 +144,7 @@ export class MainNavigation extends CustomElement {
 
 
       const mapItems = new MapItems();
-      const downloadItems = new DownloadItems();
+      const downloadItemsElement = new DownloadItems();
       const mainSearchField = new MainSearchField();
       const mainMenu = new MainMenu();
 
@@ -179,9 +180,9 @@ export class MainNavigation extends CustomElement {
       }
       if (options.onOpenEmptyDownloadItemsList) {
          setTimeout(() => {
-            const downloadItems = getShadowRootElement<DownloadItems>(element, 'download-items');
-            downloadItems.addEventListener('onOpenEmptyDownloadItemsList', options.onOpenEmptyDownloadItemsList);
-            downloadItems.setAttribute('preventRedirect', '');
+            const downloadItemsElement = getShadowRootElement<DownloadItems>(element, 'download-items');
+            downloadItemsElement.addEventListener('onOpenEmptyDownloadItemsList', options.onOpenEmptyDownloadItemsList);
+            downloadItemsElement.setAttribute('preventRedirect', '');
          })
       }
       if (options.onSearchTypeChange) {
