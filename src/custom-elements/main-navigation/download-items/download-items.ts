@@ -67,6 +67,13 @@ export class DownloadItems extends CustomElement {
       this.renderDownloadItemsCounter();
 
       document.addEventListener('click', this.clickOutsideDownloadItemsContainer);
+
+      document.addEventListener('downloadItemsChanged', () => {
+         if (this.downloadItems && this.downloadItems.length) {
+            this.renderDownloadItems(this.downloadItems);
+            this.renderDownloadItemsCounter();
+         }
+      });
    }
 
    getUpdatedDownloadItems() {
