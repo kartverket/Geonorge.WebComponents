@@ -21,8 +21,7 @@ interface DownloadItem extends Object {
 }
 
 interface DownloadItemsOptions extends CustomElementOptions {
-   active?: boolean,
-   onClick?: () => void
+   active?: boolean
 }
 
 @Component({
@@ -168,10 +167,6 @@ export class DownloadItems extends CustomElement {
 
    public static setup(selector: string, options: DownloadItemsOptions) {
       const element = getElement<DownloadItems>(selector);
-
-      if (options.onClick) {
-         element.addEventListener('menuButtonClick', options.onClick);
-      }
       if (options.active) {
          element.showList = options.active;
       }
