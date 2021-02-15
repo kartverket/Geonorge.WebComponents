@@ -75,10 +75,8 @@ export class DownloadItems extends CustomElement {
 
    updateDomElements() {
       this.getUpdatedDownloadItems();
-      if (this.downloadItems && this.downloadItems.length) {
-         this.renderDownloadItems(this.downloadItems);
-         this.renderDownloadItemsCounter();
-      }
+      this.renderDownloadItems(this.downloadItems);
+      this.renderDownloadItemsCounter();
    }
 
    getUpdatedDownloadItems() {
@@ -125,7 +123,7 @@ export class DownloadItems extends CustomElement {
 
          return `<li>${downloadItemElement.innerHTML}</li>`;
       }).join('');
-      
+
       let downloadItemLinkElement;
       if (this.preventRedirect) {
          downloadItemLinkElement = document.createElement('span');
@@ -200,7 +198,7 @@ export class DownloadItems extends CustomElement {
    }
 
    @Watch('preventredirect')
-   preventRedirectChanged(){
+   preventRedirectChanged() {
       if (this.downloadItems && this.downloadItems.length) {
          this.renderDownloadItems(this.downloadItems);
          this.renderDownloadItemsCounter();

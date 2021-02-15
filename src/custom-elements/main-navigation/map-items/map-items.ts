@@ -73,10 +73,8 @@ export class MapItems extends CustomElement {
 
    updateDomElements() {
       this.getUpdatedMapItems();
-      if (this.mapItems && this.mapItems.length) {
-         this.renderMapItems(this.mapItems);
-         this.renderMapItemsCounter();
-      }
+      this.renderMapItems(this.mapItems);
+      this.renderMapItemsCounter();
    }
 
    getUpdatedMapItems() {
@@ -143,7 +141,7 @@ export class MapItems extends CustomElement {
          this.showList = !this.showList;
       } else {
          this.showList = false;
-         if (this.preventRedirect){
+         if (this.preventRedirect) {
             this.onOpenEmptyMapItemsList.emit();
          } else {
             window.location.href = `${getKartkatalogUrl(this.environment)}/kart`
@@ -187,7 +185,7 @@ export class MapItems extends CustomElement {
    }
 
    @Watch('preventredirect')
-   preventRedirectChanged(){
+   preventRedirectChanged() {
       if (this.mapItems && this.mapItems.length) {
          this.renderMapItems(this.mapItems);
          this.renderMapItemsCounter();
