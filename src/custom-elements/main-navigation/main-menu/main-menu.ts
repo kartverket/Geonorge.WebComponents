@@ -99,7 +99,7 @@ export class MainMenu extends CustomElement {
         const supportsLanguages = this.englishurl && this.norwegianurl;
         if (supportsLanguages) {
             this.addLanguageSelectLinks();
-           
+
         }
 
 
@@ -136,6 +136,11 @@ export class MainMenu extends CustomElement {
 
     addAuthenticationLinks(hasAuthenticationFunction = false) {
         let loginToggleElement;
+        const hasAuthenticationLinks = this.signouturl && this.signinurl;
+
+        if (!hasAuthenticationLinks &&  !hasAuthenticationFunction) {
+            return '';
+        }
 
         if (hasAuthenticationFunction) {
             loginToggleElement = document.createElement("span");
@@ -162,6 +167,11 @@ export class MainMenu extends CustomElement {
 
     addLanguageSelectLinks(hasLanguageSelectFunctions = false) {
         let languageToggleElement;
+        const hasLanguageSelectLinks = this.norwegianurl && this.englishurl;
+
+        if (!hasLanguageSelectLinks &&  !hasLanguageSelectFunctions) {
+            return '';
+        }
 
         if (hasLanguageSelectFunctions) {
             languageToggleElement = document.createElement("span");
