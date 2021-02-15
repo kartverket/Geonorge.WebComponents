@@ -48,7 +48,8 @@ export class DownloadItems extends CustomElement {
    constructor() {
       super();
       this.clickOutsideDownloadItemsContainer = this.clickOutsideDownloadItemsContainer.bind(this);
-      this.renderElements = this.renderElements.bind(this);
+      this.updateDomElements = this.updateDomElements.bind(this);
+      this.getUpdatedDownloadItems = this.getUpdatedDownloadItems.bind(this);
    }
 
    setup(options?: DownloadItemsOptions): void {
@@ -69,10 +70,11 @@ export class DownloadItems extends CustomElement {
       this.renderDownloadItemsCounter();
 
       document.addEventListener('click', this.clickOutsideDownloadItemsContainer);
-      document.addEventListener('downloadItemsChanged', this.renderElements);
+      document.addEventListener('downloadItemsChanged', this.updateDomElements);
    }
 
-   renderElements() {
+   updateDomElements() {
+      this.getUpdatedDownloadItems();
       if (this.downloadItems && this.downloadItems.length) {
          this.renderDownloadItems(this.downloadItems);
          this.renderDownloadItemsCounter();

@@ -46,7 +46,8 @@ export class MapItems extends CustomElement {
    constructor() {
       super();
       this.clickOutsideMapItemsContainer = this.clickOutsideMapItemsContainer.bind(this);
-      this.renderElements = this.renderElements.bind(this);
+      this.updateDomElements = this.updateDomElements.bind(this);
+      this.getUpdatedMapItems = this.getUpdatedMapItems.bind(this);
    }
 
    setup(options?: MapItemsOptions): void {
@@ -67,10 +68,11 @@ export class MapItems extends CustomElement {
       this.renderMapItemsCounter();
 
       document.addEventListener('click', this.clickOutsideMapItemsContainer);
-      document.addEventListener('mapItemsChanged', this.renderElements);
+      document.addEventListener('mapItemsChanged', this.updateDomElements);
    }
 
-   renderElements() {
+   updateDomElements() {
+      this.getUpdatedMapItems();
       if (this.mapItems && this.mapItems.length) {
          this.renderMapItems(this.mapItems);
          this.renderMapItemsCounter();
