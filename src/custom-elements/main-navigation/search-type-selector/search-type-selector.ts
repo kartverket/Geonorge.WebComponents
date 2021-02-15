@@ -26,6 +26,7 @@ export class SearchTypeSelector extends CustomElement {
     @Prop() metadataresultsfound: string;
     @Prop() articleresultsfound: string;
     @Prop() language: string;
+    @Prop() searchtype: string;
     @Dispatch('onSearchTypeChange') onSearchTypeChange: DispatchEmitter;
 
     constructor() {
@@ -51,7 +52,8 @@ export class SearchTypeSelector extends CustomElement {
 
         this.searchTypeSelector.querySelectorAll('input[name=search-type]').forEach((element: HTMLInputElement) => {
             element.onchange = this.handleSearchTypeOnChange;
-        })
+        });
+        const selectedSearchTypeSelector = this.searchTypeSelector.querySelector(`input[value=${this.searchtype}]`);
     }
 
     disconnectedCallback() {
@@ -86,6 +88,14 @@ export class SearchTypeSelector extends CustomElement {
     @Watch('articleresultsfound')
     articleResultsFoundChanged() {
         this.articleCounterElement.innerHTML = this.articleresultsfound;
+    }
+
+    @Watch('searchtype')
+    searchTypeChanged() {
+        const selectedSearchTypeSelector = <HTMLInputElement>this.searchTypeSelector.querySelector(`input[value=${this.searchtype}]`);
+        if (selectedSearchTypeSelector){
+            selectedSearchTypeSelector.checked = true;
+        }
     }
 
     public static setup(selector: string, options: SearchTypeSelectorOptions) {

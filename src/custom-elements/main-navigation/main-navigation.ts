@@ -60,6 +60,7 @@ export class MainNavigation extends CustomElement {
    @Prop() environment: string;
    @Prop() language: string;
    @Prop() searchString: string;
+   @Prop() searchtype: string;
    @Prop() metadataresultsfound: string;
    @Prop() articleresultsfound: string;
    @Prop() signinurl: string;
@@ -138,6 +139,7 @@ export class MainNavigation extends CustomElement {
          this.searchTypeSelector = document.createElement('search-type-selector');
          if (this.metadataresultsfound) { this.searchTypeSelector.setAttribute('metadataresultsfound', this.metadataresultsfound); }
          if (this.articleresultsfound) { this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound); }
+         if (this.searchtype) { this.searchTypeSelector.setAttribute('searchtype', this.searchtype); }
          if (language) { this.searchTypeSelector.setAttribute('language', language); }
          this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
          const searchTypeSelector = new SearchTypeSelector();
@@ -174,6 +176,13 @@ export class MainNavigation extends CustomElement {
    articlesResultsFoundChanged() {
       if (this.showSearchTypeSelector) {
          this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound);
+      }
+   }
+
+   @Watch('searchtype')
+   searchTypeChanged() {
+      if (this.showSearchTypeSelector) {
+         this.searchTypeSelector.setAttribute('searchtype', this.searchtype);
       }
    }
 
