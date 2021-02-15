@@ -62,7 +62,7 @@ export class MainNavigation extends CustomElement {
    @Prop() searchString: string;
    @Prop() searchtype: string;
    @Prop() metadataresultsfound: string;
-   @Prop() articleresultsfound: string;
+   @Prop() articlesresultsfound: string;
    @Prop() signinurl: string;
    @Prop() signouturl: string;
    @Prop() englishurl: string;
@@ -138,7 +138,7 @@ export class MainNavigation extends CustomElement {
       if (this.showSearchTypeSelector) {
          this.searchTypeSelector = document.createElement('search-type-selector');
          if (this.metadataresultsfound) { this.searchTypeSelector.setAttribute('metadataresultsfound', this.metadataresultsfound); }
-         if (this.articleresultsfound) { this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound); }
+         if (this.articlesresultsfound) { this.searchTypeSelector.setAttribute('articlesresultsfound', this.articlesresultsfound); }
          if (this.searchtype) { this.searchTypeSelector.setAttribute('searchtype', this.searchtype); }
          if (language) { this.searchTypeSelector.setAttribute('language', language); }
          this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
@@ -175,7 +175,7 @@ export class MainNavigation extends CustomElement {
    @Watch('articlesresultsfound')
    articlesResultsFoundChanged() {
       if (this.showSearchTypeSelector) {
-         this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound);
+         this.searchTypeSelector.setAttribute('articlesresultsfound', this.articlesresultsfound);
       }
    }
 

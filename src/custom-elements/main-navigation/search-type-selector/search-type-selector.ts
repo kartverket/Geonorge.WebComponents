@@ -24,7 +24,7 @@ export class SearchTypeSelector extends CustomElement {
 
     @Prop() id: string;
     @Prop() metadataresultsfound: string;
-    @Prop() articleresultsfound: string;
+    @Prop() articlesresultsfound: string;
     @Prop() language: string;
     @Prop() searchtype: string;
     @Dispatch('onSearchTypeChange') onSearchTypeChange: DispatchEmitter;
@@ -85,9 +85,9 @@ export class SearchTypeSelector extends CustomElement {
         this.metadataCounterElement.innerHTML = this.metadataresultsfound;
     }
 
-    @Watch('articleresultsfound')
-    articleResultsFoundChanged() {
-        this.articleCounterElement.innerHTML = this.articleresultsfound;
+    @Watch('articlesresultsfound')
+    articlesResultsFoundChanged() {
+        this.articleCounterElement.innerHTML = this.articlesresultsfound;
     }
 
     @Watch('searchtype')
