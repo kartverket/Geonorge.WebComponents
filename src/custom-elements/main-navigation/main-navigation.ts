@@ -163,6 +163,20 @@ export class MainNavigation extends CustomElement {
       this.mainMenu.setAttribute('language', this.language);
    }
 
+   @Watch('metadataresultsfound')
+   metadataResultsFoundChanged() {
+      if (this.showSearchTypeSelector) {
+         this.searchTypeSelector.setAttribute('metadataresultsfound', this.metadataresultsfound);
+      }
+   }
+
+   @Watch('articlesresultsfound')
+   articlesResultsFoundChanged() {
+      if (this.showSearchTypeSelector) {
+         this.searchTypeSelector.setAttribute('articleresultsfound', this.articleresultsfound);
+      }
+   }
+
    public static setup(selector: string, options: MainNavigationOptions) {
       const element = getElement<MainNavigation>(selector);
       if (options.onSearch) {
