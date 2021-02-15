@@ -144,7 +144,7 @@ export class MainMenu extends CustomElement {
             });
         } else {
             loginToggleElement = document.createElement("a");
-            loginToggleElement.href = this.isloggedin ? this.signouturl : this.signouturl;
+            loginToggleElement.href = this.isloggedin ? this.signouturl : this.signinurl;
         }
         loginToggleElement.innerText = this.isloggedin ? "Logg ut" : "Logg inn"
         loginToggleElement.id = 'authentication-toggle-element';
