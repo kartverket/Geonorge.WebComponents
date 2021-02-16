@@ -163,6 +163,7 @@ export class MainNavigation extends CustomElement {
    @Watch('language')
    languageChanged() {
       this.mainMenu.setAttribute('language', this.language);
+      this.searchTypeSelector.setAttribute('language', this.language);
    }
 
    @Watch('metadataresultsfound')
