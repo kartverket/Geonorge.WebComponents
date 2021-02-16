@@ -224,6 +224,9 @@ export class MainMenu extends CustomElement {
     @Watch('language')
     languageChanged() {
         this.addLanguageSelectLinks(this.hasLanguageSelectFunctions);
+        fetchMenuItems(this.language, this.environment).then(menuItems => {
+            this.menuitems = menuItems;
+        });
     }
 
     @Watch('showmenu')
