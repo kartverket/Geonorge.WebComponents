@@ -36,6 +36,7 @@ interface MenuItem extends Object {
 export class MainMenu extends CustomElement {
     private static readonly elementSelector = 'main-menu';
     private menuButton: HTMLButtonElement;
+    private menuTitle: HTMLSpanElement;
     private menuIcon: HTMLSpanElement;
     private closeIcon: HTMLSpanElement;
     private menuContainer: HTMLElement;
@@ -74,6 +75,7 @@ export class MainMenu extends CustomElement {
 
     connectedCallback() {
         this.menuButton = getShadowRootElement(this, '#menu-toggle-button');
+        this.menuTitle = getShadowRootElement(this, '#menu-title');
         this.menuIcon = getShadowRootElement(this, '#menu-icon');
         this.closeIcon = getShadowRootElement(this, '#close-icon');
         this.menuContainer = getShadowRootElement(this, '#menu-container');
@@ -84,10 +86,13 @@ export class MainMenu extends CustomElement {
 
         this.showmenu ? this.menuIcon.classList.add('hidden') : this.closeIcon.classList.add('hidden');
 
-
         fetchMenuItems(this.language, this.environment).then(menuItems => {
             this.menuitems = menuItems;
         });
+
+        if (this.menuTitle) {
+            this.menuTitle.innerText = this.language === 'en' ? 'Menu' : 'Meny';
+        }
 
         const hasAuthenticationUrls = this.signinurl && this.signouturl;
         if (hasAuthenticationUrls) {
@@ -132,7 +137,7 @@ export class MainMenu extends CustomElement {
         let loginToggleElement;
         const hasAuthenticationLinks = this.signouturl && this.signinurl;
 
-        if (!hasAuthenticationLinks &&  !hasAuthenticationFunction) {
+        if (!hasAuthenticationLinks && !hasAuthenticationFunction) {
             return '';
         }
 
@@ -165,7 +170,7 @@ export class MainMenu extends CustomElement {
         let languageToggleElement;
         const hasLanguageSelectLinks = this.norwegianurl && this.englishurl;
 
-        if (!hasLanguageSelectLinks &&  !hasLanguageSelectFunctions) {
+        if (!hasLanguageSelectLinks && !hasLanguageSelectFunctions) {
             return '';
         }
 
@@ -224,6 +229,9 @@ export class MainMenu extends CustomElement {
         fetchMenuItems(this.language, this.environment).then(menuItems => {
             this.menuitems = menuItems;
         });
+        if (this.menuTitle) {
+            this.menuTitle.innerText = this.language === 'en' ? 'Menu' : 'Meny';
+        }
     }
 
     @Watch('showmenu')
