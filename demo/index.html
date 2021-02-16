@@ -271,10 +271,10 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 
       },
       onNorwegianLanguageSelect: (event) => {
-        event.target.setAttribute('language', 'no');
+        document.getElementById('main-navigation').setAttribute('language', 'no');
       },
       onEnglishLanguageSelect: (event) => {
-        event.target.setAttribute('language', 'en');
+        document.getElementById('main-navigation').setAttribute('language', 'en');
       }
     });
   </script>
