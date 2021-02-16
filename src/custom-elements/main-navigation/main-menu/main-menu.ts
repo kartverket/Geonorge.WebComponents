@@ -94,17 +94,11 @@ export class MainMenu extends CustomElement {
             this.addAuthenticationLinks();
         }
 
-
-
         const supportsLanguages = this.englishurl && this.norwegianurl;
         if (supportsLanguages) {
             this.addLanguageSelectLinks();
 
         }
-
-
-
-
         document.addEventListener('click', this.clickOutsideMenuContainer);
     }
 
@@ -225,8 +219,8 @@ export class MainMenu extends CustomElement {
 
     @Watch('language')
     languageChanged() {
-        this.addLanguageSelectLinks(this.hasLanguageSelectFunctions);
         this.addAuthenticationLinks(this.hasAuthenticationFunction);
+        this.addLanguageSelectLinks(this.hasLanguageSelectFunctions);
         fetchMenuItems(this.language, this.environment).then(menuItems => {
             this.menuitems = menuItems;
         });
