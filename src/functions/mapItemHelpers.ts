@@ -10,10 +10,10 @@ export const getMapItems = () => {
 export const getMapItemsCount = () => {
   const isKartkatalog = window.location.hostname.toLowerCase().indexOf('kartkatalog') !== -1;
   if (isKartkatalog) {
+    return getMapItems().length;
+  } else {
     const mapItemsCount = parseInt(getCookie('mapItems'));
     return mapItemsCount && !isNaN(mapItemsCount) ? mapItemsCount : 0;
-  } else {
-    return getMapItems().length;
   }
 }
 

@@ -10,10 +10,10 @@ export const getDownloadItems = () => {
 export const getDownloadItemsCount = () => {
   const isKartkatalog = window.location.hostname.toLowerCase().indexOf('kartkatalog') !== -1;
   if (isKartkatalog) {
+    return getDownloadItems().length;
+  } else {
     const downloadItemsCount = parseInt(getCookie('orderItems'));
     return downloadItemsCount && !isNaN(downloadItemsCount) ? downloadItemsCount : 0;
-  } else {
-    return getDownloadItems().length;
   }
 }
 
