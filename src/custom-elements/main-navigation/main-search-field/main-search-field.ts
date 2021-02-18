@@ -37,7 +37,7 @@ export class MainSearchField extends CustomElement {
    @Prop() environment: string;
    @Toggle() showSearchResults: boolean;
    @Toggle() preventRedirect: boolean;
-   @Prop() searchString: string = '';
+   @Prop() searchstring: string = '';
    @Prop() language: string;
    @Prop() searchResultsResponses: Array<SearchResultsResponseForType>;
    @Dispatch('searchResultsChanged') onTextChanged: DispatchEmitter;
@@ -64,8 +64,8 @@ export class MainSearchField extends CustomElement {
 
       this.searchResultsContainer = getShadowRootElement(this, '#search-results-container');
       this.searchResultsContainer.style.maxHeight = `${window.innerHeight - 61}px`;
-      if (this.searchField && this.searchString) {
-         this.searchField.setAttribute('value', this.searchString);
+      if (this.searchField && this.searchstring) {
+         this.searchField.setAttribute('value', this.searchstring);
       }
       document.addEventListener('click', this.clickOutsideSearchResultsContainer);
    }
@@ -78,7 +78,7 @@ export class MainSearchField extends CustomElement {
       const searchResultsTypeName = searchResultsResponseForType.Results[0].TypeTranslated;
       const searchResultsType = searchResultsResponseForType.searchResultsType;
       const searchResultsListElements = searchResultsResponseForType.Results.map((searchResult: SearchResultsForType) => {
-         return `<li>${renderDropdownResultLink(searchResult, searchResultsType, this.searchString, this.environment)}</li>`;
+         return `<li>${renderDropdownResultLink(searchResult, searchResultsType, this.searchstring, this.environment)}</li>`;
       }).join('');
       return `
       <div class="search-results-for-type">
@@ -115,21 +115,21 @@ export class MainSearchField extends CustomElement {
       if (this.preventRedirect){
          this.onSearch.emit({
             detail: {
-               searchString: this.searchString
+               searchString: this.searchstring
             }
          });
       } else {
-         window.location.href = `${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchString}`
+         window.location.href = `${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchstring}`
       }
       
    }
 
    @Listen('keyup', 'input')
    searchFieldKeyUp(event: KeyboardEvent) {
-      if (event.key && event.key === 'Enter' && this.searchString && this.searchString.length){
+      if (event.key && event.key === 'Enter' && this.searchstring && this.searchstring.length){
          this.submitSearch() 
       }else {
-         this.searchString = this.searchField.value;
+         this.searchstring = this.searchField.value;
       }
    }
 
@@ -139,12 +139,12 @@ export class MainSearchField extends CustomElement {
    }
 
 
-   @Watch('searchString')
+   @Watch('searchstring')
    searchStringChanged() {
-      if (this.searchField && this.searchString) {
-         this.searchField.setAttribute('value', this.searchString)
+      if (this.searchField) {
+         this.searchField.setAttribute('value', this.searchstring)
       }
-      fetchDropdownSearchResults(this.searchString, this.language, this.environment).then(searchResultsResponses => {
+      fetchDropdownSearchResults(this.searchstring, this.language, this.environment).then(searchResultsResponses => {
          this.searchResultsResponses = searchResultsResponses;
       });
    }

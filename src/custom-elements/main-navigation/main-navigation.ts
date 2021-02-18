@@ -59,7 +59,7 @@ export class MainNavigation extends CustomElement {
    @Prop() id: string;
    @Prop() environment: string;
    @Prop() language: string;
-   @Prop() searchString: string;
+   @Prop() searchstring: string;
    @Prop() searchtype: string;
    @Prop() metadataresultsfound: string;
    @Prop() articlesresultsfound: string;
@@ -108,7 +108,7 @@ export class MainNavigation extends CustomElement {
       this.downloadItemsElement = getShadowRootElement(this, '#download-items');
 
       if (this.searchField) {
-         this.searchField.setAttribute('value', this.searchString);
+         this.searchField.setAttribute('searchstring', this.searchstring);
          this.searchField.setAttribute('environment', this.environment);
       }
 
@@ -186,6 +186,13 @@ export class MainNavigation extends CustomElement {
    searchTypeChanged() {
       if (this.showSearchTypeSelector) {
          this.searchTypeSelector.setAttribute('searchtype', this.searchtype);
+      }
+   }
+
+   @Watch('searchstring')
+   searchStringChanged() {
+      if (this.searchField) {
+         this.searchField.setAttribute('searchstring', this.searchstring);
       }
    }
 
