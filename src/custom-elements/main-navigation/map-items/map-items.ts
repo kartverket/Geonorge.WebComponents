@@ -10,7 +10,7 @@ import MapIcon from 'assets/svg/map-icon.svg';
 import TrashIcon from 'assets/svg/trash-icon.svg';
 
 // Functions
-import { getMapItems, removeMapItem } from 'functions/mapItemHelpers';
+import { getMapItems, getMapItemsCount, removeMapItem } from 'functions/mapItemHelpers';
 import { getKartkatalogUrl } from 'functions/urlHelpers';
 
 interface MapItem extends Object {
@@ -96,8 +96,9 @@ export class MapItems extends CustomElement {
    }
 
    renderMapItemsCounter() {
-      if (this.mapItems && this.mapItems.length) {
-         this.mapIconCounter.innerHTML = this.mapItems.length.toString();
+      const mapItemsCount = getMapItemsCount();
+      if (mapItemsCount) {
+         this.mapIconCounter.innerHTML = mapItemsCount.toString();
          this.mapIconCounter.classList.remove('hidden');
       } else {
          this.mapIconCounter.innerHTML = '';

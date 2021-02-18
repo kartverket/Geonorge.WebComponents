@@ -10,7 +10,7 @@ import DownloadIcon from 'assets/svg/download-icon.svg';
 import TrashIcon from 'assets/svg/trash-icon.svg';
 
 // Functions
-import { getDownloadItems, getDownloadItemMetadata, removeDownloadItem } from 'functions/downloadItemHelpers';
+import { getDownloadItems, getDownloadItemsCount, getDownloadItemMetadata, removeDownloadItem } from 'functions/downloadItemHelpers';
 import { getKartkatalogUrl } from 'functions/urlHelpers';
 
 
@@ -101,8 +101,9 @@ export class DownloadItems extends CustomElement {
    }
 
    renderDownloadItemsCounter() {
-      if (this.downloadItems && this.downloadItems.length) {
-         this.downloadIconCounter.innerHTML = this.downloadItems.length.toString();
+      const downloadItemsCount = getDownloadItemsCount();
+      if (downloadItemsCount) {
+         this.downloadIconCounter.innerHTML = downloadItemsCount.toString();
          this.downloadIconCounter.classList.remove('hidden');
       } else {
          this.downloadIconCounter.innerHTML = '';
