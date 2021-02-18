@@ -82,7 +82,7 @@ export class MainSearchField extends CustomElement {
       }).join('');
       return `
       <div class="search-results-for-type">
-         <a href="/metadata?text=${this.searchString}&type=${searchResultsType}" class="search-results-for-type-title">
+         <a href="${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchstring}&type=${searchResultsType}" class="search-results-for-type-title">
             ${searchResultsTypeName}
             <span class="search-results-for-type-number-badge">
                ${searchResultsResponseForType.NumFound}
