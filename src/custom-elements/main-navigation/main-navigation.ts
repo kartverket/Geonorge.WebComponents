@@ -108,7 +108,7 @@ export class MainNavigation extends CustomElement {
       this.downloadItemsElement = getShadowRootElement(this, '#download-items');
 
       if (this.searchField) {
-         this.searchField.setAttribute('searchstring', this.searchstring);
+         this.searchField.setAttribute('searchstring', this.searchstring && this.searchstring.length ? this.searchstring : '');
          this.searchField.setAttribute('environment', this.environment);
       }
 
@@ -192,7 +192,7 @@ export class MainNavigation extends CustomElement {
    @Watch('searchstring')
    searchStringChanged() {
       if (this.searchField) {
-         this.searchField.setAttribute('searchstring', this.searchstring);
+         this.searchField.setAttribute('searchstring', this.searchstring && this.searchstring.length ? this.searchstring : '');
       }
    }
 
