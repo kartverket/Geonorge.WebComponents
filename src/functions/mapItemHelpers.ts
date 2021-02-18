@@ -3,7 +3,7 @@ import { getCookie } from 'functions/cookieHelpers';
 
 export const getMapItems = () => {
   return localStorage.mapItems && Array.isArray(JSON.parse(localStorage.mapItems))
-    ? JSON.parse(localStorage.mapItems)
+    ? JSON.parse(localStorage.mapItems).filter(mapItem => {return mapItem})
     : [];
 }
 

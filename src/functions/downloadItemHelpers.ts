@@ -3,7 +3,7 @@ import { getCookie } from 'functions/cookieHelpers';
 
 export const getDownloadItems = () => {
   return localStorage.orderItems && Array.isArray(JSON.parse(localStorage.orderItems))
-    ? JSON.parse(localStorage.orderItems)
+    ? JSON.parse(localStorage.orderItems).filter(mapItem => {return mapItem})
     : [];
 }
 
