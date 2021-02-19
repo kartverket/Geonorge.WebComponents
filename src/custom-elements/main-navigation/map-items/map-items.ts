@@ -108,17 +108,19 @@ export class MapItems extends CustomElement {
 
    renderMapItems = (mapItems: Array<MapItem>) => {
       const mapItemsListElement = mapItems.map((mapItem: MapItem) => {
-         const mapItemElement = document.createElement('span');
-         mapItemElement.innerText = mapItem.Title;
+         if (mapItem) {
+            const mapItemElement = document.createElement('span');
+            mapItemElement.innerText = mapItem.Title;
 
-         const removeMapItemElement = document.createElement('button');
-         removeMapItemElement.classList.add('list-icon');
-         removeMapItemElement.innerHTML = TrashIcon;
-         removeMapItemElement.dataset['mapItem'] = JSON.stringify(mapItem);
-         mapItemElement.appendChild(removeMapItemElement);
+            const removeMapItemElement = document.createElement('button');
+            removeMapItemElement.classList.add('list-icon');
+            removeMapItemElement.innerHTML = TrashIcon;
+            removeMapItemElement.dataset['mapItem'] = JSON.stringify(mapItem);
+            mapItemElement.appendChild(removeMapItemElement);
 
-         return `<li>${mapItemElement.innerHTML}</li>`;
-      }).join('');
+            return `<li>${mapItemElement.innerHTML}</li>`;
+         } else return null;
+      }).filter(mapItem => { return mapItem }).join('');
       let mapItemLinkElement;
       if (this.preventRedirect) {
          mapItemLinkElement = document.createElement('span');

@@ -83,7 +83,7 @@ export class DownloadItems extends CustomElement {
       const downloadItemUuids = getDownloadItems();
       this.downloadItems = downloadItemUuids.map(uuid => {
          return getDownloadItemMetadata(uuid);
-      })
+      }).filter(downloadItem => { return downloadItem });
    }
 
    disconnectedCallback() {
@@ -113,17 +113,19 @@ export class DownloadItems extends CustomElement {
 
    renderDownloadItems = (downloadItems: Array<DownloadItem>) => {
       const downloadItemsListElement = downloadItems.map((downloadItem: DownloadItem) => {
-         const downloadItemElement = document.createElement('span');
-         downloadItemElement.innerText = downloadItem.name;
+         if (downloadItem) {
+            const downloadItemElement = document.createElement('span');
+            downloadItemElement.innerText = downloadItem.name;
 
-         const removeDownloadItemElement = document.createElement('button');
-         removeDownloadItemElement.classList.add('list-icon');
-         removeDownloadItemElement.innerHTML = TrashIcon;
-         removeDownloadItemElement.dataset['downloadItem'] = JSON.stringify(downloadItem);
-         downloadItemElement.appendChild(removeDownloadItemElement);
+            const removeDownloadItemElement = document.createElement('button');
+            removeDownloadItemElement.classList.add('list-icon');
+            removeDownloadItemElement.innerHTML = TrashIcon;
+            removeDownloadItemElement.dataset['downloadItem'] = JSON.stringify(downloadItem);
+            downloadItemElement.appendChild(removeDownloadItemElement);
 
-         return `<li>${downloadItemElement.innerHTML}</li>`;
-      }).join('');
+            return `<li>${downloadItemElement.innerHTML}</li>`;
+         } else return null;
+      }).filter(downloadItem => { return downloadItem }).join('');
 
       let downloadItemLinkElement;
       if (this.preventRedirect) {
