@@ -21,6 +21,7 @@ export const fetchDropdownSearchResults = async (searchString: string = "", lang
         dataset: `search?text=${searchString}&facets%5B1%5Dname=type&facets%5B1%5Dvalue=dataset`,
         series: `search?text=${searchString}&facets%5B1%5Dname=type&facets%5B1%5Dvalue=series`,
         service: `search?text=${searchString}&facets%5B1%5Dname=type&facets%5B1%5Dvalue=service`,
+        servicelayer: `search?text=${searchString}&facets%5B1%5Dname=type&facets%5B1%5Dvalue=servicelayer`,
         software: `search?text=${searchString}&facets%5B1%5Dname=type&facets%5B1%5Dvalue=software`,
         articles: `articles?text=${searchString}`
     };
