@@ -25,6 +25,10 @@ div.main-navigation {
         position: static;
     }
 
+    &.no-shadow {
+        @include box-shadow(none);
+    }
+
     .main-navigation-container {
         margin: auto;
 

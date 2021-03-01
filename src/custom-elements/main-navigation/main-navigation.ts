@@ -71,6 +71,7 @@ export class MainNavigation extends CustomElement {
    @Toggle() showmenu: boolean;
    @Toggle() showSearchTypeSelector: boolean;
    @Toggle() staticposition: boolean;
+   @Toggle() noshadow: boolean;
    @Dispatch('onSearch') onSearch: DispatchEmitter;
    @Dispatch('onSearchTypeChange') onSearchTypeChange: DispatchEmitter;
    @Dispatch('onSignInClick') onSignInClick: DispatchEmitter;
@@ -124,6 +125,10 @@ export class MainNavigation extends CustomElement {
       if (this.staticposition) {
          getShadowRootElement(this, '#main-navigation').classList.add('static-position');
          getShadowRootElement(this, 'main-menu').setAttribute('staticposition', '');
+      }
+
+      if (this.noshadow) {
+         getShadowRootElement(this, '#main-navigation').classList.add('no-shadow');
       }
 
       // Pass properties
