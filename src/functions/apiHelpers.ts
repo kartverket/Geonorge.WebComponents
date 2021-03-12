@@ -17,6 +17,7 @@ export const fetchMenuItems = (language: string = "no", environment: string = ""
 }
 
 export const fetchDropdownSearchResults = async (searchString: string = "", language: string = "no", environment: string = '') => {
+    searchString = searchString.toString();
     const urlParameterStrings = {
         dataset: `search?text=${searchString}&facets%5B1%5Dname=type&facets%5B1%5Dvalue=dataset`,
         series: `search?text=${searchString}&facets%5B1%5Dname=type&facets%5B1%5Dvalue=series`,
