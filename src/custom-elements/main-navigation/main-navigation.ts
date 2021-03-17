@@ -111,6 +111,7 @@ export class MainNavigation extends CustomElement {
       if (this.searchField) {
          this.searchField.setAttribute('searchstring', this.searchstring && this.searchstring.length ? this.searchstring : '');
          this.searchField.setAttribute('environment', this.environment);
+         this.searchField.setAttribute('language', this.language);
       }
 
       this.mapItemsElement.setAttribute('environment', this.environment);
@@ -173,6 +174,9 @@ export class MainNavigation extends CustomElement {
       this.downloadItemsElement.setAttribute('language', this.language);
       if (this.showSearchTypeSelector) {
          this.searchTypeSelector.setAttribute('language', this.language);
+      }
+      if (this.searchField) {
+         this.searchField.setAttribute('language', this.language);
       }
    }
 

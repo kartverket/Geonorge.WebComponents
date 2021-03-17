@@ -30,6 +30,7 @@ interface MainSearchFieldOptions extends CustomElementOptions {
 export class MainSearchField extends CustomElement {
    private static readonly elementSelector = 'main-search-field';
    private searchField: HTMLInputElement;
+   private searchFieldLabel: HTMLInputElement;
    private searchButton: HTMLInputElement;
    private searchResultsContainer: HTMLInputElement;
 
@@ -58,8 +59,11 @@ export class MainSearchField extends CustomElement {
 
    connectedCallback() {
       this.searchField = getShadowRootElement(this, '#main-search-input');
+      this.searchFieldLabel = getShadowRootElement(this, '#main-search-input-label');
       this.searchButton = getShadowRootElement(this, '#search-submit-button');
 
+      this.searchFieldLabel.innerHTML = this.language === 'en' ? 'Search' : 'Søk';
+      
       this.searchButton.innerHTML = SearchIcon;
 
       this.searchResultsContainer = getShadowRootElement(this, '#search-results-container');
@@ -153,6 +157,9 @@ export class MainSearchField extends CustomElement {
    languageChanged() {
       if (this.searchField) {
          this.searchField.setAttribute('aria-label', this.language === 'en' ? 'Enter your search query' : 'Skriv inn det du vil søke etter');
+      }
+      if (this.searchFieldLabel) {
+         this.searchFieldLabel.innerText = this.language === 'en' ? 'Search' : 'Søk';
       }
       if (this.searchButton) {
          this.searchButton.setAttribute('aria-label', this.language === 'en' ? 'Search' : 'Søk');
