@@ -100,9 +100,12 @@ export class MapItems extends CustomElement {
       if (mapItemsCount) {
          this.mapIconCounter.innerHTML = mapItemsCount.toString();
          this.mapIconCounter.classList.remove('hidden');
+         this.mapButton.setAttribute('aria-label', this.language === 'en' ? 'Show map item list' : 'Vis liste med elementer lagt til i kart');
+
       } else {
          this.mapIconCounter.innerHTML = '';
          this.mapIconCounter.classList.add('hidden');
+         this.mapButton.setAttribute('aria-label', this.language === 'en' ? 'Show map' : 'Vis kart');
       }
    }
 
@@ -116,6 +119,7 @@ export class MapItems extends CustomElement {
             removeMapItemElement.classList.add('list-icon');
             removeMapItemElement.innerHTML = TrashIcon;
             removeMapItemElement.dataset['mapItem'] = JSON.stringify(mapItem);
+            removeMapItemElement.setAttribute('aria-label', this.language === 'en' ? `Remove ${mapItem.Title} from map` : `Fjern ${mapItem.Title} fra kart`);
             mapItemElement.appendChild(removeMapItemElement);
 
             return `<li>${mapItemElement.innerHTML}</li>`;

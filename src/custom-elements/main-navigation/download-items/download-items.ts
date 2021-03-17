@@ -105,9 +105,11 @@ export class DownloadItems extends CustomElement {
       if (downloadItemsCount) {
          this.downloadIconCounter.innerHTML = downloadItemsCount.toString();
          this.downloadIconCounter.classList.remove('hidden');
+         this.downloadButton.setAttribute('aria-label', this.language === 'en' ? 'Show download item list' : 'Vis liste med elementer til nedlasting');
       } else {
          this.downloadIconCounter.innerHTML = '';
          this.downloadIconCounter.classList.add('hidden');
+         this.downloadButton.setAttribute('aria-label', this.language === 'en' ? 'Go to download page' : 'Gå til nedlastingsside');
       }
    }
 
@@ -121,6 +123,7 @@ export class DownloadItems extends CustomElement {
             removeDownloadItemElement.classList.add('list-icon');
             removeDownloadItemElement.innerHTML = TrashIcon;
             removeDownloadItemElement.dataset['downloadItem'] = JSON.stringify(downloadItem);
+            removeDownloadItemElement.setAttribute('aria-label', this.language === 'en' ? `Remove ${downloadItem.name} from downloads` : `Fjern ${downloadItem.name} fra kurv`);
             downloadItemElement.appendChild(removeDownloadItemElement);
 
             return `<li>${downloadItemElement.innerHTML}</li>`;

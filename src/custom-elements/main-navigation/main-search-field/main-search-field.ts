@@ -149,6 +149,16 @@ export class MainSearchField extends CustomElement {
       });
    }
 
+   @Watch('language')
+   languageChanged() {
+      if (this.searchField) {
+         this.searchField.setAttribute('aria-label', this.language === 'en' ? 'Enter your search query' : 'Skriv inn det du vil søke etter');
+      }
+      if (this.searchButton) {
+         this.searchButton.setAttribute('aria-label', this.language === 'en' ? 'Search' : 'Søk');
+      }
+   }
+
 
    @Watch('showsearchresults')
    showSearchResultsChanged() {

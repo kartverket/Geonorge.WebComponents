@@ -90,6 +90,8 @@ export class MainMenu extends CustomElement {
             this.menuitems = menuItems;
         });
 
+        this.menuButton.setAttribute('aria-label', this.language === 'en' ? 'Show menu' : 'Vis meny');
+
         if (this.menuTitle) {
             this.menuTitle.innerText = this.language === 'en' ? 'Menu' : 'Meny';
         }
@@ -232,6 +234,7 @@ export class MainMenu extends CustomElement {
         if (this.menuTitle) {
             this.menuTitle.innerText = this.language === 'en' ? 'Menu' : 'Meny';
         }
+        this.menuButton.setAttribute('aria-label', this.language === 'en' ? 'Show menu' : 'Vis meny');
     }
 
     @Watch('showmenu')
