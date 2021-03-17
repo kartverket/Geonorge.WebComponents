@@ -187,6 +187,14 @@ export class MapItems extends CustomElement {
       }
    }
 
+   @Watch('language')
+   languageChanged() {
+      if (this.mapItems && this.mapItems.length) {
+         this.renderMapItems(this.mapItems);
+         this.renderMapItemsCounter();
+      }
+   }
+
    @Watch('preventredirect')
    preventRedirectChanged() {
       if (this.mapItems && this.mapItems.length) {

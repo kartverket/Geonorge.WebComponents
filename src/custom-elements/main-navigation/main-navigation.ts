@@ -114,6 +114,7 @@ export class MainNavigation extends CustomElement {
       }
 
       this.mapItemsElement.setAttribute('environment', this.environment);
+      this.mapItemsElement.setAttribute('language', this.language);
 
       this.downloadItemsElement.setAttribute('environment', this.environment);
       this.downloadItemsElement.setAttribute('language', this.language);
@@ -168,6 +169,8 @@ export class MainNavigation extends CustomElement {
    @Watch('language')
    languageChanged() {
       this.mainMenu.setAttribute('language', this.language);
+      this.mapItemsElement.setAttribute('language', this.language);
+      this.downloadItemsElement.setAttribute('language', this.language);
       if (this.showSearchTypeSelector) {
          this.searchTypeSelector.setAttribute('language', this.language);
       }
