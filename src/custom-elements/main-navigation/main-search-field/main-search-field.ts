@@ -63,7 +63,7 @@ export class MainSearchField extends CustomElement {
       this.searchButton = getShadowRootElement(this, '#search-submit-button');
 
       this.searchFieldLabel.innerHTML = this.language === 'en' ? 'Search' : 'Søk';
-      
+
       this.searchButton.innerHTML = SearchIcon;
 
       this.searchResultsContainer = getShadowRootElement(this, '#search-results-container');
@@ -111,12 +111,19 @@ export class MainSearchField extends CustomElement {
 
    clickOutsideSearchResultsContainer(event: MouseEvent) {
       const targetElement = event.composedPath()[0] as Element;
-      if (targetElement.closest('#search-results-container') || targetElement.closest('#main-search-input')) return
+      if (targetElement.closest('#search-results-container') || targetElement.closest('#main-search-input')) {
+         const closestLink = targetElement.closest('a');
+         if (closestLink?.href?.length) {
+            this.hideSearchResultsContainer();
+         }
+         return
+      }
       this.hideSearchResultsContainer();
    }
 
    submitSearch() {
-      if (this.preventRedirect){
+      this.hideSearchResultsContainer();
+      if (this.preventRedirect) {
          this.onSearch.emit({
             detail: {
                searchString: this.searchstring
@@ -125,15 +132,15 @@ export class MainSearchField extends CustomElement {
       } else {
          window.location.href = `${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchstring}`
       }
-      
+
    }
 
    @Listen('keyup', 'input')
    searchFieldKeyUp(event: KeyboardEvent) {
-      if (event.key && event.key === 'Enter' && this.searchstring?.toString().length){
-         this.submitSearch() 
-      }else {
-         this.searchstring = this.searchField?.value?.toString() || '';
+      if (event.key && event.key === 'Enter' && this.searchstring?.toString().length) {
+         this.submitSearch()
+      } else {
+         this.searchstring = this.searchField?.value?.toString() || '';
       }
    }
 
