@@ -84,9 +84,14 @@ export class MainSearchField extends CustomElement {
       const searchResultsListElements = searchResultsResponseForType.Results.map((searchResult: SearchResultsForType) => {
          return `<li>${renderDropdownResultLink(searchResult, searchResultsType, this.searchstring, this.environment)}</li>`;
       }).join('');
+
+      const searchResultsTypeLink = searchResultsType === 'articles'
+         ? `${getKartkatalogUrl(this.environment)}/articles?text=${this.searchstring}`
+         : `${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchstring}&type=${searchResultsType}`;
+
       return `
       <div class="search-results-for-type">
-         <a href="${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchstring}&type=${searchResultsType}" class="search-results-for-type-title">
+         <a href="${searchResultsTypeLink}" class="search-results-for-type-title">
             ${searchResultsTypeName}
             <span class="search-results-for-type-number-badge">
                ${searchResultsResponseForType.NumFound}
