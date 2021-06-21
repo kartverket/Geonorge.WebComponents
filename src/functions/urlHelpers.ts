@@ -6,9 +6,10 @@ export const getKartkatalogUrl = (environment: string) => {
     return `https://kartkatalog.${environmentSlug}geonorge.no`;
 };
 
-export const getGeonorgeUrl = (environment: string) => {
+export const getGeonorgeUrl = (language: string, environment: string) => {
     const environmentSlug = environment === 'dev' || environment === 'test' ? 'test.' : '';
-    return `https://www.${environmentSlug}geonorge.no`;
+    const selectedLanguageSlug = language === 'en' ? 'en/' : '';
+    return `https://www.${environmentSlug}geonorge.no/${selectedLanguageSlug}`;
 };
 
 export const getGeonorgeNedlastingUrl = (environment: string) => {

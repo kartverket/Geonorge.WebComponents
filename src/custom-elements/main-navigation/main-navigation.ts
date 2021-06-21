@@ -121,7 +121,7 @@ export class MainNavigation extends CustomElement {
       this.downloadItemsElement.setAttribute('language', this.language);
 
       this.logoElement.innerHTML = this.getGeonorgeLogoVariant(this.environment);
-      this.logoElement.href = getGeonorgeUrl(this.environment);
+      this.logoElement.href = getGeonorgeUrl(this.language, this.environment);
 
 
       if (this.staticposition) {
