@@ -9,7 +9,7 @@ import { getGeonorgeUrl } from 'functions/urlHelpers';
 
 // Assets
 import GeonorgeLogo from 'assets/svg/geonorge-logo.svg';
-const KartverketLogo = require('assets/png/kartverket-logo.png').default;
+import KartverketLogo from 'assets/svg/kartverket-logo.svg';
 
 
 interface StandardButtonOptions extends CustomElementOptions {
@@ -25,7 +25,7 @@ export class GeonorgeFooter extends CustomElement {
     private static readonly elementSelector = 'geonorge-footer';
     private geonorgeFooterElement: HTMLButtonElement;
     private geonorgeLogoElement: HTMLDivElement;
-    private kartverketLogoElement: HTMLImageElement;
+    private kartverketLogoElement: HTMLDivElement;
     private linkListElement: HTMLUListElement;
     private aboutSiteHeader: HTMLHeadingElement;
     private contactHeader: HTMLHeadingElement;
@@ -92,7 +92,7 @@ export class GeonorgeFooter extends CustomElement {
         this.geonorgeFooterElement.setAttribute('environment', this.environment);
 
         this.geonorgeLogoElement.innerHTML = GeonorgeLogo;
-        this.kartverketLogoElement.src = KartverketLogo;
+        this.kartverketLogoElement.innerHTML = KartverketLogo;
 
         this.linkListElement.innerHTML = this.getLinkList(this.language, this.environment)
         this.contactInfoText.innerHTML = this.getContactInfoText(this.language, this.environment)
