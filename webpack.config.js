@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     'index': './index.ts',
     'init': './init.ts',
+    'GeonorgeFooter': './custom-elements/geonorge-footer/geonorge-footer.ts',
     'MainNavigation': './custom-elements/main-navigation/main-navigation.ts',
     'MainSearchField': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
     'SearchTypeSelector': './custom-elements/main-navigation/search-type-selector/search-type-selector.ts',

@@ -1,5 +1,7 @@
 export * from './init';
 
+export * from './custom-elements/geonorge-footer/geonorge-footer';
+
 export * from './custom-elements/main-navigation/main-navigation';
 export * from './custom-elements/main-navigation/main-search-field/main-search-field';
 export * from './custom-elements/main-navigation/search-type-selector/search-type-selector';
