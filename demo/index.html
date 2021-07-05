@@ -240,14 +240,14 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
       <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
       <navigation-tab-content slot="tab-content">
         <div class="example-preview">
-          <geonorge-footer language="no" />
+          <geonorge-footer language="no" version="2.3.15" />
         </div>
       </navigation-tab-content>
       <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
       <navigation-tab-content slot="tab-content">
         <pre class="example-code">
             <code class="language-html"><script type="prism-html-markup">
-<geonorge-footer />
+<geonorge-footer version="2.3.15"/>
   </script></code>
       </pre>
       </navigation-tab-content>
@@ -258,6 +258,7 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 {
   id: string,
   environment: string,
+  version: string,
   language: string,
 }
             </code>
@@ -267,7 +268,7 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 
   </main>
 
-  <geonorge-footer />
+  <geonorge-footer/>
 
   <script src="localStorage.js"></script>
   <script src="init.js"></script>
