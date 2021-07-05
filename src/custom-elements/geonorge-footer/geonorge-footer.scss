@@ -102,6 +102,13 @@ footer {
                     }
                 }
             }
+            #version-text {
+                display: block;
+                color: #404041;
+                font-size: 13px;
+                text-align: right;
+                max-width: 230px;
+            }
             #geonorge-logo {
                 max-width: 230px;
             }

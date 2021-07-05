@@ -24,6 +24,7 @@ interface StandardButtonOptions extends CustomElementOptions {
 export class GeonorgeFooter extends CustomElement {
     private static readonly elementSelector = 'geonorge-footer';
     private geonorgeFooterElement: HTMLButtonElement;
+    private versionTextElement: HTMLDivElement;
     private geonorgeLogoElement: HTMLDivElement;
     private kartverketLogoElement: HTMLDivElement;
     private linkListElement: HTMLUListElement;
@@ -34,6 +35,7 @@ export class GeonorgeFooter extends CustomElement {
 
     @Prop() id: string;
     @Prop() environment: string;
+    @Prop() version: string;
     @Prop() language: string;
 
     constructor() {
@@ -80,6 +82,7 @@ export class GeonorgeFooter extends CustomElement {
 
     connectedCallback() {
         this.geonorgeFooterElement = getShadowRootElement(this, '#geonorge-footer');
+        this.versionTextElement = getShadowRootElement(this, '#version-text');
         this.geonorgeLogoElement = getShadowRootElement(this, '#geonorge-logo');
         this.kartverketLogoElement = getShadowRootElement(this, '#kartverket-logo');
         this.linkListElement = getShadowRootElement(this, '#link-list');
@@ -90,6 +93,10 @@ export class GeonorgeFooter extends CustomElement {
 
 
         this.geonorgeFooterElement.setAttribute('environment', this.environment);
+
+        if (this.version?.length){
+            this.versionTextElement.innerText = this.language === 'en' ? `Version ${this.version}` : `Versjon ${this.version}`;
+        }
 
         this.geonorgeLogoElement.innerHTML = GeonorgeLogo;
         this.kartverketLogoElement.innerHTML = KartverketLogo;
@@ -108,6 +115,8 @@ export class GeonorgeFooter extends CustomElement {
         this.aboutSiteHeader.innerText = this.language === 'en' ? 'About' : 'Om nettstedet';
         this.contactHeader.innerText = this.language === 'en' ? 'Contact' : 'Kontakt';
         this.aSolutionByText.innerText = this.language === 'en' ? 'A solution by' : 'En løsning fra';
-
+        if (this.version?.length){
+            this.versionTextElement.innerText = this.language === 'en' ? `Version ${this.version}` : `Versjon ${this.version}`;
+        }
     }
 }
