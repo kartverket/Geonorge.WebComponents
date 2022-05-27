@@ -14,7 +14,7 @@
     "directory": "packages/geonorge-web-components"
   },
   "scripts": {
-    "start": "webpack serve --port 9000 --host 0.0.0.0 --public --inline --progress --profile --content-base demo/ --mode development",
+    "start": "webpack serve --port 9000 --host 0.0.0.0 --progress --profile --mode development",
     "build": "npm run clean && webpack --config webpack.config.js --mode production && npm run copy-demo-files",
     "release": "npm run build && npm run copy-files && npm run clean-package && npm publish --access public ./tmp && npm run clean:tmp",
     "release:test": "npm run build && npm run copy-files && npm run clean-package",
@@ -38,7 +38,7 @@
     "json": "^11.0.0",
     "raw-loader": "^4.0.1",
     "sass": "^1.26.10",
-    "sass-loader": "^12.1.0",
+    "sass-loader": "^13.0.0",
     "shx": "^0.3.2",
     "source-map-loader": "^3.0.0",
     "super-custom-elements": "0.0.2",
@@ -48,6 +48,6 @@
     "webfontloader": "^1.6.28",
     "webpack": "^5.1.3",
     "webpack-cli": "^4.1.0",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^4.9.0"
   }
 }

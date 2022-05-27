@@ -75,6 +75,9 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    injectClient: false
+    client: false,
+    static: {
+      directory: path.join(__dirname, "demo")
+    }
   }
 };
