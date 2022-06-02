@@ -30,14 +30,4 @@ export const removeDownloadItem = (itemToRemove) => {
     : [];
   localStorage.orderItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep !== itemToRemove.uuid));
   localStorage.removeItem(itemToRemove.uuid + ".metadata")
-
-
-  /*const tagData = {
-    name: itemToRemove.name,
-    uuid: itemToRemove.uuid,
-    accessIsOpendata: itemToRemove.accessIsOpendata,
-    accessIsRestricted: itemToRemove.accessIsRestricted,
-    organizationName: itemToRemove.organizationName,
-    theme: itemToRemove.theme
-  };*/
 }

@@ -23,14 +23,4 @@ export const removeMapItem = (itemToRemove) => {
     ? JSON.parse(localStorage.mapItems)
     : [];
   localStorage.mapItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep.Uuid !== itemToRemove.Uuid));
-
-
-  /*const tagData = {
-    name: itemToRemove.name,
-    uuid: itemToRemove.uuid,
-    accessIsOpendata: itemToRemove.accessIsOpendata,
-    accessIsRestricted: itemToRemove.accessIsRestricted,
-    organizationName: itemToRemove.organizationName,
-    theme: itemToRemove.theme
-  };*/
 }
