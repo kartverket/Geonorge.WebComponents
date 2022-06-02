@@ -9,7 +9,8 @@ export const getDownloadItems = () => {
 
 export const getDownloadItemsCount = () => {
   const isKartkatalog = window.location.hostname.toLowerCase().indexOf('kartkatalog') !== -1;
-  if (isKartkatalog) {
+  const isLocalKartkatalogEnvironment = window.sessionStorage.isLocalKartkatalogEnvironment;
+  if (isKartkatalog || isLocalKartkatalogEnvironment) {
     return getDownloadItems().length;
   } else {
     const downloadItemsCount = parseInt(getCookie('orderItems'));
