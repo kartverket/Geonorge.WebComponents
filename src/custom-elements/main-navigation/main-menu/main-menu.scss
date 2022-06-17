@@ -152,13 +152,18 @@ button.menu-toggle-button {
             &.open {
                 max-height: 56px;
             }
-            a, span {
+            a, button {
                 display: inline-block;
                 padding: 0.25em 1em 0.25em 1.1em;
                 margin: 15px 0;
                 text-decoration: none;
                 color: #414042;
                 cursor: pointer;
+                border: none;
+                font-size: 16px;
+                font-weight: 300;
+                font-family: $default-font;
+                background: none;
                 &:hover {
                     text-decoration: underline;
                 }

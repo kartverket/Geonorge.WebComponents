@@ -11,6 +11,7 @@ import CloseIcon from 'assets/svg/close-icon.svg';
 
 // Functions
 import { fetchMenuItems } from 'functions/apiHelpers';
+import { getFocusableElementsInsideElement } from 'functions/guiHelpers';
 
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
@@ -128,7 +129,7 @@ export class MainMenu extends CustomElement {
     renderMenuItems = (menuItems: Array<MenuItem>, hierarchyLevel: number = 0, maxHierarchyLevel: number = 1) => {
         const menuItemsListElement = menuItems.map((menuItem: MenuItem) => {
             const subItems = menuItem.SubMenuItem && menuItem.SubMenuItem.length ? menuItem.SubMenuItem : null;
-            const menuItemElement = `<a href="${menuItem.Url}">${menuItem.Name}</a>`;
+            const menuItemElement = `<a href="${menuItem.Url}" tabindex="${this.showmenu ? null : '-1'}">${menuItem.Name}</a>`;
             const subItemElements = subItems && hierarchyLevel + 1 <= maxHierarchyLevel ? this.renderMenuItems(subItems, hierarchyLevel + 1, maxHierarchyLevel) : '';
             return `<li>${menuItemElement}${subItemElements}</li>`;
         }).join('');
@@ -144,7 +145,7 @@ export class MainMenu extends CustomElement {
         }
 
         if (hasAuthenticationFunction) {
-            loginToggleElement = document.createElement("span");
+            loginToggleElement = document.createElement("button");
             loginToggleElement.addEventListener("click", () => {
                 this.isloggedin ? this.onSignOutClick.emit() : this.onSignInClick.emit();
             });
@@ -177,7 +178,7 @@ export class MainMenu extends CustomElement {
         }
 
         if (hasLanguageSelectFunctions) {
-            languageToggleElement = document.createElement("span");
+            languageToggleElement = document.createElement("button");
             languageToggleElement.addEventListener("click", () => {
                 this.language === 'en' ? this.onNorwegianLanguageSelect.emit() : this.onEnglishLanguageSelect.emit();
             });
@@ -245,6 +246,14 @@ export class MainMenu extends CustomElement {
         this.showmenu ? this.menuActionsRow.classList.add('open') : this.menuActionsRow.classList.remove('open');
         this.showmenu ? this.menuIcon.classList.add('hidden') : this.menuIcon.classList.remove('hidden');
         this.showmenu ? this.closeIcon.classList.remove('hidden') : this.closeIcon.classList.add('hidden');
+        const focusableMenuContainerElements = getFocusableElementsInsideElement(this.menuContainer);
+        focusableMenuContainerElements.forEach(focusableElement => {
+            if (!this.showmenu){
+                focusableElement.setAttribute('tabindex', '-1');
+            } else {
+                focusableElement.removeAttribute('tabindex');
+            }
+        });
     }
 
     @Watch('menuitems')
