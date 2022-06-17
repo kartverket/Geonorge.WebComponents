@@ -134,6 +134,9 @@ export class DownloadItems extends CustomElement {
             removeDownloadItemElement.innerHTML = TrashIcon;
             removeDownloadItemElement.dataset['downloadItem'] = JSON.stringify(downloadItem);
             removeDownloadItemElement.setAttribute('aria-label', this.language === 'en' ? `Remove ${downloadItem.name} from downloads` : `Fjern ${downloadItem.name} fra kurv`);
+            if (!this.showList){
+               removeDownloadItemElement.setAttribute('tabindex', '-1');
+            }
             downloadItemElement.appendChild(removeDownloadItemElement);
 
             return `<li>${downloadItemElement.innerHTML}</li>`;
@@ -142,7 +145,7 @@ export class DownloadItems extends CustomElement {
 
       let downloadItemLinkElement;
       if (this.preventRedirect) {
-         downloadItemLinkElement = document.createElement('span');
+         downloadItemLinkElement = document.createElement('button');
          downloadItemLinkElement.addEventListener("click", () => {
             this.onOpenEmptyDownloadItemsList.emit();
          });
@@ -152,6 +155,9 @@ export class DownloadItems extends CustomElement {
       }
       downloadItemLinkElement.innerText = this.language === 'en' ? 'Go to download' : 'Til nedlasting';
       downloadItemLinkElement.classList.add('page-link-element');
+      if (!this.showList){
+         downloadItemLinkElement.setAttribute('tabindex', '-1');
+      }
       this.downloadItemListContainer.innerHTML = `<ul>${downloadItemsListElement}</ul>`;
       this.downloadItemListContainer.prepend(downloadItemLinkElement);
    }
@@ -195,6 +201,14 @@ export class DownloadItems extends CustomElement {
    showMenuChanged() {
       this.showList ? this.downloadItemListContainer.classList.add('open') : this.downloadItemListContainer.classList.remove('open');
       this.showList ? this.downloadButton.classList.add('open') : this.downloadButton.classList.remove('open');
+      const downloadItemListContainerButtons = this.downloadItemListContainer.querySelectorAll('button');
+      downloadItemListContainerButtons.forEach(button => {
+         if (!this.showList){
+            button.setAttribute('tabindex', '-1');
+         } else {
+            button.removeAttribute('tabindex');
+         }
+      });
    }
 
    @Watch('downloadItems')

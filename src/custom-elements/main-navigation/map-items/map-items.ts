@@ -129,6 +129,9 @@ export class MapItems extends CustomElement {
             removeMapItemElement.innerHTML = TrashIcon;
             removeMapItemElement.dataset['mapItem'] = JSON.stringify(mapItem);
             removeMapItemElement.setAttribute('aria-label', this.language === 'en' ? `Remove ${mapItem.Title} from map` : `Fjern ${mapItem.Title} fra kart`);
+            if (!this.showList){
+               removeMapItemElement.setAttribute('tabindex', '-1');
+            }
             mapItemElement.appendChild(removeMapItemElement);
 
             return `<li>${mapItemElement.innerHTML}</li>`;
@@ -136,7 +139,7 @@ export class MapItems extends CustomElement {
       }).filter(mapItem => { return mapItem }).join('');
       let mapItemLinkElement;
       if (this.preventRedirect) {
-         mapItemLinkElement = document.createElement('span');
+         mapItemLinkElement = document.createElement('button');
          mapItemLinkElement.addEventListener("click", () => {
             this.onOpenEmptyMapItemsList.emit();
          });
@@ -146,6 +149,9 @@ export class MapItems extends CustomElement {
       }
       mapItemLinkElement.innerText = this.language === 'en' ? 'Show map' : 'Vis kart';
       mapItemLinkElement.classList.add('page-link-element');
+      if (!this.showList){
+         mapItemLinkElement.setAttribute('tabindex', '-1');
+      }
       this.mapItemListContainer.innerHTML = `<ul>${mapItemsListElement}</ul>`;
       this.mapItemListContainer.prepend(mapItemLinkElement);
    }
@@ -190,6 +196,14 @@ export class MapItems extends CustomElement {
    showMenuChanged() {
       this.showList ? this.mapItemListContainer.classList.add('open') : this.mapItemListContainer.classList.remove('open');
       this.showList ? this.mapButton.classList.add('open') : this.mapButton.classList.remove('open');
+      const mapItemListContainerButtons = this.mapItemListContainer.querySelectorAll('button');
+      mapItemListContainerButtons.forEach(button => {
+         if (!this.showList){
+            button.setAttribute('tabindex', '-1');
+         } else {
+            button.removeAttribute('tabindex');
+         }
+      });
    }
 
    @Watch('mapItems')

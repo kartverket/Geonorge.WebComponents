@@ -88,6 +88,11 @@
                 color: $primary-text;
                 text-decoration: none;
                 cursor: pointer;
+                border: none;
+                font-size: 16px;
+                font-weight: 400;
+                width: 100%;
+                font-family: $default-font;
                 &:hover {
                     text-decoration: underline;
                     color: $primary-text-hover;
