@@ -36,3 +36,6 @@ localStorage.mapItems = JSON.stringify([
         Title: "Dataset item 3",
     }
 ]);
+
+// For testing at localhost
+sessionStorage.isLocalKartkatalogEnvironment = true;
