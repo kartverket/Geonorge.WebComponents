@@ -12,6 +12,7 @@ import TrashIcon from 'assets/svg/trash-icon.svg';
 // Functions
 import { getMapItems, getMapItemsCount, removeMapItem } from 'functions/mapItemHelpers';
 import { getKartkatalogUrl } from 'functions/urlHelpers';
+import { getFocusableElementsInsideElement } from 'functions/guiHelpers';
 
 interface MapItem extends Object {
    Title: string,
@@ -196,7 +197,7 @@ export class MapItems extends CustomElement {
    showMenuChanged() {
       this.showList ? this.mapItemListContainer.classList.add('open') : this.mapItemListContainer.classList.remove('open');
       this.showList ? this.mapButton.classList.add('open') : this.mapButton.classList.remove('open');
-      const mapItemListContainerButtons = this.mapItemListContainer.querySelectorAll('button');
+      const mapItemListContainerButtons = getFocusableElementsInsideElement(this.mapItemListContainer);
       mapItemListContainerButtons.forEach(button => {
          if (!this.showList){
             button.setAttribute('tabindex', '-1');

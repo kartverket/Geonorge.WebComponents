@@ -12,7 +12,7 @@ import TrashIcon from 'assets/svg/trash-icon.svg';
 // Functions
 import { getDownloadItems, getDownloadItemsCount, getDownloadItemMetadata, removeDownloadItem } from 'functions/downloadItemHelpers';
 import { getKartkatalogUrl } from 'functions/urlHelpers';
-
+import { getFocusableElementsInsideElement } from 'functions/guiHelpers';
 
 interface DownloadItem extends Object {
    name: string,
@@ -201,7 +201,7 @@ export class DownloadItems extends CustomElement {
    showMenuChanged() {
       this.showList ? this.downloadItemListContainer.classList.add('open') : this.downloadItemListContainer.classList.remove('open');
       this.showList ? this.downloadButton.classList.add('open') : this.downloadButton.classList.remove('open');
-      const downloadItemListContainerButtons = this.downloadItemListContainer.querySelectorAll('button');
+      const downloadItemListContainerButtons = getFocusableElementsInsideElement(this.downloadItemListContainer);
       downloadItemListContainerButtons.forEach(button => {
          if (!this.showList){
             button.setAttribute('tabindex', '-1');
