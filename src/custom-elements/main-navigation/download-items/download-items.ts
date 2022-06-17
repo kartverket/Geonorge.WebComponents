@@ -105,11 +105,21 @@ export class DownloadItems extends CustomElement {
       if (downloadItemsCount) {
          this.downloadIconCounter.innerHTML = downloadItemsCount.toString();
          this.downloadIconCounter.classList.remove('hidden');
-         this.downloadButton.setAttribute('aria-label', this.language === 'en' ? 'Show download item list' : 'Vis liste med elementer til nedlasting');
+         this.downloadButton.setAttribute(
+            'aria-label',
+            this.language === 'en'
+               ? `Show ${downloadItemsCount} download ${downloadItemsCount === 1 ? 'item' : 'items'} in list`
+               : `Vis liste med ${downloadItemsCount} ${downloadItemsCount === 1 ? 'element' : 'elementer'} til nedlasting`
+            );
       } else {
          this.downloadIconCounter.innerHTML = '';
          this.downloadIconCounter.classList.add('hidden');
-         this.downloadButton.setAttribute('aria-label', this.language === 'en' ? 'Go to download page' : 'Gå til nedlastingsside');
+         this.downloadButton.setAttribute(
+            'aria-label',
+            this.language === 'en' 
+               ? 'Go to download page' 
+               : 'Gå til nedlastingsside'
+         );
       }
    }
 

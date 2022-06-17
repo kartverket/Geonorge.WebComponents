@@ -100,12 +100,21 @@ export class MapItems extends CustomElement {
       if (mapItemsCount) {
          this.mapIconCounter.innerHTML = mapItemsCount.toString();
          this.mapIconCounter.classList.remove('hidden');
-         this.mapButton.setAttribute('aria-label', this.language === 'en' ? 'Show map item list' : 'Vis liste med elementer lagt til i kart');
-
+         this.mapButton.setAttribute(
+            'aria-label',
+            this.language === 'en' 
+               ? `Show ${mapItemsCount} map ${mapItemsCount === 1 ? 'item' : 'items'} in list`
+               : `Vis liste med ${mapItemsCount} ${mapItemsCount === 1 ? 'element' : 'elementer'} lagt til i kart`
+         );
       } else {
          this.mapIconCounter.innerHTML = '';
          this.mapIconCounter.classList.add('hidden');
-         this.mapButton.setAttribute('aria-label', this.language === 'en' ? 'Show map' : 'Vis kart');
+         this.mapButton.setAttribute(
+            'aria-label',
+            this.language === 'en'
+               ? 'Show map'
+               : 'Vis kart'
+         );
       }
    }
 
