@@ -165,6 +165,10 @@ export class MainMenu extends CustomElement {
             }
         }
 
+        if (!this.showmenu){
+            loginToggleElement.setAttribute('tabindex', '-1');
+        }
+
         // Add login toggle element
         this.menuActionsRow.appendChild(loginToggleElement);
     }
@@ -195,6 +199,10 @@ export class MainMenu extends CustomElement {
             if (childElement.getAttribute('id') === languageToggleElement.id) {
                 childElement.remove()
             }
+        }
+
+        if (!this.showmenu){
+            languageToggleElement.setAttribute('tabindex', '-1');
         }
 
         // Add language toggle element
