@@ -1,23 +1,56 @@
-div.search-type-selector{
+@import "../../../style/all";
+
+div.search-type-selector {
     width: 180px;
     label {
         font-size: 14px;
         display: block;
         cursor: pointer;
-        input[type="radio"]{
-            vertical-align: middle;
-            margin: 0;
-            width: 14px;
-            height: 14px;
-        }
+
         .search-type-counter {
-            font-size: .9em;
-            &::before{
+            font-size: 0.9em;
+            &::before {
                 content: "(";
             }
-            &::after{
+            &::after {
                 content: ")";
             }
         }
+    }
+    input[type="radio"] {
+        -webkit-appearance: none;
+        appearance: none;
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.2em;
+        height: 1.1em;
+        border: 0.15em solid rgb(125, 116, 109);
+        border-radius: 50%;
+        transform: translateY(-0.075em);
+        display: inline-grid;
+        place-content: center;
+    }
+
+    input[type="radio"]::before {
+        content: "";
+        width: 0.6em;
+        height: 0.6em;
+        border-radius: 50%;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+    }
+
+    input[type="radio"]:checked {
+        border-color: $primary-text;
+        &::before {
+            transform: scale(1);
+            background-color: $primary-text;
+        }
+    }
+
+    input[type="radio"]:focus-visible {
+        outline: max(2px, 0.1em) solid $primary-text;
+        outline-offset: max(2px, 0.1em);
     }
 }
