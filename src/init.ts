@@ -1,11 +1,5 @@
-import WebFont from 'webfontloader';
 import initStyle from './init.scss';
-
-WebFont.load({
-    google: {
-        families: ['Raleway:100,400,500,700', 'Open Sans:400,600,700', 'sans-serif']
-    }
-});
+import './style/base/fonts.css';
 
 
 const head: HTMLHeadElement = document.head || document.getElementsByTagName('head')[0];
