@@ -150,6 +150,51 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
                 </navigation-tab-content>
             </navigation-tabs>
 
+            <h2>heading-text</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <heading-text content="Heading 1" size="1"></heading-text>
+                        <heading-text content="Heading 1 with underline" size="1" underline></heading-text>
+                        <heading-text content="Heading 2" size="2"></heading-text>
+                        <heading-text content="Heading 2 with underline" size="2" underline></heading-text>
+                        <heading-text content="Heading 3" size="3"></heading-text>
+                        <heading-text content="Heading 4" size="4"></heading-text>
+                        <heading-text content="Heading 5" size="5"></heading-text>
+                        <heading-text content="Heading 1 size 3" size="3" tag="h1"></heading-text>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<heading-text content="Heading 1" size="1"></heading-text>
+<heading-text content="Heading 1 with underline" size="1" underline></heading-text>
+<heading-text content="Heading 2" size="2"></heading-text>
+<heading-text content="Heading 2 with underline" size="2" underline></heading-text>
+<heading-text content="Heading 3" size="3"></heading-text>
+<heading-text content="Heading 4" size="4"></heading-text>
+<heading-text content="Heading 5" size="5"></heading-text>
+<heading-text content="Heading 1 size 3" size="3" tag="h1"></heading-text>
+  </script></code>
+      </pre>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-json">
+{
+  content: string,
+  size: string,
+  tag: string,
+  underline: boolean
+}
+            </code>
+          </pre>
+                </navigation-tab-content>
+            </navigation-tabs>
+
             <h2>standard-button</h2>
             <navigation-tabs>
                 <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
@@ -317,6 +362,7 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
         <script src="init.js"></script>
         <script src="BreadcrumbList.js"></script>
         <script src="GeonorgeFooter.js"></script>
+        <script src="HeadingText.js"></script>
         <script src="MainNavigation.js"></script>
         <script src="NavigationTabs.js"></script>
         <script src="DataTable.js"></script>

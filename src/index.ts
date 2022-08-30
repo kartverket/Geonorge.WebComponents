@@ -6,6 +6,8 @@ export * from './custom-elements/data-table/data-table';
 
 export * from './custom-elements/geonorge-footer/geonorge-footer';
 
+export * from './custom-elements/heading-text/heading-text';
+
 export * from './custom-elements/main-navigation/main-navigation';
 export * from './custom-elements/main-navigation/main-search-field/main-search-field';
 export * from './custom-elements/main-navigation/search-type-selector/search-type-selector';

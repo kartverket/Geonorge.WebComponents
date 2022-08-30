@@ -8,6 +8,7 @@ module.exports = {
     'init': './init.ts',
     'BreadcrumbList': './custom-elements/breadcrumb-list/breadcrumb-list.ts',
     'GeonorgeFooter': './custom-elements/geonorge-footer/geonorge-footer.ts',
+    'HeadingText': './custom-elements/heading-text/heading-text.ts',
     'MainNavigation': './custom-elements/main-navigation/main-navigation.ts',
     'MainSearchField': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
     'SearchTypeSelector': './custom-elements/main-navigation/search-type-selector/search-type-selector.ts',
