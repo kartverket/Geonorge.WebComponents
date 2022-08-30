@@ -41,6 +41,7 @@
     "sass-loader": "^13.0.0",
     "shx": "^0.3.2",
     "source-map-loader": "^4.0.0",
+    "style-loader": "^3.3.1",
     "super-custom-elements": "0.0.2",
     "svg-inline-loader": "^0.8.2",
     "ts-loader": "^9.2.2",
