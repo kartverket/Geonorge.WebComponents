@@ -4,8 +4,7 @@ import {
     CustomElement,
     CustomElementOptions,
     Prop,
-    Toggle,
-    getShadowRootElement
+    Toggle
 } from "super-custom-elements";
 
 interface HeadingTextOptions extends CustomElementOptions {}
@@ -16,10 +15,7 @@ interface HeadingTextOptions extends CustomElementOptions {}
     style: import("./heading-text.scss")
 })
 export class HeadingText extends CustomElement {
-    private static readonly elementSelector = "geonorge-footer";
-    private headingTextElementPlaceholder: HTMLHeadingElement;
 
-    @Prop() id: string;
     @Prop() content: string;
     @Prop() size: string;
     @Prop() tag: string;
@@ -30,38 +26,5 @@ export class HeadingText extends CustomElement {
     }
 
     setup(options?: HeadingTextOptions): void {
-        this.connect(options.container);
-        if (options.id) {
-            this.id = options.id;
-        }
     }
-
-    getHeadingTag() {
-        if (this.tag?.length) {
-            return this.tag.toUpperCase();
-        } else if (this.size?.length) {
-            return `H${this.size}`;
-        } else {
-            return "H1";
-        }
-    }
-
-    connectedCallback() {
-        this.headingTextElementPlaceholder = getShadowRootElement(this, "#heading-text");
-        const elementTag = this.getHeadingTag();
-        const headingElement = document.createElement(elementTag);
-        headingElement.innerText = this.content;
-        headingElement.classList.add(`size-${this.size}`);
-        if (this.underline) {
-            headingElement.classList.add("underline");
-        }
-        this.headingTextElementPlaceholder.replaceWith(headingElement);
-    }
-
-    /*
-    @Watch('underline')
-    underlineChanged() {
-        this.underline ? this.headingElement.classList.add('selected') : this.tabHeadingElement.classList.remove('selected');
-        this.setAttribute('tabindex', this.selected ? '0' : '-1');
-    }*/
 }

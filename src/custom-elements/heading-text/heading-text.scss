@@ -1,73 +1,79 @@
 @import "../../style/all";
-//@import "../../style/fonts";
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-    &.size-1 {
-        font-family: Raleway, sans-serif;
-        font-size: 30px;
-        font-weight: 100;
-        &.underline {
-            &:after {
-                content: "";
-                display: block;
-                width: 75px;
-                border-bottom: 3px solid #fe5000;
-                margin: 5px 0 15px;
-                @include breakpoint(tablet) {
-                    width: 100px;
-                    border-bottom: 5px solid #fe5000;
-                    margin: 10px 0 20px;
-                }
-            }
-        }
+::slotted(h1),
+::slotted([size="1"]) {
+    font-family: Raleway, sans-serif;
+    font-size: 30px;
+    font-weight: 100;
+    @include breakpoint(tablet) {
+        font-size: 48px;
+    }
+}
+
+::slotted(h1[underline]),
+::slotted([size="1"][underline]) {
+    &:after {
+        content: "";
+        display: block;
+        width: 75px;
+        border-bottom: 3px solid #fe5000;
+        margin: 5px 0 15px;
         @include breakpoint(tablet) {
-            font-size: 48px;
+            width: 100px;
+            border-bottom: 5px solid #fe5000;
+            margin: 10px 0 20px;
         }
     }
-    &.size-2 {
-        font-family: Raleway, sans-serif;
-        font-size: 26px;
-        font-weight: 100;
-        display: inline;
-        margin-bottom: 10px;
-        margin-top: 20px;
-        &.underline {
-            border-bottom: 2px solid #fe5000;
-        }
-        @include breakpoint(tablet) {
-            font-size: 40px;
-        }
-        &:before{
-            content: "";
-            display: block;
-        }
+}
+
+::slotted(h2),
+::slotted([size="2"]) {
+    font-family: Raleway, sans-serif;
+    font-size: 26px;
+    font-weight: 100;
+    display: inline;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    @include breakpoint(tablet) {
+        font-size: 40px;
     }
-    &.size-3 {
-        font-family: Open Sans, sans-serif;
-        font-size: 20px;
-        font-weight: 300;
-        @include breakpoint(tablet) {
-            font-size: 21px;
-        }
+    &:before {
+        content: "";
+        display: block;
     }
-    &.size-4 {
-        font-family: Open Sans, sans-serif;
-        font-size: 18px;
-        font-weight: 300;
-        @include breakpoint(tablet) {
-            font-size: 19px;
-        }
+}
+
+::slotted(h2[underline]),
+::slotted([size="2"][underline]) {
+    border-bottom: 2px solid #fe5000;
+}
+
+::slotted(h3),
+::slotted([size="3"]) {
+    font-family: Open Sans, sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    @include breakpoint(tablet) {
+        font-size: 21px;
     }
-    &.size-5 {
-        font-family: Open Sans, sans-serif;
-        font-size: 15px;
-        font-weight: 600;
-        @include breakpoint(tablet) {
-            font-size: 16px;
-        }
+}
+
+::slotted(h4),
+::slotted([size="4"]) {
+    font-family: Open Sans, sans-serif;
+    font-size: 18px;
+    font-weight: 300;
+    @include breakpoint(tablet) {
+        font-size: 19px;
+    }
+}
+
+::slotted(h5),
+::slotted([size="5"]) {
+    font-family: Open Sans, sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    @include breakpoint(tablet) {
+        font-size: 16px;
     }
 }
