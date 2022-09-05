@@ -9,6 +9,9 @@ import {
     getShadowRootElement
 } from "super-custom-elements";
 
+// Assets
+import AngleRight from 'assets/svg/angle-right.svg';
+
 interface BreadcrumbListOptions extends CustomElementOptions {
     breadcrumbs: Array<BreadcrumbListItem>;
 }
@@ -47,7 +50,7 @@ export class BreadcrumbList extends CustomElement {
 
     public static renderBreadcrumbs = (breadcrumbs: Array<BreadcrumbListItem>) => {
         const breadcrumbsListElement = breadcrumbs
-            .map((breadcrumbListItem: BreadcrumbListItem) => {
+            .map((breadcrumbListItem: BreadcrumbListItem, index) => {
                 const activeHash = `${window.location.hash}`;
                 const activePath = `${window.location.pathname}${window.location.hash}${window.location.search}`;
                 const activeHref = window.location.href;
@@ -59,7 +62,9 @@ export class BreadcrumbList extends CustomElement {
                     breadcrumbListItem?.url?.length && !isActiveHash && !isActivePath && !isActiveHref
                         ? `<a href="${breadcrumbListItem.url}">${breadcrumbListItem.name}</a>`
                         : `<span>${breadcrumbListItem.name}</span>`;
-                return `<li>${menuItemElement}</li>`;
+                
+                
+                return `<li>${menuItemElement}${index < breadcrumbs.length - 1 ? AngleRight : ''}</li>`;
             })
             .join("");
         return `<ul class="breadcrumbs">${breadcrumbsListElement}</ul>`;
