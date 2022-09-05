@@ -1,40 +1,47 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="no">
+    <head>
+        <meta charset="utf-8" />
+        <title>Geonorge Web Components</title>
+        <meta content="width=device-width,initial-scale=1" name="viewport" />
+        <link href="prism.css" rel="stylesheet" type="text/css" />
+        <link href="style.css" rel="stylesheet" type="text/css" />
+    </head>
 
-<head>
-  <meta charset="utf-8">
-  <title>Geonorge Web Components</title>
-  <meta content="width=device-width,initial-scale=1" name="viewport">
-  <link href="prism.css" rel="stylesheet" type="text/css" />
-  <link href="style.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-  <!-- Demonstrasjon av Web Components: -->
-  <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector
-    metadataresultsfound="3245" articlesresultsfound="17" language="en"></main-navigation>
-  <main>
-    <h1>geonorge-web-components</h1>
-    <h2>main-navigation</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <main-navigation englishurl="/" norwegianurl="/" environment="dev" language="no" staticposition>
-          </main-navigation>
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+    <body>
+        <!-- Demonstrasjon av Web Components: -->
+        <main-navigation
+            id="main-navigation"
+            englishurl="/"
+            norwegianurl="/"
+            environment="dev"
+            showsearchtypeselector
+            metadataresultsfound="3245"
+            articlesresultsfound="17"
+            language="en"
+        ></main-navigation>
+        <main>
+            <h1>geonorge-web-components</h1>
+            <h2>main-navigation</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <main-navigation englishurl="/" norwegianurl="/" environment="dev" language="no" staticposition>
+                        </main-navigation>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
           <code class="language-html"><script type="prism-html-markup">
 <main-navigation englishurl="/en" norwegianurl="/" environment="dev" language="no"></main-navigation>
 </script></code>
     </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">JavaScript</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">JavaScript</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
           <code class="language-js">
 geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
   onSearch: event => {
@@ -70,10 +77,10 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 });
           </code>
         </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-json">
 {
   id: string,
@@ -103,25 +110,124 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 }
             </code>
           </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
+                </navigation-tab-content>
+            </navigation-tabs>
 
-    <h2>standard-button</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <standard-button content="default button"></standard-button>
-          <standard-button content="primary button" color="primary"></standard-button>
-          <standard-button content="success button" color="success"></standard-button>
-          <standard-button content="warning button" color="warning"></standard-button>
-          <standard-button content="danger button" color="danger"></standard-button>
-          <standard-button content="disabled button" disabled></standard-button>
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+            <h2>breadcrumb-list</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <breadcrumb-list id="breadcrumb-list" />
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<breadcrumb-list id="breadcrumb-list" />
+  </script></code>
+      </pre>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-json">
+{
+  breadcrumbs: [
+    {
+      name: string,
+      url: string
+    },
+    {
+      name: string,
+      url: string
+    }
+  ]
+}
+            </code>
+          </pre>
+                </navigation-tab-content>
+            </navigation-tabs>
+
+            <h2>heading-text</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <heading-text><h1>Heading 1</h1></heading-text>
+                        <heading-text><h1 underline>Heading 1 with underline</h1></heading-text>
+                        <heading-text><h2 >Heading 2</h2></heading-text>
+                        <heading-text><h2 underline>Heading 2 with underline</h2></heading-text>
+                        <heading-text><h3>Heading 3</h3></heading-text>
+                        <heading-text><h4>Heading 4</h4></heading-text>
+                        <heading-text><h5>Heading 5</h5></heading-text>
+                        <heading-text><h1 size="5">Heading 1 with size 5</h1></heading-text>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<heading-text><h1>Heading 1</h1></heading-text>
+<heading-text><h1 underline>Heading 1 with underline</h1></heading-text>
+<heading-text><h2 >Heading 2</h2></heading-text>
+<heading-text><h2 underline>Heading 2 with underline</h2></heading-text>
+<heading-text><h3>Heading 3</h3></heading-text>
+<heading-text><h4>Heading 4</h4></heading-text>
+<heading-text><h5>Heading 5</h5></heading-text>
+<heading-text><h1 size="5">Heading 1 with size 5</h1></heading-text>
+  </script></code>
+      </pre>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-json">
+slot: {
+  size: string,
+  underline: boolean
+}
+            </code>
+          </pre>
+                </navigation-tab-content>
+            </navigation-tabs>
+
+
+            <h2>body-text</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <body-text>Example text and <a href="#">example link</a>.</body-text>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<body-text>Example text and <a href="#">example link</a>.</body-text>
+  </script></code>
+      </pre>
+                </navigation-tab-content>
+            </navigation-tabs>
+
+            <h2>standard-button</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <standard-button content="default button"></standard-button>
+                        <standard-button content="primary button" color="primary"></standard-button>
+                        <standard-button content="success button" color="success"></standard-button>
+                        <standard-button content="warning button" color="warning"></standard-button>
+                        <standard-button content="danger button" color="danger"></standard-button>
+                        <standard-button content="disabled button" disabled></standard-button>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-html"><script type="prism-html-markup">
 <standard-button content="default button"></standard-button>
 <standard-button content="primary button" color="primary"></standard-button>
@@ -131,10 +237,10 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 <standard-button content="disabled button" disabled></standard-button>
   </script></code>
       </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-json">
 {
   content: string,
@@ -143,14 +249,14 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 }
             </code>
           </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
+                </navigation-tab-content>
+            </navigation-tabs>
 
-    <h2>navigation-tabs</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+            <h2>navigation-tabs</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-html"><script type="prism-html-markup">
 <navigation-tabs>
   <navigation-tab-heading slot="tab-heading">Tab 1</navigation-tab-heading>
@@ -160,42 +266,42 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 </navigation-tabs>
   </script></code>
       </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
+                </navigation-tab-content>
+            </navigation-tabs>
 
-    <h2>data-table</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <data-table hoverable>
-            <table>
-              <thead>
-                <tr>
-                  <th>Heading 1</th>
-                  <th>Heading 2</th>
-                  <th>Heading 3</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Row 1 Data 1</td>
-                  <td>Row 1 Data 2</td>
-                  <td>Row 1 Data 3</td>
-                </tr>
-                <tr>
-                  <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                  <td>Row 2 Data 3</td>
-                </tr>
-              </tbody>
-            </table>
-          </data-table>
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+            <h2>data-table</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <data-table hoverable>
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Heading 1</th>
+                                        <th>Heading 2</th>
+                                        <th>Heading 3</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Row 1 Data 1</td>
+                                        <td>Row 1 Data 2</td>
+                                        <td>Row 1 Data 3</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Row 2 Data 1</td>
+                                        <td>Row 2 Data 2</td>
+                                        <td>Row 2 Data 3</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </data-table>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-html"><script type="prism-html-markup">
 <data-table hoverable>
   <table>
@@ -222,38 +328,38 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 </data-table>
   </script></code>
       </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-json">
 {
   hoverable: boolean
 }
             </code>
           </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
+                </navigation-tab-content>
+            </navigation-tabs>
 
-    <h2>geonorge-footer</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <geonorge-footer language="no" version="2.3.15" />
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+            <h2>geonorge-footer</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <geonorge-footer language="no" version="2.3.15" />
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-html"><script type="prism-html-markup">
 <geonorge-footer version="2.3.15"/>
   </script></code>
       </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
             <code class="language-json">
 {
   id: string,
@@ -263,58 +369,70 @@ geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
 }
             </code>
           </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
+                </navigation-tab-content>
+            </navigation-tabs>
+        </main>
 
-  </main>
+        <geonorge-footer />
 
-  <geonorge-footer/>
+        <script src="localStorage.js"></script>
+        <script src="init.js"></script>
+        <script src="BodyText.js"></script>
+        <script src="BreadcrumbList.js"></script>
+        <script src="GeonorgeFooter.js"></script>
+        <script src="HeadingText.js"></script>
+        <script src="MainNavigation.js"></script>
+        <script src="NavigationTabs.js"></script>
+        <script src="DataTable.js"></script>
+        <script src="StandardButton.js"></script>
 
-  <script src="localStorage.js"></script>
-  <script src="init.js"></script>
-  <script src="GeonorgeFooter.js"></script>
-  <script src="MainNavigation.js"></script>
-  <script src="NavigationTabs.js"></script>
-  <script src="DataTable.js"></script>
-  <script src="StandardButton.js"></script>
+        <script>
+            geonorge.MainNavigation.MainNavigation.setup("#main-navigation", {
+                onSearch: (event) => {
+                    const searchString = (event.detail && event.detail.searchString) || null;
+                    if (searchString) {
+                        console.log(searchString);
+                    }
+                },
+                onOpenEmptyMapItemsList: (event) => {
+                    console.log("onOpenEmptyMapItemsList");
+                },
+                onOpenEmptyDownloadItemsList: (event) => {
+                    console.log("onOpenEmptyDownloadItemsList");
+                },
+                onSearchTypeChange: (event) => {
+                    const searchType = (event.detail && event.detail.value) || null;
+                    if (searchType) {
+                        console.log(searchType);
+                    }
+                },
+                onSignInClick: (event) => {
+                    event.target.setAttribute("isLoggedIn", "");
+                },
+                onSignOutClick: (event) => {
+                    event.target.setAttribute("isLoggedIn", false);
+                },
+                onNorwegianLanguageSelect: (event) => {
+                    document.getElementById("main-navigation").setAttribute("language", "no");
+                },
+                onEnglishLanguageSelect: (event) => {
+                    document.getElementById("main-navigation").setAttribute("language", "en");
+                }
+            });
+            geonorge.BreadcrumbList.BreadcrumbList.setup("#breadcrumb-list", {
+                breadcrumbs: [
+                    {
+                        name: "First breadcrumb",
+                        url: "#first-breadcrumb"
+                    },
+                    {
+                        name: "Second breadcrumb",
+                        url: "#second-breadcrumb"
+                    }
+                ]
+            });
+        </script>
 
-  <script>
-    geonorge.MainNavigation.MainNavigation.setup('#main-navigation', {
-      onSearch: (event) => {
-        const searchString = event.detail && event.detail.searchString || null;
-        if (searchString) {
-          console.log(searchString);
-        }
-      },
-      onOpenEmptyMapItemsList: (event) => {
-        console.log("onOpenEmptyMapItemsList");
-      },
-      onOpenEmptyDownloadItemsList: (event) => {
-        console.log("onOpenEmptyDownloadItemsList");
-      },
-      onSearchTypeChange: (event) => {
-        const searchType = event.detail && event.detail.value || null;
-        if (searchType) {
-          console.log(searchType);
-        }
-      },
-      onSignInClick: (event) => {
-        event.target.setAttribute('isLoggedIn', '');
-      },
-      onSignOutClick: (event) => {
-        event.target.setAttribute('isLoggedIn', false);
-
-      },
-      onNorwegianLanguageSelect: (event) => {
-        document.getElementById('main-navigation').setAttribute('language', 'no');
-      },
-      onEnglishLanguageSelect: (event) => {
-        document.getElementById('main-navigation').setAttribute('language', 'en');
-      }
-    });
-  </script>
-
-  <script src="prism.js"></script>
-</body>
-
+        <script src="prism.js"></script>
+    </body>
 </html>
