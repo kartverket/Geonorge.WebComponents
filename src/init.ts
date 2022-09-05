@@ -1,6 +1,4 @@
 import initStyle from './init.scss';
-import './style/base/fonts.css';
-
 
 const head: HTMLHeadElement = document.head || document.getElementsByTagName('head')[0];
 
