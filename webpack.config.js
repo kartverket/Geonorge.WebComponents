@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     'index': './index.ts',
     'init': './init.ts',
+    'BodyText': './custom-elements/body-text/body-text.ts',
     'BreadcrumbList': './custom-elements/breadcrumb-list/breadcrumb-list.ts',
     'GeonorgeFooter': './custom-elements/geonorge-footer/geonorge-footer.ts',
     'HeadingText': './custom-elements/heading-text/heading-text.ts',

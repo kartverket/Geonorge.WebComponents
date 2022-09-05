@@ -193,6 +193,25 @@ slot: {
                 </navigation-tab-content>
             </navigation-tabs>
 
+
+            <h2>body-text</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <body-text>Example text and <a href="#">example link</a>.</body-text>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<body-text>Example text and <a href="#">example link</a>.</body-text>
+  </script></code>
+      </pre>
+                </navigation-tab-content>
+            </navigation-tabs>
+
             <h2>standard-button</h2>
             <navigation-tabs>
                 <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
@@ -358,6 +377,7 @@ slot: {
 
         <script src="localStorage.js"></script>
         <script src="init.js"></script>
+        <script src="BodyText.js"></script>
         <script src="BreadcrumbList.js"></script>
         <script src="GeonorgeFooter.js"></script>
         <script src="HeadingText.js"></script>
