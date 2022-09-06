@@ -21,6 +21,7 @@
             language="en"
         ></main-navigation>
         <main>
+          <content-container>
             <h1>geonorge-web-components</h1>
             <h2>main-navigation</h2>
             <navigation-tabs>
@@ -212,6 +213,24 @@ slot: {
                 </navigation-tab-content>
             </navigation-tabs>
 
+            <h2>content-container</h2>
+            <navigation-tabs>
+                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <div class="example-preview">
+                        <content-container>Example text and <a href="#">example link</a>.</content-container>
+                    </div>
+                </navigation-tab-content>
+                <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                <navigation-tab-content slot="tab-content">
+                    <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<content-container>Example text and <a href="#">example link</a>.</content-container>
+  </script></code>
+      </pre>
+                </navigation-tab-content>
+            </navigation-tabs>
+
             <h2>standard-button</h2>
             <navigation-tabs>
                 <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
@@ -371,6 +390,8 @@ slot: {
           </pre>
                 </navigation-tab-content>
             </navigation-tabs>
+
+          </content-container>
         </main>
 
         <geonorge-footer />
@@ -379,6 +400,7 @@ slot: {
         <script src="init.js"></script>
         <script src="BodyText.js"></script>
         <script src="BreadcrumbList.js"></script>
+        <script src="ContentContainer.js"></script>
         <script src="GeonorgeFooter.js"></script>
         <script src="HeadingText.js"></script>
         <script src="MainNavigation.js"></script>

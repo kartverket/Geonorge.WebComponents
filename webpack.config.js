@@ -8,6 +8,7 @@ module.exports = {
     'init': './init.ts',
     'BodyText': './custom-elements/body-text/body-text.ts',
     'BreadcrumbList': './custom-elements/breadcrumb-list/breadcrumb-list.ts',
+    'ContentContainer': './custom-elements/content-container/content-container.ts',
     'GeonorgeFooter': './custom-elements/geonorge-footer/geonorge-footer.ts',
     'HeadingText': './custom-elements/heading-text/heading-text.ts',
     'MainNavigation': './custom-elements/main-navigation/main-navigation.ts',

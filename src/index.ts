@@ -1,6 +1,7 @@
 export * from "./init";
 export * from "./custom-elements/body-text/body-text";
 export * from "./custom-elements/breadcrumb-list/breadcrumb-list";
+export * from "./custom-elements/content-container/content-container";
 export * from "./custom-elements/data-table/data-table";
 export * from "./custom-elements/geonorge-footer/geonorge-footer";
 export * from "./custom-elements/heading-text/heading-text";
