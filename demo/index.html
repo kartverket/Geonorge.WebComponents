@@ -231,9 +231,63 @@ slot: {
                 </navigation-tab-content>
             </navigation-tabs>
 
-            <h2>standard-button</h2>
-            <navigation-tabs>
-                <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                <h2>gn-select</h2>
+                <navigation-tabs>
+                    <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                    <navigation-tab-content slot="tab-content">
+                        <div class="example-preview">
+                            <gn-select>
+                                <select>
+                                    <option value="option-value-1">Option 1</option>
+                                    <option value="option-value-2">Option 2</option>
+                                    <option value="option-value-3">Option 3</option>
+                                </select>
+                            </gn-select>
+                            <gn-select>
+                                <select block>
+                                    <option value="option-value-1">Option 1</option>
+                                    <option value="option-value-2">Option 2</option>
+                                    <option value="option-value-3">Option 3</option>
+                                </select>
+                            </gn-select>
+                        </div>
+                    </navigation-tab-content>
+                    <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                    <navigation-tab-content slot="tab-content">
+                        <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<gn-select>
+  <select>
+    <option value="option-value-1">Option 1</option>
+    <option value="option-value-2">Option 2</option>
+    <option value="option-value-3">Option 3</option>
+  </select>
+</gn-select>
+<gn-select>
+  <select block>
+    <option value="option-value-1">Option 1</option>
+    <option value="option-value-2">Option 2</option>
+    <option value="option-value-3">Option 3</option>
+  </select>
+</gn-select>
+  </script></code>
+      </pre>
+                    </navigation-tab-content>
+                    <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                    <navigation-tab-content slot="tab-content">
+                        <pre class="example-code">
+            <code class="language-json">
+slot: {
+  block: boolean
+}
+            </code>
+          </pre>
+                    </navigation-tab-content>
+                </navigation-tabs>
+
+                <h2>standard-button</h2>
+                <navigation-tabs>
+                    <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
                 <navigation-tab-content slot="tab-content">
                     <div class="example-preview">
                         <standard-button content="default button"></standard-button>
@@ -401,6 +455,7 @@ slot: {
         <script src="BodyText.js"></script>
         <script src="BreadcrumbList.js"></script>
         <script src="ContentContainer.js"></script>
+        <script src="GnSelect.js"></script>
         <script src="GeonorgeFooter.js"></script>
         <script src="HeadingText.js"></script>
         <script src="MainNavigation.js"></script>
