@@ -10,6 +10,7 @@ module.exports = {
     'BreadcrumbList': './custom-elements/breadcrumb-list/breadcrumb-list.ts',
     'ContentContainer': './custom-elements/content-container/content-container.ts',
     'GeonorgeFooter': './custom-elements/geonorge-footer/geonorge-footer.ts',
+    'GnInput': './custom-elements/gn-input/gn-input.ts',
     'GnSelect': './custom-elements/gn-select/gn-select.ts',
     'HeadingText': './custom-elements/heading-text/heading-text.ts',
     'MainNavigation': './custom-elements/main-navigation/main-navigation.ts',

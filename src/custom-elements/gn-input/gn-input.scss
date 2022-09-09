@@ -1,0 +1,27 @@
+@import "../../style/all";
+
+:host {
+    background-color: #fff;
+}
+
+::slotted(input) {
+    @include appearance(none);
+    font-family: $default-font;
+    font-size: 16px;
+    background: none;
+    color: #000;
+    font-size: 12pt;
+    padding: 0 29px 0 15px;
+    height: 34px;
+    border: 1px solid #cfcfcf;
+    border-radius: 0;
+    margin-bottom: 10px;
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+    margin-right: -27px;
+}
+
+::slotted([block]) {
+    width: 100%;
+}

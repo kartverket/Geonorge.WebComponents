@@ -228,8 +228,44 @@ slot: {
 <content-container>Example text and <a href="#">example link</a>.</content-container>
   </script></code>
       </pre>
-                </navigation-tab-content>
-            </navigation-tabs>
+                    </navigation-tab-content>
+                </navigation-tabs>
+
+                <h2>gn-input</h2>
+                <navigation-tabs>
+                    <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
+                    <navigation-tab-content slot="tab-content">
+                        <div class="example-preview">
+                            <gn-input>
+                                <input />
+                            </gn-input>
+                            <gn-input>
+                              <input block/>
+                          </gn-input>
+                        </div>
+                    </navigation-tab-content>
+                    <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
+                    <navigation-tab-content slot="tab-content">
+                        <pre class="example-code">
+            <code class="language-html"><script type="prism-html-markup">
+<gn-input>
+  <input />
+</gn-input>
+  </script></code>
+      </pre>
+                    </navigation-tab-content>
+                    <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
+                    <navigation-tab-content slot="tab-content">
+                        <pre class="example-code">
+            <code class="language-json">
+slot: {
+  block: boolean
+}
+            </code>
+          </pre>
+                    </navigation-tab-content>
+                </navigation-tabs>
+
 
                 <h2>gn-select</h2>
                 <navigation-tabs>
@@ -455,6 +491,7 @@ slot: {
         <script src="BodyText.js"></script>
         <script src="BreadcrumbList.js"></script>
         <script src="ContentContainer.js"></script>
+        <script src="GnInput.js"></script>
         <script src="GnSelect.js"></script>
         <script src="GeonorgeFooter.js"></script>
         <script src="HeadingText.js"></script>
