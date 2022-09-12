@@ -384,34 +384,35 @@ slot: {
                 </navigation-tabs>
 
                 <h2>data-table</h2>
+                <data-table hoverable>
+                  <table>
+                      <thead>
+                          <tr>
+                              <th>Heading 1</th>
+                              <th>Heading 2</th>
+                              <th>Heading 3</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td>Row 1 Data 1</td>
+                              <td>Row 1 Data 2</td>
+                              <td>Row 1 Data 3</td>
+                          </tr>
+                          <tr>
+                              <td>Row 2 Data 1</td>
+                              <td>Row 2 Data 2</td>
+                              <td>Row 2 Data 3</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </data-table>
                 <navigation-tabs>
                     <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
                     <navigation-tab-content slot="tab-content">
                         <div class="example-preview">
-                            <data-table hoverable>
-                                <table>
-                                    <thead>
-                                        <tr>
-                                            <th>Heading 1</th>
-                                            <th>Heading 2</th>
-                                            <th>Heading 3</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Row 1 Data 1</td>
-                                            <td>Row 1 Data 2</td>
-                                            <td>Row 1 Data 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Row 2 Data 1</td>
-                                            <td>Row 2 Data 2</td>
-                                            <td>Row 2 Data 3</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </data-table>
-                        </div>
+                        
+                      </div>
                     </navigation-tab-content>
                     <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
                     <navigation-tab-content slot="tab-content">
@@ -497,11 +498,11 @@ slot: {
         <script src="ContentContainer.js"></script>
         <script src="GnInput.js"></script>
         <script src="GnSelect.js"></script>
+        <script src="DataTable.js"></script>
         <script src="GeonorgeFooter.js"></script>
         <script src="HeadingText.js"></script>
         <script src="MainNavigation.js"></script>
         <script src="NavigationTabs.js"></script>
-        <script src="DataTable.js"></script>
         <script src="StandardButton.js"></script>
 
         <script>

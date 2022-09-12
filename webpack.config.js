@@ -12,6 +12,7 @@ module.exports = {
     'GeonorgeFooter': './custom-elements/geonorge-footer/geonorge-footer.ts',
     'GnInput': './custom-elements/gn-input/gn-input.ts',
     'GnSelect': './custom-elements/gn-select/gn-select.ts',
+    'DataTable': './custom-elements/data-table/data-table.ts',
     'HeadingText': './custom-elements/heading-text/heading-text.ts',
     'MainNavigation': './custom-elements/main-navigation/main-navigation.ts',
     'MainSearchField': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
@@ -22,7 +23,6 @@ module.exports = {
     'NavigationTabs': './custom-elements/navigation-tabs/navigation-tabs.ts',
     'NavigationTabHeading': './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
     'NavigationTabContent': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts',
-    'DataTable': './custom-elements/data-table/data-table.ts',
     'StandardButton': './custom-elements/standard-button/standard-button'
   },
   output: {
