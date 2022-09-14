@@ -1,6 +1,12 @@
 // Dependencies
 import { Component, CustomElement, CustomElementOptions, Prop, getElement, Toggle } from "super-custom-elements";
 
+// Helpers
+import { addGlobalStylesheet } from "functions/guiHelpers";
+
+// Stylesheets
+import styles from "./styles.scss";
+
 interface GnTableOptions extends CustomElementOptions {}
 
 @Component({
@@ -14,6 +20,7 @@ export class GnTable extends CustomElement {
 
     constructor() {
         super();
+        addGlobalStylesheet("gn-table-styles", styles);
     }
 
     setup(options?: GnTableOptions): void {
