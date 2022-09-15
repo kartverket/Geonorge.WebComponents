@@ -5,7 +5,7 @@ import { Component, CustomElement, CustomElementOptions, Prop, getElement, Toggl
 import { addGlobalStylesheet } from "functions/guiHelpers";
 
 // Stylesheets
-import styles from "./styles.scss";
+import slottedStyles from "./slottedStyles.scss";
 
 interface GnTableOptions extends CustomElementOptions {}
 
@@ -20,7 +20,7 @@ export class GnTable extends CustomElement {
 
     constructor() {
         super();
-        addGlobalStylesheet("gn-table-styles", styles);
+        addGlobalStylesheet("gn-table-styles", slottedStyles);
     }
 
     setup(options?: GnTableOptions): void {
