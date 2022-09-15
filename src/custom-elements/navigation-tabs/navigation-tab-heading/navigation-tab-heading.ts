@@ -4,6 +4,12 @@ import {
     Listen, Watch, getElement, getShadowRootElement, Toggle
 } from 'super-custom-elements';
 
+// Helpers
+import { addGlobalStylesheet } from "functions/guiHelpers";
+
+// Stylesheets
+import slottedStyles from "./slottedStyles.scss";
+
 let navigationTabHeadingCounter = 0;
 
 
@@ -53,6 +59,9 @@ export class NavigationTabHeading extends CustomElement {
         this.setAttribute('aria-selected', 'false');
         this.setAttribute('tabindex', '-1');
         this._upgradeProperty('selected');
+
+        addGlobalStylesheet("navigation-tab-heading-styles", slottedStyles);
+
 
     }
 

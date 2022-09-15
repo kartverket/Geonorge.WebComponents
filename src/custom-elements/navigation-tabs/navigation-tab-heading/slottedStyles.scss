@@ -1,0 +1,11 @@
+navigation-tab-heading {
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+    &[selected="true"] {
+        a {
+            color: #555;
+        }
+    }
+}
