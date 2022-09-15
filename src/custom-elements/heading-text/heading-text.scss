@@ -30,12 +30,14 @@
 ::slotted([size="2"]) {
     font-family: $header-font;
     font-size: 26px;
+    line-height: 30px;
     font-weight: 100;
     display: inline;
     margin-bottom: 10px;
     margin-top: 20px;
     @include breakpoint(tablet) {
         font-size: 32px;
+        line-height: 40px;
     }
     &:before {
         content: "";
