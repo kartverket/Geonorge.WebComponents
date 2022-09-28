@@ -2,7 +2,7 @@
 
 ## Installation
 
-Geonorge Web Components is available as an [npm package](https://www.npmjs.com/package/geonorge-web-components).
+Geonorge Web Components is available as an [npm package](https://www.npmjs.com/package/@kartverket/geonorge-web-components).
 
 ```sh
 // with npm
