@@ -1,8 +1,8 @@
 // Dependencies
-import { Component, CustomElement, CustomElementOptions, Prop, getElement, Toggle } from "super-custom-elements";
+import { Component, CustomElement, CustomElementOptions, Prop, getElement, Toggle, Watch } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet } from "functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Stylesheets
 import slottedStyles from "./slottedStyles.scss";
@@ -22,6 +22,13 @@ export class GnTable extends CustomElement {
         super();
         addGlobalStylesheet("gn-table-styles", slottedStyles);
     }
+/*
+    @Watch("hoverable")
+    hoverableChanged() {
+        if (this.breadcrumbs?.length) {
+            this.renderBreadcrumbsFromAttribute(this.breadcrumbs);
+        }
+    }*/
 
     setup(options?: GnTableOptions): void {
         this.connect(options.container);

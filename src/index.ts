@@ -5,7 +5,7 @@ export * from "./custom-elements/content-container/content-container";
 export * from "./custom-elements/geonorge-footer/geonorge-footer";
 export * from "./custom-elements/gn-input/gn-input";
 export * from "./custom-elements/gn-select/gn-select";
-export * from "./custom-elements/gn-table/gn-table";
+export * from "./stories/gn-table/gn-table";
 export * from "./custom-elements/heading-text/heading-text";
 export * from "./custom-elements/main-navigation/main-navigation";
 export * from "./custom-elements/main-navigation/main-search-field/main-search-field";
