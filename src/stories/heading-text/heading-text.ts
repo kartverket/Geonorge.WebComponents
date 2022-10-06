@@ -16,7 +16,6 @@ interface HeadingTextOptions extends CustomElementOptions {}
 })
 export class HeadingText extends CustomElement {
 
-    @Prop() content: string;
     @Prop() size: string;
     @Prop() tag: string;
     @Toggle() underline: boolean;
