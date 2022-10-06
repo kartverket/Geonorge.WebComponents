@@ -24,7 +24,7 @@ footer {
         }
         > div {
             flex: 1;
-            &:not(:first-child):before {
+            &:not(:first-of-type):before {
                 border-bottom: solid #fe5000 2px;
                 content: "";
                 margin-top: 18px;

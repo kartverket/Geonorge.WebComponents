@@ -5,11 +5,11 @@ import {
 } from 'super-custom-elements';
 
 // Functions
-import { getGeonorgeUrl } from 'functions/urlHelpers';
+import { getGeonorgeUrl } from '../../functions/urlHelpers';
 
 // Assets
-import GeonorgeLogo from 'assets/svg/geonorge-logo.svg';
-import KartverketLogo from 'assets/svg/kartverket-logo.svg';
+import GeonorgeLogo from '../../assets/svg/geonorge-logo.svg';
+import KartverketLogo from '../../assets/svg/kartverket-logo.svg';
 
 
 interface StandardButtonOptions extends CustomElementOptions {

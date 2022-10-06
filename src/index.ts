@@ -2,7 +2,7 @@ export * from "./init";
 export * from "./custom-elements/body-text/body-text";
 export * from "./stories/breadcrumb-list/breadcrumb-list";
 export * from "./custom-elements/content-container/content-container";
-export * from "./custom-elements/geonorge-footer/geonorge-footer";
+export * from "./stories/geonorge-footer/geonorge-footer";
 export * from "./custom-elements/gn-input/gn-input";
 export * from "./custom-elements/gn-select/gn-select";
 export * from "./stories/gn-table/gn-table";
