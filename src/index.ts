@@ -1,5 +1,5 @@
 export * from "./init";
-export * from "./custom-elements/body-text/body-text";
+export * from "./stories/body-text/body-text";
 export * from "./stories/breadcrumb-list/breadcrumb-list";
 export * from "./custom-elements/content-container/content-container";
 export * from "./stories/geonorge-footer/geonorge-footer";

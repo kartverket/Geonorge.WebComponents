@@ -1,0 +1,8 @@
+@import "../../style/all";
+
+::slotted(*) {
+    font-family: $default-font;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 300;
+}
