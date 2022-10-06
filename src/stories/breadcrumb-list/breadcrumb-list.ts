@@ -10,7 +10,8 @@ import {
 } from "super-custom-elements";
 
 // Assets
-import AngleRight from 'assets/svg/angle-right.svg';
+import AngleRight from '../../assets/svg/angle-right.svg';
+
 
 interface BreadcrumbListOptions extends CustomElementOptions {
     breadcrumbs: Array<BreadcrumbListItem>;
@@ -45,10 +46,12 @@ export class BreadcrumbList extends CustomElement {
     }
 
     connectedCallback() {
-        this.breadcrumbListElement = getShadowRootElement(this, "#breadcrumb-list");
+        this.renderBreadcrumbsFromAttribute(this.breadcrumbs);
     }
 
     public static renderBreadcrumbs = (breadcrumbs: Array<BreadcrumbListItem>) => {
+        const element = getElement<BreadcrumbList>('#breadcrumb-list');
+        const breadCrumbListShadow = getShadowRootElement(element, "#breadcrumb-list");
         const breadcrumbsListElement = breadcrumbs
             .map((breadcrumbListItem: BreadcrumbListItem, index) => {
                 const activeHash = `${window.location.hash}`;
@@ -67,7 +70,7 @@ export class BreadcrumbList extends CustomElement {
                 return `<li>${menuItemElement}${index < breadcrumbs.length - 1 ? AngleRight : ''}</li>`;
             })
             .join("");
-        return `<ul class="breadcrumbs">${breadcrumbsListElement}</ul>`;
+        breadCrumbListShadow.innerHTML = breadcrumbsListElement ;
     };
 
     renderBreadcrumbsFromAttribute = (breadcrumbs: string) => {
@@ -83,7 +86,5 @@ export class BreadcrumbList extends CustomElement {
     }
 
     public static setup(selector: string, options: BreadcrumbListOptions) {
-        const element = getElement<BreadcrumbList>(selector);
-        getShadowRootElement(element, "#breadcrumb-list").innerHTML = this.renderBreadcrumbs(options.breadcrumbs);
     }
 }
