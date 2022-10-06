@@ -10,7 +10,9 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "experimentalDecorators": true,
-    "baseUrl": "src"
+    "baseUrl": "src",
+    "allowJs": true,
+    "jsx": "react-jsx"
   },
   "include": [
     "src/**/*"
