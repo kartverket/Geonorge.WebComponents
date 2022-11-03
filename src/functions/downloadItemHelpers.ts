@@ -1,5 +1,5 @@
 // Functions
-import { getCookie } from 'functions/cookieHelpers';
+import { getCookie } from './cookieHelpers';
 
 export const getDownloadItems = () => {
   return localStorage.orderItems && Array.isArray(JSON.parse(localStorage.orderItems))
