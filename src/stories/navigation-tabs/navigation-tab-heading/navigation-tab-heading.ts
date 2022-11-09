@@ -5,7 +5,7 @@ import {
 } from 'super-custom-elements';
 
 // Helpers
-import { addGlobalStylesheet } from "functions/guiHelpers";
+import { addGlobalStylesheet } from "../../../functions/guiHelpers";
 
 // Stylesheets
 import slottedStyles from "./slottedStyles.scss";
@@ -27,11 +27,6 @@ interface NavigationTabHeadingOptions extends CustomElementOptions {
 export class NavigationTabHeading extends CustomElement {
     private static readonly elementSelector = 'navigation-tab-heading';
     private tabHeadingElement: HTMLElement;
-
-/*
-    static get observedAttributes() {
-        return ['selected'];
-    }*/
 
     @Prop() id: string;
     @Toggle() selected: boolean;
@@ -61,11 +56,6 @@ export class NavigationTabHeading extends CustomElement {
         this._upgradeProperty('selected');
 
         addGlobalStylesheet("navigation-tab-heading-styles", slottedStyles);
-
-
-    }
-
-    disconnectedCallback() {
     }
 
     _upgradeProperty(prop) {
@@ -74,10 +64,6 @@ export class NavigationTabHeading extends CustomElement {
             delete this[prop];
             this[prop] = value;
         }
-    }
-
-    attributeChangedCallback() {
-
     }
 
     @Watch('selected')
