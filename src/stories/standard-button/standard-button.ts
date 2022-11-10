@@ -46,8 +46,9 @@ export class StandardButton extends CustomElement {
 
     connectedCallback() {
         this.standardButtonElement = getShadowRootElement(this, "#standard-button");
+        console.log(this.standardButtonElement);
         this.standardButtonElement.innerHTML = this.content;
-        this.standardButtonElement.disabled = this.disabled;
+        this.standardButtonElement.disabled = this.disabled !== undefined && this.disabled !== null;
         const availableColors: Array<string> = ["default", "primary", "success", "warning", "danger"];
         const color = availableColors.includes(this.color) ? this.color : "default";
         this.standardButtonElement.classList.add(color);
@@ -59,6 +60,11 @@ export class StandardButton extends CustomElement {
         const color = availableColors.includes(this.color) ? this.color : "default";
         this.removeColorClasses();
         this.standardButtonElement.classList.add(color);
+    }
+
+    @Watch("disabled")
+    disabledChanged() {
+        this.standardButtonElement.disabled = this.disabled !== undefined && this.disabled !== null;
     }
 
     public static setup(selector: string, options: StandardButtonOptions) {
