@@ -16,4 +16,4 @@ export * from "./custom-elements/main-navigation/main-menu/main-menu";
 export * from "./stories/navigation-tabs/navigation-tabs";
 export * from "./stories/navigation-tabs/navigation-tab-heading/navigation-tab-heading";
 export * from "./stories/navigation-tabs/navigation-tab-content/navigation-tab-content";
-export * from "./custom-elements/standard-button/standard-button";
+export * from "./stories/standard-button/standard-button";
