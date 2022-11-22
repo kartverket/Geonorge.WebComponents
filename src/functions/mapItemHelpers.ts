@@ -1,5 +1,5 @@
 // Functions
-import { getCookie } from 'functions/cookieHelpers';
+import { getCookie } from './cookieHelpers';
 
 export const getMapItems = () => {
   return localStorage.mapItems && Array.isArray(JSON.parse(localStorage.mapItems))

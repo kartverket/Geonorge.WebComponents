@@ -1,0 +1,7 @@
+@import "../../style/all";
+
+::slotted(table) {
+  border-collapse: collapse;
+  width: 100%;
+  font-family: $default-font;
+}
