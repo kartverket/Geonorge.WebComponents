@@ -26,7 +26,7 @@
     "copy-demo-files": "copyfiles -f \"./lib/*\" \"./demo/**/*\" docs",
     "clean": "npm run clean:lib && npm run clean:docs",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook -o docs"
   },
   "devDependencies": {
     "@babel/core": "^7.11.6",
