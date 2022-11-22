@@ -4,7 +4,7 @@ export * from "./stories/breadcrumb-list/breadcrumb-list";
 export * from "./stories/content-container/content-container";
 export * from "./stories/geonorge-footer/geonorge-footer";
 export * from "./stories/gn-input/gn-input";
-export * from "./custom-elements/gn-select/gn-select";
+//export * from "./custom-elements/gn-select/gn-select";
 export * from "./stories/gn-table/gn-table";
 export * from "./stories/heading-text/heading-text";
 export * from "./stories/main-navigation/main-navigation";
