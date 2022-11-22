@@ -6,13 +6,13 @@ import {
 
 
 // Assets
-import MapIcon from 'assets/svg/map-icon.svg';
-import TrashIcon from 'assets/svg/trash-icon.svg';
+import MapIcon from '../../../assets/svg/map-icon.svg';
+import TrashIcon from '../../../assets/svg/trash-icon.svg';
 
 // Functions
-import { getMapItems, getMapItemsCount, removeMapItem } from 'functions/mapItemHelpers';
-import { getKartkatalogUrl } from 'functions/urlHelpers';
-import { getFocusableElementsInsideElement } from 'functions/guiHelpers';
+import { getMapItems, getMapItemsCount, removeMapItem } from '../../../functions/mapItemHelpers';
+import { getKartkatalogUrl } from '../../../functions/urlHelpers';
+import { getFocusableElementsInsideElement } from '../../../functions/guiHelpers';
 
 interface MapItem extends Object {
    Title: string,

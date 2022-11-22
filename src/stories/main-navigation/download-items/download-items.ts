@@ -6,13 +6,13 @@ import {
 
 
 // Assets
-import DownloadIcon from 'assets/svg/download-icon.svg';
-import TrashIcon from 'assets/svg/trash-icon.svg';
+import DownloadIcon from '../../../assets/svg/download-icon.svg';
+import TrashIcon from '../../../assets/svg/trash-icon.svg';
 
 // Functions
-import { getDownloadItems, getDownloadItemsCount, getDownloadItemMetadata, removeDownloadItem } from 'functions/downloadItemHelpers';
-import { getKartkatalogUrl } from 'functions/urlHelpers';
-import { getFocusableElementsInsideElement } from 'functions/guiHelpers';
+import { getDownloadItems, getDownloadItemsCount, getDownloadItemMetadata, removeDownloadItem } from '../../../functions/downloadItemHelpers';
+import { getKartkatalogUrl } from '../../../functions/urlHelpers';
+import { getFocusableElementsInsideElement } from '../../../functions/guiHelpers';
 
 interface DownloadItem extends Object {
    name: string,

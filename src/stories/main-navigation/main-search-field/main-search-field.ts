@@ -4,14 +4,14 @@ import {
 } from 'super-custom-elements';
 
 // Interfaces
-import { SearchResultsForType, SearchResultsResponseForType } from 'interfaces/search';
+import { SearchResultsForType, SearchResultsResponseForType } from '../../../interfaces/search';
 
 // Functions
-import { fetchDropdownSearchResults } from 'functions/apiHelpers';
-import { renderDropdownResultLink, getKartkatalogUrl } from 'functions/urlHelpers';
+import { fetchDropdownSearchResults } from '../../../functions/apiHelpers';
+import { renderDropdownResultLink, getKartkatalogUrl } from '../../../functions/urlHelpers';
 
 // Assets
-import SearchIcon from 'assets/svg/search-icon.svg';
+import SearchIcon from '../../../assets/svg/search-icon.svg';
 
 interface MainSearchFieldOptions extends CustomElementOptions {
    active?: boolean,

@@ -6,12 +6,12 @@ import {
 
 
 // Assets
-import MenuIcon from 'assets/svg/menu-icon.svg';
-import CloseIcon from 'assets/svg/close-icon.svg';
+import MenuIcon from '../../../assets/svg/menu-icon.svg';
+import CloseIcon from '../../../assets/svg/close-icon.svg';
 
 // Functions
-import { fetchMenuItems } from 'functions/apiHelpers';
-import { getFocusableElementsInsideElement } from 'functions/guiHelpers';
+import { fetchMenuItems } from '../../../functions/apiHelpers';
+import { getFocusableElementsInsideElement } from '../../../functions/guiHelpers';
 
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
