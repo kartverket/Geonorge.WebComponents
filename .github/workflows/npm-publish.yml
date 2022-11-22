@@ -27,7 +27,11 @@ jobs:
           node-version: 16
           registry-url: https://registry.npmjs.org/
       - run: yarn
-      - run: yarn release
+      - run: yarn build
+      - run: yarn copy-files
+      - run: yarn clean-package
+      - run: npm publish ./tmp
+      - run: yarn clean:tmp
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
 
