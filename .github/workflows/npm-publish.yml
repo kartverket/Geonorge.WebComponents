@@ -31,9 +31,9 @@ jobs:
       - run: yarn copy-files
       - run: yarn clean-package
       - run: npm publish ./tmp
-      - run: yarn clean:tmp
         env:
-          NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
+            NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
+      - run: yarn clean:tmp
 
   publish-gpr:
     needs: build
