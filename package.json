@@ -17,12 +17,10 @@
     "start": "webpack serve --port 9000 --host 0.0.0.0 --progress --profile --mode development",
     "build": "npm run clean:lib && webpack --config webpack.config.js --mode production",
     "release": "npm run build && npm run copy-files && npm run clean-package && npm publish ./tmp && npm run clean:tmp",
-    "release:test": "npm run build && npm run copy-files && npm run clean-package",
     "copy-files": "copyfiles -f \"./lib/**/*\" \"./package.json\" tmp",
     "clean-package": "json -I -f ./tmp/package.json -e \"delete this.devDependencies; delete this.scripts\"",
     "clean:lib": "shx rm -rf lib",
     "clean:tmp": "shx rm -rf tmp",
-    "clean:docs": "shx rm -rf docs",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook -o docs"
   },
