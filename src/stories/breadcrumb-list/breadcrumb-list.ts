@@ -10,8 +10,7 @@ import {
 } from "super-custom-elements";
 
 // Assets
-import AngleRight from '../../assets/svg/angle-right.svg';
-
+import AngleRight from "../../assets/svg/angle-right.svg";
 
 interface BreadcrumbListOptions extends CustomElementOptions {
     breadcrumbs: Array<BreadcrumbListItem>;
@@ -50,27 +49,28 @@ export class BreadcrumbList extends CustomElement {
     }
 
     public static renderBreadcrumbs = (breadcrumbs: Array<BreadcrumbListItem>) => {
-        const element = getElement<BreadcrumbList>('#breadcrumb-list');
+        const element = getElement<BreadcrumbList>("#breadcrumb-list");
         const breadCrumbListShadow = getShadowRootElement(element, "#breadcrumb-list");
-        const breadcrumbsListElement = breadcrumbs
-            .map((breadcrumbListItem: BreadcrumbListItem, index) => {
-                const activeHash = `${window.location.hash}`;
-                const activePath = `${window.location.pathname}${window.location.hash}${window.location.search}`;
-                const activeHref = window.location.href;
-                const isActiveHash = activeHash.toLowerCase() === breadcrumbListItem.url.toLowerCase();
-                const isActivePath = activePath.toLowerCase() === breadcrumbListItem.url.toLowerCase();
-                const isActiveHref = activeHref.toLowerCase() === breadcrumbListItem.url.toLowerCase();
+        const breadcrumbsListElement = breadcrumbs?.length
+            ? breadcrumbs
+                  .map((breadcrumbListItem: BreadcrumbListItem, index) => {
+                      const activeHash = `${window.location.hash}`;
+                      const activePath = `${window.location.pathname}${window.location.hash}${window.location.search}`;
+                      const activeHref = window.location.href;
+                      const isActiveHash = activeHash.toLowerCase() === breadcrumbListItem.url.toLowerCase();
+                      const isActivePath = activePath.toLowerCase() === breadcrumbListItem.url.toLowerCase();
+                      const isActiveHref = activeHref.toLowerCase() === breadcrumbListItem.url.toLowerCase();
 
-                const menuItemElement =
-                    breadcrumbListItem?.url?.length && !isActiveHash && !isActivePath && !isActiveHref
-                        ? `<a href="${breadcrumbListItem.url}">${breadcrumbListItem.name}</a>`
-                        : `<span>${breadcrumbListItem.name}</span>`;
-                
-                
-                return `<li>${menuItemElement}${index < breadcrumbs.length - 1 ? AngleRight : ''}</li>`;
-            })
-            .join("");
-        breadCrumbListShadow.innerHTML = breadcrumbsListElement ;
+                      const menuItemElement =
+                          breadcrumbListItem?.url?.length && !isActiveHash && !isActivePath && !isActiveHref
+                              ? `<a href="${breadcrumbListItem.url}">${breadcrumbListItem.name}</a>`
+                              : `<span>${breadcrumbListItem.name}</span>`;
+
+                      return `<li>${menuItemElement}${index < breadcrumbs.length - 1 ? AngleRight : ""}</li>`;
+                  })
+                  .join("")
+            : "";
+        breadCrumbListShadow.innerHTML = breadcrumbsListElement;
     };
 
     renderBreadcrumbsFromAttribute = (breadcrumbs: string) => {
@@ -85,6 +85,5 @@ export class BreadcrumbList extends CustomElement {
         }
     }
 
-    public static setup(selector: string, options: BreadcrumbListOptions) {
-    }
+    public static setup(selector: string, options: BreadcrumbListOptions) {}
 }
