@@ -77,38 +77,3 @@ Default.args = {
         document.getElementById("main-navigation").setAttribute("language", "en");
     }
 };
-
-/*
-   geonorge.MainNavigation.MainNavigation.setup("#main-navigation", {
-                onSearch: (event) => {
-                    const searchString = (event.detail && event.detail.searchString) || null;
-                    if (searchString) {
-                        console.log(searchString);
-                    }
-                },
-                onOpenEmptyMapItemsList: (event) => {
-                    console.log("onOpenEmptyMapItemsList");
-                },
-                onOpenEmptyDownloadItemsList: (event) => {
-                    console.log("onOpenEmptyDownloadItemsList");
-                },
-                onSearchTypeChange: (event) => {
-                    const searchType = (event.detail && event.detail.value) || null;
-                    if (searchType) {
-                        console.log(searchType);
-                    }
-                },
-                onSignInClick: (event) => {
-                    event.target.setAttribute("isLoggedIn", "");
-                },
-                onSignOutClick: (event) => {
-                    event.target.setAttribute("isLoggedIn", false);
-                },
-                onNorwegianLanguageSelect: (event) => {
-                    document.getElementById("main-navigation").setAttribute("language", "no");
-                },
-                onEnglishLanguageSelect: (event) => {
-                    document.getElementById("main-navigation").setAttribute("language", "en");
-                }
-            });
-        */
