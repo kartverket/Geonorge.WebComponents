@@ -244,7 +244,7 @@ export class MainNavigation extends CustomElement {
     @Watch("showSearchTypeSelector")
     showSearchTypeSelectorChanged() {
         const language = this.language ? this.language : getLanguage();
-        if (this.showSearchTypeSelector !== null) {
+        if (this.showSearchTypeSelector !== null && this.showSearchTypeSelector !== undefined) {
             if (!this.searchTypeSelector) {
                 this.searchTypeSelector = document.createElement("search-type-selector");
             }
