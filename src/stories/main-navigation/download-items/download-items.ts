@@ -21,7 +21,8 @@ interface DownloadItem extends Object {
 }
 
 interface DownloadItemsOptions extends CustomElementOptions {
-   active?: boolean
+   active?: boolean,
+   onDownloadItemsChange?: () => void
 }
 
 @Component({
@@ -44,6 +45,7 @@ export class DownloadItems extends CustomElement {
    @Toggle() showList: boolean;
    @Toggle() preventRedirect: boolean;
    @Dispatch('onOpenEmptyDownloadItemsList') onOpenEmptyDownloadItemsList: DispatchEmitter;
+   @Dispatch('onDownloadItemsChange') onDownloadItemsChange: DispatchEmitter;
 
    constructor() {
       super();
@@ -194,11 +196,14 @@ export class DownloadItems extends CustomElement {
                this.showList = false;
             }
          }
+         if (this.onDownloadItemsChange){
+            this.onDownloadItemsChange.emit({detail: this.downloadItems});
+         }
       }
    }
 
    @Watch('showlist')
-   showMenuChanged() {
+   showListChanged() {
       this.showList ? this.downloadItemListContainer.classList.add('open') : this.downloadItemListContainer.classList.remove('open');
       this.showList ? this.downloadButton.classList.add('open') : this.downloadButton.classList.remove('open');
       const downloadItemListContainerButtons = getFocusableElementsInsideElement(this.downloadItemListContainer);

@@ -20,7 +20,8 @@ interface MapItem extends Object {
 }
 
 interface MapItemsOptions extends CustomElementOptions {
-   active?: boolean
+   active?: boolean,
+   onMapItemsChange?: () => void
 }
 
 @Component({
@@ -43,6 +44,7 @@ export class MapItems extends CustomElement {
    @Toggle() showList: boolean;
    @Toggle() preventRedirect: boolean;
    @Dispatch('onOpenEmptyMapItemsList') onOpenEmptyMapItemsList: DispatchEmitter;
+   @Dispatch('onMapItemsChange') onMapItemsChange: DispatchEmitter;
 
    constructor() {
       super();
@@ -189,6 +191,9 @@ export class MapItems extends CustomElement {
             if (!this.mapItems || !this.mapItems.length) {
                this.showList = false;
             }
+         }
+         if (this.onMapItemsChange){
+            this.onMapItemsChange.emit({detail: this.onMapItemsChange});
          }
       }
    }

@@ -40,6 +40,8 @@ interface MainNavigationOptions extends CustomElementOptions {
     onSignOutClick?: () => void;
     onNorwegianLanguageSelect?: () => void;
     onEnglishLanguageSelect?: () => void;
+    onDownloadItemsChange?: () => void;
+    onMapItemsChange?: () => void;
 }
 
 interface MenuItem extends Object {
@@ -84,6 +86,8 @@ export class MainNavigation extends CustomElement {
     @Dispatch("onSignOutClick") onSignOutClick: DispatchEmitter;
     @Dispatch("onNorwegianLanguageSelect") onNorwegianLanguageSelect: DispatchEmitter;
     @Dispatch("onEnglishLanguageSelect") onEnglishLanguageSelect: DispatchEmitter;
+    @Dispatch("onDownloadItemsChange") onDownloadItemsChange: DispatchEmitter;
+    @Dispatch("onMapItemsChange") onMapItemsChange: DispatchEmitter;
 
     constructor() {
         super();
@@ -331,6 +335,18 @@ export class MainNavigation extends CustomElement {
                 const mainMenu = getShadowRootElement<MainMenu>(element, "main-menu");
                 mainMenu.setAttribute("hasLanguageSelectFunctions", "");
                 mainMenu.addEventListener("onEnglishLanguageSelect", options.onEnglishLanguageSelect);
+            });
+        }
+        if (options.onDownloadItemsChange) {
+            setTimeout(() => {
+                const downloadItemsElement = getShadowRootElement<DownloadItems>(element, "download-items");
+                downloadItemsElement.addEventListener("onDownloadItemsChange", options.onDownloadItemsChange);
+            });
+        }
+        if (options.onMapItemsChange) {
+            setTimeout(() => {
+                const mapItemsElement = getShadowRootElement<MapItems>(element, "map-items");
+                mapItemsElement.addEventListener("onMapItemsChange", options.onMapItemsChange);
             });
         }
     }
