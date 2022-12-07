@@ -1,8 +1,9 @@
 @import "../../style/all";
 
-:host {
+content-container {
     display: block;
     margin: auto;
+    font-family: $default-font;
 
     @include breakpoint(tablet) {
         width: 750px;
@@ -14,4 +15,9 @@
         width: 1170px;
     }
     padding: 10px 15px;
+
+    a {
+        color: $primary-text;
+        text-decoration: underline;
+    }
 }
