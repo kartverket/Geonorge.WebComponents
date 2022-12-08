@@ -220,7 +220,7 @@ export class MainNavigation extends CustomElement {
         this.logoElement.innerHTML = this.getGeonorgeLogoVariant(this.environment);
         this.logoElement.href = getGeonorgeUrl(this.language, this.environment);
         if (this.searchField) {
-            this.searchField.setAttribute("environment", this.language);
+            this.searchField.setAttribute("environment", this.environment);
         }
     }
 
