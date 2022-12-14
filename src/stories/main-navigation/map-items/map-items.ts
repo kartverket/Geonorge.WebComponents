@@ -155,7 +155,7 @@ export class MapItems extends CustomElement {
       if (!this.showList){
          mapItemLinkElement.setAttribute('tabindex', '-1');
       }
-      this.mapItemListContainer.innerHTML = `<ul>${mapItemsListElement}</ul>`;
+      this.mapItemListContainer.innerHTML = !!mapItemsListElement?.length ? `<ul>${mapItemsListElement}</ul>` : '';
       this.mapItemListContainer.prepend(mapItemLinkElement);
    }
 

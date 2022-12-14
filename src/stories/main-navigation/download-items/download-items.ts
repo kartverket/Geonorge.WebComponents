@@ -160,7 +160,7 @@ export class DownloadItems extends CustomElement {
       if (!this.showList){
          downloadItemLinkElement.setAttribute('tabindex', '-1');
       }
-      this.downloadItemListContainer.innerHTML = `<ul>${downloadItemsListElement}</ul>`;
+      this.downloadItemListContainer.innerHTML = !!downloadItemsListElement?.length ? `<ul>${downloadItemsListElement}</ul>` : '';
       this.downloadItemListContainer.prepend(downloadItemLinkElement);
    }
 
