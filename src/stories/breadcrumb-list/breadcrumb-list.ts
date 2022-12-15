@@ -48,9 +48,7 @@ export class BreadcrumbList extends CustomElement {
         this.renderBreadcrumbsFromAttribute(this.breadcrumbs);
     }
 
-    public static renderBreadcrumbs = (breadcrumbs: Array<BreadcrumbListItem>) => {
-        const element = getElement<BreadcrumbList>("#breadcrumb-list");
-        const breadCrumbListShadow = getShadowRootElement(element, "#breadcrumb-list");
+    public static getBreadCrumbListElement = (breadcrumbs: Array<BreadcrumbListItem>) => {
         const breadcrumbsListElement = breadcrumbs?.length
             ? breadcrumbs
                   .map((breadcrumbListItem: BreadcrumbListItem, index) => {
@@ -70,7 +68,13 @@ export class BreadcrumbList extends CustomElement {
                   })
                   .join("")
             : "";
-        breadCrumbListShadow.innerHTML = breadcrumbsListElement;
+        return breadcrumbsListElement;
+    }
+
+    public static renderBreadcrumbs = (breadcrumbs: Array<BreadcrumbListItem>) => {
+        const element = getElement<BreadcrumbList>("#breadcrumb-list");
+        const breadCrumbListShadow = getShadowRootElement(element, "#breadcrumb-list");
+        breadCrumbListShadow.innerHTML = BreadcrumbList.getBreadCrumbListElement(breadcrumbs);
     };
 
     renderBreadcrumbsFromAttribute = (breadcrumbs: string) => {
@@ -85,5 +89,8 @@ export class BreadcrumbList extends CustomElement {
         }
     }
 
-    public static setup(selector: string, options: BreadcrumbListOptions) {}
+    public static setup(selector: string, options: BreadcrumbListOptions) {
+        const element = getElement<BreadcrumbList>(selector);
+        getShadowRootElement(element, "#breadcrumb-list").innerHTML = this.getBreadCrumbListElement(options.breadcrumbs);
+    }
 }
