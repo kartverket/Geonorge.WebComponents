@@ -11,7 +11,7 @@ module.exports = {
     'ContentContainer': './stories/content-container/content-container.ts',
     'GeonorgeFooter': './stories/geonorge-footer/geonorge-footer.ts',
     'GnInput': './stories/gn-input/gn-input.ts',
-    //'GnSelect': './custom-elements/gn-select/gn-select.ts',
+    'GnSelect': './stories/gn-select/gn-select.ts',
     'GnTable': './stories/gn-table/gn-table.ts',
     'HeadingText': './stories/heading-text/heading-text.ts',
     'MainNavigation': './stories/main-navigation/main-navigation.ts',
