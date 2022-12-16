@@ -22,7 +22,7 @@ export class GnSelect extends CustomElement {
 
     constructor() {
         super();
-        addGlobalStylesheet("content-container-styles", style);
+        addGlobalStylesheet("gn-table-styles", style);
     }
 
     connectedCallback() {
