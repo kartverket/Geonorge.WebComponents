@@ -22,13 +22,6 @@ export class GnTable extends CustomElement {
         super();
         addGlobalStylesheet("gn-table-styles", slottedStyles);
     }
-/*
-    @Watch("hoverable")
-    hoverableChanged() {
-        if (this.breadcrumbs?.length) {
-            this.renderBreadcrumbsFromAttribute(this.breadcrumbs);
-        }
-    }*/
 
     setup(options?: GnTableOptions): void {
         this.connect(options.container);
