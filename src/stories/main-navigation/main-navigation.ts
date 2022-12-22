@@ -77,7 +77,7 @@ export class MainNavigation extends CustomElement {
     @Prop() norwegianurl: string;
     @Toggle() isloggedin: boolean;
     @Toggle() showmenu: boolean;
-    @Toggle() showSearchTypeSelector: boolean;
+    @Toggle() showsearchtypeselector: boolean;
     @Toggle() staticposition: boolean;
     @Toggle() noshadow: boolean;
     @Dispatch("onSearch") onSearch: DispatchEmitter;
@@ -168,7 +168,7 @@ export class MainNavigation extends CustomElement {
         if (this.isloggedin) {
             this.mainMenu.setAttribute("isLoggedIn", "");
         }
-        if (this.showSearchTypeSelector) {
+        if (this.showsearchtypeselector) {
             this.searchTypeSelector = document.createElement("search-type-selector");
             if (this.metadataresultsfound) {
                 this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
@@ -204,7 +204,7 @@ export class MainNavigation extends CustomElement {
         this.mainMenu.setAttribute("language", this.language);
         this.mapItemsElement.setAttribute("language", this.language);
         this.downloadItemsElement.setAttribute("language", this.language);
-        if (this.showSearchTypeSelector) {
+        if (this.showsearchtypeselector) {
             this.searchTypeSelector.setAttribute("language", this.language);
         }
         if (this.searchField) {
@@ -226,29 +226,29 @@ export class MainNavigation extends CustomElement {
 
     @Watch("metadataresultsfound")
     metadataResultsFoundChanged() {
-        if (this.showSearchTypeSelector) {
+        if (this.showsearchtypeselector) {
             this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
         }
     }
 
     @Watch("articlesresultsfound")
     articlesResultsFoundChanged() {
-        if (this.showSearchTypeSelector) {
+        if (this.showsearchtypeselector) {
             this.searchTypeSelector.setAttribute("articlesresultsfound", this.articlesresultsfound);
         }
     }
 
     @Watch("searchtype")
     searchTypeChanged() {
-        if (this.showSearchTypeSelector) {
+        if (this.showsearchtypeselector) {
             this.searchTypeSelector.setAttribute("searchtype", this.searchtype);
         }
     }
 
-    @Watch("showSearchTypeSelector")
+    @Watch("showsearchtypeselector")
     showSearchTypeSelectorChanged() {
         const language = this.language ? this.language : getLanguage();
-        if (this.showSearchTypeSelector?.toString() === "") {
+        if (this.showsearchtypeselector?.toString() === "") {
             if (!this.searchTypeSelector) {
                 this.searchTypeSelector = document.createElement("search-type-selector");
             }

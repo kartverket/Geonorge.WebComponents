@@ -28,7 +28,7 @@ const Template = (props) => {
         englishurl=${props.englishurl}
         norwegianurl=${props.norwegianurl}
         environment=${props.environment}
-        ?show-search-type-selector=${props.showSearchTypeSelector}
+        ?showsearchtypeselector=${props.showsearchtypeselector}
         metadataresultsfound=${props.metadataresultsfound}
         articlesresultsfound=${props.articlesresultsfound}
         language=${props.language}
@@ -42,7 +42,7 @@ Default.args = {
     englishurl: "/",
     norwegianurl: "/",
     environment: "dev",
-    showSearchTypeSelector: true,
+    showsearchtypeselector: true,
     metadataresultsfound: "3245",
     articlesresultsfound: "17",
     language: "en",
