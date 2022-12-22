@@ -32,7 +32,7 @@ const Template = (props) => {
         metadataresultsfound=${props.metadataresultsfound}
         articlesresultsfound=${props.articlesresultsfound}
         language=${props.language}
-    ></main-navigation>`;
+    ></main-navigation>${props.showsearchtypeselector ? "true": "false"}`;
 };
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/web-components/writing-stories/args
@@ -77,6 +77,14 @@ Default.args = {
         document.getElementById("main-navigation").setAttribute("language", "en");
     }
 };
+
+export const test = () => {
+return html`<main-navigation isloggedin="false" language="no" environment="dev" searchstring="dsfsf" searchtype="metadata" showsearchtypeselector="" metadataresultsfound="7" articlesresultsfound="0"></main-navigation>`
+}
+
+export const test2 = () => {
+    return html`<main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector="" metadataresultsfound="3245" articlesresultsfound="17" language="en"></main-navigation>`;
+}
 
 
 

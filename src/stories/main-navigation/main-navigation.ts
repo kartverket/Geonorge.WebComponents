@@ -6,7 +6,6 @@ import {
     Prop,
     Dispatch,
     DispatchEmitter,
-    Listen,
     Watch,
     getElement,
     getShadowRootElement,
@@ -111,6 +110,10 @@ export class MainNavigation extends CustomElement {
         }
     }
 
+    shouldShowSearchTypeSelector(showsearchtypeselector) {
+        return showsearchtypeselector?.toString() === "" || showsearchtypeselector?.toString() === "true";
+    }
+
     connectedCallback() {
         this.logoElement = getShadowRootElement(this, "#main-navigation-logo");
         this.searchField = getShadowRootElement(this, "main-search-field");
@@ -168,8 +171,10 @@ export class MainNavigation extends CustomElement {
         if (this.isloggedin) {
             this.mainMenu.setAttribute("isLoggedIn", "");
         }
-        if (this.showsearchtypeselector) {
-            this.searchTypeSelector = document.createElement("search-type-selector");
+        if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
+            if (!this.searchTypeSelector) {
+                this.searchTypeSelector = document.createElement("search-type-selector");
+            }
             if (this.metadataresultsfound) {
                 this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
             }
@@ -182,8 +187,9 @@ export class MainNavigation extends CustomElement {
             if (language) {
                 this.searchTypeSelector.setAttribute("language", language);
             }
-            this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
-            const searchTypeSelector = new SearchTypeSelector();
+            if (!this.searchTypeSelector) {
+                this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
+            }
         }
 
         const mapItems = new MapItems();
@@ -204,7 +210,7 @@ export class MainNavigation extends CustomElement {
         this.mainMenu.setAttribute("language", this.language);
         this.mapItemsElement.setAttribute("language", this.language);
         this.downloadItemsElement.setAttribute("language", this.language);
-        if (this.showsearchtypeselector) {
+        if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             this.searchTypeSelector.setAttribute("language", this.language);
         }
         if (this.searchField) {
@@ -226,21 +232,21 @@ export class MainNavigation extends CustomElement {
 
     @Watch("metadataresultsfound")
     metadataResultsFoundChanged() {
-        if (this.showsearchtypeselector) {
+        if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
         }
     }
 
     @Watch("articlesresultsfound")
     articlesResultsFoundChanged() {
-        if (this.showsearchtypeselector) {
+        if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             this.searchTypeSelector.setAttribute("articlesresultsfound", this.articlesresultsfound);
         }
     }
 
     @Watch("searchtype")
     searchTypeChanged() {
-        if (this.showsearchtypeselector) {
+        if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             this.searchTypeSelector.setAttribute("searchtype", this.searchtype);
         }
     }
@@ -248,7 +254,7 @@ export class MainNavigation extends CustomElement {
     @Watch("showsearchtypeselector")
     showSearchTypeSelectorChanged() {
         const language = this.language ? this.language : getLanguage();
-        if (this.showsearchtypeselector?.toString() === "") {
+        if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             if (!this.searchTypeSelector) {
                 this.searchTypeSelector = document.createElement("search-type-selector");
             }
