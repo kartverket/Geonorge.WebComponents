@@ -16,7 +16,7 @@ import { addGlobalStylesheet } from "../../functions/guiHelpers";
 // Stylesheets
 import style from "./gn-button.scss";
 
-interface StandardButtonOptions extends CustomElementOptions {}
+interface GnButtonOptions extends CustomElementOptions {}
 
 @Component({
     tag: "gn-button",
@@ -32,14 +32,14 @@ export class GnButton extends CustomElement {
         addGlobalStylesheet("gn-button-styles", style);
     }
 
-    setup(options?: StandardButtonOptions): void {
+    setup(options?: GnButtonOptions): void {
         this.connect(options.container);
         if (options.id) {
             this.id = options.id;
         }
     }
 
-    public static setup(selector: string, options: StandardButtonOptions) {
+    public static setup(selector: string, options: GnButtonOptions) {
         const element = getElement<GnButton>(selector);
     }
 }
