@@ -10,6 +10,7 @@ module.exports = {
     'BreadcrumbList': './stories/breadcrumb-list/breadcrumb-list.ts',
     'ContentContainer': './stories/content-container/content-container.ts',
     'GeonorgeFooter': './stories/geonorge-footer/geonorge-footer.ts',
+    'GnButton': './stories/gn-button/gn-button.ts',
     'GnInput': './stories/gn-input/gn-input.ts',
     'GnSelect': './stories/gn-select/gn-select.ts',
     'GnTable': './stories/gn-table/gn-table.ts',
