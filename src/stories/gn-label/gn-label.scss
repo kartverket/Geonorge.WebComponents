@@ -1,0 +1,17 @@
+@import "../../style/all";
+
+gn-label {
+    font-family: $default-font;
+    font-size: 1em;
+    line-height: 1.5em;
+    &[block] {
+        display: block;
+    }
+    &:not([block]) {
+        display: inline-block;
+        & + gn-input:not([block]),
+        & + gn-select:not([block]) {
+            margin-left: 0.5em;
+        }
+    }
+}

@@ -5,6 +5,7 @@ export * from "./stories/content-container/content-container";
 export * from "./stories/geonorge-footer/geonorge-footer";
 export * from "./stories/gn-button/gn-button";
 export * from "./stories/gn-input/gn-input";
+export * from "./stories/gn-label/gn-label";
 export * from "./stories/gn-select/gn-select";
 export * from "./stories/gn-table/gn-table";
 export * from "./stories/heading-text/heading-text";
