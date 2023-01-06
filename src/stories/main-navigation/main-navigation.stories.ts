@@ -78,16 +78,6 @@ Default.args = {
     }
 };
 
-export const test = () => {
-return html`<main-navigation isloggedin="false" language="no" environment="dev" searchstring="dsfsf" searchtype="metadata" showsearchtypeselector="" metadataresultsfound="7" articlesresultsfound="0"></main-navigation>`
-}
-
-export const test2 = () => {
-    return html`<main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector="" metadataresultsfound="3245" articlesresultsfound="17" language="en"></main-navigation>`;
-}
-
-
-
 
 // Download items
 localStorage.orderItems = JSON.stringify([
