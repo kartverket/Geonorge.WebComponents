@@ -8,7 +8,8 @@ export default {
     title: "Example/GnSelect",
     // More on argTypes: https://storybook.js.org/docs/web-components/api/argtypes
     argTypes: { 
-        block: { control: 'boolean' }
+        block: { control: 'boolean' },
+        fullwidth: { control: 'boolean' }
     }
 } as Meta;
 
@@ -16,6 +17,14 @@ export default {
 
 const Template = (props) => {
     return html`<gn-select ?block=${props.block}>${props.children}</gn-select>`;
+};
+
+const TemplateWithInlineLabel = (props) => {
+    return html`<gn-label><label for="inline-label-select">Label for select</label></gn-label><gn-select ?block=${props.block} ?fullwidth=${props.fullwidth}>${props.children}</gn-select>`;
+};
+
+const TemplateWithBlockLabel = (props) => {
+    return html`<gn-label block><label for="block-label-select">Label for select</label></gn-label><gn-select ?block=${props.block} ?fullwidth=${props.fullwidth}>${props.children}</gn-select>`;
 };
 
 export const Default = Template.bind({});
@@ -29,4 +38,22 @@ export const BlockElement = Template.bind({});
 BlockElement.args = {
     block: true,
     children: html`<select><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>`
+};
+
+export const InlineWithLabel = TemplateWithInlineLabel.bind({});
+InlineWithLabel.args = {
+    children: html`<select id="inline-label-select"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>`
+};
+
+export const BlockElementWithLabel = TemplateWithBlockLabel.bind({});
+BlockElementWithLabel.args = {
+    block: true,
+    children: html`<select id="block-label-select"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>`
+};
+
+export const FullWidthBlockElementWithLabel = TemplateWithBlockLabel.bind({});
+FullWidthBlockElementWithLabel.args = {
+    block: true,
+    fullwidth: true,
+    children: html`<select id="block-label-select"><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>`
 };

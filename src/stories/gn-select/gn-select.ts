@@ -19,6 +19,7 @@ interface GnSelectOptions extends CustomElementOptions {}
 })
 export class GnSelect extends CustomElement {
     @Toggle() block: boolean;
+    @Toggle() fullwidth: boolean;
 
     constructor() {
         super();
