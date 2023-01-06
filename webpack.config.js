@@ -24,8 +24,7 @@ module.exports = {
     'MainMenu': './stories/main-navigation/main-menu/main-menu.ts',
     'NavigationTabs': './stories/navigation-tabs/navigation-tabs.ts',
     'NavigationTabHeading': './stories/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
-    'NavigationTabContent': './stories/navigation-tabs/navigation-tab-content/navigation-tab-content.ts',
-    'StandardButton': './stories/standard-button/standard-button'
+    'NavigationTabContent': './stories/navigation-tabs/navigation-tab-content/navigation-tab-content.ts'
   },
   output: {
     path: DESTINATION,

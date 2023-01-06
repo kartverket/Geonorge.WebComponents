@@ -18,4 +18,3 @@ export * from "./stories/main-navigation/main-menu/main-menu";
 export * from "./stories/navigation-tabs/navigation-tabs";
 export * from "./stories/navigation-tabs/navigation-tab-heading/navigation-tab-heading";
 export * from "./stories/navigation-tabs/navigation-tab-content/navigation-tab-content";
-export * from "./stories/standard-button/standard-button";
