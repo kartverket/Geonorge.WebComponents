@@ -2,7 +2,7 @@
 
 gn-input {
     background-color: #fff;
-
+    margin-bottom: 10px;
     input {
         @include appearance(none);
         font-family: $default-font;
@@ -10,23 +10,24 @@ gn-input {
         background: none;
         color: #000;
         font-size: 12pt;
-        padding: 0 29px 0 15px;
+        padding: 0 8px;
         height: 34px;
         border: 1px solid #cfcfcf;
         border-radius: 0;
-        margin-bottom: 10px;
         box-shadow: none;
         position: relative;
         z-index: 1;
-        margin-right: -27px;
     }
     &[block] {
+        display: block;
+    }
+    &:not([block]) {
+        display: inline-block;
+    }
+    &[fullwidth] {
+        display: block;
         input {
             width: 100%;
         }
     }
-}
-
-::slotted([block]) {
-    width: 100%;
 }

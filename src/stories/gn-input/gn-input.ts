@@ -15,6 +15,7 @@ interface GnInputOptions extends CustomElementOptions {}
 })
 export class GnInput extends CustomElement {
     @Toggle() block: boolean;
+    @Toggle() fullwidth: boolean;
 
     constructor() {
         super();
