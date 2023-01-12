@@ -15,6 +15,7 @@ module.exports = {
     'GnLabel': './stories/gn-label/gn-label.ts',
     'GnSelect': './stories/gn-select/gn-select.ts',
     'GnTable': './stories/gn-table/gn-table.ts',
+    'GnTextarea': './stories/gn-textarea/gn-textarea.ts',
     'HeadingText': './stories/heading-text/heading-text.ts',
     'MainNavigation': './stories/main-navigation/main-navigation.ts',
     'MainSearchField': './stories/main-navigation/main-search-field/main-search-field.ts',

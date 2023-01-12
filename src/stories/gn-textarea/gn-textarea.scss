@@ -1,0 +1,33 @@
+@import "../../style/all";
+
+gn-textarea {
+    background-color: #fff;
+    margin-bottom: 10px;
+    textarea {
+        @include appearance(none);
+        font-family: $default-font;
+        font-size: 16px;
+        background: none;
+        color: #000;
+        font-size: 12pt;
+        padding: 6px 8px;
+        height: 34px;
+        border: 1px solid #cfcfcf;
+        border-radius: 0;
+        box-shadow: none;
+        position: relative;
+        z-index: 1;
+    }
+    &[block] {
+        display: block;
+    }
+    &:not([block]) {
+        display: inline-block;
+    }
+    &[fullwidth] {
+        display: block;
+        textarea {
+            width: 100%;
+        }
+    }
+}

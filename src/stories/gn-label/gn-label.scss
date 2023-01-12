@@ -10,7 +10,8 @@ gn-label {
     &:not([block]) {
         display: inline-block;
         & + gn-input:not([block]),
-        & + gn-select:not([block]) {
+        & + gn-select:not([block]),
+        & + gn-textarea:not([block]) {
             margin-left: 0.5em;
         }
     }
