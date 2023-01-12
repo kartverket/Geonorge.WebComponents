@@ -17,6 +17,9 @@ gn-input {
         box-shadow: none;
         position: relative;
         z-index: 1;
+        &:disabled {
+            background-color: $disabled-background;
+        }
     }
     &[block] {
         display: block;
