@@ -1,0 +1,71 @@
+@import "../../style/all";
+
+.dialog-container {
+    &:not(.visible) {
+        display: none;
+    }
+    &.visible {
+        display: flex;
+        flex-wrap: wrap;
+        position: fixed;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.25);
+        height: 100%;
+        top: 0;
+        left: 0;
+        align-content: center;
+        padding: 8px 28px;
+        z-index: 2;
+        justify-content: center;
+        @include breakpoint(laptop) {
+            padding: 36px;
+        }
+    }
+    .dialog-content {
+        @include calc("max-height", "100% - 128px");
+        @include box-shadow(
+            0 11px 15px -7px rgba(0, 0, 0, 0.2),
+            0 24px 38px 3px rgba(0, 0, 0, 0.14),
+            0 9px 46px 8px rgba(0, 0, 0, 0.12)
+        );
+        max-width: 540px;
+        width: 100%;
+        background-color: #fff;
+        overflow: auto;
+        position: relative;
+        &:not(.noPadding) {
+            padding: 30px 15px;
+            @include breakpoint(tablet) {
+                padding: 60px 40px;
+            }
+        }
+        @include breakpoint(laptop) {
+            @include calc("width", "100% - 128px");
+            max-height: 100%;
+        }
+        .close-dialog-button {
+            background: none;
+            border: none;
+            color: $default-text;
+            display: inline-block;
+            position: absolute;
+            right: 7px;
+            top: 4px;
+            text-decoration: underline;
+            font-size: 19px;
+            cursor: pointer;
+            padding: 0;
+            @include breakpoint(tablet) {
+                right: 15px;
+                top: 10px;
+            }
+            &:hover {
+                text-decoration: none;
+            }
+            svg {
+                width: 17px;
+                height: 17px;
+            }
+        }
+    }
+}
