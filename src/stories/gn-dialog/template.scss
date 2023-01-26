@@ -31,12 +31,12 @@
         max-width: 540px;
         width: 100%;
         background-color: #fff;
-        overflow: auto;
+        overflow: visible;
         position: relative;
         &:not(.noPadding) {
-            padding: 30px 15px;
+            padding: 22px;
             @include breakpoint(tablet) {
-                padding: 60px 40px;
+                padding: 30px;
             }
         }
         @include breakpoint(laptop) {
@@ -55,6 +55,8 @@
             font-size: 19px;
             cursor: pointer;
             padding: 0;
+            right: 8px;
+            top: 5px;
             @include breakpoint(tablet) {
                 right: 15px;
                 top: 10px;

@@ -8,8 +8,14 @@ import {
     Watch
 } from "super-custom-elements";
 
+// Helpers
+import { addGlobalStylesheet } from "functions/guiHelpers";
+
 // Assets
 import CloseIcon from "../../assets/svg/close-icon.svg";
+
+// Stylesheets
+import style from "./gn-dialog.scss";
 
 interface GnDialogOptions extends CustomElementOptions {}
 
@@ -23,6 +29,7 @@ export class GnDialog extends CustomElement {
 
     constructor() {
         super();
+        addGlobalStylesheet("gn-dialog-styles", style);
     }
 
     connectedCallback() {
@@ -50,7 +57,7 @@ export class GnDialog extends CustomElement {
         const dialogContentElement = getShadowRootElement(this, "#dialog-content");
         const slots = this.shadowRoot.querySelector("slot");
         const assignedSlotElements = slots.assignedElements();
-        const hasClickedInsideSlot = assignedSlotElements.some(assignedSlotElement => {
+        const hasClickedInsideSlot = assignedSlotElements.some((assignedSlotElement) => {
             return !!assignedSlotElement.contains(event.target);
         });
         const hasClickedInsideDialogChild = dialogContentElement.contains(event.target);
