@@ -48,7 +48,11 @@ export class GnDialog extends CustomElement {
 
     handleClickOutside = (event) => {
         const dialogContentElement = getShadowRootElement(this, "#dialog-content");
-        const hasClickedInsideSlot = event.target.assignedSlot; // TODO: Will trigger on all slots until we find a better solution
+        const slots = this.shadowRoot.querySelector("slot");
+        const assignedSlotElements = slots.assignedElements();
+        const hasClickedInsideSlot = assignedSlotElements.some(assignedSlotElement => {
+            return !!assignedSlotElement.contains(event.target);
+        });
         const hasClickedInsideDialogChild = dialogContentElement.contains(event.target);
         if (dialogContentElement && !(hasClickedInsideSlot || hasClickedInsideDialogChild)) {
             this.hideDialog();
