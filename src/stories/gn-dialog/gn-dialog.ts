@@ -9,7 +9,7 @@ import {
 } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet } from "functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Assets
 import CloseIcon from "../../assets/svg/close-icon.svg";
