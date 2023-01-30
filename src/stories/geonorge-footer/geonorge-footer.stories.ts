@@ -17,6 +17,11 @@ export default {
             control: "select",
             options: ["Development", "Test", "Production"],
             mapping: { Development: "dev", Test: "test", Production: "" }
+        },
+        accessibilitystatementurl: {
+            type: { name: "string", required: false },
+            defaultValue: "https://uustatus.no/nb/erklaringer/publisert/8f3210cf-aa22-4d32-9fda-4460e3c3e05a",
+            description: "URL for accessibility statement"
         }
     }
 } as Meta;
@@ -24,7 +29,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/web-components/writing-stories/introduction#using-args
 
 const Template = (props) =>
-    html`<geonorge-footer language=${props.language} environment=${props.environment} version=${props.version} />`;
+    html`<geonorge-footer language=${props.language} environment=${props.environment} version=${props.version} accessibilitystatementurl=${props.accessibilitystatementurl} />`;
 
 export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/web-components/writing-stories/args
