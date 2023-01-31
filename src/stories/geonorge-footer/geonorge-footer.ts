@@ -4,11 +4,7 @@ import {
     CustomElement,
     CustomElementOptions,
     Prop,
-    Dispatch,
-    DispatchEmitter,
-    Listen,
     Watch,
-    getElement,
     getShadowRootElement,
     Toggle
 } from "super-custom-elements";
@@ -44,6 +40,7 @@ export class GeonorgeFooter extends CustomElement {
     @Prop() version: string;
     @Prop() language: string;
     @Prop() accessibilitystatementurl: string;
+    @Toggle() hideaccessibilitystatementlink: boolean;
 
     constructor() {
         super();
@@ -56,25 +53,40 @@ export class GeonorgeFooter extends CustomElement {
         }
     }
 
-    getLinkList(language: string, environment: string, accessibilitystatementurl: string) {
-        const accessibilityStatementUrl = this.accessibilitystatementurl?.length
-            ? this.accessibilitystatementurl
+    getLinkList(
+        language: string,
+        environment: string,
+        accessibilitystatementurl: string,
+        hideaccessibilitystatementlink: boolean
+    ) {
+        const accessibilityStatementUrl = accessibilitystatementurl?.length
+            ? accessibilitystatementurl
             : "https://uustatus.no/nb/erklaringer/publisert/8f3210cf-aa22-4d32-9fda-4460e3c3e05a";
+        let listContent = "";
         if (language === "en") {
-            return `
+            listContent = `
             <li><a href="${getGeonorgeUrl(language, environment)}about/what-is-geonorge/">What is Geonorge</a></li>
-            <li><a href="${accessibilityStatementUrl}" target="_blank" rel="noopener noreferrer">Accessibility statement (in Norwegian)</a></li>
             `;
+            if (!hideaccessibilitystatementlink) {
+                listContent += `
+                <li><a href="${accessibilityStatementUrl}" target="_blank" rel="noopener noreferrer">Accessibility statement (in Norwegian)</a></li>
+                `;
+            }
         } else {
-            return `
+            listContent = `
                 <li><a href="${getGeonorgeUrl(language, environment)}aktuelt/om-geonorge/">Om Geonorge</a></li>
                 <li><a href="${getGeonorgeUrl(
                     language,
                     environment
                 )}aktuelt/Nyheter/annet/personvern-og-bruk-av-cookies/">Personvern og bruk av cookies</a></li>
-                <li><a href="${accessibilityStatementUrl}" target="_blank" rel="noopener noreferrer">Tilgjengelighetserklæring</a></li>
             `;
+            if (!hideaccessibilitystatementlink) {
+                listContent += `
+                <li><a href="${accessibilityStatementUrl}" target="_blank" rel="noopener noreferrer">Tilgjengelighetserklæring</a></li>
+                `;
+            }
         }
+        return listContent;
     }
 
     getContactInfoText(language: string, environment: string) {
@@ -95,6 +107,24 @@ export class GeonorgeFooter extends CustomElement {
             </p>
             `;
         }
+    }
+
+    shouldHideAccessibilityStatementLink(hideaccessibilitystatementlink) {
+        return (
+            hideaccessibilitystatementlink?.toString() === "" || hideaccessibilitystatementlink?.toString() === "true"
+        );
+    }
+
+    renderLinkList() {
+        const shouldHideAccessibilityStatementLink = this.shouldHideAccessibilityStatementLink(
+            this.hideaccessibilitystatementlink
+        );
+        this.linkListElement.innerHTML = this.getLinkList(
+            this.language,
+            this.environment,
+            this.accessibilitystatementurl,
+            shouldHideAccessibilityStatementLink
+        );
     }
 
     connectedCallback() {
@@ -118,11 +148,8 @@ export class GeonorgeFooter extends CustomElement {
         this.geonorgeLogoElement.innerHTML = GeonorgeLogo;
         this.kartverketLogoElement.innerHTML = KartverketLogo;
 
-        this.linkListElement.innerHTML = this.getLinkList(
-            this.language,
-            this.environment,
-            this.accessibilitystatementurl
-        );
+        this.renderLinkList();
+
         this.contactInfoText.innerHTML = this.getContactInfoText(this.language, this.environment);
         this.aboutSiteHeader.innerText = this.language === "en" ? "About" : "Om nettstedet";
         this.contactHeader.innerText = this.language === "en" ? "Contact" : "Kontakt";
@@ -131,11 +158,7 @@ export class GeonorgeFooter extends CustomElement {
 
     @Watch("language")
     languageChanged() {
-        this.linkListElement.innerHTML = this.getLinkList(
-            this.language,
-            this.environment,
-            this.accessibilitystatementurl
-        );
+        this.renderLinkList();
         this.contactInfoText.innerHTML = this.getContactInfoText(this.language, this.environment);
         this.aboutSiteHeader.innerText = this.language === "en" ? "About" : "Om nettstedet";
         this.contactHeader.innerText = this.language === "en" ? "Contact" : "Kontakt";
@@ -146,12 +169,13 @@ export class GeonorgeFooter extends CustomElement {
         }
     }
 
+    @Watch("hideaccessibilitystatementlink")
+    hideaccessibilitystatementlinkChanged() {
+        this.renderLinkList();
+    }
+
     @Watch("accessibilitystatementurl")
     accessibilitystatementurlChanged() {
-        this.linkListElement.innerHTML = this.getLinkList(
-            this.language,
-            this.environment,
-            this.accessibilitystatementurl
-        );
+        this.renderLinkList();
     }
 }
