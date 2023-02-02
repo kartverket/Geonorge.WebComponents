@@ -1,7 +1,8 @@
 @import "../../style/all";
 
 gn-button {
-    button {
+    button,
+    a {
         @include transition(all 0.35s linear 0s);
         font-family: $default-font;
         font-weight: 400;
@@ -17,6 +18,8 @@ gn-button {
         line-height: 16pt;
         text-decoration: none;
         background-position: 50%;
+        padding: 5px 6px;
+        box-sizing: border-box;
         &:hover {
             background-color: $primary-brand;
         }
@@ -32,8 +35,11 @@ gn-button {
         }
     }
 
-    &[color="default"] {
-        button {
+    &[color="default"],
+    &[color=""],
+    &:not([color]) {
+        button,
+        a {
             &:not(:disabled) {
                 background-color: $default-background;
                 color: $default-text;
@@ -46,7 +52,8 @@ gn-button {
         }
     }
     &[color="primary"] {
-        button {
+        button,
+        a {
             &:not(:disabled) {
                 background-color: $primary-background;
                 color: #fff;
@@ -58,7 +65,8 @@ gn-button {
         }
     }
     &[color="success"] {
-        button {
+        button,
+        a {
             &:not(:disabled) {
                 background-color: $success-background;
                 color: #fff;
@@ -70,7 +78,8 @@ gn-button {
         }
     }
     &[color="warning"] {
-        button {
+        button,
+        a {
             &:not(:disabled) {
                 background-color: $warning-background;
                 color: #fff;
@@ -82,7 +91,8 @@ gn-button {
         }
     }
     &[color="danger"] {
-        button {
+        button,
+        a {
             &:not(:disabled) {
                 background-color: $danger-background;
                 color: #fff;

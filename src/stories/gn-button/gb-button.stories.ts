@@ -15,11 +15,15 @@ export default {
 // More on component templates: https://storybook.js.org/docs/web-components/writing-stories/introduction#using-args
 
 const Template = (props) => {
-    return html`<gn-button color=${props.color || 'default'}><button>Button with ${props.color || 'default'} color</button></gn-button>`;
+    return html`<gn-button color=${props.color}><button>Button with ${props.color || 'default'} color</button></gn-button>`;
 };
 
 const DisabledTemplate = (props) => {
     return html`<gn-button color=${props.color || 'default'}><button disabled>Disabled button with ${props.color || 'default'} color</button></gn-button>`;
+};
+
+const LinkButtonTemplate = (props) => {
+    return html`<gn-button color=${props.color || 'default'}><a href="#">Link button with ${props.color || 'default'} color</button></gn-button>`;
 };
 
 export const Default = Template.bind({});
@@ -48,5 +52,9 @@ Danger.args = {
 
 export const DisabledButton = DisabledTemplate.bind({});
 DisabledButton.args = {
+};
+
+export const LinkButton = LinkButtonTemplate.bind({});
+LinkButton.args = {
 };
 
