@@ -1,14 +1,5 @@
 // Dependencies
-import {
-    Component,
-    CustomElement,
-    CustomElementOptions,
-    Prop,
-    Watch,
-    getElement,
-    getShadowRootElement,
-    Toggle
-} from "super-custom-elements";
+import { Component, CustomElement, CustomElementOptions, Prop } from "super-custom-elements";
 
 // Helpers
 import { addGlobalStylesheet } from "../../functions/guiHelpers";
@@ -23,8 +14,6 @@ interface GnButtonOptions extends CustomElementOptions {}
     template: import("./gn-button.html")
 })
 export class GnButton extends CustomElement {
-    private static readonly elementSelector = "gn-button";
-
     @Prop() color: string;
 
     constructor() {
@@ -37,9 +26,5 @@ export class GnButton extends CustomElement {
         if (options.id) {
             this.id = options.id;
         }
-    }
-
-    public static setup(selector: string, options: GnButtonOptions) {
-        const element = getElement<GnButton>(selector);
     }
 }
