@@ -47,6 +47,6 @@ Danger.args = {
 };
 
 export const DisabledButton = DisabledTemplate.bind({});
-Danger.args = {
+DisabledButton.args = {
 };
 
