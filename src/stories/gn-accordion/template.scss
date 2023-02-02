@@ -1,0 +1,162 @@
+@import "../../style/all";
+
+@keyframes show {
+    0% {
+        opacity: 0;
+        margin-top: 0px;
+        padding: 0 15px 0;
+        line-height: 0;
+        max-height: 0;
+    }
+    100% {
+        opacity: 1;
+        margin-top: 0px;
+        padding: 8px 15px 15px;
+        line-height: inherit;
+        max-height: 1000px;
+    }
+}
+
+@keyframes hide {
+    100% {
+        opacity: 0;
+        margin-top: 0px;
+        padding: 0 15px 0;
+        line-height: 0;
+        max-height: 0;
+    }
+    0% {
+        opacity: 1;
+        margin-top: 0px;
+        padding: 8px 15px 15px;
+        line-height: inherit;
+        max-height: 1000px;
+    }
+}
+
+
+@include breakpoint(phablet) {
+    @keyframes show {
+        0% {
+            opacity: 0;
+            margin-top: 0px;
+            padding: 0 30px 0;
+            line-height: 0;
+            max-height: 0;
+        }
+        100% {
+            opacity: 1;
+            margin-top: 0px;
+            padding: 8px 30px 15px;
+            line-height: inherit;
+            max-height: 1000px;
+        }
+    }
+    @keyframes hide {
+        100% {
+            opacity: 0;
+            margin-top: 0px;
+            padding: 0 30px 0;
+            line-height: 0;
+            max-height: 0;
+        }
+        0% {
+            opacity: 1;
+            margin-top: 0px;
+            padding: 8px 30px 15px;
+            line-height: inherit;
+            max-height: 1000px;
+        }
+    }
+}
+
+:host {
+    background-color: $default-background;
+}
+    .panel {
+        @include appearance(none);
+        @include border-radius(0);
+        font-family: $default-font;
+        padding: 15px 15px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        text-decoration: none;
+        overflow-wrap: break-word;
+        line-height: 1.7;
+        cursor: pointer;
+        border: none;
+        width: 100%;
+        background: none;
+        text-align: left;
+        @include breakpoint(phablet) {
+            padding: 15px 30px;
+        }
+        &:focus-visible {
+            outline-color: $primary-text;
+            outline-style: auto;
+            outline-width: 2px;
+            outline-offset: 0px;
+        }
+        .panelText {
+            font-family: $header-font;
+            font-weight: bold;
+            font-size: 18px;
+            flex: 1;
+        }
+        .panelChevron {
+            box-sizing: border-box;
+            position: relative;
+            display: block;
+            width: 18px;
+            height: 18px;
+            border-radius: 100px;
+            margin-right: 6px;
+            @include breakpoint(phablet) {
+                margin-right: 0;
+            }
+            &::after {
+                content: "";
+                display: block;
+                box-sizing: border-box;
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                border-bottom: 2px solid;
+                border-right: 2px solid;
+                transform: translateY(-30%) rotate(45deg);
+                transition: transform 0.3s ease-in-out;
+            }
+            &.expanded {
+                &::after {
+                    transform: translateY(30%) rotate(225deg);
+                }
+            }
+        }
+    }
+    .content {
+        opacity: 0;
+        margin-top: 0px;
+        line-height: 0;
+        max-height: 0;
+        overflow: hidden;
+        padding: 0 15px 0;
+        @include breakpoint(phablet) {
+            padding: 0 30px 0;
+        }
+        &.initialized {
+            animation: hide 0.3s ease-in-out;
+        }
+
+        &.expanded {
+            animation: show 0.3s ease-in-out;
+            opacity: 1;
+            margin-top: 0px;
+            padding: 8px 15px 15px;
+            line-height: inherit;
+            max-height: 10000px;
+            @include breakpoint(phablet) {
+                padding: 8px 30px 15px;
+            }
+        }
+    }

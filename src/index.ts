@@ -3,6 +3,7 @@ export * from "./stories/body-text/body-text";
 export * from "./stories/breadcrumb-list/breadcrumb-list";
 export * from "./stories/content-container/content-container";
 export * from "./stories/geonorge-footer/geonorge-footer";
+export * from "./stories/gn-accordion/gn-accordion";
 export * from "./stories/gn-button/gn-button";
 export * from "./stories/gn-dialog/gn-dialog";
 export * from "./stories/gn-input/gn-input";
