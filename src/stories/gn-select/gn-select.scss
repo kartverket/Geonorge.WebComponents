@@ -5,6 +5,7 @@ gn-select {
     margin-bottom: 10px;
     select {
         @include appearance(none);
+        @include border-radius(4px);
         font-family: $default-font;
         font-size: 16px;
         background: none;
@@ -13,7 +14,6 @@ gn-select {
         padding: 0 29px 0 8px;
         height: 34px;
         border: 1px solid #cfcfcf;
-        border-radius: 0;
         box-shadow: none;
         position: relative;
         z-index: 1;

@@ -19,8 +19,8 @@
             color: #414042;
         }
         .counter {
+            @include border-radius(50%);
             background-color: $primary-brand;
-            border-radius: 50%;
             color: #fff;
             margin-top: -0.25em;
             margin-left: -0.2em;

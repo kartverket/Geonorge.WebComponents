@@ -5,10 +5,10 @@
 }
 
 button.menu-toggle-button {
+    @include border-radius(4px);
     border: none;
     background: transparent;
     background-color: rgb(125, 116, 109);
-    border-radius: 2px;
     color: rgb(255, 255, 255);
     cursor: pointer;
     width: 40px;

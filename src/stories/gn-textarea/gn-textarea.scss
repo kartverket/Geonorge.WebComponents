@@ -5,6 +5,7 @@ gn-textarea {
     margin-bottom: 10px;
     textarea {
         @include appearance(none);
+        @include border-radius(4px);
         font-family: $default-font;
         font-size: 16px;
         background: none;
@@ -13,7 +14,6 @@ gn-textarea {
         padding: 6px 8px;
         min-height: 34px;
         border: 1px solid #cfcfcf;
-        border-radius: 0;
         box-shadow: none;
         position: relative;
         z-index: 1;

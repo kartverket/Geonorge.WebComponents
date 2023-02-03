@@ -19,8 +19,8 @@ div.map-items-container {
             color: #414042;
         }
         .counter {
+            @include border-radius(50%);
             background-color: $primary-brand;
-            border-radius: 50%;
             color: #fff;
             margin-top: -0.25em;
             margin-left: -0.2em;
@@ -89,7 +89,7 @@ div.map-items-container {
                 text-decoration: none;
                 cursor: pointer;
                 border: none;
-                font-size: 16px;    
+                font-size: 16px;
                 font-weight: 400;
                 width: 100%;
                 font-family: $default-font;

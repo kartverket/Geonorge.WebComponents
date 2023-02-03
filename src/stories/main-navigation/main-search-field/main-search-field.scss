@@ -23,14 +23,14 @@ div.main-search-field {
   }
 
   input {
+    @include appearance(none);
+    @include border-radius(4px 0 0 4px);
     height: 37px;
     width: 100%;
     outline-offset: -2px;
-    -webkit-appearance: none;
     background: #fff;
     border: 1px solid #dfdcda;
     border-right: 0;
-    border-radius: 2px 0 0 2px;
     font-size: 1.2em;
     flex: 1;
     margin: 0;
@@ -38,12 +38,12 @@ div.main-search-field {
   }
 
   button {
+    @include appearance(button);
+    @include border-radius(0 4px 4px 0);
     margin: 0;
-    -webkit-appearance: button;
     background: #fff;
     border: 1px solid #dfdcda;
     border-left: 0;
-    border-radius: 0 2px 2px 0;
     display: inline-block;
     padding: 0 0.75em;
     height: 100%;

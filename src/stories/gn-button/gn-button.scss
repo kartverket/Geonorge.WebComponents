@@ -4,6 +4,7 @@ gn-button {
     button,
     a {
         @include transition(all 0.35s linear 0s);
+        @include border-radius(4px);
         font-family: $default-font;
         font-weight: 400;
         font-size: 12pt;
@@ -11,14 +12,13 @@ gn-button {
         text-align: center;
         vertical-align: middle;
         border: 1px solid transparent;
-        border-radius: 0;
         cursor: pointer;
         display: inline-block;
         height: 34px;
         line-height: 16pt;
         text-decoration: none;
         background-position: 50%;
-        padding: 5px 6px;
+        padding: 5px 8px;
         box-sizing: border-box;
         &:hover {
             background-color: $primary-brand;

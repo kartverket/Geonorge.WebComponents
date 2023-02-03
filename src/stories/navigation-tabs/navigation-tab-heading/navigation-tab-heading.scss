@@ -6,6 +6,7 @@
     cursor: pointer;
 
     slot {
+        @include border-radius(4px 4px 0 0);
         display: block;
         background-color: $secondary-brand;
         padding: 10px 12px;
@@ -13,7 +14,6 @@
         color: #fff;
         border-bottom: 1px solid transparent;
         background-clip: padding-box;
-        border-radius: 0;
         font-size: 13px;
         margin-bottom: 0;
         margin-bottom: -1px;
