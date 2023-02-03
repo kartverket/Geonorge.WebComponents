@@ -71,7 +71,7 @@
 }
 
 :host {
-    background-color: $default-background;
+    background-color: $light-gray;
 }
     .panel {
         @include appearance(none);
