@@ -29,6 +29,38 @@ div.main-navigation {
         @include box-shadow(none);
     }
 
+    a.main-content-link {
+        display: block;
+        color: $primary-text;
+        padding: 8px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 19px;
+        position: absolute;
+        overflow: hidden;
+        clip: rect(1px, 1px, 1px, 1px);
+        width: 1px;
+        height: 1px;
+        word-wrap: normal;
+        &:focus,
+        &:active {
+            position: static;
+            overflow: visible;
+            clip: auto;
+            width: 100%;
+            height: auto;
+            outline: none;
+            color: $primary-text-hover;
+            span {
+                z-index: 100;
+                outline: 3px solid $primary-text;
+                outline-offset: 2px;
+                transition: none;
+                text-decoration: none;
+            }
+        }
+    }
+
     .main-navigation-container {
         margin: auto;
 

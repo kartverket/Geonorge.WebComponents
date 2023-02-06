@@ -32,6 +32,7 @@ const Template = (props) => {
         metadataresultsfound=${props.metadataresultsfound}
         articlesresultsfound=${props.articlesresultsfound}
         language=${props.language}
+        maincontentid=${props.maincontentid}
     ></main-navigation>${props.showsearchtypeselector ? "true": "false"}`;
 };
 export const Default = Template.bind({});
@@ -46,6 +47,7 @@ Default.args = {
     metadataresultsfound: "3245",
     articlesresultsfound: "17",
     language: "en",
+    maincontentid: "main-content",
     onSearch: (event) => {
         const searchString = (event.detail && event.detail.searchString) || null;
         if (searchString) {

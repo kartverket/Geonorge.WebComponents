@@ -74,6 +74,7 @@ export class MainNavigation extends CustomElement {
     @Prop() signouturl: string;
     @Prop() englishurl: string;
     @Prop() norwegianurl: string;
+    @Prop() maincontentid: string;
     @Toggle() isloggedin: boolean;
     @Toggle() showmenu: boolean;
     @Toggle() showsearchtypeselector: boolean;
@@ -216,6 +217,11 @@ export class MainNavigation extends CustomElement {
         if (this.searchField) {
             this.searchField.setAttribute("language", this.language);
         }
+
+        const mainContentLinkText = getShadowRootElement(this, "#main-content-link-text");
+        if (this.maincontentid?.length) {
+            mainContentLinkText.innerText = this.language === "en" ? "Skip to main content" : "Hopp til hovedinnhold";
+        }
     }
 
     @Watch("environment")
@@ -286,6 +292,16 @@ export class MainNavigation extends CustomElement {
                 "searchstring",
                 this.searchstring && this.searchstring.length ? this.searchstring : ""
             );
+        }
+    }
+
+    @Watch("maincontentid")
+    mainContentIdChanged() {
+        const mainContentLink = getShadowRootElement(this, "#main-content-link");
+        if (this.maincontentid?.length) {
+            mainContentLink.setAttribute("href", `#${this.maincontentid}`);
+        } else {
+            mainContentLink.remove();
         }
     }
 
