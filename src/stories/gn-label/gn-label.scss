@@ -4,6 +4,7 @@ gn-label {
     font-family: $default-font;
     font-size: 1em;
     line-height: 1.5em;
+    min-height: 21px;
     &[block] {
         display: block;
     }
