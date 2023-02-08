@@ -3,6 +3,7 @@
 gn-select {
     background-color: #fff;
     margin-bottom: 10px;
+    border-radius: 4px;
     select {
         @include appearance(none);
         @include border-radius(4px);
@@ -33,5 +34,8 @@ gn-select {
         select {
             width: 100%;
         }
+    }
+    &:not([fullwidth]) {
+        padding-right: 9px;
     }
 }
