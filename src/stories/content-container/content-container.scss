@@ -4,6 +4,7 @@ content-container {
     display: block;
     margin: auto;
     font-family: $default-font;
+    font-size: $default-font-size;
 
     @include breakpoint(tablet) {
         width: 750px;
