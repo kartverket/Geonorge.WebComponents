@@ -12,7 +12,7 @@ import {
 import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Assets
-import CloseIcon from "../../assets/svg/close-icon.svg";
+import CloseIcon from "../../assets/svg/close-icon-black.svg";
 
 // Stylesheets
 import style from "./gn-dialog.scss";

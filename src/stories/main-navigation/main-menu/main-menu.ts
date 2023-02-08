@@ -7,7 +7,7 @@ import {
 
 // Assets
 import MenuIcon from '../../../assets/svg/menu-icon.svg';
-import CloseIcon from '../../../assets/svg/close-icon.svg';
+import CloseIcon from '../../../assets/svg/close-icon-white.svg';
 
 // Functions
 import { fetchMenuItems } from '../../../functions/apiHelpers';
