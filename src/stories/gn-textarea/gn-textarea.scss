@@ -2,7 +2,6 @@
 
 gn-textarea {
     background-color: #fff;
-    margin-bottom: 10px;
     textarea {
         @include appearance(none);
         @include border-radius(4px);

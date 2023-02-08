@@ -2,7 +2,6 @@
 
 gn-input {
     background-color: #fff;
-    margin-bottom: 10px;
     input {
         @include appearance(none);
         @include border-radius(4px);
