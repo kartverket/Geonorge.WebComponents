@@ -1,0 +1,14 @@
+@import "../../style/all";
+
+gn-field-container {
+    margin-bottom: 16px;
+    &[block] {
+        display: block;
+    }
+    &[inlineblock] {
+        margin-right: 16px;
+    }
+    &:not([block]) {
+        display: inline-block;
+    }
+}

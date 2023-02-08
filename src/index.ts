@@ -6,6 +6,7 @@ export * from "./stories/geonorge-footer/geonorge-footer";
 export * from "./stories/gn-accordion/gn-accordion";
 export * from "./stories/gn-button/gn-button";
 export * from "./stories/gn-dialog/gn-dialog";
+export * from "./stories/gn-field-container/gn-field-container";
 export * from "./stories/gn-input/gn-input";
 export * from "./stories/gn-label/gn-label";
 export * from "./stories/gn-select/gn-select";

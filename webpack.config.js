@@ -13,6 +13,7 @@ module.exports = {
     'GnAccordion': './stories/gn-accordion/gn-accordion.ts',
     'GnButton': './stories/gn-button/gn-button.ts',
     'GnDialog': './stories/gn-dialog/gn-dialog.ts',
+    'GnFieldContainer': './stories/gn-field-container/gn-field-container.ts',
     'GnInput': './stories/gn-input/gn-input.ts',
     'GnLabel': './stories/gn-label/gn-label.ts',
     'GnSelect': './stories/gn-select/gn-select.ts',
