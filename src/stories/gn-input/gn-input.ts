@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet } from "../../functions/guiHelpers";
+import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./gn-input.scss";
@@ -19,6 +19,7 @@ export class GnInput extends CustomElement {
 
     constructor() {
         super();
+        addGlobalFonts();
         addGlobalStylesheet("gn-input-styles", style);
     }
 

@@ -9,8 +9,9 @@ import {
     Toggle
 } from "super-custom-elements";
 
-// Functions
+// Helpers
 import { getGeonorgeUrl } from "../../functions/urlHelpers";
+import { addGlobalFonts } from "../../functions/guiHelpers";
 
 // Assets
 import GeonorgeLogo from "../../assets/svg/geonorge-logo.svg";
@@ -44,6 +45,7 @@ export class GeonorgeFooter extends CustomElement {
 
     constructor() {
         super();
+        addGlobalFonts();
     }
 
     setup(options?: StandardButtonOptions): void {

@@ -7,9 +7,9 @@ import "./heading-text";
 export default {
     title: "Example/HeadingText",
     // More on argTypes: https://storybook.js.org/docs/web-components/api/argtypes
-    argTypes: { 
-        tag: { control: 'select', options: ['h1', 'h2', 'h3', 'h4', 'h5'] },
-        size: { control: 'select', options: ['1', '2', '3', '4', '5'] } 
+    argTypes: {
+        tag: { control: "select", options: ["h1", "h2", "h3", "h4", "h5"] },
+        size: { control: "select", options: ["1", "2", "3", "4", "5"] }
     }
 } as Meta;
 
@@ -74,16 +74,3 @@ Heading1WithSize5.args = {
     size: "5",
     children: html`Heading 1 with size 5`
 };
-
-/*
-
- <heading-text><h1>Heading 1</h1></heading-text>
-<heading-text><h1 underline>Heading 1 with underline</h1></heading-text>
-<heading-text><h2>Heading 2</h2></heading-text>
-<heading-text><h2 underline>Heading 2 with underline</h2></heading-text>
-<heading-text><h3>Heading 3</h3></heading-text>
-<heading-text><h4>Heading 4</h4></heading-text>
-<heading-text><h5>Heading 5</h5></heading-text>
-<heading-text><h1 size="5">Heading 1 with size 5</h1></heading-text>
-
-*/

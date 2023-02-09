@@ -10,7 +10,7 @@ import {
 } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet } from "../../functions/guiHelpers";
+import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./gn-accordion.scss";
@@ -28,6 +28,7 @@ export class GnAccordion extends CustomElement {
 
     constructor() {
         super();
+        addGlobalFonts();
         addGlobalStylesheet("gn-accordion-styles", style);
     }
 

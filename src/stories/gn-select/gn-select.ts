@@ -2,10 +2,10 @@
 import { Component, CustomElement, CustomElementOptions, getShadowRootElement, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet } from "../../functions/guiHelpers";
+import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
 
 // Assets
-import ArrowDown from '../../assets/svg/arrow-down.svg';
+import ArrowDown from "../../assets/svg/arrow-down.svg";
 
 // Stylesheets
 import style from "./gn-select.scss";
@@ -23,13 +23,14 @@ export class GnSelect extends CustomElement {
 
     constructor() {
         super();
+        addGlobalFonts();
         addGlobalStylesheet("gn-select-styles", style);
     }
 
     connectedCallback() {
-        const arrowDownIconElement = getShadowRootElement(this, '#arrow-down-icon');
+        const arrowDownIconElement = getShadowRootElement(this, "#arrow-down-icon");
         arrowDownIconElement.innerHTML = ArrowDown;
-      }
+    }
 
     setup(options?: GnSelectOptions): void {}
 }

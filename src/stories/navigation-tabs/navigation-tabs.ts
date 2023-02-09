@@ -6,16 +6,16 @@ import {
     Prop,
     Dispatch,
     DispatchEmitter,
-    Listen,
-    Watch,
     getElement,
-    getShadowRootElement,
-    Toggle
+    getShadowRootElement
 } from "super-custom-elements";
 
 // Components
 import { NavigationTabHeading } from "./navigation-tab-heading/navigation-tab-heading";
 import { NavigationTabContent } from "./navigation-tab-content/navigation-tab-content";
+
+// Helpers
+import { addGlobalFonts } from "../../functions/guiHelpers";
 
 interface NavigationTabsOptions extends CustomElementOptions {
     active?: boolean;
@@ -50,16 +50,8 @@ export class NavigationTabs extends CustomElement {
 
     constructor() {
         super();
-
-        // Event handlers that are not attached to this element need to be bound
-        // if they need access to `this`.
         this.onSlotChange = this.onSlotChange.bind(this);
-
-        // For progressive enhancement, the markup should alternate between tabs
-        // and panels. Elements that reorder their children tend to not work well
-        // with frameworks. Instead shadow DOM is used to reorder the elements by
-        // using slots.
-        // this.attachShadow({ mode: 'open' });
+        addGlobalFonts();
     }
 
     setup(options?: NavigationTabsOptions): void {

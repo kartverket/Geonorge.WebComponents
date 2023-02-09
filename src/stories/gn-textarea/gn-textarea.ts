@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, Prop, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet } from "../../functions/guiHelpers";
+import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./gn-textarea.scss";
@@ -20,6 +20,7 @@ export class GnTextarea extends CustomElement {
 
     constructor() {
         super();
+        addGlobalFonts();
         addGlobalStylesheet("gn-textarea-styles", style);
     }
 

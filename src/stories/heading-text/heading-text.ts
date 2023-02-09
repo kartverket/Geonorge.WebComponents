@@ -1,11 +1,8 @@
 // Dependencies
-import {
-    Component,
-    CustomElement,
-    CustomElementOptions,
-    Prop,
-    Toggle
-} from "super-custom-elements";
+import { Component, CustomElement, CustomElementOptions, Prop, Toggle } from "super-custom-elements";
+
+// Helpers
+import { addGlobalFonts } from "../../functions/guiHelpers";
 
 interface HeadingTextOptions extends CustomElementOptions {}
 
@@ -15,15 +12,14 @@ interface HeadingTextOptions extends CustomElementOptions {}
     style: import("./heading-text.scss")
 })
 export class HeadingText extends CustomElement {
-
     @Prop() size: string;
     @Prop() tag: string;
     @Toggle() underline: boolean;
 
     constructor() {
         super();
+        addGlobalFonts();
     }
 
-    setup(options?: HeadingTextOptions): void {
-    }
+    setup(options?: HeadingTextOptions): void {}
 }
