@@ -5,6 +5,7 @@ content-container {
     margin: auto;
     font-family: $default-font;
     font-size: $default-font-size;
+    color: $default-text;
 
     @include breakpoint(tablet) {
         width: 750px;

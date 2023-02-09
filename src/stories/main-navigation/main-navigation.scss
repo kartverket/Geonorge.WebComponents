@@ -8,6 +8,7 @@ div.main-navigation {
     @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
     background-color: $navigation-bar-background;
     font-family: $default-font;
+    color: $default-text;
     position: fixed;
     width: 100%;
     top: 0;
@@ -16,9 +17,7 @@ div.main-navigation {
     @media print {
         position: relative;
         margin-bottom: -100px;
-        -webkit-box-shadow: none;
-        -moz-box-shadow: none;
-        box-shadow: none;
+        @include box-shadow(none);
     }
 
     &.static-position {

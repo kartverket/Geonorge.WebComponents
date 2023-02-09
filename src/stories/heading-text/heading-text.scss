@@ -1,5 +1,9 @@
 @import "../../style/all";
 
+::slotted(*) {
+    color: $default-text;
+}
+
 ::slotted(h1),
 ::slotted([size="1"]) {
     font-family: $header-font;

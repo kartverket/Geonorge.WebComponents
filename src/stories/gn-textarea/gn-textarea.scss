@@ -1,7 +1,6 @@
 @import "../../style/all";
 
 gn-textarea {
-    background-color: #fff;
     textarea {
         @include appearance(none);
         @include border-radius(4px);
@@ -12,12 +11,20 @@ gn-textarea {
         font-size: 12pt;
         padding: 6px 8px;
         min-height: 34px;
-        border: 1px solid #cfcfcf;
         box-shadow: none;
         position: relative;
         z-index: 1;
+        display: block;
+        &:not(:disabled) {
+            background-color: #fff;
+            border: 1px solid $default-border;
+            color: $default-text;
+        }
         &:disabled {
             background-color: $disabled-background;
+            color: $disabled-text;
+            border: 1px solid $disabled-border;
+            cursor: not-allowed;
         }
     }
     &[block] {

@@ -5,6 +5,7 @@ gn-table {
     border-collapse: collapse;
     width: 100%;
     font-family: $default-font;
+    color: $default-text;
     tr {
       th {
         border-bottom: 2px solid $primary-brand;

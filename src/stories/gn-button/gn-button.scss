@@ -26,7 +26,7 @@ gn-button {
         &:disabled {
             background-color: $disabled-background;
             color: $disabled-text;
-            border: 1px solid $disabled-text;
+            border: 1px solid $disabled-border;
             cursor: not-allowed;
             &:hover,
             &:focus {
