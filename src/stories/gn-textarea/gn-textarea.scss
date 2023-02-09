@@ -39,4 +39,34 @@ gn-textarea {
             width: 100%;
         }
     }
+    &[resize="none"] {
+        textarea {
+            resize: none;
+        }
+    }
+    &[resize="both"] {
+        textarea {
+            resize: both;
+        }
+    }
+    &[resize="horizontal"] {
+        textarea {
+            resize: horizontal;
+        }
+    }
+    &[resize="vertical"] {
+        textarea {
+            resize: vertical;
+        }
+    }
+    &[resize="initial"] {
+        textarea {
+            resize: initial;
+        }
+    }
+    &[resize="inherit"] {
+        textarea {
+            resize: inherit;
+        }
+    }
 }

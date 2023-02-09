@@ -1,5 +1,5 @@
 // Dependencies
-import { Component, CustomElement, CustomElementOptions, Toggle } from "super-custom-elements";
+import { Component, CustomElement, CustomElementOptions, Prop, Toggle } from "super-custom-elements";
 
 // Helpers
 import { addGlobalStylesheet } from "../../functions/guiHelpers";
@@ -16,6 +16,7 @@ interface GnTextareaOptions extends CustomElementOptions {}
 export class GnTextarea extends CustomElement {
     @Toggle() block: boolean;
     @Toggle() fullwidth: boolean;
+    @Prop() resize: string;
 
     constructor() {
         super();
