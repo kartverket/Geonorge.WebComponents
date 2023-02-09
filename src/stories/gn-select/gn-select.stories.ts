@@ -16,7 +16,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/web-components/writing-stories/introduction#using-args
 
 const Template = (props) => {
-    return html`<gn-select ?block=${props.block}>${props.children}</gn-select>`;
+    return html`<gn-select ?block=${props.block} ?fullwidth=${props.fullwidth}>${props.children}</gn-select>`;
 };
 
 const TemplateWithInlineLabel = (props) => {
@@ -31,6 +31,11 @@ export const Default = Template.bind({});
 // More on args: https://storybook.js.org/docs/web-components/writing-stories/args
 Default.args = {
     children: html`<select><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>`
+};
+
+export const Disabled = Template.bind({});
+Disabled.args = {
+    children: html`<select disabled><option>Option 1</option><option>Option 2</option><option>Option 3</option></select>`
 };
 
 export const BlockElement = Template.bind({});

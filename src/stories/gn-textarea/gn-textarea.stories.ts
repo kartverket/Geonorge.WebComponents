@@ -35,6 +35,12 @@ Default.args = {
     children: html`<textarea></textarea>`
 };
 
+export const Disabled = Template.bind({});
+// More on args: https://storybook.js.org/docs/web-components/writing-stories/args
+Disabled.args = {
+    children: html`<textarea disabled></textarea>`
+};
+
 export const BlockElement = Template.bind({});
 BlockElement.args = {
     block: true,

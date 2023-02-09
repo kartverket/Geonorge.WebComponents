@@ -40,6 +40,12 @@ BlockElement.args = {
     children: html`<input />`
 };
 
+export const Disabled = Template.bind({});
+Disabled.args = {
+    block: true,
+    children: html`<input disabled value="disabled input" />`
+};
+
 export const InlineWithLabel = TemplateWithInlineLabel.bind({});
 InlineWithLabel.args = {
     children: html`<input id="inline-label-input" />`
