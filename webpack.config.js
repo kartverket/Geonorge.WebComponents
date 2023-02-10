@@ -5,7 +5,6 @@ module.exports = {
   context: ROOT,
   entry: {
     'index': './index.ts',
-    'init': './init.ts',
     'BodyText': './stories/body-text/body-text.ts',
     'BreadcrumbList': './stories/breadcrumb-list/breadcrumb-list.ts',
     'ContentContainer': './stories/content-container/content-container.ts',
