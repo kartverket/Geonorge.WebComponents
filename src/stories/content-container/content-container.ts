@@ -1,5 +1,5 @@
 // Dependencies
-import { Component, CustomElement, CustomElementOptions } from "super-custom-elements";
+import { Component, CustomElement, CustomElementOptions, Toggle } from "super-custom-elements";
 
 // Stylesheets
 import style from "./content-container.scss";
@@ -14,6 +14,8 @@ interface ContentContainerOptions extends CustomElementOptions {}
     template: import("./content-container.html")
 })
 export class ContentContainer extends CustomElement {
+    @Toggle() fullwidth: boolean;
+
     constructor() {
         super();
         addGlobalFonts();
