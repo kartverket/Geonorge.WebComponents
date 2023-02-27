@@ -1,0 +1,11 @@
+.arrow-down-icon {
+    position: relative;
+    bottom: -1px;
+    z-index: 1;
+    width: 0;
+    pointer-events: none;
+    svg {
+        width: 14px;
+        height: 14px;
+    }
+}

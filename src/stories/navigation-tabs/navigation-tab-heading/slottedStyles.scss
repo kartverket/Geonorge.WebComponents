@@ -1,0 +1,13 @@
+navigation-tab-heading {
+    a {
+        color: #fff;
+        text-decoration: none;
+        margin: -10px -12px;
+        padding: 10px 12px;
+    }
+    &[selected="true"] {
+        a {
+            color: #555;
+        }
+    }
+}

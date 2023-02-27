@@ -5,19 +5,29 @@ module.exports = {
   context: ROOT,
   entry: {
     'index': './index.ts',
-    'init': './init.ts',
-    'GeonorgeFooter': './custom-elements/geonorge-footer/geonorge-footer.ts',
-    'MainNavigation': './custom-elements/main-navigation/main-navigation.ts',
-    'MainSearchField': './custom-elements/main-navigation/main-search-field/main-search-field.ts',
-    'SearchTypeSelector': './custom-elements/main-navigation/search-type-selector/search-type-selector.ts',
-    'DownloadItem': './custom-elements/main-navigation/download-items/download-items.ts',
-    'MapItem': './custom-elements/main-navigation/map-items/map-items.ts',
-    'MainMenu': './custom-elements/main-navigation/main-menu/main-menu.ts',
-    'NavigationTabs': './custom-elements/navigation-tabs/navigation-tabs.ts',
-    'NavigationTabHeading': './custom-elements/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
-    'NavigationTabContent': './custom-elements/navigation-tabs/navigation-tab-content/navigation-tab-content.ts',
-    'DataTable': './custom-elements/data-table/data-table.ts',
-    'StandardButton': './custom-elements/standard-button/standard-button'
+    'BodyText': './stories/body-text/body-text.ts',
+    'BreadcrumbList': './stories/breadcrumb-list/breadcrumb-list.ts',
+    'ContentContainer': './stories/content-container/content-container.ts',
+    'GeonorgeFooter': './stories/geonorge-footer/geonorge-footer.ts',
+    'GnAccordion': './stories/gn-accordion/gn-accordion.ts',
+    'GnButton': './stories/gn-button/gn-button.ts',
+    'GnDialog': './stories/gn-dialog/gn-dialog.ts',
+    'GnFieldContainer': './stories/gn-field-container/gn-field-container.ts',
+    'GnInput': './stories/gn-input/gn-input.ts',
+    'GnLabel': './stories/gn-label/gn-label.ts',
+    'GnSelect': './stories/gn-select/gn-select.ts',
+    'GnTable': './stories/gn-table/gn-table.ts',
+    'GnTextarea': './stories/gn-textarea/gn-textarea.ts',
+    'HeadingText': './stories/heading-text/heading-text.ts',
+    'MainNavigation': './stories/main-navigation/main-navigation.ts',
+    'MainSearchField': './stories/main-navigation/main-search-field/main-search-field.ts',
+    'SearchTypeSelector': './stories/main-navigation/search-type-selector/search-type-selector.ts',
+    'DownloadItem': './stories/main-navigation/download-items/download-items.ts',
+    'MapItem': './stories/main-navigation/map-items/map-items.ts',
+    'MainMenu': './stories/main-navigation/main-menu/main-menu.ts',
+    'NavigationTabs': './stories/navigation-tabs/navigation-tabs.ts',
+    'NavigationTabHeading': './stories/navigation-tabs/navigation-tab-heading/navigation-tab-heading.ts',
+    'NavigationTabContent': './stories/navigation-tabs/navigation-tab-content/navigation-tab-content.ts'
   },
   output: {
     path: DESTINATION,
@@ -62,6 +72,14 @@ module.exports = {
         ],
       },
       {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        type: 'asset/resource',
+      },
+      {
         enforce: 'pre',
         test: /\.js$/,
         use: 'source-map-loader'
@@ -75,6 +93,9 @@ module.exports = {
   },
   devtool: 'source-map',
   devServer: {
-    injectClient: false
+    client: false,
+    static: {
+      directory: path.join(__dirname, "demo")
+    }
   }
 };

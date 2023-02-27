@@ -1,5 +1,5 @@
 // Functions
-import { getCookie } from 'functions/cookieHelpers';
+import { getCookie } from './cookieHelpers';
 
 export const getDownloadItems = () => {
   return localStorage.orderItems && Array.isArray(JSON.parse(localStorage.orderItems))
@@ -9,7 +9,8 @@ export const getDownloadItems = () => {
 
 export const getDownloadItemsCount = () => {
   const isKartkatalog = window.location.hostname.toLowerCase().indexOf('kartkatalog') !== -1;
-  if (isKartkatalog) {
+  const isLocalKartkatalogEnvironment = window.sessionStorage.isLocalKartkatalogEnvironment;
+  if (isKartkatalog || isLocalKartkatalogEnvironment) {
     return getDownloadItems().length;
   } else {
     const downloadItemsCount = parseInt(getCookie('orderItems'));
@@ -29,14 +30,4 @@ export const removeDownloadItem = (itemToRemove) => {
     : [];
   localStorage.orderItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep !== itemToRemove.uuid));
   localStorage.removeItem(itemToRemove.uuid + ".metadata")
-
-
-  /*const tagData = {
-    name: itemToRemove.name,
-    uuid: itemToRemove.uuid,
-    accessIsOpendata: itemToRemove.accessIsOpendata,
-    accessIsRestricted: itemToRemove.accessIsRestricted,
-    organizationName: itemToRemove.organizationName,
-    theme: itemToRemove.theme
-  };*/
 }

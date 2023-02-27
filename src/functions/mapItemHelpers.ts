@@ -1,5 +1,5 @@
 // Functions
-import { getCookie } from 'functions/cookieHelpers';
+import { getCookie } from './cookieHelpers';
 
 export const getMapItems = () => {
   return localStorage.mapItems && Array.isArray(JSON.parse(localStorage.mapItems))
@@ -9,7 +9,8 @@ export const getMapItems = () => {
 
 export const getMapItemsCount = () => {
   const isKartkatalog = window.location.hostname.toLowerCase().indexOf('kartkatalog') !== -1;
-  if (isKartkatalog) {
+  const isLocalKartkatalogEnvironment = window.sessionStorage.isLocalKartkatalogEnvironment;
+  if (isKartkatalog || isLocalKartkatalogEnvironment) {
     return getMapItems().length;
   } else {
     const mapItemsCount = parseInt(getCookie('mapItems'));
@@ -22,14 +23,4 @@ export const removeMapItem = (itemToRemove) => {
     ? JSON.parse(localStorage.mapItems)
     : [];
   localStorage.mapItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep.Uuid !== itemToRemove.Uuid));
-
-
-  /*const tagData = {
-    name: itemToRemove.name,
-    uuid: itemToRemove.uuid,
-    accessIsOpendata: itemToRemove.accessIsOpendata,
-    accessIsRestricted: itemToRemove.accessIsRestricted,
-    organizationName: itemToRemove.organizationName,
-    theme: itemToRemove.theme
-  };*/
 }

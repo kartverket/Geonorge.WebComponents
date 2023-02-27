@@ -1,0 +1,55 @@
+@import "../../../style/all";
+
+div.search-type-selector {
+    width: 180px;
+    label {
+        font-size: 14px;
+        display: block;
+        cursor: pointer;
+        height: 18px;
+        .search-type-counter {
+            font-size: 0.9em;
+            &::before {
+                content: "(";
+            }
+            &::after {
+                content: ")";
+            }
+        }
+    }
+    input[type="radio"] {
+        @include border-radius(50%);
+        @include appearance(none);
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.2em;
+        height: 1.2em;
+        border: 0.15em solid rgb(125, 116, 109);
+        transform: translateY(-0.075em);
+        display: inline-grid;
+        place-content: center;
+    }
+
+    input[type="radio"]::before {
+        @include border-radius(50%);
+        content: "";
+        width: 0.6em;
+        height: 0.6em;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+    }
+
+    input[type="radio"]:checked {
+        border-color: $primary-text;
+        &::before {
+            transform: scale(1);
+            background-color: $primary-text;
+        }
+    }
+
+    input[type="radio"]:focus-visible {
+        outline: max(2px, 0.1em) solid $primary-text;
+        outline-offset: max(2px, 0.1em);
+    }
+}

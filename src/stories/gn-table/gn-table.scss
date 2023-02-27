@@ -1,0 +1,39 @@
+@import "../../style/all";
+
+gn-table {
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: $default-font;
+    color: $default-text;
+    tr {
+      th {
+        border-bottom: 2px solid $primary-brand;
+        color: $primary-text;
+        font-weight: normal;
+        height: 27px;
+        line-height: 20px;
+        text-align: left;
+        text-transform: uppercase;
+        padding: 8px 8px 0;
+      }
+      td {
+        padding: 8px;
+        border-bottom: 1px solid $default-border;
+        line-height: 20px;
+      }
+    }
+  }
+  &[hoverable] {
+    table {
+      tbody {
+        tr {
+          @include transition(background-color 0.15s ease-in-out);
+          &:hover {
+            background-color: $hover-background;
+          }
+        }
+      }
+    }
+  }
+}

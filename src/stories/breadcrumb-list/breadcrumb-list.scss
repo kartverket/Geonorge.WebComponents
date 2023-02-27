@@ -1,0 +1,32 @@
+@import "../../style/all";
+
+ul {
+    display: flex;
+    margin-top: 20px;
+    padding: 0;
+    li {
+        list-style-type: none;
+        padding: 0 10px 0 0;
+        &:first-of-type {
+            padding-left: 10px;
+        }
+        a {
+            font-family: $default-font;
+            color: $primary-text;
+            text-decoration: none;
+            font-weight: 400;
+        }
+        span {
+            font-family: $default-font;
+            color: $default-text;
+            font-weight: 400;
+        }
+        svg {
+            height: 1em;
+            overflow: visible;
+            vertical-align: -0.125em;
+            margin-left: 10px;
+            color: $default-text;
+        }
+    }
+}

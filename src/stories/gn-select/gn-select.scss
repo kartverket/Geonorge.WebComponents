@@ -1,0 +1,45 @@
+@import "../../style/all";
+
+gn-select {
+    border-radius: 4px;
+    select {
+        @include appearance(none);
+        @include border-radius(4px);
+        font-family: $default-font;
+        font-size: 16px;
+        background: none;
+        font-size: 12pt;
+        padding: 0 29px 0 8px;
+        height: 34px;
+        box-shadow: none;
+        position: relative;
+        z-index: 1;
+        margin-right: -27px;
+        &:not(:disabled) {
+            background-color: #fff;
+            border: 1px solid $default-border;
+            color: $default-text;
+        }
+        &:disabled {
+            background-color: $disabled-background;
+            border: 1px solid $disabled-border;
+            color: $disabled-text;
+            cursor: not-allowed;
+        }
+    }
+    &[block] {
+        display: block;
+    }
+    &:not([block]) {
+        display: inline-block;
+    }
+    &[fullwidth] {
+        display: block;
+        select {
+            width: 100%;
+        }
+    }
+    &:not([fullwidth]) {
+        padding-right: 9px;
+    }
+}

@@ -1,13 +1,10 @@
 main {
-    margin: 110px auto 0;
-    padding: 16px;
-    max-width: 1200px;
+    margin: 126px auto 0;
 }
 
-@media (min-width: 600px){
+@media (min-width: 600px) {
     main {
-        margin: 61px auto 0;
-        padding: 32px 26px;
+        margin: 93px auto 0;
     }
 }
 

@@ -1,320 +1,59 @@
-<!doctype html>
-<html lang="no">
-
-<head>
-  <meta charset="utf-8">
-  <title>Geonorge Web Components</title>
-  <meta content="width=device-width,initial-scale=1" name="viewport">
-  <link href="prism.css" rel="stylesheet" type="text/css" />
-  <link href="style.css" rel="stylesheet" type="text/css" />
-</head>
-
-<body>
-  <!-- Demonstrasjon av Web Components: -->
-  <main-navigation id="main-navigation" englishurl="/" norwegianurl="/" environment="dev" showsearchtypeselector
-    metadataresultsfound="3245" articlesresultsfound="17" language="en"></main-navigation>
-  <main>
-    <h1>geonorge-web-components</h1>
-    <h2>main-navigation</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <main-navigation englishurl="/" norwegianurl="/" environment="dev" language="no" staticposition>
-          </main-navigation>
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-          <code class="language-html"><script type="prism-html-markup">
-<main-navigation englishurl="/en" norwegianurl="/" environment="dev" language="no"></main-navigation>
-</script></code>
-    </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">JavaScript</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-          <code class="language-js">
-geonorge.MainNavigation.MainNavigation.setup('main-navigation', {
-  onSearch: event => {
-    const searchEvent = event.detail || null;
-    if (searchEvent){
-      // do stuff
-    }
-  },
-  onOpenEmptyMapItemsList: event => {
-    // do stuff
-  },
-  onOpenEmptyDownloadItemsList: event => {
-    // do stuff
-  },
-  onSearchTypeChange: (event) => {
-    const searchType = event.detail && event.detail.value || null;
-    if (searchType) {
-      // do stuff
-    }
-  },
-  onSignInClick: (event) => {
-    // do stuff
-  },
-  onSignOutClick: (event) => {
-    // do stuff
-  },
-  onNorwegianLanguageSelect: (event) => {
-    // do stuff
-  },
-  onEnglishLanguageSelect: (event) => {
-    // do stuff
+<!doctype html><html lang="en"><head><meta charset="utf-8"/><title>Webpack App</title><meta name="viewport" content="width=device-width,initial-scale=1"/><style>html, body {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
   }
-});
-          </code>
-        </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-json">
-{
-  id: string,
-  environment: string,
-  language: string,
-  searchString: string,
-  searchtype: string,
-  metadataresultsfound: string,
-  articlesresultsfound: string,
-  signinurl: string,
-  signouturl: string,
-  englishurl: string,
-  norwegianurl: string,
-  isLoggedIn: boolean,
-  showMenu: boolean,
-  showsearchtypeselector: boolean,
-  staticposition: boolean,
-  noshadow: boolean,
-  onSearch: function,
-  onSearchTypeChange: function,
-  onOpenEmptyMapItemsList: function,
-  onOpenEmptyDownloadItemsList: function,
-  onSignInClick: function,
-  onSignOutClick: function,
-  onNorwegianLanguageSelect: function,
-  onEnglishLanguageSelect: function
-}
-            </code>
-          </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
 
-    <h2>standard-button</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <standard-button content="default button"></standard-button>
-          <standard-button content="primary button" color="primary"></standard-button>
-          <standard-button content="success button" color="success"></standard-button>
-          <standard-button content="warning button" color="warning"></standard-button>
-          <standard-button content="danger button" color="danger"></standard-button>
-          <standard-button content="disabled button" disabled></standard-button>
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-html"><script type="prism-html-markup">
-<standard-button content="default button"></standard-button>
-<standard-button content="primary button" color="primary"></standard-button>
-<standard-button content="success button" color="success"></standard-button>
-<standard-button content="warning button" color="warning"></standard-button>
-<standard-button content="danger button" color="danger"></standard-button>
-<standard-button content="disabled button" disabled></standard-button>
-  </script></code>
-      </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-json">
-{
-  content: string,
-  color: string,
-  disabled: boolean
-}
-            </code>
-          </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
+  * {
+    box-sizing: border-box;
+  }</style><script>/* globals window */
+  /* eslint-disable no-underscore-dangle */
+  try {
+    if (window.top !== window) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__ = window.top.__REACT_DEVTOOLS_GLOBAL_HOOK__;
+    }
+  } catch (e) {
+    // eslint-disable-next-line no-console
+    console.warn('unable to connect to top frame for connecting dev tools');
+  }
 
-    <h2>navigation-tabs</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-html"><script type="prism-html-markup">
-<navigation-tabs>
-  <navigation-tab-heading slot="tab-heading">Tab 1</navigation-tab-heading>
-  <navigation-tab-content slot="tab-content">Content for tab 1</navigation-tab-content>
-  <navigation-tab-heading slot="tab-heading">Tab 2</navigation-tab-heading>
-  <navigation-tab-content slot="tab-content">Content for tab 2</navigation-tab-content>
-</navigation-tabs>
-  </script></code>
-      </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
-
-    <h2>data-table</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <data-table hoverable>
-            <table>
-              <thead>
-                <tr>
-                  <th>Heading 1</th>
-                  <th>Heading 2</th>
-                  <th>Heading 3</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Row 1 Data 1</td>
-                  <td>Row 1 Data 2</td>
-                  <td>Row 1 Data 3</td>
-                </tr>
-                <tr>
-                  <td>Row 2 Data 1</td>
-                  <td>Row 2 Data 2</td>
-                  <td>Row 2 Data 3</td>
-                </tr>
-              </tbody>
-            </table>
-          </data-table>
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-html"><script type="prism-html-markup">
-<data-table hoverable>
-  <table>
-    <thead>
-      <tr>
-        <th>Heading 1</th>
-        <th>Heading 2</th>
-        <th>Heading 3</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Row 1 Data 1</td>
-        <td>Row 1 Data 2</td>
-        <td>Row 1 Data 3</td>
-      </tr>
-      <tr>
-        <td>Row 2 Data 1</td>
-        <td>Row 2 Data 2</td>
-        <td>Row 2 Data 3</td>
-      </tr>
-    </tbody>
-  </table>
-</data-table>
-  </script></code>
-      </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-json">
-{
-  hoverable: boolean
-}
-            </code>
-          </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
-
-    <h2>geonorge-footer</h2>
-    <navigation-tabs>
-      <navigation-tab-heading slot="tab-heading">Preview</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <div class="example-preview">
-          <geonorge-footer language="no" version="2.3.15" />
-        </div>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">HTML</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-html"><script type="prism-html-markup">
-<geonorge-footer version="2.3.15"/>
-  </script></code>
-      </pre>
-      </navigation-tab-content>
-      <navigation-tab-heading slot="tab-heading">Attributes</navigation-tab-heading>
-      <navigation-tab-content slot="tab-content">
-        <pre class="example-code">
-            <code class="language-json">
-{
-  id: string,
-  environment: string,
-  version: string,
-  language: string,
-}
-            </code>
-          </pre>
-      </navigation-tab-content>
-    </navigation-tabs>
-
-  </main>
-
-  <geonorge-footer/>
-
-  <script src="localStorage.js"></script>
-  <script src="init.js"></script>
-  <script src="GeonorgeFooter.js"></script>
-  <script src="MainNavigation.js"></script>
-  <script src="NavigationTabs.js"></script>
-  <script src="DataTable.js"></script>
-  <script src="StandardButton.js"></script>
-
-  <script>
-    geonorge.MainNavigation.MainNavigation.setup('#main-navigation', {
-      onSearch: (event) => {
-        const searchString = event.detail && event.detail.searchString || null;
-        if (searchString) {
-          console.log(searchString);
-        }
-      },
-      onOpenEmptyMapItemsList: (event) => {
-        console.log("onOpenEmptyMapItemsList");
-      },
-      onOpenEmptyDownloadItemsList: (event) => {
-        console.log("onOpenEmptyDownloadItemsList");
-      },
-      onSearchTypeChange: (event) => {
-        const searchType = event.detail && event.detail.value || null;
-        if (searchType) {
-          console.log(searchType);
-        }
-      },
-      onSignInClick: (event) => {
-        event.target.setAttribute('isLoggedIn', '');
-      },
-      onSignOutClick: (event) => {
-        event.target.setAttribute('isLoggedIn', false);
-
-      },
-      onNorwegianLanguageSelect: (event) => {
-        document.getElementById('main-navigation').setAttribute('language', 'no');
-      },
-      onEnglishLanguageSelect: (event) => {
-        document.getElementById('main-navigation').setAttribute('language', 'en');
-      }
-    });
-  </script>
-
-  <script src="prism.js"></script>
-</body>
-
-</html>
+  window.onerror = function onerror(message, source, line, column, err) {
+    if (window.CONFIG_TYPE !== 'DEVELOPMENT') return;
+    // eslint-disable-next-line no-var, vars-on-top
+    var xhr = new window.XMLHttpRequest();
+    xhr.open('POST', '/runtime-error');
+    xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
+    xhr.send(
+      JSON.stringify({
+        /* eslint-disable object-shorthand */
+        message: message,
+        source: source,
+        line: line,
+        column: column,
+        error: err && { message: err.message, name: err.name, stack: err.stack },
+        origin: 'manager',
+        /* eslint-enable object-shorthand */
+      })
+    );
+  };</script><style>#root[hidden],
+      #docs-root[hidden] {
+        display: none !important;
+      }</style></head><body><div id="root"></div><div id="docs-root"></div><script>window['CONFIG_TYPE'] = "PRODUCTION";
+          
+      
+          
+            window['LOGLEVEL'] = "info";
+          
+      
+          
+            window['FEATURES'] = {"postcss":true,"emotionAlias":false,"warnOnLegacyHierarchySeparator":true,"buildStoriesJson":false,"storyStoreV7":false,"modernInlineRender":false,"breakingChangesV7":false,"interactionsDebugger":false,"babelModeV7":false,"argTypeTargetsV7":false,"previewMdx2":false};
+          
+      
+          
+      
+          
+      
+          
+            window['DOCS_MODE'] = false;</script><script src="runtime~main.1c1e77623c9b0aa50b44.manager.bundle.js"></script><script src="767.b43455ea449fa62fcdd9.manager.bundle.js"></script><script src="main.ebcbbad13b62db4aa512.manager.bundle.js"></script></body></html>
