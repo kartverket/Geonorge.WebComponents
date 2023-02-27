@@ -135,7 +135,7 @@ export class MainSearchField extends CustomElement {
             }
          });
       } else {
-         window.location.href = `${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchstring}`
+         window.location.href = `${getKartkatalogUrl(this.environment)}/metadata?text=${this.searchstring?.length ? encodeURI(this.searchstring.toString()) : ''}`
       }
 
    }
