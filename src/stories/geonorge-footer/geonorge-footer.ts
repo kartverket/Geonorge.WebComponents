@@ -11,7 +11,7 @@ import {
 
 // Helpers
 import { getGeonorgeUrl } from "../../functions/urlHelpers";
-import { addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalFonts, removeInnerHTML } from "../../functions/guiHelpers";
 
 // Assets
 import GeonorgeLogo from "../../assets/svg/geonorge-logo.svg";
@@ -55,40 +55,39 @@ export class GeonorgeFooter extends CustomElement {
         }
     }
 
-    getLinkList(
+    addLinkListContent(
+        linkListElement: HTMLUListElement,
         language: string,
         environment: string,
         accessibilitystatementurl: string,
         hideaccessibilitystatementlink: boolean
     ) {
-        const accessibilityStatementUrl = accessibilitystatementurl?.length
-            ? accessibilitystatementurl
-            : "https://uustatus.no/nb/erklaringer/publisert/8f3210cf-aa22-4d32-9fda-4460e3c3e05a";
-        let listContent = "";
-        if (language === "en") {
-            listContent = `
-            <li><a href="${getGeonorgeUrl(language, environment)}about/what-is-geonorge/">What is Geonorge</a></li>
-            `;
-            if (!hideaccessibilitystatementlink) {
-                listContent += `
-                <li><a href="${accessibilityStatementUrl}" target="_blank" rel="noopener noreferrer">Accessibility statement (in Norwegian)</a></li>
-                `;
-            }
-        } else {
-            listContent = `
-                <li><a href="${getGeonorgeUrl(language, environment)}aktuelt/om-geonorge/">Om Geonorge</a></li>
-                <li><a href="${getGeonorgeUrl(
-                    language,
-                    environment
-                )}aktuelt/Nyheter/annet/personvern-og-bruk-av-cookies/">Personvern og bruk av cookies</a></li>
-            `;
-            if (!hideaccessibilitystatementlink) {
-                listContent += `
-                <li><a href="${accessibilityStatementUrl}" target="_blank" rel="noopener noreferrer">Tilgjengelighetserklæring</a></li>
-                `;
-            }
+        const geonorgeUrl = getGeonorgeUrl(language, environment);
+
+        const whatIsGeonorgeLinkListElement = document.createElement("li");
+        const whatIsGeonorgeLinkElement = document.createElement("a");
+        whatIsGeonorgeLinkElement.innerText = language === "en" ? "What is Geonorge" : "Om Geonorge";
+        whatIsGeonorgeLinkElement.href =
+            language === "en" ? `${geonorgeUrl}about/what-is-geonorge/` : `${geonorgeUrl}aktuelt/om-geonorge/`;
+        whatIsGeonorgeLinkListElement.appendChild(whatIsGeonorgeLinkElement);
+
+        removeInnerHTML(linkListElement);
+        linkListElement.appendChild(whatIsGeonorgeLinkListElement);
+
+        if (!hideaccessibilitystatementlink) {
+            const accessibilityStatementLinkListElement = document.createElement("li");
+            const accessibilityStatementLinkElement = document.createElement("a");
+            accessibilityStatementLinkElement.innerText =
+                language === "en" ? "Accessibility statement (in Norwegian)" : "Tilgjengelighetserklæring";
+            accessibilityStatementLinkElement.href = accessibilitystatementurl?.length
+                ? accessibilitystatementurl
+                : "https://uustatus.no/nb/erklaringer/publisert/8f3210cf-aa22-4d32-9fda-4460e3c3e05a";
+            accessibilityStatementLinkElement.target = "_blank";
+            accessibilityStatementLinkElement.rel = "noopener noreferrer";
+            accessibilityStatementLinkListElement.appendChild(accessibilityStatementLinkElement);
+            linkListElement.appendChild(accessibilityStatementLinkListElement);
         }
-        return listContent;
+        return linkListElement;
     }
 
     getContactInfoText(language: string, environment: string) {
@@ -121,7 +120,8 @@ export class GeonorgeFooter extends CustomElement {
         const shouldHideAccessibilityStatementLink = this.shouldHideAccessibilityStatementLink(
             this.hideaccessibilitystatementlink
         );
-        this.linkListElement.innerHTML = this.getLinkList(
+        this.linkListElement = this.addLinkListContent(
+            this.linkListElement,
             this.language,
             this.environment,
             this.accessibilitystatementurl,
