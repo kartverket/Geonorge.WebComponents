@@ -91,27 +91,35 @@ div.search-results-container {
       background-color: #f5f6f7;
     }
     a.search-results-for-type-title {
-      padding: 8px 16px;
-      font-size: 1.2em;
+      font-family: $default-font;
+
+      padding: 6px 16px;
+      font-size: 18px;
       display: inline-block;
       span.search-results-for-type-number-badge {
         @include border-radius(6px);
-        padding: 2px 4px;
+        padding: 1px 4px;
         color: #fff;
         background-color: $primary-brand;
         display: inline-block;
-        font-size: 0.8em;
-        vertical-align: text-bottom;
+        font-size: 0.7em;
+        vertical-align: middle;
+        text-align: center;
+        min-width: 24px;
+        font-weight: bold;
       }
     }
     ul.search-results-for-type-list {
       list-style: none;
-      padding: 0 16px 8px 32px;
+      padding: 0 16px 12px 32px;
       margin: 0;
       li {
         a {
-          padding: 4px 0;
+          font-family: $default-font;
+          padding: 2px 0;
           display: block;
+          font-size: 14px;
+          font-weight: normal;
         }
       }
     }
