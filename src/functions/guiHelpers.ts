@@ -21,3 +21,9 @@ export const addGlobalFonts = () => {
         document.head.appendChild(style);
     }
 };
+
+export const removeInnerHTML = (element: HTMLElement) => {
+    while (element.firstChild) {
+        element.removeChild(element.firstChild);
+    }
+};
