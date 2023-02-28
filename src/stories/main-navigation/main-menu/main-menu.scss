@@ -27,12 +27,14 @@ button.menu-toggle-button {
         background-color: #414042;
     }
     span {
-        font-size: 1.2em;
-        font-weight: 700;
         padding: 2px 1px;
         vertical-align: middle;
         &.menu-title {
             display: none;
+            font-weight: 700;
+            vertical-align: middle;
+            font-family: "Open Sans";
+            font-size: 16px;
             @include breakpoint(laptop) {
                 display: inline-block;
             }
