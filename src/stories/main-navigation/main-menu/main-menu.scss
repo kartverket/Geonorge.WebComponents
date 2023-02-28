@@ -105,6 +105,7 @@ button.menu-toggle-button {
                 list-style: none;
                 margin: 15px;
                 color: #414042;
+                font-size: 15px;
                 &:first-child {
                     padding: 15px 0 0;
                 }
@@ -140,6 +141,13 @@ button.menu-toggle-button {
                             }
                         }
                     }
+                    &.hierarchy-level-1 {
+                        > li {
+                            > a {
+                                font-weight: normal;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -152,7 +160,8 @@ button.menu-toggle-button {
             &.open {
                 max-height: 56px;
             }
-            a, button {
+            a,
+            button {
                 display: inline-block;
                 padding: 0.25em 1em 0.25em 1.1em;
                 margin: 15px 0;
@@ -161,7 +170,7 @@ button.menu-toggle-button {
                 cursor: pointer;
                 border: none;
                 font-size: 16px;
-                font-weight: 300;
+                font-weight: normal;
                 font-family: $default-font;
                 background: none;
                 &:hover {

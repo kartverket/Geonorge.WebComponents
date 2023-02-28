@@ -6,6 +6,7 @@ content-container {
     font-family: $default-font;
     font-size: $default-font-size;
     color: $default-text;
+    line-height: 1.4;
     a {
         color: $primary-text;
         text-decoration: underline;

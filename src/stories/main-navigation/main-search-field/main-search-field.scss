@@ -31,7 +31,9 @@ div.main-search-field {
     background: #fff;
     border: 1px solid #dfdcda;
     border-right: 0;
-    font-size: 1.2em;
+    font-family: $default-font;
+    font-size: 18px;
+    font-weight: normal;
     flex: 1;
     margin: 0;
     padding: 0 0.75em;
@@ -92,10 +94,10 @@ div.search-results-container {
     }
     a.search-results-for-type-title {
       font-family: $default-font;
-
       padding: 6px 16px;
       font-size: 18px;
       display: inline-block;
+      font-weight: normal;
       span.search-results-for-type-number-badge {
         @include border-radius(6px);
         padding: 1px 4px;
