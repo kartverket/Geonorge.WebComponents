@@ -24,9 +24,9 @@ div.search-type-selector {
         margin: 0;
         font: inherit;
         color: currentColor;
-        width: 1.2em;
-        height: 1.2em;
-        border: 0.15em solid rgb(125, 116, 109);
+        width: 16px;
+        height: 16px;
+        border: 2px solid rgb(125, 116, 109);
         transform: translateY(-0.075em);
         display: inline-grid;
         place-content: center;
@@ -35,8 +35,8 @@ div.search-type-selector {
     input[type="radio"]::before {
         @include border-radius(50%);
         content: "";
-        width: 0.6em;
-        height: 0.6em;
+        width: 8px;
+        height: 8px;
         transform: scale(0);
         transition: 120ms transform ease-in-out;
     }
