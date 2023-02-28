@@ -1,31 +1,34 @@
 @import "../../style/all";
 
-ul {
+ul#breadcrumb-list {
     display: flex;
-    margin-top: 20px;
+    margin: 16px 0;
     padding: 0;
     li {
+        font-family: $default-font;
+        font-weight: 400;
+        font-size: 14px;
         list-style-type: none;
-        padding: 0 10px 0 0;
+        padding: 0 6px 0 0;
         &:first-of-type {
             padding-left: 10px;
-        }
-        a {
-            font-family: $default-font;
-            color: $primary-text;
-            text-decoration: none;
-            font-weight: 400;
         }
         span {
             font-family: $default-font;
             color: $default-text;
             font-weight: 400;
         }
+        a {
+            text-decoration: none;
+            span {
+                color: $primary-text;
+            }
+        }
         svg {
             height: 1em;
             overflow: visible;
             vertical-align: -0.125em;
-            margin-left: 10px;
+            margin-left: 6px;
             color: $default-text;
         }
     }

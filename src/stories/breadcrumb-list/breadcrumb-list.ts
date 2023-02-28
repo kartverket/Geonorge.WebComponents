@@ -10,7 +10,7 @@ import {
 } from "super-custom-elements";
 
 // Helpers
-import { addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalFonts, removeInnerHTML } from "../../functions/guiHelpers";
 
 // Assets
 import AngleRight from "../../assets/svg/angle-right.svg";
@@ -52,33 +52,62 @@ export class BreadcrumbList extends CustomElement {
         this.renderBreadcrumbsFromAttribute(this.breadcrumbs);
     }
 
-    public static getBreadCrumbListElement = (breadcrumbs: Array<BreadcrumbListItem>) => {
-        const breadcrumbsListElement = breadcrumbs?.length
-            ? breadcrumbs
-                  .map((breadcrumbListItem: BreadcrumbListItem, index) => {
-                      const activeHash = `${window.location.hash}`;
-                      const activePath = `${window.location.pathname}${window.location.hash}${window.location.search}`;
-                      const activeHref = window.location.href;
-                      const isActiveHash = activeHash.toLowerCase() === breadcrumbListItem.url.toLowerCase();
-                      const isActivePath = activePath.toLowerCase() === breadcrumbListItem.url.toLowerCase();
-                      const isActiveHref = activeHref.toLowerCase() === breadcrumbListItem.url.toLowerCase();
+    public static addBreadcrumbListContent = (
+        breadcrumbListElement: HTMLElement,
+        breadcrumbs: Array<BreadcrumbListItem>
+    ) => {
+        removeInnerHTML(breadcrumbListElement);
 
-                      const menuItemElement =
-                          breadcrumbListItem?.url?.length && !isActiveHash && !isActivePath && !isActiveHref
-                              ? `<a href="${breadcrumbListItem.url}">${breadcrumbListItem.name}</a>`
-                              : `<span>${breadcrumbListItem.name}</span>`;
+        if (breadcrumbs?.length) {
+            breadcrumbs.forEach((breadcrumbListItem: BreadcrumbListItem, index) => {
+                const activeHash = `${window.location.hash}`;
+                const activePath = `${window.location.pathname}${window.location.hash}${window.location.search}`;
+                const activeHref = window.location.href;
+                const isActiveHash = activeHash.toLowerCase() === breadcrumbListItem.url.toLowerCase();
+                const isActivePath = activePath.toLowerCase() === breadcrumbListItem.url.toLowerCase();
+                const isActiveHref = activeHref.toLowerCase() === breadcrumbListItem.url.toLowerCase();
 
-                      return `<li>${menuItemElement}${index < breadcrumbs.length - 1 ? AngleRight : ""}</li>`;
-                  })
-                  .join("")
-            : "";
-        return breadcrumbsListElement;
-    }
+                const breadcrumbListItemElement = document.createElement("li");
+                breadcrumbListItemElement.setAttribute("property", "itemListElement");
+                breadcrumbListItemElement.setAttribute("typeof", "ListItem");
+
+                const breadcrumbNameElement = document.createElement("span");
+                breadcrumbNameElement.setAttribute("property", "name");
+                breadcrumbNameElement.innerText = breadcrumbListItem.name;
+
+                const breadcrumbMetaElement = document.createElement("meta");
+                breadcrumbMetaElement.setAttribute("property", "position");
+                breadcrumbMetaElement.setAttribute("content", `${index + 1}`);
+
+                if (breadcrumbListItem?.url?.length && !isActiveHash && !isActivePath && !isActiveHref) {
+                    // If not active breadcrumb
+                    const breadcrumbLinkElement = document.createElement("a");
+                    breadcrumbLinkElement.href = breadcrumbListItem.url;
+                    breadcrumbLinkElement.setAttribute("property", "item");
+                    breadcrumbLinkElement.appendChild(breadcrumbNameElement);
+                    breadcrumbListItemElement.appendChild(breadcrumbLinkElement);
+                } else {
+                    breadcrumbListItemElement.appendChild(breadcrumbNameElement);
+                }
+
+                breadcrumbListItemElement.appendChild(breadcrumbMetaElement);
+
+                if (index < breadcrumbs.length - 1) {
+                    breadcrumbListItemElement.insertAdjacentHTML("beforeend", AngleRight);
+                }
+
+                breadcrumbListElement.appendChild(breadcrumbListItemElement);
+            });
+        }
+        return breadcrumbListElement;
+    };
 
     public static renderBreadcrumbs = (breadcrumbs: Array<BreadcrumbListItem>) => {
         const element = getElement<BreadcrumbList>("#breadcrumb-list");
-        const breadCrumbListShadow = getShadowRootElement(element, "#breadcrumb-list");
-        breadCrumbListShadow.innerHTML = BreadcrumbList.getBreadCrumbListElement(breadcrumbs);
+        let breadCrumbListShadow = getShadowRootElement(element, "#breadcrumb-list");
+        breadCrumbListShadow = BreadcrumbList.addBreadcrumbListContent(breadCrumbListShadow, breadcrumbs);
+        breadCrumbListShadow.setAttribute("vocab", "https://schema.org/");
+        breadCrumbListShadow.setAttribute("typeof", "BreadcrumbList");
     };
 
     renderBreadcrumbsFromAttribute = (breadcrumbs: string) => {
@@ -95,6 +124,7 @@ export class BreadcrumbList extends CustomElement {
 
     public static setup(selector: string, options: BreadcrumbListOptions) {
         const element = getElement<BreadcrumbList>(selector);
-        getShadowRootElement(element, "#breadcrumb-list").innerHTML = this.getBreadCrumbListElement(options.breadcrumbs);
+        let breadCrumbListShadow = getShadowRootElement(element, "#breadcrumb-list");
+        breadCrumbListShadow = BreadcrumbList.addBreadcrumbListContent(breadCrumbListShadow, options.breadcrumbs);
     }
 }

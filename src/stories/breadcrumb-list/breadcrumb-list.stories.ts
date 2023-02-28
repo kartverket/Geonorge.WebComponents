@@ -27,6 +27,10 @@ Default.args = {
         {
             name: "Second breadcrumb",
             url: "#second-breadcrumb"
+        },
+        {
+            name: "Current breadcrumb",
+            url: window.location.href
         }
     ]
 };
