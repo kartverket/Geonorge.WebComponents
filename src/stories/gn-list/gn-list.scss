@@ -4,9 +4,10 @@ gn-list {
     ul {
         margin: 0;
         padding: 0;
-        padding-inline-start: 28px;
-        -webkit-padding-start: 28px;
+        padding-inline-start: 22px;
+        -webkit-padding-start: 22px;
         list-style: none;
+        position: relative;
         &:not([block]) {
             display: inline-block;
         }
@@ -22,10 +23,9 @@ gn-list {
             &:before {
                 color: $primary-brand;
                 content: "•";
-                font-size: 28px;
+                font-size: 24px;
                 font-style: normal;
-                left: 0;
-                margin-left: 24px;
+                left: 8px;
                 position: absolute;
             }
         }
