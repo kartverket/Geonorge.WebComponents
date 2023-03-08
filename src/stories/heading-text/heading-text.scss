@@ -71,6 +71,7 @@ heading-text {
         font-size: 20px;
         font-weight: 300;
         margin-bottom: 0;
+        margin-top: 20px;
         @include breakpoint(tablet) {
             font-size: 21px;
         }
@@ -81,6 +82,7 @@ heading-text {
         font-size: 18px;
         font-weight: 300;
         margin-bottom: 0;
+        margin-top: 12px;
         @include breakpoint(tablet) {
             font-size: 19px;
         }
@@ -91,6 +93,7 @@ heading-text {
         font-size: 15px;
         font-weight: 600;
         margin-bottom: 0;
+        margin-top: 8px;
         @include breakpoint(tablet) {
             font-size: 16px;
         }
