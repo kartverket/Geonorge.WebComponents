@@ -1,0 +1,23 @@
+@import "../../style/all";
+
+gn-list {
+    ul,
+    ol {
+        margin: 0;
+        padding: 0;
+        padding-inline-start: 28px;
+        -webkit-padding-start: 28px;
+        &:not([block]) {
+            display: inline-block;
+        }
+        &[block] {
+            display: block;
+        }
+        li {
+            font-family: $default-font;
+            color: $default-text;
+            font-weight: normal;
+            line-height: 1.4em;
+        }
+    }
+}

@@ -15,6 +15,7 @@ module.exports = {
     'GnFieldContainer': './stories/gn-field-container/gn-field-container.ts',
     'GnInput': './stories/gn-input/gn-input.ts',
     'GnLabel': './stories/gn-label/gn-label.ts',
+    'GnList': './stories/gn-list/gn-list.ts',
     'GnSelect': './stories/gn-select/gn-select.ts',
     'GnTable': './stories/gn-table/gn-table.ts',
     'GnTextarea': './stories/gn-textarea/gn-textarea.ts',

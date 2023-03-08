@@ -8,6 +8,7 @@ export * from "./stories/gn-dialog/gn-dialog";
 export * from "./stories/gn-field-container/gn-field-container";
 export * from "./stories/gn-input/gn-input";
 export * from "./stories/gn-label/gn-label";
+export * from "./stories/gn-list/gn-list";
 export * from "./stories/gn-select/gn-select";
 export * from "./stories/gn-table/gn-table";
 export * from "./stories/gn-textarea/gn-textarea";
