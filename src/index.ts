@@ -4,6 +4,7 @@ export * from "./stories/content-container/content-container";
 export * from "./stories/geonorge-footer/geonorge-footer";
 export * from "./stories/gn-accordion/gn-accordion";
 export * from "./stories/gn-button/gn-button";
+export * from "./stories/gn-badge-list/gn-badge-list";
 export * from "./stories/gn-dialog/gn-dialog";
 export * from "./stories/gn-field-container/gn-field-container";
 export * from "./stories/gn-input/gn-input";
