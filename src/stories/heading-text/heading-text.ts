@@ -2,14 +2,16 @@
 import { Component, CustomElement, CustomElementOptions, Prop, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalFonts, addGlobalStylesheet } from "../../functions/guiHelpers";
+
+// Stylesheets
+import style from "./heading-text.scss";
 
 interface HeadingTextOptions extends CustomElementOptions {}
 
 @Component({
     tag: "heading-text",
-    template: import("./heading-text.html"),
-    style: import("./heading-text.scss")
+    template: import("./heading-text.html")
 })
 export class HeadingText extends CustomElement {
     @Prop() size: string;
@@ -19,6 +21,7 @@ export class HeadingText extends CustomElement {
     constructor() {
         super();
         addGlobalFonts();
+        addGlobalStylesheet("heading-text-styles", style);
     }
 
     setup(options?: HeadingTextOptions): void {}
