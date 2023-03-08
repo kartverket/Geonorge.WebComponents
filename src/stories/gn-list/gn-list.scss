@@ -1,12 +1,12 @@
 @import "../../style/all";
 
 gn-list {
-    ul,
-    ol {
+    ul {
         margin: 0;
         padding: 0;
         padding-inline-start: 28px;
         -webkit-padding-start: 28px;
+        list-style: none;
         &:not([block]) {
             display: inline-block;
         }
@@ -18,6 +18,16 @@ gn-list {
             color: $default-text;
             font-weight: normal;
             line-height: 1.4em;
+            font-style: italic;
+            &:before {
+                color: $primary-brand;
+                content: "•";
+                font-size: 28px;
+                font-style: normal;
+                left: 0;
+                margin-left: 24px;
+                position: absolute;
+            }
         }
     }
 }
