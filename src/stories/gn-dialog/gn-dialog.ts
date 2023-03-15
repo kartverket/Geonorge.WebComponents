@@ -4,6 +4,7 @@ import {
     CustomElement,
     CustomElementOptions,
     getShadowRootElement,
+    Prop,
     Toggle,
     Watch
 } from "super-custom-elements";
@@ -26,6 +27,7 @@ interface GnDialogOptions extends CustomElementOptions {}
 })
 export class GnDialog extends CustomElement {
     @Toggle() show: boolean;
+    @Prop() width: string;
 
     constructor() {
         super();
@@ -92,6 +94,12 @@ export class GnDialog extends CustomElement {
         shouldShowDialog
             ? dialogContainerElement.classList.add("visible")
             : dialogContainerElement.classList.remove("visible");
+    }
+
+    @Watch("width")
+    widthChanged() {
+        const dialogContainerElement = getShadowRootElement(this, "#dialog-content");
+        dialogContainerElement.style.maxWidth = this.width;
     }
 
     setup(options?: GnDialogOptions): void {}

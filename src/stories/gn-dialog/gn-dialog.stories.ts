@@ -14,7 +14,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/web-components/writing-stories/introduction#using-args
 
 const Template = (props) => {
-    return html`<gn-dialog ?show=${props.show}>${props.children}</gn-dialog>`;
+    return html`<gn-dialog ?show=${props.show} width=${props.width}>${props.children}</gn-dialog>`;
 };
 
 export const Default = Template.bind({});
@@ -22,4 +22,11 @@ export const Default = Template.bind({});
 Default.args = {
     children: html`<body-text>Example text and <a href="#">example link</a>.</body-text>`,
     show: true
+};
+
+export const CustomWidth = Template.bind({});
+CustomWidth.args = {
+    children: html`<body-text>Example text and <a href="#">example link</a>.</body-text>`,
+    show: true,
+    width: "700px"
 };
