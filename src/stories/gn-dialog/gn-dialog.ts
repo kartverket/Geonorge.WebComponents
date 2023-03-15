@@ -27,7 +27,9 @@ interface GnDialogOptions extends CustomElementOptions {}
 })
 export class GnDialog extends CustomElement {
     @Toggle() show: boolean;
+    @Toggle() nopadding: boolean;
     @Prop() width: string;
+    @Prop() overflow: string;
 
     constructor() {
         super();
@@ -77,6 +79,10 @@ export class GnDialog extends CustomElement {
         return show?.toString() === "" || show?.toString() === "true";
     }
 
+    shouldHaveNoPadding(noPadding) {
+        return noPadding?.toString() === "" || noPadding?.toString() === "true";
+    }
+
     keyDownFunction = (event) => {
         switch (event.keyCode) {
             case 27: // Escape
@@ -96,10 +102,26 @@ export class GnDialog extends CustomElement {
             : dialogContainerElement.classList.remove("visible");
     }
 
+    @Watch("nopadding")
+    nopaddingChanged() {
+        const shouldHaveNoPadding = this.shouldHaveNoPadding(this.nopadding);
+        const dialogContentElement = getShadowRootElement(this, "#dialog-content");
+        shouldHaveNoPadding
+            ? dialogContentElement.classList.add("noPadding")
+            : dialogContentElement.classList.remove("noPadding");
+    }
+
+    @Watch("overflow")
+    overflowChanged() {
+        const overflow = this.overflow?.length ? this.overflow : "visible";
+        const dialogContentElement = getShadowRootElement(this, "#dialog-content");
+        dialogContentElement.style.overflow = overflow;
+    }
+
     @Watch("width")
     widthChanged() {
-        const dialogContainerElement = getShadowRootElement(this, "#dialog-content");
-        dialogContainerElement.style.maxWidth = this.width;
+        const dialogContentElement = getShadowRootElement(this, "#dialog-content");
+        dialogContentElement.style.maxWidth = this.width;
     }
 
     setup(options?: GnDialogOptions): void {}

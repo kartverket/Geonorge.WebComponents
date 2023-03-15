@@ -8,13 +8,18 @@ import "../body-text/body-text";
 export default {
     title: "Example/GnDialog",
     // More on argTypes: https://storybook.js.org/docs/web-components/api/argtypes
-    argTypes: {}
+    argTypes: {
+        show: { control: "boolean" },
+        noPadding: { control: "boolean" },
+        width: { control: "string" },
+        overflow: { control: 'select', options: ['auto', 'hidden', 'inherit', 'initial', 'overlay', 'revert', 'scroll', 'unset', 'visible'] },
+    }
 } as Meta;
 
 // More on component templates: https://storybook.js.org/docs/web-components/writing-stories/introduction#using-args
 
 const Template = (props) => {
-    return html`<gn-dialog ?show=${props.show} width=${props.width}>${props.children}</gn-dialog>`;
+    return html`<gn-dialog ?show=${props.show} ?nopadding=${props.noPadding} width=${props.width} overflow=${props.overflow}>${props.children}</gn-dialog>`;
 };
 
 export const Default = Template.bind({});
