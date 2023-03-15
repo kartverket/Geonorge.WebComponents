@@ -17,6 +17,7 @@
         padding: 8px 28px;
         z-index: 2;
         justify-content: center;
+        box-sizing: border-box;
         @include breakpoint(laptop) {
             padding: 36px;
         }
