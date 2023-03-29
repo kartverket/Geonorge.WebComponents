@@ -7,6 +7,7 @@ export * from "./stories/gn-button/gn-button";
 export * from "./stories/gn-badge-list/gn-badge-list";
 export * from "./stories/gn-dialog/gn-dialog";
 export * from "./stories/gn-field-container/gn-field-container";
+export * from "./stories/gn-icon/gn-icon";
 export * from "./stories/gn-input/gn-input";
 export * from "./stories/gn-label/gn-label";
 export * from "./stories/gn-list/gn-list";

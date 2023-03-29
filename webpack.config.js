@@ -14,6 +14,7 @@ module.exports = {
     'GnButton': './stories/gn-button/gn-button.ts',
     'GnDialog': './stories/gn-dialog/gn-dialog.ts',
     'GnFieldContainer': './stories/gn-field-container/gn-field-container.ts',
+    'GnIcon': './stories/gn-icon/gn-icon.ts',
     'GnInput': './stories/gn-input/gn-input.ts',
     'GnLabel': './stories/gn-label/gn-label.ts',
     'GnList': './stories/gn-list/gn-list.ts',
