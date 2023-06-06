@@ -1,5 +1,5 @@
 // Functions
-import { getCookie } from './cookieHelpers';
+import { getCookie, setCookie } from './cookieHelpers';
 
 export const getMapItems = () => {
   return localStorage.mapItems && Array.isArray(JSON.parse(localStorage.mapItems))
@@ -23,4 +23,7 @@ export const removeMapItem = (itemToRemove) => {
     ? JSON.parse(localStorage.mapItems)
     : [];
   localStorage.mapItems = JSON.stringify(selectedItems.filter(itemToKeep => itemToKeep.Uuid !== itemToRemove.Uuid));
+
+  const mapItemsCount = getMapItemsCount();
+  setCookie('mapItems', mapItemsCount, 7);
 }
