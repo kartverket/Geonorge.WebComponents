@@ -40,6 +40,7 @@ gn-button {
     &:not([color]) {
         button,
         a {
+            text-decoration: none;
             &:not(:disabled) {
                 background-color: $default-background;
                 color: $default-text;
@@ -54,6 +55,7 @@ gn-button {
     &[color="primary"] {
         button,
         a {
+            text-decoration: none;
             &:not(:disabled) {
                 background-color: $primary-background;
                 color: #fff;
@@ -67,6 +69,7 @@ gn-button {
     &[color="success"] {
         button,
         a {
+            text-decoration: none;
             &:not(:disabled) {
                 background-color: $success-background;
                 color: #fff;
@@ -80,6 +83,7 @@ gn-button {
     &[color="warning"] {
         button,
         a {
+            text-decoration: none;
             &:not(:disabled) {
                 background-color: $warning-background;
                 color: #fff;
@@ -93,6 +97,7 @@ gn-button {
     &[color="danger"] {
         button,
         a {
+            text-decoration: none;
             &:not(:disabled) {
                 background-color: $danger-background;
                 color: #fff;
