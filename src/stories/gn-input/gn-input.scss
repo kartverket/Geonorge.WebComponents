@@ -1,6 +1,21 @@
 @import "../../style/all";
 
 gn-input {
+    &[width] {
+        input[type="text"],
+        input[type="number"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="datetime-local"],
+        input[type="time"],
+        input[type="url"],
+        input[type="search"],
+        input[type="password"],
+        input:not([type]) {
+            width: 100%;
+        }
+    }
     input[type="text"],
     input[type="number"],
     input[type="email"],
@@ -14,11 +29,12 @@ gn-input {
     input:not([type]) {
         @include appearance(none);
         @include border-radius(4px);
+        box-sizing: border-box;
         font-family: $default-font;
         font-size: 16px;
         font-size: 12pt;
         padding: 0 8px;
-        height: 34px;
+        height: 32px;
         box-shadow: none;
         position: relative;
         z-index: 1;

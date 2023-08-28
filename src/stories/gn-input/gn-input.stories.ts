@@ -17,7 +17,7 @@ export default {
 // More on component templates: https://storybook.js.org/docs/web-components/writing-stories/introduction#using-args
 
 const Template = (props) => {
-    return html`<gn-input ?block=${props.block} ?fullwidth=${props.fullwidth}>${props.children}</gn-input>`;
+    return html`<gn-input width=${props.width} ?block=${props.block} ?fullwidth=${props.fullwidth}>${props.children}</gn-input>`;
 };
 
 const TemplateWithInlineLabel = (props) => {
@@ -48,6 +48,12 @@ export const Disabled = Template.bind({});
 Disabled.args = {
     block: true,
     children: html`<input disabled value="disabled input" />`
+};
+
+export const CustomWidthElement = Template.bind({});
+CustomWidthElement.args = {
+    width: "360px",
+    children: html`<input />`
 };
 
 export const InlineWithLabel = TemplateWithInlineLabel.bind({});
