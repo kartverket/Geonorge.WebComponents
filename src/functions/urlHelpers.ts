@@ -68,6 +68,6 @@ const handleSearchResultsClick = (searchString: string, pushToDataLayer?: Functi
 export const renderDropdownResultLink = (searchResult: SearchResultsForType, resultType: string, searchString: string, environment: string, pushToDataLayer?: Function) => {
     return resultType === 'articles'
         ? `<a onClick="${handleSearchResultsClick(searchString, pushToDataLayer)}" href="${searchResult.ShowDetailsUrl ? searchResult.ShowDetailsUrl : '#'}">${searchResult.Title}</a>`
-        : `<a onClick="${handleSearchResultsClick(searchString, pushToDataLayer)}" href="${getKartkatalogUrl(environment)}/metadata/${convertTextToUrlSlug(searchResult.Title)}/${searchResult.Uuid}">${searchResult.Title}</a>`
+        : `<a onClick="${handleSearchResultsClick(searchString, pushToDataLayer)}" href="${getKartkatalogUrl(environment)}/metadata/${convertTextToUrlSlug(searchResult.Title)}/${searchResult.Uuid}?search=${searchString}">${searchResult.Title}</a>`
 
 }
