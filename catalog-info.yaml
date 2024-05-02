@@ -1,0 +1,38 @@
+# nonk8s
+apiVersion: "backstage.io/v1alpha1"
+kind: "Component"
+metadata:
+  name: "Geonorge.WebComponents"
+  tags:
+  - "public"
+spec:
+  type: "library"
+  lifecycle: "production"
+  owner: "datadeling_og_distribusjon"
+  system: "geonorge"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Group"
+metadata:
+  name: "security_champion_Geonorge.WebComponents"
+  title: "Security Champion Geonorge.WebComponents"
+spec:
+  type: "security_champion"
+  parent: "land_security_champions"
+  members:
+  - "dagolav"
+  children:
+  - "resource:Geonorge.WebComponents"
+---
+apiVersion: "backstage.io/v1alpha1"
+kind: "Resource"
+metadata:
+  name: "Geonorge.WebComponents"
+  links:
+  - url: "https://github.com/kartverket/Geonorge.WebComponents"
+    title: "Geonorge.WebComponents på GitHub"
+spec:
+  type: "repo"
+  owner: "security_champion_Geonorge.WebComponents"
+  dependencyOf:
+  - "component:Geonorge.WebComponents"
