@@ -41,7 +41,9 @@ export class GeonorgeFooter extends CustomElement {
     @Prop() version: string;
     @Prop() language: string;
     @Prop() accessibilitystatementurl: string;
+    @Prop() privacyurl: string;
     @Toggle() hideaccessibilitystatementlink: boolean;
+    @Toggle() hideprivacylink: boolean;
 
     constructor() {
         super();
@@ -60,7 +62,9 @@ export class GeonorgeFooter extends CustomElement {
         language: string,
         environment: string,
         accessibilitystatementurl: string,
-        hideaccessibilitystatementlink: boolean
+        privacyurl: string,
+        hideaccessibilitystatementlink: boolean,
+        hideprivacylink: boolean
     ) {
         const geonorgeUrl = getGeonorgeUrl(language, environment);
 
@@ -87,6 +91,21 @@ export class GeonorgeFooter extends CustomElement {
             accessibilityStatementLinkListElement.appendChild(accessibilityStatementLinkElement);
             linkListElement.appendChild(accessibilityStatementLinkListElement);
         }
+
+        if (!hideprivacylink) {
+            const privacyLinkListElement = document.createElement("li");
+            const privacyLinkElement = document.createElement("a");
+            privacyLinkElement.innerText =
+                language === "en" ? "Data Protection Policy (in Norwegian)" : "Personvern og bruk av cookies";
+            privacyLinkElement.href = privacyurl?.length
+                ? privacyurl
+                : "https://www.geonorge.no/aktuelt/Se-siste-nyheter/nyheter2/annet/personvern-og-bruk-av-cookies/";
+            privacyLinkElement.target = "_blank";
+            privacyLinkElement.rel = "noopener noreferrer";
+            privacyLinkListElement.appendChild(privacyLinkElement);
+            linkListElement.appendChild(privacyLinkListElement);
+        }
+
         return linkListElement;
     }
 
@@ -116,16 +135,23 @@ export class GeonorgeFooter extends CustomElement {
         );
     }
 
+    shouldHidePrivacyLink(hideprivacylink) {
+        return hideprivacylink?.toString() === "" || hideprivacylink?.toString() === "true";
+    }
+
     renderLinkList() {
         const shouldHideAccessibilityStatementLink = this.shouldHideAccessibilityStatementLink(
             this.hideaccessibilitystatementlink
         );
+        const shouldHidePrivacyLink = this.shouldHidePrivacyLink(this.hideprivacylink);
         this.linkListElement = this.addLinkListContent(
             this.linkListElement,
             this.language,
             this.environment,
             this.accessibilitystatementurl,
-            shouldHideAccessibilityStatementLink
+            this.privacyurl,
+            shouldHideAccessibilityStatementLink,
+            shouldHidePrivacyLink
         );
     }
 
@@ -178,6 +204,16 @@ export class GeonorgeFooter extends CustomElement {
 
     @Watch("accessibilitystatementurl")
     accessibilitystatementurlChanged() {
+        this.renderLinkList();
+    }
+
+    @Watch("privacyurl")
+    privacyurlChanged() {
+        this.renderLinkList();
+    }
+
+    @Watch("hideprivacylink")
+    hideprivacylinkChanged() {
         this.renderLinkList();
     }
 }

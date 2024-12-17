@@ -23,7 +23,13 @@ export default {
             defaultValue: "https://uustatus.no/nb/erklaringer/publisert/8f3210cf-aa22-4d32-9fda-4460e3c3e05a",
             description: "URL for accessibility statement"
         },
-        hideaccessibilitystatementlink: { control: "boolean" }
+        hideaccessibilitystatementlink: { control: "boolean" },
+        privacyurl: {
+            type: { name: "string", required: false },
+            defaultValue: "https://www.geonorge.no/aktuelt/Se-siste-nyheter/nyheter2/annet/personvern-og-bruk-av-cookies/",
+            description: "URL for Data Protection Policy"
+        },
+        hideprivacylink: { control: "boolean" },
     }
 } as Meta;
 
@@ -36,6 +42,8 @@ const Template = (props) =>
         version=${props.version}
         accessibilitystatementurl=${props.accessibilitystatementurl}
         ?hideaccessibilitystatementlink=${props.hideaccessibilitystatementlink}
+        privacyurl=${props.privacyurl}
+        ?hideprivacylink=${props.hideprivacylink}
     />`;
 
 export const Default = Template.bind({});
@@ -51,7 +59,7 @@ WithCustomAccessibilityStatementLink.args = {
     language: "no",
     environment: "dev",
     version: "2.3.15",
-    accessibilitystatementurl: "custom-accessibility-url-here"
+    accessibilitystatementurl: "custom-accessibility-url-here",
 };
 
 export const WithoutAccessibilityStatementLink = Template.bind({});
@@ -61,3 +69,21 @@ WithoutAccessibilityStatementLink.args = {
     version: "2.3.15",
     hideaccessibilitystatementlink: true
 };
+
+export const WithCustomPrivacyLink = Template.bind({});
+WithCustomPrivacyLink.args = {
+    language: "no",
+    environment: "dev",
+    version: "2.3.15",
+    privacyurl: "custom-privacy-url-here",
+};
+
+export const WithAccessibilityStatementLinkAndCustomAccessibilityStatementLink = Template.bind({});
+WithAccessibilityStatementLinkAndCustomAccessibilityStatementLink.args = {
+    language: "no",
+    environment: "dev",
+    version: "2.3.15",
+    accessibilitystatementurl: "custom-privacy-url-here",
+    privacyurl: "custom-privacy-url-here"
+};
+
