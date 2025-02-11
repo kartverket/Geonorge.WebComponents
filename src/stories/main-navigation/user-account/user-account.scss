@@ -1,0 +1,31 @@
+@import "../../../style/all";
+
+.user-account-button {
+  display: flex;
+  flex-direction: row;
+  padding: 6px 8px 6px 8px;
+  width: 95px;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 12px;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+    .login-account-icon {
+        svg {
+            width: 21px;
+            height: 22px;
+            @include breakpoint(phablet) {
+                width: 16px;
+                height: 17px;
+            }
+        }
+    }
+    .login-account-label {
+        white-space: nowrap;   
+        padding-bottom: 1px;     
+    }
+
+}

@@ -17,6 +17,7 @@ import { MainSearchField } from "./main-search-field/main-search-field";
 import { SearchTypeSelector } from "./search-type-selector/search-type-selector";
 import { DownloadItems } from "./download-items/download-items";
 import { MapItems } from "./map-items/map-items";
+import { UserAccount } from "./user-account/user-account";
 import { MainMenu } from "./main-menu/main-menu";
 
 // Assets
@@ -42,6 +43,7 @@ interface MainNavigationOptions extends CustomElementOptions {
     onEnglishLanguageSelect?: () => void;
     onDownloadItemsChange?: () => void;
     onMapItemsChange?: () => void;
+    onUserAccountClick?: () => void;
 }
 
 interface MenuItem extends Object {
@@ -61,6 +63,7 @@ export class MainNavigation extends CustomElement {
     private searchTypeSelector: HTMLElement;
     private logoElement: HTMLAnchorElement;
     private mainMenu: HTMLElement;
+    private userAccount: HTMLElement;
     private mapItemsElement: HTMLElement;
     private downloadItemsElement: HTMLElement;
 
@@ -123,6 +126,7 @@ export class MainNavigation extends CustomElement {
         this.mainMenu = getShadowRootElement(this, "#main-menu");
         this.mapItemsElement = getShadowRootElement(this, "#map-items");
         this.downloadItemsElement = getShadowRootElement(this, "#download-items");
+        this.userAccount = getShadowRootElement(this, "#user-account");
 
         if (this.searchField) {
             this.searchField.setAttribute(
@@ -167,12 +171,15 @@ export class MainNavigation extends CustomElement {
         }
         if (this.signinurl) {
             this.mainMenu.setAttribute("signinurl", this.signinurl);
+            this.userAccount.setAttribute("signinurl", this.signinurl);
         }
         if (this.signouturl) {
             this.mainMenu.setAttribute("signouturl", this.signouturl);
+            this.userAccount.setAttribute("signouturl", this.signouturl);
         }
         if (this.isloggedin) {
             this.mainMenu.setAttribute("isLoggedIn", "");
+            this.userAccount.setAttribute("isLoggedIn", "");
         }
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             if (!this.searchTypeSelector) {
@@ -198,13 +205,14 @@ export class MainNavigation extends CustomElement {
         const mapItems = new MapItems();
         const downloadItemsElement = new DownloadItems();
         const mainSearchField = new MainSearchField();
+        const userAccount = new UserAccount();
         const mainMenu = new MainMenu();
     }
 
     @Watch("isloggedin")
     isLoggedInChanged() {
         if (this.isloggedin) {
-            this.mainMenu.setAttribute("isLoggedIn", "");
+            this.userAccount.setAttribute("isLoggedIn", "");
         }
     }
 
