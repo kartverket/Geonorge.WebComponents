@@ -1,6 +1,6 @@
 @import "../../../style/all";
 
-.user-account-button {
+button.user-account-button {
   display: flex;
   flex-direction: row;
   padding: 6px 8px 6px 8px;
@@ -13,19 +13,66 @@
     text-decoration: underline;
   }
 
-    .login-account-icon {
-        svg {
-            width: 21px;
-            height: 22px;
-            @include breakpoint(phablet) {
-                width: 16px;
-                height: 17px;
-            }
-        }
-    }
+    
     .login-account-label {
         white-space: nowrap;   
         padding-bottom: 1px;     
     }
-
+    span {
+        padding: 2px 1px;
+        vertical-align: middle;
+        &.menu-title {
+            display: none;
+            font-weight: 700;
+            vertical-align: middle;
+            font-family: "Open Sans";
+            font-size: 16px;
+            @include breakpoint(laptop) {
+                display: inline-block;
+            }
+        }
+        &.hidden {
+            display: none;
+        }
+    }
+    svg {
+        height: 14px;
+        width: 14px;
+        padding: 2px;
+        vertical-align: middle;
+        @include breakpoint(phablet) {
+            height: 19px;
+            width: 19px;
+        }
+    }
+}
+.user-account-container {
+    @include transition(max-height 0.3s ease-in-out);
+    text-align: right;
+    background-color: #d2cecb;
+    max-height: 0;
+    overflow: hidden;
+    &.open {
+        max-height: 56px;
+    }
+    a,
+    button {
+        display: inline-block;
+        padding: 0.25em 1em 0.25em 1.1em;
+        margin: 15px 0;
+        text-decoration: none;
+        color: #414042;
+        cursor: pointer;
+        border: none;
+        font-size: 16px;
+        font-weight: normal;
+        font-family: $default-font;
+        background: none;
+        &:hover {
+            text-decoration: underline;
+        }
+        &:not(:first-child) {
+            border-left: 1px solid #b6afa8;
+        }
+    }
 }

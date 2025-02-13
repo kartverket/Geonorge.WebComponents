@@ -220,6 +220,7 @@ export class MainNavigation extends CustomElement {
     languageChanged() {
         this.mainMenu.setAttribute("language", this.language);
         this.mapItemsElement.setAttribute("language", this.language);
+        this.userAccount.setAttribute("language", this.language);
         this.downloadItemsElement.setAttribute("language", this.language);
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             this.searchTypeSelector.setAttribute("language", this.language);
