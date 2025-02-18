@@ -45,6 +45,7 @@ div.map-items-container {
             svg {
                 width: 21px;
                 height: 22px;
+                color: #403F3F;
                 @include breakpoint(phablet) {
                     width: 26px;
                     height: 27px;

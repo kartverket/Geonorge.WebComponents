@@ -14,7 +14,7 @@ import {
 import { getFocusableElementsInsideElement } from "../../../functions/guiHelpers";
 
 // Assets
-import UserAccountIcon from "../../../assets/svg/login-user-account.svg";
+import UserAccountIcon from "../../../assets/svg/login.svg";
 import CloseAccountIcon from '../../../assets/svg/close-icon-white.svg';
 
 interface UserAccountOptions extends CustomElementOptions {

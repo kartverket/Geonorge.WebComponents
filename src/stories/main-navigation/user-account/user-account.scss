@@ -5,9 +5,12 @@ button.user-account-button {
   flex-direction: row;
   padding: 6px 8px 6px 8px;
   width: 95px;
+  font-size: 14px;
   justify-content: space-between;
   align-items: center;
   margin: 0 12px;
+  background: transparent;
+  border: none; 
   &:hover {
     cursor: pointer;
     text-decoration: underline;
@@ -16,6 +19,7 @@ button.user-account-button {
     
     .login-account-label {
         white-space: nowrap;   
+        font-family: "Open Sans";
         padding-bottom: 1px;     
     }
     span {
@@ -23,10 +27,11 @@ button.user-account-button {
         vertical-align: middle;
         &.menu-title {
             display: none;
-            font-weight: 700;
+            font-weight: 500;
             vertical-align: middle;
             font-family: "Open Sans";
-            font-size: 16px;
+            vertical-align: middle;            
+            
             @include breakpoint(laptop) {
                 display: inline-block;
             }
@@ -39,6 +44,7 @@ button.user-account-button {
         height: 14px;
         width: 14px;
         padding: 2px;
+        color: #403F3F;
         vertical-align: middle;
         @include breakpoint(phablet) {
             height: 19px;
@@ -61,18 +67,18 @@ button.user-account-button {
         padding: 0.25em 1em 0.25em 1.1em;
         margin: 15px 0;
         text-decoration: none;
-        color: #414042;
+        color: transparent;
         cursor: pointer;
         border: none;
-        font-size: 16px;
+        
         font-weight: normal;
-        font-family: $default-font;
-        background: none;
+      
+        background: transparent;
         &:hover {
             text-decoration: underline;
         }
         &:not(:first-child) {
-            border-left: 1px solid #b6afa8;
+            border: none;
         }
     }
 }

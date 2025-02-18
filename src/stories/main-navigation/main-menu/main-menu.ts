@@ -6,7 +6,7 @@ import {
 
 
 // Assets
-import MenuIcon from '../../../assets/svg/menu-icon.svg';
+import MenuIcon from '../../../assets/svg/burgerG.svg';
 import CloseIcon from '../../../assets/svg/close-icon-white.svg';
 
 // Functions
