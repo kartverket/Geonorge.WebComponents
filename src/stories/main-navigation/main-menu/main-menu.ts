@@ -13,6 +13,8 @@ import CloseIcon from '../../../assets/svg/close-icon-white.svg';
 import { fetchMenuItems } from '../../../functions/apiHelpers';
 import { getFocusableElementsInsideElement } from '../../../functions/guiHelpers';
 
+import { setCookie } from "../../../functions/cookieHelpers";
+
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
     onClick?: () => void,
@@ -157,6 +159,13 @@ export class MainMenu extends CustomElement {
         const logOutString = this.language === 'en' ? 'Log out' : 'Logg ut';
         loginToggleElement.innerText = this.isloggedin ? logOutString : logInString
         loginToggleElement.id = 'authentication-toggle-element';
+
+        if(this.isloggedin){
+            setCookie('_loggedIn', 'true', 1);
+        }
+        else{
+            setCookie('_loggedIn', 'false', 1);
+        }
 
         // Remove previously added login toggle element if exists
         for (const childElement of this.menuActionsRow.children) {
