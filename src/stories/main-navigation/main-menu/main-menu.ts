@@ -7,7 +7,7 @@ import {
 
 // Assets
 import MenuIcon from '../../../assets/svg/burgerG.svg';
-import CloseIcon from '../../../assets/svg/close-icon-white.svg';
+import CloseIcon from '../../../assets/svg/close-icon-black.svg';
 
 // Functions
 import { fetchMenuItems } from '../../../functions/apiHelpers';
@@ -153,10 +153,8 @@ export class MainMenu extends CustomElement {
             loginToggleElement = document.createElement("a");
             loginToggleElement.href = this.isloggedin ? this.signouturl : this.signinurl;
         }
-        const logInString = this.language === 'en' ? 'Log in' : 'Logg inn';
-        const logOutString = this.language === 'en' ? 'Log out' : 'Logg ut';
-        loginToggleElement.innerText = this.isloggedin ? logOutString : logInString
-        loginToggleElement.id = 'authentication-toggle-element';
+        
+        
 
         // Remove previously added login toggle element if exists
         for (const childElement of this.menuActionsRow.children) {
@@ -221,9 +219,10 @@ export class MainMenu extends CustomElement {
         }
     }
 
-    @Watch('isloggedin')
+    @Watch('isloggedin')    
     isLoggedInChanged() {
         this.addAuthenticationLinks(this.hasAuthenticationFunction);
+        console.log("isloggedin changed", this.isloggedin);
     }
 
     @Watch('haslanguageselectfunctions')

@@ -79,6 +79,7 @@ export class MainNavigation extends CustomElement {
     @Prop() englishurl: string;
     @Prop() norwegianurl: string;
     @Prop() maincontentid: string;
+    @Prop() userinfo: string
     @Toggle() isloggedin: boolean;
     @Toggle() showmenu: boolean;
     @Toggle() showsearchtypeselector: boolean;
@@ -160,6 +161,9 @@ export class MainNavigation extends CustomElement {
         if (language) {
             this.mainMenu.setAttribute("language", language);
         }
+        if(this.userinfo) {
+            this.userAccount.setAttribute("userinfo", this.userinfo);
+        }
         if (this.environment) {
             this.mainMenu.setAttribute("environment", this.environment);
         }
@@ -213,9 +217,14 @@ export class MainNavigation extends CustomElement {
     isLoggedInChanged() {
         if (this.isloggedin) {
             this.userAccount.setAttribute("isLoggedIn", "");
+        } else {
+            this.userAccount.removeAttribute("isLoggedIn");
         }
     }
-
+    @Watch("userinfo")
+    userinfoChanged() {
+        this.userAccount.setAttribute("userinfo", this.userinfo);
+    }
     @Watch("language")
     languageChanged() {
         this.mainMenu.setAttribute("language", this.language);

@@ -6,7 +6,7 @@
 
 button.menu-toggle-button {
     @include border-radius(6px);
-    border: 1px solid #403F3F;    
+    border: 1px solid transparent;    
     background-color: transparent;
     color: #403F3F;
     cursor: pointer;
@@ -26,7 +26,7 @@ button.menu-toggle-button {
         color: #403F3F        ;
     }
     &.open {
-        background-color: #414042;
+        background-color: white;
     }
     span {
         padding: 2px 1px;
@@ -163,7 +163,7 @@ button.menu-toggle-button {
         .menu-actions-row {
             @include transition(max-height 0.3s ease-in-out);
             text-align: right;
-            background-color: #d2cecb;
+            background-color: white;
             max-height: 0;
             overflow: hidden;
             &.open {

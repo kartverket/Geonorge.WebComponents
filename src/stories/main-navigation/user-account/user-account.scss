@@ -1,59 +1,102 @@
 @import "../../../style/all";
 
-button.user-account-button {
+.user-account-content {
   display: flex;
   flex-direction: row;
   padding: 6px 8px 6px 8px;
-  width: 95px;
+  width: 105px;
+  color: #403F3F;
+  font-family: $default-font;
   font-size: 14px;
   justify-content: space-between;
   align-items: center;
-  margin: 0 12px;
+  margin: 0 6px 0 12px;
   background: transparent;
+  
   border: none; 
   &:hover {
     cursor: pointer;
     text-decoration: underline;
-  }
-
-    
-    .login-account-label {
-        white-space: nowrap;   
-        font-family: "Open Sans";
-        padding-bottom: 1px;     
-    }
-    span {
+  }    
+    > span {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
         padding: 2px 1px;
         vertical-align: middle;
-        &.menu-title {
-            display: none;
-            font-weight: 500;
+        font-weight: 500;
+       > span {
+        svg {
+            height: 14px;
+            width: 14px;
+            padding: 2px;
+            color: #403F3F;
             vertical-align: middle;
-            font-family: "Open Sans";
-            vertical-align: middle;            
-            
-            @include breakpoint(laptop) {
-                display: inline-block;
+            @include breakpoint(phablet) {
+                height: 24px;
+                width: 24px;
             }
         }
-        &.hidden {
-            display: none;
-        }
+       }
     }
-    svg {
-        height: 14px;
-        width: 14px;
-        padding: 2px;
-        color: #403F3F;
-        vertical-align: middle;
-        @include breakpoint(phablet) {
-            height: 19px;
-            width: 19px;
-        }
-    }
+    
 }
-.user-account-container {
-    @include transition(max-height 0.3s ease-in-out);
+.menu-wrapper {
+    position: relative;        
+    @include transition(all 0.1s ease-in-out);
+    
+   
+    > div {
+        max-height: 0;
+        overflow: hidden;
+        @include transition(all 0.1s ease-in-out);
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        background-color: white;
+        border-radius: 4px;
+        box-shadow: 0px 1px 2px 0px #0000000F;
+        box-shadow: 0px 1px 3px 0px #0000001A;
+        width: 375px;
+        z-index: 100;
+        top: 10px;
+        right: -85px;          
+        > div:first-child > span {
+            display: block;
+            &:last-child {
+             font-weight: bolder;
+            }
+        } 
+        ul {
+            list-style-type: none;
+            li {
+                margin: 32px 0;
+                a, a:link, a:visited {
+                    color: #1A589F;
+                }
+            }
+        }
+        
+        > *:nth-child(odd)  {
+            background-color: #F9F9F9;
+            padding: 32px;
+        }
+        > *:nth-child(even) {
+            background-color: white;
+            padding: 0 32px;
+        }
+        > *:last-child {
+            padding: 32px;            
+        }
+    }
+    &.open {        
+        > div {
+            max-height: 1000px;
+        }
+    }
+   
+}
+.user-account-container {   
     text-align: right;
     background-color: #d2cecb;
     max-height: 0;

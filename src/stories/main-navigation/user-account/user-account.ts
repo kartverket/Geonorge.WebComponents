@@ -15,7 +15,7 @@ import { getFocusableElementsInsideElement } from "../../../functions/guiHelpers
 
 // Assets
 import UserAccountIcon from "../../../assets/svg/login.svg";
-import CloseAccountIcon from '../../../assets/svg/close-icon-white.svg';
+import CloseAccountIcon from '../../../assets/svg/person.svg';
 
 interface UserAccountOptions extends CustomElementOptions {
   active?: boolean;
@@ -38,19 +38,20 @@ interface MenuItem extends Object {
 })
 export class UserAccount extends CustomElement {
   private static readonly elementSelector = "user-account";
-  private userAccountButton: HTMLButtonElement;
-  private userAccountTitle: HTMLElement;
-  private userAccountIcon: HTMLElement;
-  private closeAccountIcon: HTMLSpanElement;
+  private userAccountContent: HTMLButtonElement;
+  private userAccountItems: HTMLDivElement;
   private userAccountListContainer: HTMLDivElement;
-  private menuActionsRow: HTMLElement;
+  
 
   @Prop() id: string;
   @Prop() environment: string;
   @Prop() language: string;
-  @Toggle() showList: boolean;
+  @Prop() signinurl: string;
+  @Prop() signouturl: string;
+  @Prop() userinfo: string
   @Toggle() isloggedin: boolean;
   @Toggle() showmenu: boolean;
+  @Toggle() hasAuthenticationFunction: boolean;
   @Dispatch('onSignInClick') onSignInClick: DispatchEmitter;
   @Dispatch('onSignOutClick') onSignOutClick: DispatchEmitter;
   @Dispatch('onNorwegianLanguageSelect') onNorwegianLanguageSelect: DispatchEmitter;
@@ -60,9 +61,7 @@ export class UserAccount extends CustomElement {
     super();
     
     this.clickOutsideUserAccountItemsContainer =
-      this.clickOutsideUserAccountItemsContainer.bind(this);
-    this.updateDomElements = this.updateDomElements.bind(this);
-    this.getUpdatedUserAccount = this.getUpdatedUserAccount.bind(this);
+      this.clickOutsideUserAccountItemsContainer.bind(this);   
   }
 
   setup(options?: UserAccountOptions): void {
@@ -73,29 +72,23 @@ export class UserAccount extends CustomElement {
   }
  
   connectedCallback() {
-    this.userAccountButton = getShadowRootElement(this, "#user-account-button");
-    this.userAccountTitle = getShadowRootElement(this, '#user-account-text');
-    this.userAccountIcon = getShadowRootElement(this,"#menu-user-icon");
-    this.closeAccountIcon = getShadowRootElement(this, '#close-user-icon');
-    this.menuActionsRow = getShadowRootElement(this, '#user-account-list-container');
-    this.userAccountListContainer = getShadowRootElement(this,"#user-account-item-list-container");
-    this.getUpdatedUserAccount();
-    this.userAccountIcon.innerHTML = UserAccountIcon;
-    this.closeAccountIcon.innerHTML = CloseAccountIcon;
-
-    this.showmenu ? this.userAccountIcon.classList.add('hidden') : this.closeAccountIcon.classList.add('hidden');
-
-    this.userAccountButton.setAttribute('aria-label', this.language === 'en' ? 'Log in to edit content' : 'Logg inn for å redigere innhold');
+    this.userAccountContent = getShadowRootElement(this, "#user-account-container");
+    this.userAccountItems = getShadowRootElement(this, "#user-account-menu-wrapper");   
+    this.userAccountListContainer = getShadowRootElement(this, "#user-account-list-container"); 
+        
     
-    if (this.userAccountTitle) {
-      this.userAccountTitle.innerText = this.language === 'en' ? 'Log in' : 'Logg inn';
-  }
 
+  
+
+  const hasAuthenticationUrls = this.signinurl && this.signouturl;
+  if (hasAuthenticationUrls) {
+    
+      this.renderLoginButton();
+  }
     document.addEventListener(
       "click",
       this.clickOutsideUserAccountItemsContainer
-    );
-    document.addEventListener("mapItemsChanged", this.updateDomElements);
+    );    
   }
 
   disconnectedCallback() {
@@ -106,7 +99,7 @@ export class UserAccount extends CustomElement {
   }
 
   hideListContainer = () => {
-    this.showList = false;
+    this.showmenu = false;
   };
 
   clickOutsideUserAccountItemsContainer(event: MouseEvent) {
@@ -119,65 +112,179 @@ export class UserAccount extends CustomElement {
     this.hideListContainer();
   }
 
-  updateDomElements() {
-    this.getUpdatedUserAccount();
-  }
-  getUpdatedUserAccount() {
-    // this.userAccountItems = getUserAccountItems();
-  }
-  renderUserAccountItems = (userAccountItems: UserAccount) => {
-    return "hello items";
-  };
+ renderLoginButton() {
+    this.userAccountContent.innerHTML = "";    
+    const loginIcon = document.createElement("span");
+    loginIcon.classList.add("menu-user-icon");
+    loginIcon.innerHTML = UserAccountIcon;
+    const loginbutton = document.createElement("span");    
+    loginbutton.innerText = this.language === "en" ?  "Sign in" : "Logg inn";
+    loginbutton.appendChild(loginIcon);    
+    this.userAccountContent.append(loginbutton); 
+ }
 
-  @Listen("click", "#user-account-toggle-button")
-  buttonClicked(event: MouseEvent) {
-    return null;
-  }
-  hideMenuContainer = () => {
-   this.showmenu = false;
+renderLogoutButton() {
+  
+  this.userAccountContent.innerHTML = "";
+  const mypageicon = document.createElement("span");
+  mypageicon.classList.add("close-user-icon");
+  mypageicon.innerHTML = CloseAccountIcon;
+  const mypagebutton = document.createElement("span");
+  mypagebutton.id = "user-account-toggle-button";
+  mypagebutton.innerText = this.language === "en" ?  "My page" : "Min side";
+  mypagebutton.appendChild(mypageicon);
+  this.userAccountContent.append(mypagebutton);
 }
-  @Watch("showlist")
-  showMenuChanged() {
-    this.showmenu ? this.userAccountListContainer.classList.add("open") : this.userAccountListContainer.classList.remove("open");
-    this.showmenu ? this.userAccountButton.classList.add("open") : this.userAccountButton.classList.remove("open");
-    this.showmenu ? this.userAccountIcon.classList.add('hidden') : this.userAccountIcon.classList.remove('hidden');
-    this.showmenu ? this.closeAccountIcon.classList.remove('hidden') : this.closeAccountIcon.classList.add('hidden');
-    const accountItemListContainerButtons = getFocusableElementsInsideElement( this.userAccountListContainer);
-    accountItemListContainerButtons.forEach((button) => {
-      if (!this.showList) {
-        button.setAttribute("tabindex", "-1");
-      } else {
-        button.removeAttribute("tabindex");
+
+renderUserButton() {
+  this.isloggedin ? this.renderLogoutButton() : this.renderLoginButton();
+}
+
+
+renderUserAccountItems() {
+    if (this.isloggedin) {
+        this.userAccountItems.innerHTML = ""; // Clear previous content
+
+        // Create main container
+        const userAccountListContainer = document.createElement("div");
+
+        // ✅ Wrap title and username in a div
+        const userInfoContainer = document.createElement("div");
+
+        // Create and append title
+        const userAccountListTitle = document.createElement("span");
+        userAccountListTitle.innerText = this.language === "en" ? "User account" : "Pålogget som:";
+        userInfoContainer.appendChild(userAccountListTitle);
+
+        // Create and append username
+        const userName = document.createElement("span");
+        userName.innerText = "Test User";
+        userInfoContainer.appendChild(userName);
+
+        // Append user info container to main container
+        userAccountListContainer.appendChild(userInfoContainer);
+
+        // Create and append list
+        const userAccountListItems = document.createElement("ul");
+
+        // Helper function to create list items with anchor
+        const createListItem = (text, href = "#") => {
+            const listItem = document.createElement("li");
+            const anchor = document.createElement("a");
+            anchor.innerText = text;
+            anchor.href = href;
+            listItem.appendChild(anchor);
+            return listItem;
+        };
+
+        // Add list items
+        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My page" : "Min side"));
+        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
+        userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
+
+        // Append list to container
+        userAccountListContainer.appendChild(userAccountListItems);
+
+        // ✅ Add "Kartverket" block
+        const kartverketBlock = document.createElement("div");        
+
+        // ✅ Add 4 new spans
+        const presentsSpan = document.createElement("span");
+        presentsSpan.innerText = this.language === "en" ? "Presents" : "Presenterer";
+        kartverketBlock.appendChild(presentsSpan);
+
+        const companyNameSpan = document.createElement("span");
+        const orgname = JSON.parse(this.userinfo)?.organizationName;        
+        companyNameSpan.innerText = orgname; // Replace with actual company name if available
+        kartverketBlock.appendChild(companyNameSpan);
+
+        const orgNumberSpan = document.createElement("span");
+        const orgnumber = JSON.parse(this.userinfo)?.organizationNumber;
+        orgNumberSpan.innerText = orgnumber; // Replace with actual org number if available
+        kartverketBlock.appendChild(orgNumberSpan);
+
+        // const changeOrgLink = document.createElement("a");
+        // changeOrgLink.innerText = this.language === "en" ? "Change organization" : "Endre organisasjon";
+        // changeOrgLink.href = this.signouturl;
+        // kartverketBlock.appendChild(changeOrgLink);
+
+        // Add some spacing for layout
+        kartverketBlock.style.marginTop = "10px";
+        kartverketBlock.style.display = "flex";
+        kartverketBlock.style.flexDirection = "column";
+        kartverketBlock.style.gap = "5px"; // Adds spacing between spans
+
+        userAccountListContainer.appendChild(kartverketBlock);
+
+        // ✅ Add log out block
+        const logOutBlock = document.createElement("div");
+        logOutBlock.style.marginTop = "10px"; // Add spacing
+
+        const logOutLink = document.createElement("a");
+        logOutLink.innerText = this.language === "en" ? "Log out" : "Logg ut";
+        logOutLink.href = this.signouturl; // Replace with actual logout URL or function
+        logOutBlock.appendChild(logOutLink);
+
+        userAccountListContainer.appendChild(logOutBlock);
+
+        // ✅ Append container to `this.userAccountItems`
+        this.userAccountItems.appendChild(userAccountListContainer);
+    } else {
+        this.userAccountItems.innerHTML = ""; // Clear if logged out
+    }
+}
+
+@Listen('click', '#user-account-container')
+buttonClicked(event: MouseEvent) {
+  if (this.isloggedin) {
+    this.showmenu = !this.showmenu;
+    this.showmenu ? this.userAccountItems?.classList.add("open") : this.userAccountItems?.classList.remove("open");
+    this.showmenu ? this.userAccountListContainer?.classList.add("open") : this.userAccountListContainer?.classList.remove("open");
+
+  } else {
+    window.location.href = this.signinurl;
+  }
+
+    
+    } 
+
+  @Watch("showmenu")  
+  showMenuChanged() {      
+    this.showmenu ? this.userAccountItems?.classList.add("open") : this.userAccountItems?.classList.remove("open");   
+    // legg også til for å endre knappen       
+  }
+
+
+  @Watch('hasauthenticationfunction')
+  hasAuthenticationFunctionChanged() {
+      if (this.hasAuthenticationFunction) {
+          this.renderUserButton();
+          this.renderUserAccountItems();
       }
-    });
   }
   
   @Watch("isloggedin")
-  isLoggedInChanged() {
-    if (this.isloggedin) {
-      this.renderUserAccountItems(null);
-    }
+  isLoggedInChanged() {    
+      this.renderUserButton();
+      this.renderUserAccountItems();              
   }  
+
   @Watch("language")
-  languageChanged() { 
-    debugger;
-    console.log(`Language changed to: ${this.language}`);
-    if (this.isloggedin) {
-     
-      this.renderUserAccountItems(null);
+  languageChanged() {        
+      this.renderUserButton();
+      this.renderUserAccountItems();    
+  }
+
+  @Watch("userinfo")
+  userInfoChanged() {
+      this.renderUserButton();
+      this.renderUserAccountItems();
     }
-    
-    if (this.userAccountTitle) {
-      this.userAccountTitle.innerText = this.language === 'en' ? 'Log in' : 'Logg inn';
-  }
-   
-    this.userAccountButton.setAttribute('aria-label', this.language === 'en' ? 'Log in to edit content' : 'Logg inn for å redigere innhold');
-  }
 
   public static setup(selector: string, options: UserAccountOptions) {
     const element = getElement<UserAccount>(selector);
     if (options.active) {
-      element.showList = options.active;
+      element.showmenu = options.active;
     }
   }
 }
