@@ -4,18 +4,14 @@
     box-sizing: border-box;
 }
 
-button.menu-toggle-button {
-    @include border-radius(6px);
-    border: 1px solid transparent;    
+button.menu-toggle-button {     
+    border: none;       
     background-color: transparent;
     color: #403F3F;
     cursor: pointer;
     width: 40px;
     height: 32px;
-    margin-left: 4px;
-    &:hover {
-        background-color: white;
-    }
+    margin-left: 4px;    
     @include breakpoint(phablet) {
         width: 45px;
         height: 37px;

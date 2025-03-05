@@ -42,8 +42,10 @@
     
 }
 .menu-wrapper {
+    font-size: 14px;
+    font-family: $default-font;
     position: relative;        
-    @include transition(all 0.1s ease-in-out);
+    @include transition(all 2s ease-in-out);
     
    
     > div {
@@ -70,7 +72,7 @@
         ul {
             list-style-type: none;
             li {
-                margin: 32px 0;
+                margin: 12px 0;
                 a, a:link, a:visited {
                     color: #1A589F;
                 }
@@ -79,10 +81,19 @@
         
         > *:nth-child(odd)  {
             background-color: #F9F9F9;
-            padding: 32px;
+            padding: 32px;            
+            display: flex
+        ;
+            flex-direction: column;
+            gap: 5px;
         }
         > *:nth-child(even) {
             background-color: white;
+            margin-top: 10px;
+            display: flex
+        ;
+            flex-direction: column;
+            gap: 5px;
             padding: 0 32px;
         }
         > *:last-child {

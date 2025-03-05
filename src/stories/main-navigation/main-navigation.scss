@@ -102,7 +102,7 @@ div.main-navigation {
                     display: none;
                 }
                 order: 3;
-                width: 100%;
+                width: 50%;
                 display: flex;
                 flex-direction: column;
                 
@@ -115,16 +115,11 @@ div.main-navigation {
                 }
             }
             .button-row {
-                width: 150px;
+                
                 display: flex;
+                flex-wrap: wrap;
                 align-items: center;
-                justify-content: space-between;
-                @include breakpoint(phablet) {
-                    width: 155px;
-                }
-                @include breakpoint(laptop) {
-                    width: 270px;
-                }
+                justify-content: space-between;               
             }
         }
     }

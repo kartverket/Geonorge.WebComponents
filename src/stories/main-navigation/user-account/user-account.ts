@@ -17,6 +17,7 @@ import { getFocusableElementsInsideElement } from "../../../functions/guiHelpers
 import UserAccountIcon from "../../../assets/svg/login.svg";
 import CloseAccountIcon from '../../../assets/svg/person.svg';
 
+
 interface UserAccountOptions extends CustomElementOptions {
   active?: boolean;
   onClick?: () => void,
@@ -48,7 +49,8 @@ export class UserAccount extends CustomElement {
   @Prop() language: string;
   @Prop() signinurl: string;
   @Prop() signouturl: string;
-  @Prop() userinfo: string
+  @Prop() organization: string
+  @Prop() userinfo: string;
   @Toggle() isloggedin: boolean;
   @Toggle() showmenu: boolean;
   @Toggle() hasAuthenticationFunction: boolean;
@@ -157,9 +159,16 @@ renderUserAccountItems() {
         userInfoContainer.appendChild(userAccountListTitle);
 
         // Create and append username
-        const userName = document.createElement("span");
-        userName.innerText = "Test User";
-        userInfoContainer.appendChild(userName);
+        const userNameSpan = document.createElement("strong");
+        const username = JSON.parse(this.userinfo)?.name;  
+        userNameSpan.innerText = username;
+        userInfoContainer.appendChild(userNameSpan);
+
+         // Create and append email
+        // const userEpostSpan = document.createElement("div");
+        // const email = JSON.parse(this.userinfo)?.email;  
+        // userEpostSpan.innerText = email;
+        // userInfoContainer.appendChild(userEpostSpan);
 
         // Append user info container to main container
         userAccountListContainer.appendChild(userInfoContainer);
@@ -177,8 +186,8 @@ renderUserAccountItems() {
             return listItem;
         };
 
-        // Add list items
-        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My page" : "Min side"));
+        // Add list items        
+        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine side"));
         userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
         userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
 
@@ -190,17 +199,17 @@ renderUserAccountItems() {
 
         // ✅ Add 4 new spans
         const presentsSpan = document.createElement("span");
-        presentsSpan.innerText = this.language === "en" ? "Presents" : "Presenterer";
+        presentsSpan.innerText = this.language === "en" ? "Presents" : "Representerer";
         kartverketBlock.appendChild(presentsSpan);
 
-        const companyNameSpan = document.createElement("span");
-        const orgname = JSON.parse(this.userinfo)?.organizationName;        
+        const companyNameSpan = document.createElement("strong");
+        const orgname = JSON.parse(this.organization)?.organizationName;        
         companyNameSpan.innerText = orgname; // Replace with actual company name if available
         kartverketBlock.appendChild(companyNameSpan);
 
         const orgNumberSpan = document.createElement("span");
-        const orgnumber = JSON.parse(this.userinfo)?.organizationNumber;
-        orgNumberSpan.innerText = orgnumber; // Replace with actual org number if available
+        const orgnumber = JSON.parse(this.organization)?.organizationNumber;        
+        orgNumberSpan.innerText = "orgnr: " + orgnumber; // Replace with actual org number if available
         kartverketBlock.appendChild(orgNumberSpan);
 
         // const changeOrgLink = document.createElement("a");
@@ -275,11 +284,16 @@ buttonClicked(event: MouseEvent) {
       this.renderUserAccountItems();    
   }
 
-  @Watch("userinfo")
-  userInfoChanged() {
+  @Watch("organization")
+  organizationChanged() {
       this.renderUserButton();
       this.renderUserAccountItems();
     }
+  @Watch("userinfo")
+  userInfoChanged() {
+    this.renderUserButton();
+    this.renderUserAccountItems();
+  }
 
   public static setup(selector: string, options: UserAccountOptions) {
     const element = getElement<UserAccount>(selector);

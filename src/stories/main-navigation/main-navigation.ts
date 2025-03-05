@@ -29,7 +29,6 @@ import GeonorgeLogoDev from "../../assets/svg/geonorge-navbar-logo_dev.svg";
 import { addGlobalFonts } from "../../functions/guiHelpers";
 import { getGeonorgeUrl } from "../../functions/urlHelpers";
 import { getLanguage } from "../../functions/cookieHelpers";
-
 interface MainNavigationOptions extends CustomElementOptions {
     active?: boolean;
     onClick?: () => void;
@@ -79,7 +78,8 @@ export class MainNavigation extends CustomElement {
     @Prop() englishurl: string;
     @Prop() norwegianurl: string;
     @Prop() maincontentid: string;
-    @Prop() userinfo: string
+    @Prop() organization: string
+    @Prop() userinfo: string;
     @Toggle() isloggedin: boolean;
     @Toggle() showmenu: boolean;
     @Toggle() showsearchtypeselector: boolean;
@@ -161,6 +161,9 @@ export class MainNavigation extends CustomElement {
         if (language) {
             this.mainMenu.setAttribute("language", language);
         }
+        if(this.organization) {
+            this.userAccount.setAttribute("organization", this.organization);
+        }
         if(this.userinfo) {
             this.userAccount.setAttribute("userinfo", this.userinfo);
         }
@@ -212,6 +215,7 @@ export class MainNavigation extends CustomElement {
         const userAccount = new UserAccount();
         const mainMenu = new MainMenu();
     }
+    
 
     @Watch("isloggedin")
     isLoggedInChanged() {
@@ -220,6 +224,10 @@ export class MainNavigation extends CustomElement {
         } else {
             this.userAccount.removeAttribute("isLoggedIn");
         }
+    }
+    @Watch("organization")
+    organizationChanged() {
+        this.userAccount.setAttribute("organization", this.organization);
     }
     @Watch("userinfo")
     userinfoChanged() {
