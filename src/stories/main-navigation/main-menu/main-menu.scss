@@ -22,7 +22,7 @@ button.menu-toggle-button {
         color: #403F3F        ;
     }
     &.open {
-        background-color: white;
+        background-color: transparent;
     }
     span {
         padding: 2px 1px;
@@ -66,7 +66,7 @@ button.menu-toggle-button {
         @include border-radius(0 0 3px 3px);
         box-sizing: border-box;
         width: 100%;
-        background-color: #dfdcda;
+        background-color: #fff;
         margin: auto;
         position: relative;
         top: 56px;

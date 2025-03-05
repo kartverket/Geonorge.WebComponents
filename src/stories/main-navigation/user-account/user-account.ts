@@ -83,6 +83,7 @@ export class UserAccount extends CustomElement {
   
 
   const hasAuthenticationUrls = this.signinurl && this.signouturl;
+
   if (hasAuthenticationUrls) {
     
       this.renderLoginButton();
@@ -188,29 +189,29 @@ renderUserAccountItems() {
 
         // Add list items        
         userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine side"));
-        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
-        userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
+        //userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
+        //userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
 
         // Append list to container
         userAccountListContainer.appendChild(userAccountListItems);
 
         // ✅ Add "Kartverket" block
-        const kartverketBlock = document.createElement("div");        
+        //const kartverketBlock = document.createElement("div");        
 
         // ✅ Add 4 new spans
-        const presentsSpan = document.createElement("span");
-        presentsSpan.innerText = this.language === "en" ? "Presents" : "Representerer";
-        kartverketBlock.appendChild(presentsSpan);
+       // const presentsSpan = document.createElement("span");
+       // presentsSpan.innerText = this.language === "en" ? "Presents" : "Representerer";
+       // kartverketBlock.appendChild(presentsSpan);
 
-        const companyNameSpan = document.createElement("strong");
-        const orgname = JSON.parse(this.organization)?.organizationName;        
-        companyNameSpan.innerText = orgname; // Replace with actual company name if available
-        kartverketBlock.appendChild(companyNameSpan);
+       // const companyNameSpan = document.createElement("strong");
+       // const orgname = JSON.parse(this.organization)?.organizationName;        
+       // companyNameSpan.innerText = orgname; // Replace with actual company name if available
+       // kartverketBlock.appendChild(companyNameSpan);
 
-        const orgNumberSpan = document.createElement("span");
-        const orgnumber = JSON.parse(this.organization)?.organizationNumber;        
-        orgNumberSpan.innerText = "orgnr: " + orgnumber; // Replace with actual org number if available
-        kartverketBlock.appendChild(orgNumberSpan);
+       // const orgNumberSpan = document.createElement("span");
+       // const orgnumber = JSON.parse(this.organization)?.organizationNumber;        
+       // orgNumberSpan.innerText = "orgnr: " + orgnumber; // Replace with actual org number if available
+        //kartverketBlock.appendChild(orgNumberSpan);
 
         // const changeOrgLink = document.createElement("a");
         // changeOrgLink.innerText = this.language === "en" ? "Change organization" : "Endre organisasjon";
@@ -218,21 +219,25 @@ renderUserAccountItems() {
         // kartverketBlock.appendChild(changeOrgLink);
 
         // Add some spacing for layout
-        kartverketBlock.style.marginTop = "10px";
-        kartverketBlock.style.display = "flex";
-        kartverketBlock.style.flexDirection = "column";
-        kartverketBlock.style.gap = "5px"; // Adds spacing between spans
+        //kartverketBlock.style.marginTop = "10px";
+        //kartverketBlock.style.display = "flex";
+        //kartverketBlock.style.flexDirection = "column";
+        //kartverketBlock.style.gap = "5px"; // Adds spacing between spans
 
-        userAccountListContainer.appendChild(kartverketBlock);
+        //userAccountListContainer.appendChild(kartverketBlock);
 
         // ✅ Add log out block
         const logOutBlock = document.createElement("div");
         logOutBlock.style.marginTop = "10px"; // Add spacing
-
+        const loginIcon = document.createElement("span");
+        loginIcon.classList.add("menu-user-icon");
+        loginIcon.innerHTML = UserAccountIcon;
         const logOutLink = document.createElement("a");
         logOutLink.innerText = this.language === "en" ? "Log out" : "Logg ut";
+        logOutLink.appendChild(loginIcon);  
         logOutLink.href = this.signouturl; // Replace with actual logout URL or function
         logOutBlock.appendChild(logOutLink);
+        
 
         userAccountListContainer.appendChild(logOutBlock);
 

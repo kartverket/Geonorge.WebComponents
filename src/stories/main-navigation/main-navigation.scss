@@ -101,8 +101,8 @@ div.main-navigation {
                 @media print {
                     display: none;
                 }
-                order: 3;
-                width: 50%;
+                order: 2;                
+                
                 display: flex;
                 flex-direction: column;
                 
@@ -114,8 +114,7 @@ div.main-navigation {
                     flex-direction: row;
                 }
             }
-            .button-row {
-                
+            .button-row {                
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;

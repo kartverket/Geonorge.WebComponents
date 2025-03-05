@@ -14,7 +14,6 @@ import { fetchMenuItems } from '../../../functions/apiHelpers';
 import { getFocusableElementsInsideElement } from '../../../functions/guiHelpers';
 import { setCookie } from '../../../functions/cookieHelpers';
 
-import { setCookie } from "../../../functions/cookieHelpers";
 
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
