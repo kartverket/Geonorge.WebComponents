@@ -6,7 +6,10 @@ export const getKartkatalogApiUrl = (environment: string) => {
 export const getGeonorgeMenuUrl = (language: string, environment: string) => {
     const environmentSlug = environment === 'dev' || environment === 'test' ? 'test.' : '';
     const selectedLanguageSlug = language === 'en' ? 'en/' : '';
-    return `https://www.${environmentSlug}geonorge.no/${selectedLanguageSlug}api/menu/get?omitLinks=1`;
+    if(environment === 'dev')
+        return `https://dev.geonorge.no/menu.xml`;
+    else
+        return `https://www.${environmentSlug}geonorge.no/${selectedLanguageSlug}api/menu/get?omitLinks=1`;
 };
 
 export const fetchMenuItems = (language: string = "no", environment: string = "") => {

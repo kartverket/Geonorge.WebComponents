@@ -14,6 +14,8 @@ import { fetchMenuItems } from '../../../functions/apiHelpers';
 import { getFocusableElementsInsideElement } from '../../../functions/guiHelpers';
 import { setCookie } from '../../../functions/cookieHelpers';
 
+import { setCookie } from "../../../functions/cookieHelpers";
+
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
     onClick?: () => void,
@@ -155,6 +157,13 @@ export class MainMenu extends CustomElement {
             loginToggleElement.href = this.isloggedin ? this.signouturl : this.signinurl;
         }
         
+        if(this.isloggedin){
+            setCookie('_loggedIn', 'true', 1);
+        }
+        else{
+            setCookie('_loggedIn', 'false', 1);
+        }
+
         if(this.isloggedin){
             setCookie('_loggedIn', 'true', 1);
         }
