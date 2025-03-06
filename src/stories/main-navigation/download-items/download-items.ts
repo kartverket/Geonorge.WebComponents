@@ -6,7 +6,7 @@ import {
 
 
 // Assets
-import DownloadIcon from '../../../assets/svg/download-icon.svg';
+import DownloadIcon from '../../../assets/svg/download.svg';
 import TrashIcon from '../../../assets/svg/trash-icon.svg';
 
 // Functions

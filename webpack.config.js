@@ -27,6 +27,7 @@ module.exports = {
     'MainNavigation': './stories/main-navigation/main-navigation.ts',
     'MainSearchField': './stories/main-navigation/main-search-field/main-search-field.ts',
     'SearchTypeSelector': './stories/main-navigation/search-type-selector/search-type-selector.ts',
+    'UserAccount': './stories/main-navigation/user-account/user-account.ts',
     'DownloadItem': './stories/main-navigation/download-items/download-items.ts',
     'MapItem': './stories/main-navigation/map-items/map-items.ts',
     'MainMenu': './stories/main-navigation/main-menu/main-menu.ts',

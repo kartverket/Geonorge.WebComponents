@@ -6,7 +6,7 @@ import {
 
 
 // Assets
-import MapIcon from '../../../assets/svg/map-icon.svg';
+import MapIcon from '../../../assets/svg/location.svg';
 import TrashIcon from '../../../assets/svg/trash-icon.svg';
 
 // Functions

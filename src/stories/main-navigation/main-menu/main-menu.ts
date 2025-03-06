@@ -6,14 +6,14 @@ import {
 
 
 // Assets
-import MenuIcon from '../../../assets/svg/menu-icon.svg';
-import CloseIcon from '../../../assets/svg/close-icon-white.svg';
+import MenuIcon from '../../../assets/svg/burgerG.svg';
+import CloseIcon from '../../../assets/svg/close-icon-black.svg';
 
 // Functions
 import { fetchMenuItems } from '../../../functions/apiHelpers';
 import { getFocusableElementsInsideElement } from '../../../functions/guiHelpers';
+import { setCookie } from '../../../functions/cookieHelpers';
 
-import { setCookie } from "../../../functions/cookieHelpers";
 
 interface MainMenuOptions extends CustomElementOptions {
     active?: boolean,
@@ -155,10 +155,13 @@ export class MainMenu extends CustomElement {
             loginToggleElement = document.createElement("a");
             loginToggleElement.href = this.isloggedin ? this.signouturl : this.signinurl;
         }
-        const logInString = this.language === 'en' ? 'Log in' : 'Logg inn';
-        const logOutString = this.language === 'en' ? 'Log out' : 'Logg ut';
-        loginToggleElement.innerText = this.isloggedin ? logOutString : logInString
-        loginToggleElement.id = 'authentication-toggle-element';
+        
+        if(this.isloggedin){
+            setCookie('_loggedIn', 'true', 1);
+        }
+        else{
+            setCookie('_loggedIn', 'false', 1);
+        }
 
         if(this.isloggedin){
             setCookie('_loggedIn', 'true', 1);
@@ -230,9 +233,10 @@ export class MainMenu extends CustomElement {
         }
     }
 
-    @Watch('isloggedin')
+    @Watch('isloggedin')    
     isLoggedInChanged() {
         this.addAuthenticationLinks(this.hasAuthenticationFunction);
+        console.log("isloggedin changed", this.isloggedin);
     }
 
     @Watch('haslanguageselectfunctions')

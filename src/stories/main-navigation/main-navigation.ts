@@ -17,6 +17,7 @@ import { MainSearchField } from "./main-search-field/main-search-field";
 import { SearchTypeSelector } from "./search-type-selector/search-type-selector";
 import { DownloadItems } from "./download-items/download-items";
 import { MapItems } from "./map-items/map-items";
+import { UserAccount } from "./user-account/user-account";
 import { MainMenu } from "./main-menu/main-menu";
 
 // Assets
@@ -28,7 +29,6 @@ import GeonorgeLogoDev from "../../assets/svg/geonorge-navbar-logo_dev.svg";
 import { addGlobalFonts } from "../../functions/guiHelpers";
 import { getGeonorgeUrl } from "../../functions/urlHelpers";
 import { getLanguage } from "../../functions/cookieHelpers";
-
 interface MainNavigationOptions extends CustomElementOptions {
     active?: boolean;
     onClick?: () => void;
@@ -42,6 +42,7 @@ interface MainNavigationOptions extends CustomElementOptions {
     onEnglishLanguageSelect?: () => void;
     onDownloadItemsChange?: () => void;
     onMapItemsChange?: () => void;
+    onUserAccountClick?: () => void;
 }
 
 interface MenuItem extends Object {
@@ -61,6 +62,7 @@ export class MainNavigation extends CustomElement {
     private searchTypeSelector: HTMLElement;
     private logoElement: HTMLAnchorElement;
     private mainMenu: HTMLElement;
+    private userAccount: HTMLElement;
     private mapItemsElement: HTMLElement;
     private downloadItemsElement: HTMLElement;
 
@@ -76,6 +78,8 @@ export class MainNavigation extends CustomElement {
     @Prop() englishurl: string;
     @Prop() norwegianurl: string;
     @Prop() maincontentid: string;
+    @Prop() organization: string
+    @Prop() userinfo: string;
     @Toggle() isloggedin: boolean;
     @Toggle() showmenu: boolean;
     @Toggle() showsearchtypeselector: boolean;
@@ -123,6 +127,8 @@ export class MainNavigation extends CustomElement {
         this.mainMenu = getShadowRootElement(this, "#main-menu");
         this.mapItemsElement = getShadowRootElement(this, "#map-items");
         this.downloadItemsElement = getShadowRootElement(this, "#download-items");
+        this.userAccount = getShadowRootElement(this, "#user-account");
+        this.searchTypeSelector ? this.searchField.classList.add("wide") : this.searchField.classList.remove("wide");
 
         if (this.searchField) {
             this.searchField.setAttribute(
@@ -156,6 +162,12 @@ export class MainNavigation extends CustomElement {
         if (language) {
             this.mainMenu.setAttribute("language", language);
         }
+        if(this.organization) {
+            this.userAccount.setAttribute("organization", this.organization);
+        }
+        if(this.userinfo) {
+            this.userAccount.setAttribute("userinfo", this.userinfo);
+        }
         if (this.environment) {
             this.mainMenu.setAttribute("environment", this.environment);
         }
@@ -167,16 +179,19 @@ export class MainNavigation extends CustomElement {
         }
         if (this.signinurl) {
             this.mainMenu.setAttribute("signinurl", this.signinurl);
+            this.userAccount.setAttribute("signinurl", this.signinurl);
         }
         if (this.signouturl) {
             this.mainMenu.setAttribute("signouturl", this.signouturl);
+            this.userAccount.setAttribute("signouturl", this.signouturl);
         }
         if (this.isloggedin) {
             this.mainMenu.setAttribute("isLoggedIn", "");
+            this.userAccount.setAttribute("isLoggedIn", "");
         }
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
-            if (!this.searchTypeSelector) {
-                this.searchTypeSelector = document.createElement("search-type-selector");
+            if (!this.searchTypeSelector) {               
+                this.searchTypeSelector = document.createElement("search-type-selector");               
             }
             if (this.metadataresultsfound) {
                 this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
@@ -193,25 +208,37 @@ export class MainNavigation extends CustomElement {
             if (!this.searchTypeSelector) {
                 this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
             }
-        }
+        } 
 
         const mapItems = new MapItems();
         const downloadItemsElement = new DownloadItems();
         const mainSearchField = new MainSearchField();
+        const userAccount = new UserAccount();
         const mainMenu = new MainMenu();
     }
+    
 
     @Watch("isloggedin")
     isLoggedInChanged() {
         if (this.isloggedin) {
-            this.mainMenu.setAttribute("isLoggedIn", "");
+            this.userAccount.setAttribute("isLoggedIn", "");
+        } else {
+            this.userAccount.removeAttribute("isLoggedIn");
         }
     }
-
+    @Watch("organization")
+    organizationChanged() {
+        this.userAccount.setAttribute("organization", this.organization);
+    }
+    @Watch("userinfo")
+    userinfoChanged() {
+        this.userAccount.setAttribute("userinfo", this.userinfo);
+    }
     @Watch("language")
     languageChanged() {
         this.mainMenu.setAttribute("language", this.language);
         this.mapItemsElement.setAttribute("language", this.language);
+        this.userAccount.setAttribute("language", this.language);
         this.downloadItemsElement.setAttribute("language", this.language);
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
             this.searchTypeSelector.setAttribute("language", this.language);
@@ -229,6 +256,7 @@ export class MainNavigation extends CustomElement {
     @Watch("environment")
     environmentChanged() {
         this.mainMenu.setAttribute("environment", this.environment);
+        this.userAccount.setAttribute("environment", this.environment);
         this.mapItemsElement.setAttribute("environment", this.environment);
         this.downloadItemsElement.setAttribute("environment", this.environment);
         this.logoElement.innerHTML = this.getGeonorgeLogoVariant(this.environment);
@@ -262,9 +290,13 @@ export class MainNavigation extends CustomElement {
     @Watch("showsearchtypeselector")
     showSearchTypeSelectorChanged() {
         const language = this.language ? this.language : getLanguage();
+
+        
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
+            this.searchField.setAttribute("showsearchtypeselector", "")
             if (!this.searchTypeSelector) {
                 this.searchTypeSelector = document.createElement("search-type-selector");
+                this.searchField.classList.add("wide");
             }
             if (this.metadataresultsfound) {
                 this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
@@ -281,6 +313,7 @@ export class MainNavigation extends CustomElement {
             this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
             const searchTypeSelector = new SearchTypeSelector();
         } else {
+            this.searchField.removeAttribute("showsearchtypeselector")
             if (this.searchTypeSelector) {
                 this.searchField.parentNode.removeChild(this.searchTypeSelector);
             }

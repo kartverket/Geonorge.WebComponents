@@ -98,8 +98,8 @@ export class GnDialog extends CustomElement {
         const shouldShowDialog = this.shouldShowDialog(this.show);
         const dialogContainerElement = getShadowRootElement(this, "#dialog-container");
         shouldShowDialog
-            ? dialogContainerElement.classList.add("visible")
-            : dialogContainerElement.classList.remove("visible");
+            ? dialogContainerElement?.classList.add("visible")
+            : dialogContainerElement?.classList.remove("visible");
     }
 
     @Watch("nopadding")

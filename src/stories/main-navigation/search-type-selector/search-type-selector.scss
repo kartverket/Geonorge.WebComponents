@@ -1,7 +1,7 @@
 @import "../../../style/all";
 
 div.search-type-selector {
-    width: 180px;
+    width: 235px;
     label {
         font-size: 14px;
         display: block;
@@ -30,6 +30,7 @@ div.search-type-selector {
         transform: translateY(-0.075em);
         display: inline-grid;
         place-content: center;
+        
     }
 
     input[type="radio"]::before {
