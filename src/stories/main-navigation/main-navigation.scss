@@ -13,7 +13,7 @@ div.main-navigation {
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 2;    
     @media print {
         position: relative;
         margin-bottom: -100px;
@@ -40,7 +40,7 @@ div.main-navigation {
         clip: rect(1px, 1px, 1px, 1px);
         width: 1px;
         height: 1px;
-        word-wrap: normal;
+        word-wrap: normal;        
         &:focus,
         &:active {
             position: static;
@@ -79,7 +79,7 @@ div.main-navigation {
             padding: 10px 15px;
             @include breakpoint(phablet) {
                 flex-wrap: nowrap;
-            }
+            }            
 
             .logo {
                 flex: 1;
@@ -98,6 +98,7 @@ div.main-navigation {
                 }
             }
             .search-container {
+                flex: 2;
                 @media print {
                     display: none;
                 }
@@ -112,7 +113,8 @@ div.main-navigation {
                 }
                 @include breakpoint(tablet) {
                     flex-direction: row;
-                }
+                }               
+                width: 300px;                                
             }
             .button-row {                
                 display: flex;

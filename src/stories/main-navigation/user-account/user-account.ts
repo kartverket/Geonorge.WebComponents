@@ -115,28 +115,33 @@ export class UserAccount extends CustomElement {
     this.hideListContainer();
   }
 
- renderLoginButton() {
+  renderLoginButton() {
     this.userAccountContent.innerHTML = "";    
     const loginIcon = document.createElement("span");
     loginIcon.classList.add("menu-user-icon");
     loginIcon.innerHTML = UserAccountIcon;
+
     const loginbutton = document.createElement("span");    
-    loginbutton.innerText = this.language === "en" ?  "Sign in" : "Logg inn";
-    loginbutton.appendChild(loginIcon);    
-    this.userAccountContent.append(loginbutton); 
- }
+    loginbutton.innerText = this.language === "en" ? "Sign in" : "Logg inn";
+
+    this.userAccountContent.append(loginbutton, loginIcon);
+}
 
 renderLogoutButton() {
-  
   this.userAccountContent.innerHTML = "";
+
+  const mypageContainer = document.createElement("div");
+  mypageContainer.id = "user-account-toggle-button";
+  mypageContainer.classList.add("user-account-button");
+  const mypagebutton = document.createElement("span");
+  mypagebutton.innerText = this.language === "en" ? "My page" : "Min side";
+
   const mypageicon = document.createElement("span");
   mypageicon.classList.add("close-user-icon");
   mypageicon.innerHTML = CloseAccountIcon;
-  const mypagebutton = document.createElement("span");
-  mypagebutton.id = "user-account-toggle-button";
-  mypagebutton.innerText = this.language === "en" ?  "My page" : "Min side";
-  mypagebutton.appendChild(mypageicon);
-  this.userAccountContent.append(mypagebutton);
+  mypageContainer.appendChild(mypagebutton);
+  mypageContainer.appendChild(mypageicon);
+  this.userAccountContent.append(mypageContainer);
 }
 
 renderUserButton() {
@@ -146,20 +151,13 @@ renderUserButton() {
 
 renderUserAccountItems() {
     if (this.isloggedin) {
-        this.userAccountItems.innerHTML = ""; // Clear previous content
+        this.userAccountItems.innerHTML = ""; 
 
-        // Create main container
         const userAccountListContainer = document.createElement("div");
-
-        // ✅ Wrap title and username in a div
         const userInfoContainer = document.createElement("div");
-
-        // Create and append title
         const userAccountListTitle = document.createElement("span");
         userAccountListTitle.innerText = this.language === "en" ? "User account" : "Pålogget som:";
         userInfoContainer.appendChild(userAccountListTitle);
-
-        // Create and append username
         const userNameSpan = document.createElement("strong");
         const username = JSON.parse(this.userinfo)?.name;  
         userNameSpan.innerText = username;
@@ -171,13 +169,9 @@ renderUserAccountItems() {
         // userEpostSpan.innerText = email;
         // userInfoContainer.appendChild(userEpostSpan);
 
-        // Append user info container to main container
         userAccountListContainer.appendChild(userInfoContainer);
-
-        // Create and append list
         const userAccountListItems = document.createElement("ul");
 
-        // Helper function to create list items with anchor
         const createListItem = (text, href = "#") => {
             const listItem = document.createElement("li");
             const anchor = document.createElement("a");
@@ -186,19 +180,17 @@ renderUserAccountItems() {
             listItem.appendChild(anchor);
             return listItem;
         };
-
-        // Add list items        
+       
         userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine side"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
 
-        // Append list to container
         userAccountListContainer.appendChild(userAccountListItems);
 
-        // ✅ Add "Kartverket" block
+
         //const kartverketBlock = document.createElement("div");        
 
-        // ✅ Add 4 new spans
+
        // const presentsSpan = document.createElement("span");
        // presentsSpan.innerText = this.language === "en" ? "Presents" : "Representerer";
        // kartverketBlock.appendChild(presentsSpan);
@@ -226,7 +218,6 @@ renderUserAccountItems() {
 
         //userAccountListContainer.appendChild(kartverketBlock);
 
-        // ✅ Add log out block
         const logOutBlock = document.createElement("div");
         logOutBlock.style.marginTop = "10px"; // Add spacing
         const loginIcon = document.createElement("span");
@@ -235,16 +226,15 @@ renderUserAccountItems() {
         const logOutLink = document.createElement("a");
         logOutLink.innerText = this.language === "en" ? "Log out" : "Logg ut";
         logOutLink.appendChild(loginIcon);  
-        logOutLink.href = this.signouturl; // Replace with actual logout URL or function
+        logOutLink.href = this.signouturl; 
         logOutBlock.appendChild(logOutLink);
         
 
         userAccountListContainer.appendChild(logOutBlock);
 
-        // ✅ Append container to `this.userAccountItems`
         this.userAccountItems.appendChild(userAccountListContainer);
     } else {
-        this.userAccountItems.innerHTML = ""; // Clear if logged out
+        this.userAccountItems.innerHTML = "";
     }
 }
 

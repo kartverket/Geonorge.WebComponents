@@ -10,7 +10,9 @@ div.main-search-field {
   height: 37px;
   margin-top: 0.25em;
   position: relative;
-  width: 300px;
+  width: 100%;
+  max-width: 440px;
+  
   @include breakpoint(phablet) {
     margin-top: 0;
   }

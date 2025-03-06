@@ -128,6 +128,7 @@ export class MainNavigation extends CustomElement {
         this.mapItemsElement = getShadowRootElement(this, "#map-items");
         this.downloadItemsElement = getShadowRootElement(this, "#download-items");
         this.userAccount = getShadowRootElement(this, "#user-account");
+        this.searchTypeSelector ? this.searchField.classList.add("wide") : this.searchField.classList.remove("wide");
 
         if (this.searchField) {
             this.searchField.setAttribute(
@@ -189,8 +190,8 @@ export class MainNavigation extends CustomElement {
             this.userAccount.setAttribute("isLoggedIn", "");
         }
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
-            if (!this.searchTypeSelector) {
-                this.searchTypeSelector = document.createElement("search-type-selector");
+            if (!this.searchTypeSelector) {               
+                this.searchTypeSelector = document.createElement("search-type-selector");               
             }
             if (this.metadataresultsfound) {
                 this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
@@ -207,7 +208,7 @@ export class MainNavigation extends CustomElement {
             if (!this.searchTypeSelector) {
                 this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
             }
-        }
+        } 
 
         const mapItems = new MapItems();
         const downloadItemsElement = new DownloadItems();
@@ -288,9 +289,13 @@ export class MainNavigation extends CustomElement {
     @Watch("showsearchtypeselector")
     showSearchTypeSelectorChanged() {
         const language = this.language ? this.language : getLanguage();
+
+        
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
+            this.searchField.setAttribute("showsearchtypeselector", "")
             if (!this.searchTypeSelector) {
                 this.searchTypeSelector = document.createElement("search-type-selector");
+                this.searchField.classList.add("wide");
             }
             if (this.metadataresultsfound) {
                 this.searchTypeSelector.setAttribute("metadataresultsfound", this.metadataresultsfound);
@@ -307,6 +312,7 @@ export class MainNavigation extends CustomElement {
             this.searchField.parentNode.insertBefore(this.searchTypeSelector, this.searchField.nextSibling);
             const searchTypeSelector = new SearchTypeSelector();
         } else {
+            this.searchField.removeAttribute("showsearchtypeselector")
             if (this.searchTypeSelector) {
                 this.searchField.parentNode.removeChild(this.searchTypeSelector);
             }
