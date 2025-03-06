@@ -5,6 +5,10 @@ export const getKartkatalogUrl = (environment: string) => {
     const environmentSlug = environment === 'dev' || environment === 'test' ? environment + '.' : '';
     return `https://kartkatalog.${environmentSlug}geonorge.no`;
 };
+export const getMinsideUrl = (environment: string) => {
+    const environmentSlug = environment === 'dev' || environment === 'test' ? environment + '.' : '';
+    return `https://minside.${environmentSlug}geonorge.no`;
+};
 
 export const getGeonorgeUrl = (language: string, environment: string) => {
     const environmentSlug = environment === 'dev' || environment === 'test' ? 'test.' : '';

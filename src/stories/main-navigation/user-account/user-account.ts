@@ -16,6 +16,7 @@ import { getFocusableElementsInsideElement } from "../../../functions/guiHelpers
 // Assets
 import UserAccountIcon from "../../../assets/svg/login.svg";
 import CloseAccountIcon from '../../../assets/svg/person.svg';
+import { getMinsideUrl } from "functions/urlHelpers";
 
 
 interface UserAccountOptions extends CustomElementOptions {
@@ -171,17 +172,16 @@ renderUserAccountItems() {
 
         userAccountListContainer.appendChild(userInfoContainer);
         const userAccountListItems = document.createElement("ul");
-
-        const createListItem = (text, href = "#") => {
-            const listItem = document.createElement("li");
-            const anchor = document.createElement("a");
-            anchor.innerText = text;
-            anchor.href = href;
-            listItem.appendChild(anchor);
-            return listItem;
-        };
-       
-        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine side"));
+        
+        const createListItem = (text: string) => {
+          const listItem = document.createElement("li");
+          const anchor = document.createElement("a");
+          anchor.innerText = text;
+          anchor.href = getMinsideUrl(this.environment);
+          listItem.appendChild(anchor);
+          return listItem;
+      };   
+        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My page" : "Mine side"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
 

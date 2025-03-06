@@ -256,6 +256,7 @@ export class MainNavigation extends CustomElement {
     @Watch("environment")
     environmentChanged() {
         this.mainMenu.setAttribute("environment", this.environment);
+        this.userAccount.setAttribute("environment", this.environment);
         this.mapItemsElement.setAttribute("environment", this.environment);
         this.downloadItemsElement.setAttribute("environment", this.environment);
         this.logoElement.innerHTML = this.getGeonorgeLogoVariant(this.environment);
