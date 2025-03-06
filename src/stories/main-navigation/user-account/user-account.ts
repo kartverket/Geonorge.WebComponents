@@ -11,12 +11,11 @@ import {
   getShadowRootElement,
   Toggle,
 } from "super-custom-elements";
-import { getFocusableElementsInsideElement } from "../../../functions/guiHelpers";
 
 // Assets
 import UserAccountIcon from "../../../assets/svg/login.svg";
 import CloseAccountIcon from '../../../assets/svg/person.svg';
-import { getMinsideUrl } from "functions/urlHelpers";
+import { getMinsideUrl } from "../../../functions/urlHelpers";
 
 
 interface UserAccountOptions extends CustomElementOptions {
