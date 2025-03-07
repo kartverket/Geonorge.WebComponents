@@ -13,7 +13,8 @@ import {
 } from "super-custom-elements";
 
 // Assets
-import UserAccountIcon from "../../../assets/svg/login.svg";
+import UserAccountIcon from "../../../assets/svg/logout.svg";
+import LoginIcon from '../../../assets/svg/login.svg';
 import CloseAccountIcon from '../../../assets/svg/person.svg';
 import { getMinsideUrl } from "../../../functions/urlHelpers";
 
@@ -119,7 +120,7 @@ export class UserAccount extends CustomElement {
     this.userAccountContent.innerHTML = "";    
     const loginIcon = document.createElement("span");
     loginIcon.classList.add("menu-user-icon");
-    loginIcon.innerHTML = UserAccountIcon;
+    loginIcon.innerHTML = LoginIcon;
 
     const loginbutton = document.createElement("span");    
     loginbutton.innerText = this.language === "en" ? "Sign in" : "Logg inn";
