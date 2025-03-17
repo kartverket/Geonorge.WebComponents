@@ -80,13 +80,17 @@ Default.args = {
     }
 };
 
-
+function populateDummyOrdeItems(amount) {
+    const guidItem = "111111";
+    const orderItems: string[] = [];
+    for (let i = 0; i < amount; i++) {
+        orderItems.push(guidItem);
+        
+    }
+    return JSON.stringify(orderItems);
+}
 // Download items
-localStorage.orderItems = JSON.stringify([
-    "11111111-1111-1111-1111-111111111111",
-    "22222222-2222-2222-2222-222222222222",
-    "33333333-3333-3333-3333-333333333333"
-]);
+localStorage.orderItems = populateDummyOrdeItems(30);
 
 localStorage["11111111-1111-1111-1111-111111111111.metadata"] = JSON.stringify({
     name: "Dataset item 1",
@@ -104,6 +108,7 @@ localStorage["33333333-3333-3333-3333-333333333333.metadata"] = JSON.stringify({
 });
 
 
+
 // Map items
 localStorage.mapItems = JSON.stringify([
     {
@@ -112,7 +117,7 @@ localStorage.mapItems = JSON.stringify([
     },
     {
         Uuid: "22222222-2222-2222-2222-222222222222",
-        Title: "Dataset item 3",
+        Title: "Dataset item 2",
     },
     {
         Uuid: "33333333-3333-3333-3333-333333333333",
