@@ -66,7 +66,7 @@ export class UserAccount extends CustomElement {
     this.clickOutsideUserAccountItemsContainer =
       this.clickOutsideUserAccountItemsContainer.bind(this);   
   }
-
+  
   setup(options?: UserAccountOptions): void {
     this.connect(options.container);
     if (options.id) {
@@ -140,8 +140,8 @@ renderLogoutButton() {
   const mypageicon = document.createElement("span");
   mypageicon.classList.add("close-user-icon");
   mypageicon.innerHTML = CloseAccountIcon;
-  mypageContainer.appendChild(mypagebutton);
   mypageContainer.appendChild(mypageicon);
+  mypageContainer.appendChild(mypagebutton);
   this.userAccountContent.append(mypageContainer);
 }
 
@@ -224,12 +224,13 @@ renderUserAccountItems() {
         loginIcon.classList.add("menu-user-icon");
         loginIcon.innerHTML = UserAccountIcon;
         const logOutLink = document.createElement("a");
-        logOutLink.innerText = this.language === "en" ? "Log out" : "Logg ut";
-        logOutLink.appendChild(loginIcon);  
+        const logOutText = document.createElement("span");
+        logOutText.innerText = this.language === "en" ? "Log out" : "Logg ut";
+        logOutLink.appendChild(loginIcon);   
+        logOutLink.appendChild(logOutText);
         logOutLink.href = this.signouturl; 
         logOutBlock.appendChild(logOutLink);
         
-
         userAccountListContainer.appendChild(logOutBlock);
 
         this.userAccountItems.appendChild(userAccountListContainer);
