@@ -125,7 +125,7 @@ export class UserAccount extends CustomElement {
     const loginbutton = document.createElement("span");    
     loginbutton.innerText = this.language === "en" ? "Sign in" : "Logg inn";
 
-    this.userAccountContent.append(loginbutton, loginIcon);
+    this.userAccountContent.append(loginIcon, loginbutton);
 }
 
 renderLogoutButton() {

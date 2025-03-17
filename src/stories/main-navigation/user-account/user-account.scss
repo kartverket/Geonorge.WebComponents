@@ -6,19 +6,20 @@
   padding: 6px 8px 6px 8px;
   width: auto;
   color: #403F3F;
+  gap: 6px;
   font-family: $default-font;
   font-size: 14px;
   justify-content: space-between;
   align-items: center;
   margin: 0 6px 0 12px;
   background: transparent;
-  
-  border: none; 
   &:hover {
+    color: #1073BC;
     cursor: pointer;
-    text-decoration: underline;
-  }    
-     span:first-child {
+}
+  
+  border: none;    
+     span:last-child {
         display: none;        
         align-items: center;
         flex-direction: row;
@@ -29,17 +30,16 @@
             display: inline-block;
         }    
     }
-    span:last-child {        
+    span:first-child {        
             svg {
                 height: 24px;
-                width: 24px;
-                padding: 2px;
-                color: #403F3F;
+                width: 24px;                              
                 vertical-align: middle;                
             
            }
+           
         }
-    
+       
 }
 .menu-wrapper {
     font-size: 14px;
@@ -137,12 +137,10 @@
         
         font-weight: normal;
       
-        background: transparent;
-        &:hover {
-            text-decoration: underline;
-        }
+        background: transparent;           
+        
         &:not(:first-child) {
             border: none;
         }
-    }
+    }    
 }

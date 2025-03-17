@@ -13,6 +13,7 @@ div.map-items-container {
         color: #403F3F;
         cursor: pointer;
         padding: 0;
+        position: relative;
         @include breakpoint(phablet) {
             padding: 0 4px;
         }
@@ -20,22 +21,25 @@ div.map-items-container {
             color: #414042;
         }
         .counter {
-            @include border-radius(50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            @include border-radius(35%);
             background-color: $primary-brand;
             color: #fff;
-            margin-top: -0.25em;
-            margin-left: -0.2em;
+            margin-top: -0.35em;
+            margin-right: 0.2em;
             position: absolute;
-            text-align: center;
-            width: 1.4em;
+            text-align: center;            
+            left: 1.4em;            
             line-height: 1.4;
             height: 1.4em;
-            font-size: 0.9em;
+            font-size: 0.8em;
             @include breakpoint(phablet) {
                 height: 1.5em;
-                width: 1.5em;
+                min-width: 2em;                
                 line-height: 1.5;
-                font-size: 1em;
+                font-size: .8em;
             }
             &.hidden {
                 display: none;
@@ -45,10 +49,14 @@ div.map-items-container {
             svg {
                 width: 21px;
                 height: 22px;
-                color: #403F3F;
+                
                 @include breakpoint(phablet) {
                     width: 26px;
                     height: 27px;
+                }
+                &:hover {
+                    color: #1073BC;
+                    cursor: pointer;
                 }
             }
         }

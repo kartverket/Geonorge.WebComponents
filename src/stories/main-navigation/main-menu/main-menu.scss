@@ -11,7 +11,10 @@ button.menu-toggle-button {
     cursor: pointer;
     width: 40px;
     height: 32px;
-    margin-left: 4px;    
+    display: flex;
+    gap: 6px;
+    align-items: center;
+        
     @include breakpoint(phablet) {
         width: 45px;
         height: 37px;
@@ -32,8 +35,7 @@ button.menu-toggle-button {
             font-weight: 500;
             vertical-align: middle;
             font-family: "Open Sans";
-            font-size: 14px;
-            color: #403F3F;
+            font-size: 14px;            
             @include breakpoint(laptop) {
                 display: inline-block;
             }
@@ -43,18 +45,17 @@ button.menu-toggle-button {
         }
     }
     svg {
-        height: 24px;
-        color: #403F3F;
-        width: 24px;
-        padding: 2px;
+        height: 24px;        
+        width: 24px;        
         vertical-align: middle;
         @include breakpoint(phablet) {
             height: 29px;
             width: 29px;
         }
-        &:hover {
-            color: #646265;
-        }
+       
+    }
+    &:hover {
+        color: #1073BC;
     }
 }
 .menu-wrapper {
