@@ -375,9 +375,13 @@ export class MainNavigation extends CustomElement {
         if (options.onSignInClick && options.onSignOutClick) {
             setTimeout(() => {
                 const mainMenu = getShadowRootElement<MainMenu>(element, "main-menu");
+                const userAccount = getShadowRootElement<UserAccount>(element, "user-account");
                 mainMenu.setAttribute("hasAuthenticationFunction", "");
                 mainMenu.addEventListener("onSignInClick", options.onSignInClick);
                 mainMenu.addEventListener("onSignOutClick", options.onSignOutClick);
+                userAccount.setAttribute("hasAuthenticationFunction", "");
+                userAccount.addEventListener("onSignInClick", options.onSignInClick);
+                userAccount.addEventListener("onSignOutClick", options.onSignOutClick);
             });
         }
         if (options.onNorwegianLanguageSelect) {

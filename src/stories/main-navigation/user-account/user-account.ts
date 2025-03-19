@@ -75,6 +75,7 @@ export class UserAccount extends CustomElement {
   }
  
   connectedCallback() {
+   
     this.userAccountContent = getShadowRootElement(this, "#user-account-container");
     this.userAccountItems = getShadowRootElement(this, "#user-account-menu-wrapper");   
     this.userAccountListContainer = getShadowRootElement(this, "#user-account-list-container"); 
@@ -146,7 +147,7 @@ renderLogoutButton() {
 }
 
 renderUserButton() {
-  this.isloggedin ? this.renderLogoutButton() : this.renderLoginButton();
+  !this.isloggedin ? this.renderLogoutButton() : this.renderLoginButton();
 }
 
 
@@ -228,7 +229,11 @@ renderUserAccountItems() {
         logOutText.innerText = this.language === "en" ? "Log out" : "Logg ut";
         logOutLink.appendChild(loginIcon);   
         logOutLink.appendChild(logOutText);
-        logOutLink.href = this.signouturl; 
+        if(this.hasAuthenticationFunction) {
+          logOutLink.onclick= () => this.onSignOutClick.emit();
+        }  else {
+          logOutLink.href = this.signouturl; }
+        
         logOutBlock.appendChild(logOutLink);
         
         userAccountListContainer.appendChild(logOutBlock);
@@ -247,7 +252,11 @@ buttonClicked(event: MouseEvent) {
     this.showmenu ? this.userAccountListContainer?.classList.add("open") : this.userAccountListContainer?.classList.remove("open");
 
   } else {
-    window.location.href = this.signinurl;
+    if(this.hasAuthenticationFunction) {
+      this.onSignInClick.emit();
+    } else {    
+      window.location.href = this.signinurl;
+    }
   }
 
     
