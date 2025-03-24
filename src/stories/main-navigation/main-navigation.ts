@@ -178,15 +178,12 @@ export class MainNavigation extends CustomElement {
             this.mainMenu.setAttribute("norwegianurl", this.norwegianurl);
         }
         if (this.signinurl) {
-            this.mainMenu.setAttribute("signinurl", this.signinurl);
             this.userAccount.setAttribute("signinurl", this.signinurl);
         }
         if (this.signouturl) {
-            this.mainMenu.setAttribute("signouturl", this.signouturl);
             this.userAccount.setAttribute("signouturl", this.signouturl);
         }
         if (this.isloggedin) {
-            this.mainMenu.setAttribute("isLoggedIn", "");
             this.userAccount.setAttribute("isLoggedIn", "");
         }
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
@@ -374,11 +371,7 @@ export class MainNavigation extends CustomElement {
         }
         if (options.onSignInClick && options.onSignOutClick) {
             setTimeout(() => {
-                const mainMenu = getShadowRootElement<MainMenu>(element, "main-menu");
                 const userAccount = getShadowRootElement<UserAccount>(element, "user-account");
-                mainMenu.setAttribute("hasAuthenticationFunction", "");
-                mainMenu.addEventListener("onSignInClick", options.onSignInClick);
-                mainMenu.addEventListener("onSignOutClick", options.onSignOutClick);
                 userAccount.setAttribute("hasAuthenticationFunction", "");
                 userAccount.addEventListener("onSignInClick", options.onSignInClick);
                 userAccount.addEventListener("onSignOutClick", options.onSignOutClick);

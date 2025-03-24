@@ -73,10 +73,10 @@ Default.args = {
         event.target.setAttribute("isLoggedIn", false);
     },
     onNorwegianLanguageSelect: (event) => {
-        document.getElementById("main-navigation").setAttribute("language", "no");
+        document.getElementById("main-navigation")?.setAttribute("language", "no");
     },
     onEnglishLanguageSelect: (event) => {
-        document.getElementById("main-navigation").setAttribute("language", "en");
+        document.getElementById("main-navigation")?.setAttribute("language", "en");
     }
 };
 
