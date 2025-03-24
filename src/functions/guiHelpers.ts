@@ -16,9 +16,9 @@ export const addGlobalStylesheet = (styleElementId: string, styles: string) => {
 export const addGlobalFonts = () => {
     const style = document.createElement("style");
     style.setAttribute("id", "fonts-styles");
-    style.textContent = fonts;
+   // style.textContent = fonts;
     if (!document.getElementById("fonts-styles")) {
-        document.head.appendChild(style);
+      //  document.head.appendChild(style);
     }
 };
 

@@ -1,5 +1,6 @@
 import { create } from "@storybook/theming";
 import geonorgeLogo from "../src/assets/svg/geonorge-logo.svg";
+import "../src/style/fonts.css";
 
 export default create({
     base: "light",
