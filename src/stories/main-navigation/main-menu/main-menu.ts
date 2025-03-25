@@ -235,8 +235,7 @@ export class MainMenu extends CustomElement {
 
     @Watch('isloggedin')    
     isLoggedInChanged() {
-        this.addAuthenticationLinks(this.hasAuthenticationFunction);
-        console.log("isloggedin changed", this.isloggedin);
+        this.addAuthenticationLinks(this.hasAuthenticationFunction);        
     }
 
     @Watch('haslanguageselectfunctions')

@@ -153,7 +153,7 @@ renderUserButton() {
 
 renderUserAccountItems() {
   const hasAuthenticationUrls = this.signinurl && this.signouturl;
-    if (this.isloggedin && hasAuthenticationUrls) {
+    if (this.isloggedin || hasAuthenticationUrls || this.shouldShowAuthenticationButton()) {
         this.userAccountItems.innerHTML = ""; 
 
         const userAccountListContainer = document.createElement("div");
@@ -183,7 +183,7 @@ renderUserAccountItems() {
           listItem.appendChild(anchor);
           return listItem;
       };   
-        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My page" : "Mine side"));
+        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My page" : "Min side"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
 
