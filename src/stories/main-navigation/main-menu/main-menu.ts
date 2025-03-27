@@ -155,20 +155,6 @@ export class MainMenu extends CustomElement {
             loginToggleElement = document.createElement("a");
             loginToggleElement.href = this.isloggedin ? this.signouturl : this.signinurl;
         }
-        
-        if(this.isloggedin){
-            setCookie('_loggedIn', 'true', 1);
-        }
-        else{
-            setCookie('_loggedIn', 'false', 1);
-        }
-
-        if(this.isloggedin){
-            setCookie('_loggedIn', 'true', 1);
-        }
-        else{
-            setCookie('_loggedIn', 'false', 1);
-        }
 
         // Remove previously added login toggle element if exists
         for (const childElement of this.menuActionsRow.children) {

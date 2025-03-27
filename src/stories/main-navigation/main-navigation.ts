@@ -28,7 +28,7 @@ import GeonorgeLogoDev from "../../assets/svg/geonorge-navbar-logo_dev.svg";
 // Helpers
 import { addGlobalFonts } from "../../functions/guiHelpers";
 import { getGeonorgeUrl } from "../../functions/urlHelpers";
-import { getLanguage } from "../../functions/cookieHelpers";
+import { getLanguage, setCookie } from "../../functions/cookieHelpers";
 interface MainNavigationOptions extends CustomElementOptions {
     active?: boolean;
     onClick?: () => void;
@@ -218,8 +218,10 @@ export class MainNavigation extends CustomElement {
     @Watch("isloggedin")
     isLoggedInChanged() {
         if (this.isloggedin) {
+            setCookie('_loggedIn', 'true', 1);
             this.userAccount.setAttribute("isLoggedIn", "");
         } else {
+            setCookie('_loggedIn', 'false', 1);
             this.userAccount.removeAttribute("isLoggedIn");
         }
     }
