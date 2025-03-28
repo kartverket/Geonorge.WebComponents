@@ -29,6 +29,8 @@ const Template = (props) => {
         norwegianurl=${props.norwegianurl}
         environment=${props.environment}
         ?showsearchtypeselector=${props.showsearchtypeselector}
+        signinUrl=${props.signinUrl}
+        signoutUrl=${props.signoutUrl}
         metadataresultsfound=${props.metadataresultsfound}
         articlesresultsfound=${props.articlesresultsfound}
         language=${props.language}
@@ -46,6 +48,8 @@ Default.args = {
     showsearchtypeselector: true,
     metadataresultsfound: "3245",
     articlesresultsfound: "17",
+    signinUrl: "/signin",
+    signoutUrl: "/signout",
     language: "en",
     maincontentid: "main-content",
     onSearch: (event) => {
