@@ -27,7 +27,7 @@ import GeonorgeLogoDev from "../../assets/svg/geonorge-navbar-logo_dev.svg";
 
 // Helpers
 import { getGeonorgeUrl } from "../../functions/urlHelpers";
-import { getLanguage } from "../../functions/cookieHelpers";
+import { getLanguage, setCookie } from "../../functions/cookieHelpers";
 interface MainNavigationOptions extends CustomElementOptions {
     active?: boolean;
     onClick?: () => void;
@@ -176,15 +176,12 @@ export class MainNavigation extends CustomElement {
             this.mainMenu.setAttribute("norwegianurl", this.norwegianurl);
         }
         if (this.signinurl) {
-            this.mainMenu.setAttribute("signinurl", this.signinurl);
             this.userAccount.setAttribute("signinurl", this.signinurl);
         }
         if (this.signouturl) {
-            this.mainMenu.setAttribute("signouturl", this.signouturl);
             this.userAccount.setAttribute("signouturl", this.signouturl);
         }
         if (this.isloggedin) {
-            this.mainMenu.setAttribute("isLoggedIn", "");
             this.userAccount.setAttribute("isLoggedIn", "");
         }
         if (this.shouldShowSearchTypeSelector(this.showsearchtypeselector)) {
@@ -219,8 +216,10 @@ export class MainNavigation extends CustomElement {
     @Watch("isloggedin")
     isLoggedInChanged() {
         if (this.isloggedin) {
+            setCookie('_loggedIn', 'true', 1);
             this.userAccount.setAttribute("isLoggedIn", "");
         } else {
+            setCookie('_loggedIn', 'false', 1);
             this.userAccount.removeAttribute("isLoggedIn");
         }
     }
@@ -372,11 +371,7 @@ export class MainNavigation extends CustomElement {
         }
         if (options.onSignInClick && options.onSignOutClick) {
             setTimeout(() => {
-                const mainMenu = getShadowRootElement<MainMenu>(element, "main-menu");
                 const userAccount = getShadowRootElement<UserAccount>(element, "user-account");
-                mainMenu.setAttribute("hasAuthenticationFunction", "");
-                mainMenu.addEventListener("onSignInClick", options.onSignInClick);
-                mainMenu.addEventListener("onSignOutClick", options.onSignOutClick);
                 userAccount.setAttribute("hasAuthenticationFunction", "");
                 userAccount.addEventListener("onSignInClick", options.onSignInClick);
                 userAccount.addEventListener("onSignOutClick", options.onSignOutClick);

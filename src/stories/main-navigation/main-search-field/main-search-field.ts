@@ -28,7 +28,7 @@ interface MainSearchFieldOptions extends CustomElementOptions {
 })
 
 export class MainSearchField extends CustomElement {
-   private static readonly elementSelector = 'main-search-field';   
+   private static readonly elementSelector = 'main-search-field';
    private searchField: HTMLInputElement;
    private searchFieldLabel: HTMLInputElement;
    private searchButton: HTMLInputElement;
@@ -38,7 +38,6 @@ export class MainSearchField extends CustomElement {
    @Prop() environment: string;
    @Toggle() showSearchResults: boolean;
    @Toggle() preventRedirect: boolean;
-   @Toggle() showsearchtypeselector: boolean;
    @Prop() searchstring: string = '';
    @Prop() language: string;
    @Prop() searchResultsResponses: Array<SearchResultsResponseForType>;
@@ -50,9 +49,6 @@ export class MainSearchField extends CustomElement {
       super();
       this.clickOutsideSearchResultsContainer = this.clickOutsideSearchResultsContainer.bind(this);
    }
-   shouldShowSearchTypeSelector(showsearchtypeselector) {
-      return showsearchtypeselector?.toString() === "" || showsearchtypeselector?.toString() === "true";
-  }
 
    setup(options?: MainSearchFieldOptions): void {
       this.connect(options.container);
@@ -62,20 +58,20 @@ export class MainSearchField extends CustomElement {
    }
 
    connectedCallback() {
-      this.searchField = getShadowRootElement(this, '#main-search-content');
+      this.searchField = getShadowRootElement(this, '#main-search-input');
       this.searchFieldLabel = getShadowRootElement(this, '#main-search-input-label');
       this.searchButton = getShadowRootElement(this, '#search-submit-button');
 
-
       this.searchFieldLabel.innerHTML = this.language === 'en' ? 'Search' : 'Søk';
-      //this.shouldShowSearchTypeSelector(this.showsearchtypeselector) ? this.searchField.classList.add("wide") : this.searchField.classList.remove("wide") 
+
       this.searchButton.innerHTML = SearchIcon;
 
       this.searchResultsContainer = getShadowRootElement(this, '#search-results-container');
       this.searchResultsContainer.style.maxHeight = `${window.innerHeight - 61}px`;
       if (this.searchField && this.searchstring) {
          this.searchField.setAttribute('value', this.searchstring);
-      }          
+      }
+      document.addEventListener('click', this.clickOutsideSearchResultsContainer);
    }
 
    disconnectedCallback() {
@@ -180,12 +176,7 @@ export class MainSearchField extends CustomElement {
       if (this.searchButton) {
          this.searchButton.setAttribute('aria-label', this.language === 'en' ? 'Search' : 'Søk');
       }
-   }   
-@Watch('showsearchtypeselector')
-showSearchTypeSelectorChanged() {
-   this.shouldShowSearchTypeSelector(this.showsearchtypeselector) ? 
-   this.searchField.classList.add('fisk') : this.searchField.classList.remove('fisk') ;
-}
+   }
 
 
    @Watch('showsearchresults')

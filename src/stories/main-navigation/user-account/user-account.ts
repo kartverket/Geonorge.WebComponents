@@ -75,19 +75,14 @@ export class UserAccount extends CustomElement {
   }
  
   connectedCallback() {
-   
     this.userAccountContent = getShadowRootElement(this, "#user-account-container");
     this.userAccountItems = getShadowRootElement(this, "#user-account-menu-wrapper");   
     this.userAccountListContainer = getShadowRootElement(this, "#user-account-list-container"); 
-        
-    
-
   
-
   const hasAuthenticationUrls = this.signinurl && this.signouturl;
 
-  if (hasAuthenticationUrls) {
-    
+
+  if (hasAuthenticationUrls || this.shouldShowAuthenticationButton()) { 
       this.renderLoginButton();
   }
     document.addEventListener(
@@ -95,7 +90,9 @@ export class UserAccount extends CustomElement {
       this.clickOutsideUserAccountItemsContainer
     );    
   }
-
+  shouldShowAuthenticationButton() {
+    return this.hasAuthenticationFunction?.toString() === "" || this.hasAuthenticationFunction?.toString() === "true";
+}
   disconnectedCallback() {
     document.removeEventListener(
       "click",
@@ -147,12 +144,16 @@ renderLogoutButton() {
 }
 
 renderUserButton() {
-  !this.isloggedin ? this.renderLogoutButton() : this.renderLoginButton();
+  const hasAuthenticationUrls = this.signinurl && this.signouturl;
+  if(hasAuthenticationUrls || this.shouldShowAuthenticationButton()) { 
+    this.isloggedin ? this.renderLogoutButton() : this.renderLoginButton();
+  }
 }
 
 
 renderUserAccountItems() {
-    if (this.isloggedin) {
+  const hasAuthenticationUrls = this.signinurl && this.signouturl;
+    if (this.isloggedin || hasAuthenticationUrls || this.shouldShowAuthenticationButton()) {
         this.userAccountItems.innerHTML = ""; 
 
         const userAccountListContainer = document.createElement("div");
@@ -182,7 +183,7 @@ renderUserAccountItems() {
           listItem.appendChild(anchor);
           return listItem;
       };   
-        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My page" : "Mine side"));
+        userAccountListItems.appendChild(createListItem(this.language === "en" ? "My page" : "Min side"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "My shortcuts" : "Mine snarveier"));
         //userAccountListItems.appendChild(createListItem(this.language === "en" ? "Settings" : "Innstillinger"));
 
@@ -229,7 +230,7 @@ renderUserAccountItems() {
         logOutText.innerText = this.language === "en" ? "Log out" : "Logg ut";
         logOutLink.appendChild(loginIcon);   
         logOutLink.appendChild(logOutText);
-        if(this.hasAuthenticationFunction) {
+        if(this.shouldShowAuthenticationButton()) {
           logOutLink.onclick= () => this.onSignOutClick.emit();
         }  else {
           logOutLink.href = this.signouturl; }
@@ -252,7 +253,7 @@ buttonClicked(event: MouseEvent) {
     this.showmenu ? this.userAccountListContainer?.classList.add("open") : this.userAccountListContainer?.classList.remove("open");
 
   } else {
-    if(this.hasAuthenticationFunction) {
+    if(this.shouldShowAuthenticationButton()) {
       this.onSignInClick.emit();
     } else {    
       window.location.href = this.signinurl;
@@ -271,10 +272,8 @@ buttonClicked(event: MouseEvent) {
 
   @Watch('hasauthenticationfunction')
   hasAuthenticationFunctionChanged() {
-      if (this.hasAuthenticationFunction) {
           this.renderUserButton();
           this.renderUserAccountItems();
-      }
   }
   
   @Watch("isloggedin")
