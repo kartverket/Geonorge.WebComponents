@@ -10,7 +10,7 @@ import {
 } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Assets
 import CloseIcon from "../../assets/svg/close-icon-black.svg";
@@ -33,7 +33,6 @@ export class GnDialog extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("gn-dialog-styles", style);
     }
 

@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, Prop, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalFonts, addGlobalStylesheet } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./heading-text.scss";
@@ -20,7 +20,6 @@ export class HeadingText extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("heading-text-styles", style);
     }
 

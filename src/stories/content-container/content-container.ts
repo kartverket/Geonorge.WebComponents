@@ -5,7 +5,7 @@ import { Component, CustomElement, CustomElementOptions, Toggle } from "super-cu
 import style from "./content-container.scss";
 
 // Helpers
-import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 interface ContentContainerOptions extends CustomElementOptions {}
 
@@ -18,7 +18,6 @@ export class ContentContainer extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("content-container-styles", style);
     }
 
