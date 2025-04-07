@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, Prop, getElement, Toggle, Watch } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./gn-table.scss";
@@ -19,7 +19,6 @@ export class GnTable extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("gn-table-styles", style);
     }
 

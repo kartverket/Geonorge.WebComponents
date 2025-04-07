@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./gn-badge-list.scss";
@@ -18,7 +18,6 @@ export class GnBadgeList extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("gn-badge-list-styles", style);
     }
 

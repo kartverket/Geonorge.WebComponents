@@ -14,8 +14,6 @@ import {
 import { NavigationTabHeading } from "./navigation-tab-heading/navigation-tab-heading";
 import { NavigationTabContent } from "./navigation-tab-content/navigation-tab-content";
 
-// Helpers
-import { addGlobalFonts } from "../../functions/guiHelpers";
 
 interface NavigationTabsOptions extends CustomElementOptions {
     active?: boolean;
@@ -51,7 +49,6 @@ export class NavigationTabs extends CustomElement {
     constructor() {
         super();
         this.onSlotChange = this.onSlotChange.bind(this);
-        addGlobalFonts();
     }
 
     setup(options?: NavigationTabsOptions): void {

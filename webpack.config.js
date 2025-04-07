@@ -1,6 +1,7 @@
 const path = require('path');
 const ROOT = path.resolve(__dirname, 'src');
 const DESTINATION = path.resolve(__dirname, 'lib');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
   context: ROOT,
   entry: {
@@ -42,12 +43,15 @@ module.exports = {
     libraryTarget: 'umd',
   },
   resolve: {
-    extensions: ['.ts', '.js'],
+    extensions: ['.ts', '.js', '.css'],
     modules: [
       ROOT,
       'node_modules'
     ]
   },
+  plugins: [
+    new MiniCssExtractPlugin()
+  ],
   module: {
     rules: [
       {
@@ -71,15 +75,15 @@ module.exports = {
         }]
       },
       {
+        test: /fonts.css$/i,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+      },
+      {
         test: /\.s[ac]ss$/i,
         use: [
           'css-loader',
           'sass-loader',
         ],
-      },
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.(woff(2)?|ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,

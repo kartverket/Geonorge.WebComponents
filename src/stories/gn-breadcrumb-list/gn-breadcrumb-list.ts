@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./gn-breadcrumb-list.scss";
@@ -19,7 +19,6 @@ export class GnBreadcrumbList extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("gn-breadcrumb-list-styles", style);
     }
 

@@ -10,7 +10,7 @@ import {
 } from "super-custom-elements";
 
 // Helpers
-import { addGlobalFonts, removeInnerHTML } from "../../functions/guiHelpers";
+import { removeInnerHTML } from "../../functions/guiHelpers";
 
 // Assets
 import AngleRight from "../../assets/svg/angle-right.svg";
@@ -38,7 +38,6 @@ export class BreadcrumbList extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
     }
 
     setup(options?: BreadcrumbListOptions): void {

@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Stylesheets
 import style from "./gn-list.scss";
@@ -18,7 +18,6 @@ export class GnList extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("gn-list-styles", style);
     }
 

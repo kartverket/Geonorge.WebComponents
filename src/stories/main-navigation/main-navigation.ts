@@ -26,7 +26,6 @@ import GeonorgeLogoTest from "../../assets/svg/geonorge-navbar-logo_test.svg";
 import GeonorgeLogoDev from "../../assets/svg/geonorge-navbar-logo_dev.svg";
 
 // Helpers
-import { addGlobalFonts } from "../../functions/guiHelpers";
 import { getGeonorgeUrl } from "../../functions/urlHelpers";
 import { getLanguage, setCookie } from "../../functions/cookieHelpers";
 interface MainNavigationOptions extends CustomElementOptions {
@@ -95,7 +94,6 @@ export class MainNavigation extends CustomElement {
     @Dispatch("onMapItemsChange") onMapItemsChange: DispatchEmitter;
 
     constructor() {
-        addGlobalFonts();
         super();
     }
 

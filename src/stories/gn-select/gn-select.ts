@@ -2,7 +2,7 @@
 import { Component, CustomElement, CustomElementOptions, getShadowRootElement, Toggle } from "super-custom-elements";
 
 // Helpers
-import { addGlobalStylesheet, addGlobalFonts } from "../../functions/guiHelpers";
+import { addGlobalStylesheet } from "../../functions/guiHelpers";
 
 // Assets
 import ArrowDown from "../../assets/svg/arrow-down.svg";
@@ -23,7 +23,6 @@ export class GnSelect extends CustomElement {
 
     constructor() {
         super();
-        addGlobalFonts();
         addGlobalStylesheet("gn-select-styles", style);
     }
 
