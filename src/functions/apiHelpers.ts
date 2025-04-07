@@ -3,6 +3,28 @@ export const getKartkatalogApiUrl = (environment: string) => {
     return `https://kartkatalog.${environmentSlug}geonorge.no/api`;
 };
 
+export const getMinSideShortcutApiUrl = (environment: string) => {
+    const environmentSlug = environment === 'dev' || environment === 'test' ? environment + '.' : '';
+    return `https://minside.${environmentSlug}geonorge.no/api/shortcut`;
+};
+export const getMinSideShortcutUrl = (environment: string) => {
+    const environmentSlug = environment === 'dev' || environment === 'test' ? environment + '.' : '';
+    return `https://minside.${environmentSlug}geonorge.no/shortcuts`;
+};
+
+export const fetchShortcutItems = async (environment: string = "", token: string) => {
+    const apiUrl = getMinSideShortcutApiUrl(environment);
+    const fetchOptions = {
+        method: 'GET',
+        headers: new Headers({
+            'Authorization': `Bearer ${token}`
+        })
+    };
+    return fetch(apiUrl, fetchOptions).then(res => res.json()).then(shortcutItems => {
+        return shortcutItems;
+    });
+}
+
 export const getGeonorgeMenuUrl = (language: string, environment: string) => {
     const environmentSlug = environment === 'dev' || environment === 'test' ? 'test.' : '';
     const selectedLanguageSlug = language === 'en' ? 'en/' : '';
