@@ -23,11 +23,12 @@ yarn add @kartverket/geonorge-web-components
     <meta charset="utf-8">
     <title>HTML site</title>
     <meta content="width=device-width,initial-scale=1" name="viewport">
+    <link href="/geonorge-web-components/index.css" rel="stylesheet" type="text/css">
   </head>
   <body>
     <main-navigation englishurl="/" norwegianurl="/"  environment="dev" ></main-navigation>
     <!-- Content here -->
-    <script src="MainNavigation.js"></script>
+    <script src="/geonorge-web-components/MainNavigation.js"></script>
   </body>
 </html>
 ```
@@ -37,6 +38,7 @@ yarn add @kartverket/geonorge-web-components
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { MainNavigation } from '@kartverket/geonorge-web-components/MainNavigation';
+import '@kartverket/geonorge-web-components/index.css';
 
 
 function App() {
