@@ -47,12 +47,7 @@ button.menu-toggle-button {
     svg {
         height: 24px;        
         width: 24px;        
-        vertical-align: middle;
-        @include breakpoint(phablet) {
-            height: 29px;
-            width: 29px;
-        }
-       
+        vertical-align: middle;              
     }
     &:hover {
         color: #1073BC;

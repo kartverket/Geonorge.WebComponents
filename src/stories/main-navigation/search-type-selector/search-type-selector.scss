@@ -2,6 +2,10 @@
 
 div.search-type-selector {
     width: 235px;
+    display: none;
+    @include breakpoint(phablet) {
+        display: block;
+    }
     label {
         font-size: 14px;
         display: block;

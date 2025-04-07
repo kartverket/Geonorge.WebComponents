@@ -99,11 +99,11 @@ div.main-navigation {
             }
             .search-container {
                 flex: 2;
+                width: 100%;
                 @media print {
                     display: none;
                 }
-                order: 2;                
-                
+                order: 2;                                
                 display: flex;
                 flex-direction: column;
                 
