@@ -12,6 +12,7 @@ module.exports = {
     'GeonorgeFooter': './stories/geonorge-footer/geonorge-footer.ts',
     'GnAccordion': './stories/gn-accordion/gn-accordion.ts',
     'GnBadgeList': './stories/gn-badge-list/gn-badge-list.ts',
+    'GnBookmarkButton': './stories/gn-bookmark-button/gn-bookmark-button.ts',
     'GnBreadcrumbList': './stories/gn-breadcrumb-list/gn-breadcrumb-list.ts',
     'GnButton': './stories/gn-button/gn-button.ts',
     'GnDialog': './stories/gn-dialog/gn-dialog.ts',
