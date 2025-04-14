@@ -1,0 +1,37 @@
+@import "../../style/all";
+
+.gn-bookmark-button {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    & svg {
+        width: 25px;
+        height: 25px;
+        stroke: $default-text;
+        fill: none;
+        @include transition(all 0.1s linear 0s);
+
+        stroke-width: 2px;
+    }
+    &:hover {
+        & svg {
+            stroke: $primary-brand;
+            fill: $primary-brand;
+        }
+    }
+
+    &.bookmarked {
+        & svg {
+            stroke: $primary-brand;
+            fill: $primary-brand;
+        }
+        &:hover {
+            & svg {
+                stroke: $default-font;
+                fill: none;
+            }
+        }
+    }
+}
