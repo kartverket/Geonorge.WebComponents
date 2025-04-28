@@ -133,7 +133,11 @@ renderLogoutButton() {
   mypageContainer.id = "user-account-toggle-button";
   mypageContainer.classList.add("user-account-button");
   const mypagebutton = document.createElement("span");
-  mypagebutton.innerText = this.language === "en" ? "My page" : "Min side";
+  let username = JSON.parse(this.userinfo)?.name; 
+  if (username && username.length > 10) {
+    username = username.substring(0, 8) + '...';
+  }
+  mypagebutton.innerText = username;
 
   const mypageicon = document.createElement("span");
   mypageicon.classList.add("close-user-icon");
