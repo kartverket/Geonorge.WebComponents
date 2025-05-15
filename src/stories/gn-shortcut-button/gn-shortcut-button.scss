@@ -1,7 +1,7 @@
 @use "../../style/mixins/transition";
 @use "../../style/variables/colors";
 
-.gn-bookmark-button {
+.gn-shortcut-button {
     width: 40px;
     height: 40px;
     background: none;
@@ -23,7 +23,7 @@
         }
     }
 
-    &.bookmarked {
+    &.added {
         & svg {
             stroke: colors.$primary-brand;
             fill: colors.$primary-brand;

@@ -1,11 +1,11 @@
 import { Meta } from "@storybook/web-components";
 import { html } from "lit-html";
 
-import "./gn-bookmark-button";
+import "./gn-shortcut-button";
 
 // More on default export: https://storybook.js.org/docs/web-components/writing-stories/introduction#default-export
 export default {
-    title: "Example/GnBookmarkButton",
+    title: "Example/GnShortcutButton",
     // More on argTypes: https://storybook.js.org/docs/web-components/api/argtypes
     argTypes: {}
 } as Meta;
@@ -14,7 +14,7 @@ export default {
 
 const Template = (props) => {
     return html`<div>
-        <gn-bookmark-button><button>Button</button></gn-bookmark-button>
+        <gn-shortcut-button><button>Button</button></gn-shortcut-button>
     </div>`;
 };
 

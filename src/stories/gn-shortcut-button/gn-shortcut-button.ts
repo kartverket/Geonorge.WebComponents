@@ -21,18 +21,18 @@ import { deleteShortcutItem, fetchShortcutItem, postShortcutItem } from "../../f
 import StarIcon from "../../assets/svg/star.svg";
 
 // Stylesheets
-import style from "./gn-bookmark-button.scss";
+import style from "./gn-shortcut-button.scss";
 
-interface GnBookmarkButtonOptions extends CustomElementOptions {
+interface GnShortcutButtonOptions extends CustomElementOptions {
     getAuthToken?: Function;
 }
 
 @Component({
-    tag: "gn-bookmark-button",
-    template: import("./gn-bookmark-button.html")
+    tag: "gn-shortcut-button",
+    template: import("./gn-shortcut-button.html")
 })
-export class GnBookmarkButton extends CustomElement {
-    private bookmarkButton: HTMLButtonElement;
+export class GnShortcutButton extends CustomElement {
+    private shortcutButton: HTMLButtonElement;
     private dialogElement: HTMLElement;
     @Prop() id: string;
     @Prop() language: string;
@@ -42,10 +42,10 @@ export class GnBookmarkButton extends CustomElement {
 
     constructor() {
         super();
-        addGlobalStylesheet("gn-bookmark-button-styles", style);
+        addGlobalStylesheet("gn-shortcut-button-styles", style);
     }
 
-    setup(options?: GnBookmarkButtonOptions): void {
+    setup(options?: GnShortcutButtonOptions): void {
         this.connect(options.container);
         if (options.id) {
             this.id = options.id;
@@ -59,9 +59,7 @@ export class GnBookmarkButton extends CustomElement {
         const gnDialog = new GnDialog();
     }
 
-    disconnectedCallback() {
-        // this.bookmarkButton.removeEventListener("click", this.addBookmark);
-    }
+    disconnectedCallback() {}
 
     async getShortcutItem(environment: string, token: string) {
         try {
@@ -72,36 +70,36 @@ export class GnBookmarkButton extends CustomElement {
         }
     }
 
-    addBookmark(token: string) {
-        const bookmarkData = {
+    addShortcut(token: string) {
+        const shortcutData = {
             name: document.title,
             url: window.location.href
         };
-        postShortcutItem(this.environment, token, bookmarkData)
+        postShortcutItem(this.environment, token, shortcutData)
             .then((data) => {
                 console.log("Shortcut added successfully:", data);
-                this.bookmarkButton.innerHTML = StarIcon;
-                this.bookmarkButton.setAttribute(
+                this.shortcutButton.innerHTML = StarIcon;
+                this.shortcutButton.setAttribute(
                     "aria-label",
                     this.language === "en" ? "Remove shortcut to this page" : "Fjern snarvei for denne siden"
                 );
             })
             .catch((error) => {
-                console.error("Error adding bookmark:", error);
+                console.error("Error adding shortcut:", error);
             });
     }
-    removeBookmark(token: string) {
+    removeShortcut(token: string) {
         deleteShortcutItem(this.environment, token, { url: window.location.href })
             .then((data) => {
                 console.log("Shortcut removed successfully:", data);
-                this.bookmarkButton.innerHTML = StarIcon;
-                this.bookmarkButton.setAttribute(
+                this.shortcutButton.innerHTML = StarIcon;
+                this.shortcutButton.setAttribute(
                     "aria-label",
                     this.language === "en" ? "Add shortcut to this page" : "Lagre snarvei for denne siden"
                 );
             })
             .catch((error) => {
-                console.error("Error removing bookmark:", error);
+                console.error("Error removing shortcut:", error);
             });
     }
 
@@ -109,7 +107,7 @@ export class GnBookmarkButton extends CustomElement {
         this.dialogElement.setAttribute("show", "true");
     }
 
-    appendBookmarkButtonAfterFirstHeading() {
+    appendShortcutButtonAfterFirstHeading() {
         const headingContainer = document.createElement("div");
         const firstHeading = getDocumentHeading();
         if (firstHeading) {
@@ -117,24 +115,24 @@ export class GnBookmarkButton extends CustomElement {
             firstHeading.parentNode.insertBefore(headingContainer, firstHeading);
             headingContainer.appendChild(firstHeading);
         }
-        if (firstHeading && this.bookmarkButton) {
-            this.bookmarkButton.innerHTML = StarIcon;
-            this.bookmarkButton.onclick = () => {
+        if (firstHeading && this.shortcutButton) {
+            this.shortcutButton.innerHTML = StarIcon;
+            this.shortcutButton.onclick = () => {
                 this.openDialog();
                 /*const token = this.getAuthToken();
                 if (!token) {
                     console.error("No token found");
                     return;
                 }
-                this.addBookmark(token);*/
+                this.addShortcut(token);*/
             };
-            this.bookmarkButton.setAttribute(
+            this.shortcutButton.setAttribute(
                 "aria-label",
                 this.language === "en" ? "Add shortcut to this page" : "Lagre snarvei for denne siden"
             );
-            firstHeading.after(this.bookmarkButton);
+            firstHeading.after(this.shortcutButton);
         } else {
-            console.error("First heading or bookmark button is missing");
+            console.error("First heading or shortcut button is missing");
         }
     }
 
@@ -150,13 +148,13 @@ export class GnBookmarkButton extends CustomElement {
 
         this.environment = this.environment || "dev";
         this.language = this.language || "en";
-        this.bookmarkButton = getShadowRootElement(this, "#gn-bookmark-button");
+        this.shortcutButton = getShadowRootElement(this, "#gn-shortcut-button");
 
         const shortcutItem = await this.getShortcutItem(this.environment, token);
         console.log("shortcutItem", shortcutItem);
 
-        if (this.bookmarkButton) {
-            this.appendBookmarkButtonAfterFirstHeading();
+        if (this.shortcutButton) {
+            this.appendShortcutButtonAfterFirstHeading();
             // fetchShortcutItems(this.environment, "this.token").then((shortcutItems) => {
             /* fetchShortcutItems("dev", "this.token").then((shortcutItems) => {
                 // Temporary fix for testing
@@ -174,13 +172,13 @@ export class GnBookmarkButton extends CustomElement {
                 });
             });*/
         } else {
-            console.error("Bookmark button not found in shadow DOM");
+            console.error("Shortcut button not found in shadow DOM");
         }
     }
 
-    public static setup(selector: string, options: GnBookmarkButtonOptions) {
+    public static setup(selector: string, options: GnShortcutButtonOptions) {
         setTimeout(() => {
-            const element = getElement<GnBookmarkButton>(selector);
+            const element = getElement<GnShortcutButton>(selector);
             element.getAuthToken = options.getAuthToken;
             element.token = options.getAuthToken();
         });
