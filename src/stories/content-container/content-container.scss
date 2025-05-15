@@ -1,25 +1,27 @@
-@import "../../style/all";
+@use "../../style/mixins/breakpoints";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 content-container {
     display: block;
     margin: auto;
-    font-family: $default-font;
-    font-size: $default-font-size;
-    color: $default-text;
+    font-family: typography.$default-font;
+    font-size: typography.$default-font-size;
+    color: colors.$default-text;
     line-height: 1.4;
     a {
-        color: $primary-text;
+        color: colors.$primary-text;
         text-decoration: underline;
     }
     &:not([fullwidth]) {
         padding: 10px 15px;
-        @include breakpoint(tablet) {
+        @include breakpoints.breakpoint(tablet) {
             width: 750px;
         }
-        @include breakpoint(laptop) {
+        @include breakpoints.breakpoint(laptop) {
             width: 970px;
         }
-        @include breakpoint(desktop) {
+        @include breakpoints.breakpoint(desktop) {
             width: 1170px;
         }
     }

@@ -1,11 +1,14 @@
-@import "../../style/all";
+@use "../../style/mixins/border-radius";
+@use "../../style/mixins/transition";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-button {
-    button,
-    a {
-        @include transition(all 0.35s linear 0s);
-        @include border-radius(4px);
-        font-family: $default-font;
+    & button,
+    & a {
+        @include transition.transition(all 0.35s linear 0s);
+        @include border-radius.border-radius(4px);
+        font-family: typography.$default-font;
         font-weight: 400;
         font-size: 12pt;
         font-style: normal;
@@ -21,16 +24,16 @@ gn-button {
         padding: 5px 8px;
         box-sizing: border-box;
         &:hover {
-            background-color: $primary-brand;
+            background-color: colors.$primary-brand;
         }
         &:disabled {
-            background-color: $disabled-background;
-            color: $disabled-text;
-            border: 1px solid $disabled-border;
+            background-color: colors.$disabled-background;
+            color: colors.$disabled-text;
+            border: 1px solid colors.$disabled-border;
             cursor: not-allowed;
             &:hover,
             &:focus {
-                background-color: $disabled-background;
+                background-color: colors.$disabled-background;
             }
         }
     }
@@ -38,72 +41,72 @@ gn-button {
     &[color="default"],
     &[color=""],
     &:not([color]) {
-        button,
-        a {
+        & button,
+        & a {
             text-decoration: none;
             &:not(:disabled) {
-                background-color: $default-background;
-                color: $default-text;
-                border-color: $default-border;
+                background-color: colors.$default-background;
+                color: colors.$default-text;
+                border-color: colors.$default-border;
                 &:hover,
                 &:focus {
-                    background-color: $default-background-hover;
+                    background-color: colors.$default-background-hover;
                 }
             }
         }
     }
     &[color="primary"] {
-        button,
-        a {
+        & button,
+        & a {
             text-decoration: none;
             &:not(:disabled) {
-                background-color: $primary-background;
+                background-color: colors.$primary-background;
                 color: #fff;
                 &:hover,
                 &:focus {
-                    background-color: $primary-background-hover;
+                    background-color: colors.$primary-background-hover;
                 }
             }
         }
     }
     &[color="success"] {
-        button,
-        a {
+        & button,
+        & a {
             text-decoration: none;
             &:not(:disabled) {
-                background-color: $success-background;
+                background-color: colors.$success-background;
                 color: #fff;
                 &:hover,
                 &:focus {
-                    background-color: $success-background-hover;
+                    background-color: colors.$success-background-hover;
                 }
             }
         }
     }
     &[color="warning"] {
-        button,
-        a {
+        & button,
+        & a {
             text-decoration: none;
             &:not(:disabled) {
-                background-color: $warning-background;
+                background-color: colors.$warning-background;
                 color: #fff;
                 &:hover,
                 &:focus {
-                    background-color: $warning-background-hover;
+                    background-color: colors.$warning-background-hover;
                 }
             }
         }
     }
     &[color="danger"] {
-        button,
-        a {
+        & button,
+        & a {
             text-decoration: none;
             &:not(:disabled) {
-                background-color: $danger-background;
+                background-color: colors.$danger-background;
                 color: #fff;
                 &:hover,
                 &:focus {
-                    background-color: $danger-background-hover;
+                    background-color: colors.$danger-background-hover;
                 }
             }
         }

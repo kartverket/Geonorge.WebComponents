@@ -1,4 +1,7 @@
-@import "../../style/all";
+@use "../../style/mixins/appearance";
+@use "../../style/mixins/border-radius";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-input {
     &[width] {
@@ -27,10 +30,10 @@ gn-input {
     input[type="search"],
     input[type="password"],
     input:not([type]) {
-        @include appearance(none);
-        @include border-radius(4px);
+        @include appearance.appearance(none);
+        @include border-radius.border-radius(4px);
         box-sizing: border-box;
-        font-family: $default-font;
+        font-family: typography.$default-font;
         font-size: 16px;
         font-size: 12pt;
         padding: 0 8px;
@@ -40,39 +43,39 @@ gn-input {
         z-index: 1;
         &:not(:disabled) {
             background-color: #fff;
-            border: 1px solid $default-border;
-            color: $default-text;
+            border: 1px solid colors.$default-border;
+            color: colors.$default-text;
         }
         &:disabled {
-            background-color: $disabled-background;
-            color: $disabled-text;
-            border: 1px solid $disabled-border;
+            background-color: colors.$disabled-background;
+            color: colors.$disabled-text;
+            border: 1px solid colors.$disabled-border;
             cursor: not-allowed;
         }
     }
     input[type="checkbox"],
     input[type="radio"] {
-        @include appearance(none);
-        border: 2px solid $default-text;
+        @include appearance.appearance(none);
+        border: 2px solid colors.$default-text;
         font: inherit;
         color: currentColor;
         width: 16px;
         height: 16px;
         margin: 0 6px 0 0;
         &:checked {
-            border-color: $primary-text;
+            border-color: colors.$primary-text;
         }
         &:focus-visible {
-            outline: max(2px, 0.1em) solid $primary-text;
+            outline: max(2px, 0.1em) solid colors.$primary-text;
             outline-offset: max(2px, 0.1em);
         }
     }
     input[type="checkbox"] {
-        @include border-radius(3px);
+        @include border-radius.border-radius(3px);
         vertical-align: text-top;
         &:checked {
             &::before {
-                background-color: $primary-text;
+                background-color: colors.$primary-text;
                 content: "✓";
                 line-height: 13px;
                 color: #fff;
@@ -82,24 +85,24 @@ gn-input {
             }
         }
         &:disabled {
-            background-color: $disabled-border;
-            border-color: $disabled-border;
+            background-color: colors.$disabled-border;
+            border-color: colors.$disabled-border;
             cursor: not-allowed;
             &:checked {
                 &::before {
-                    background-color: $disabled-border;
-                    color: $disabled-text;
+                    background-color: colors.$disabled-border;
+                    color: colors.$disabled-text;
                 }
             }
         }
     }
     input[type="radio"] {
-        @include border-radius(50%);
+        @include border-radius.border-radius(50%);
         transform: translateY(-0.075em);
         display: inline-grid;
         place-content: center;
         &::before {
-            @include border-radius(50%);
+            @include border-radius.border-radius(50%);
             content: "";
             width: 8px;
             height: 8px;
@@ -108,15 +111,15 @@ gn-input {
         }
         &:checked {
             &::before {
-                background-color: $primary-text;
+                background-color: colors.$primary-text;
                 transform: scale(1);
             }
         }
         &:disabled {
-            border-color: $disabled-border;
+            border-color: colors.$disabled-border;
             &:checked {
                 &::before {
-                    background-color: $disabled-border;
+                    background-color: colors.$disabled-border;
                     transform: scale(1);
                 }
             }
