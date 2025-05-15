@@ -1,28 +1,31 @@
-@import "../../../style/all";
-
+@use "../../../style/mixins/border-radius";
+@use "../../../style/mixins/box-shadow";
+@use "../../../style/mixins/breakpoints";
+@use "../../../style/mixins/transition";
+@use "../../../style/variables/typography";
 * {
     box-sizing: border-box;
 }
 
-button.menu-toggle-button {     
-    border: none;       
+button.menu-toggle-button {
+    border: none;
     background-color: transparent;
-    color: #403F3F;
+    color: #403f3f;
     cursor: pointer;
     width: 40px;
     height: 32px;
     display: flex;
     gap: 6px;
     align-items: center;
-        
-    @include breakpoint(phablet) {
+
+    @include breakpoints.breakpoint(phablet) {
         width: 45px;
         height: 37px;
     }
-    @include breakpoint(laptop) {
+    @include breakpoints.breakpoint(laptop) {
         width: 98px;
         background-color: transparent;
-        color: #403F3F        ;
+        color: #403f3f;
     }
     &.open {
         background-color: transparent;
@@ -34,9 +37,9 @@ button.menu-toggle-button {
             display: none;
             font-weight: 500;
             vertical-align: middle;
-            font-family: "Open Sans";
-            font-size: 14px;            
-            @include breakpoint(laptop) {
+            font-family: typography.$default-font;
+            font-size: 14px;
+            @include breakpoints.breakpoint(laptop) {
                 display: inline-block;
             }
         }
@@ -45,12 +48,12 @@ button.menu-toggle-button {
         }
     }
     svg {
-        height: 24px;        
-        width: 24px;        
-        vertical-align: middle;              
+        height: 24px;
+        width: 24px;
+        vertical-align: middle;
     }
     &:hover {
-        color: #1073BC;
+        color: #1073bc;
     }
 }
 .menu-wrapper {
@@ -59,24 +62,24 @@ button.menu-toggle-button {
     width: 100%;
 
     .menu-container {
-        @include border-radius(0 0 3px 3px);
+        @include border-radius.border-radius(0 0 3px 3px);
         box-sizing: border-box;
         width: 100%;
         background-color: #fff;
         margin: auto;
         position: relative;
         top: 56px;
-        @include breakpoint(phablet) {
+        @include breakpoints.breakpoint(phablet) {
             top: 15px;
         }
 
-        @include breakpoint(tablet) {
+        @include breakpoints.breakpoint(tablet) {
             width: 750px;
         }
-        @include breakpoint(laptop) {
+        @include breakpoints.breakpoint(laptop) {
             width: 970px;
         }
-        @include breakpoint(desktop) {
+        @include breakpoints.breakpoint(desktop) {
             width: 1170px;
         }
         @media print {
@@ -84,20 +87,20 @@ button.menu-toggle-button {
         }
 
         &.open {
-            @include box-shadow(0 5px 5px -2px rgba(0, 0, 0, 0.26));
+            @include box-shadow.box-shadow(0 5px 5px -2px rgba(0, 0, 0, 0.26));
             height: auto;
         }
         .menu-item-list-container {
-            @include transition(max-height 0.3s ease-in-out);
+            @include transition.transition(max-height 0.3s ease-in-out);
             overflow: hidden;
             max-height: 0;
             &.open {
                 max-height: 300px;
                 overflow: auto;
-                @include breakpoint(phablet) {
+                @include breakpoints.breakpoint(phablet) {
                     max-height: 450px;
                 }
-                @include breakpoint(laptop) {
+                @include breakpoints.breakpoint(laptop) {
                     max-height: 300px;
                 }
             }
@@ -122,10 +125,10 @@ button.menu-toggle-button {
                     flex-wrap: wrap;
                     > li {
                         flex: 1 0 100%;
-                        @include breakpoint(phablet) {
+                        @include breakpoints.breakpoint(phablet) {
                             flex: 1 0 50%;
                         }
-                        @include breakpoint(laptop) {
+                        @include breakpoints.breakpoint(laptop) {
                             flex: 1;
                         }
                         > a {
@@ -153,7 +156,7 @@ button.menu-toggle-button {
             }
         }
         .menu-actions-row {
-            @include transition(max-height 0.3s ease-in-out);
+            @include transition.transition(max-height 0.3s ease-in-out);
             text-align: right;
             background-color: white;
             max-height: 0;
@@ -172,7 +175,7 @@ button.menu-toggle-button {
                 border: none;
                 font-size: 16px;
                 font-weight: normal;
-                font-family: $default-font;
+                font-family: typography.$default-font;
                 background: none;
                 &:hover {
                     text-decoration: underline;

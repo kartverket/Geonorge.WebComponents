@@ -1,12 +1,13 @@
-@import "../../style/all";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-label {
-    font-family: $default-font;
-    color: $default-text;
+    font-family: typography.$default-font;
+    color: colors.$default-text;
     font-size: 1em;
     line-height: 1.5em;
     min-height: 21px;
-    font-weight: bold;    
+    font-weight: bold;
     &[block] {
         display: block;
         margin-bottom: 0.4em;

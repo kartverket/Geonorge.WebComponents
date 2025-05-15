@@ -1,23 +1,26 @@
-@import "../../style/all";
+@use "../../style/mixins/box-shadow";
+@use "../../style/mixins/breakpoints";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 * {
     box-sizing: border-box;
 }
 
 div.main-navigation {
-    @include box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
-    background-color: $navigation-bar-background;
-    font-family: $default-font;
-    color: $default-text;
+    @include box-shadow.box-shadow(0 2px 5px rgba(0, 0, 0, 0.26));
+    background-color: colors.$navigation-bar-background;
+    font-family: typography.$default-font;
+    color: colors.$default-text;
     position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 2;    
+    z-index: 2;
     @media print {
         position: relative;
         margin-bottom: -100px;
-        @include box-shadow(none);
+        @include box-shadow.box-shadow(none);
     }
 
     &.static-position {
@@ -25,12 +28,12 @@ div.main-navigation {
     }
 
     &.no-shadow {
-        @include box-shadow(none);
+        @include box-shadow.box-shadow(none);
     }
 
     a.main-content-link {
         display: block;
-        color: $primary-text;
+        color: colors.$primary-text;
         padding: 8px;
         text-align: center;
         text-decoration: none;
@@ -40,7 +43,7 @@ div.main-navigation {
         clip: rect(1px, 1px, 1px, 1px);
         width: 1px;
         height: 1px;
-        word-wrap: normal;        
+        word-wrap: normal;
         &:focus,
         &:active {
             position: static;
@@ -49,10 +52,10 @@ div.main-navigation {
             width: 100%;
             height: auto;
             outline: none;
-            color: $primary-text-hover;
+            color: colors.$primary-text-hover;
             span {
                 z-index: 100;
-                outline: 3px solid $primary-text;
+                outline: 3px solid colors.$primary-text;
                 outline-offset: 2px;
                 transition: none;
                 text-decoration: none;
@@ -63,13 +66,13 @@ div.main-navigation {
     .main-navigation-container {
         margin: auto;
 
-        @include breakpoint(tablet) {
+        @include breakpoints.breakpoint(tablet) {
             width: 750px;
         }
-        @include breakpoint(laptop) {
+        @include breakpoints.breakpoint(laptop) {
             width: 970px;
         }
-        @include breakpoint(desktop) {
+        @include breakpoints.breakpoint(desktop) {
             width: 1170px;
         }
         .main-navigation-content {
@@ -77,9 +80,9 @@ div.main-navigation {
             flex-wrap: wrap;
             align-items: center;
             padding: 10px 15px;
-            @include breakpoint(phablet) {
+            @include breakpoints.breakpoint(phablet) {
                 flex-wrap: nowrap;
-            }            
+            }
 
             .logo {
                 flex: 1;
@@ -89,10 +92,10 @@ div.main-navigation {
                 svg {
                     height: 37px;
                     width: 200px;
-                    @include breakpoint(phablet) {
+                    @include breakpoints.breakpoint(phablet) {
                         width: 200px;
                     }
-                    @include breakpoint(laptop) {
+                    @include breakpoints.breakpoint(laptop) {
                         width: 248px;
                     }
                 }
@@ -103,24 +106,24 @@ div.main-navigation {
                 @media print {
                     display: none;
                 }
-                order: 2;                                
+                order: 2;
                 display: flex;
                 flex-direction: column;
-                
-                @include breakpoint(phablet) {
+
+                @include breakpoints.breakpoint(phablet) {
                     order: 0;
                     padding: 0 1em;
                 }
-                @include breakpoint(tablet) {
+                @include breakpoints.breakpoint(tablet) {
                     flex-direction: row;
-                }               
-                width: 300px;                                
+                }
+                width: 300px;
             }
-            .button-row {                
+            .button-row {
                 display: flex;
                 flex-wrap: wrap;
                 align-items: center;
-                justify-content: space-between;               
+                justify-content: space-between;
             }
         }
     }

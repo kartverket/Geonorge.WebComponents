@@ -1,7 +1,7 @@
-@import "../../style/all";
+@use "../../style/variables/typography";
 
 :host {
-    font-family: $default-font;
+    font-family: typography.$default-font;
     display: block;
     .navigation-tab-headings {
         width: 100%;

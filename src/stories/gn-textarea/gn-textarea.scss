@@ -1,10 +1,13 @@
-@import "../../style/all";
+@use "../../style/mixins/appearance";
+@use "../../style/mixins/border-radius";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-textarea {
     textarea {
-        @include appearance(none);
-        @include border-radius(4px);
-        font-family: $default-font;
+        @include appearance.appearance(none);
+        @include border-radius.border-radius(4px);
+        font-family: typography.$default-font;
         font-size: 16px;
         background: none;
         color: #000;
@@ -17,13 +20,13 @@ gn-textarea {
         display: block;
         &:not(:disabled) {
             background-color: #fff;
-            border: 1px solid $default-border;
-            color: $default-text;
+            border: 1px solid colors.$default-border;
+            color: colors.$default-text;
         }
         &:disabled {
-            background-color: $disabled-background;
-            color: $disabled-text;
-            border: 1px solid $disabled-border;
+            background-color: colors.$disabled-background;
+            color: colors.$disabled-text;
+            border: 1px solid colors.$disabled-border;
             cursor: not-allowed;
         }
     }

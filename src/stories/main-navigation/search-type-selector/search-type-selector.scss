@@ -1,9 +1,12 @@
-@import "../../../style/all";
+@use "../../../style/mixins/appearance";
+@use "../../../style/mixins/border-radius";
+@use "../../../style/mixins/breakpoints";
+@use "../../../style/variables/colors";
 
 div.search-type-selector {
     width: 235px;
     display: none;
-    @include breakpoint(phablet) {
+    @include breakpoints.breakpoint(phablet) {
         display: block;
     }
     label {
@@ -23,8 +26,8 @@ div.search-type-selector {
         }
     }
     input[type="radio"] {
-        @include border-radius(50%);
-        @include appearance(none);
+        @include border-radius.border-radius(50%);
+        @include appearance.appearance(none);
         margin: 0;
         font: inherit;
         color: currentColor;
@@ -34,11 +37,10 @@ div.search-type-selector {
         transform: translateY(-0.075em);
         display: inline-grid;
         place-content: center;
-        
     }
 
     input[type="radio"]::before {
-        @include border-radius(50%);
+        @include border-radius.border-radius(50%);
         content: "";
         width: 8px;
         height: 8px;
@@ -47,15 +49,15 @@ div.search-type-selector {
     }
 
     input[type="radio"]:checked {
-        border-color: $primary-text;
+        border-color: colors.$primary-text;
         &::before {
             transform: scale(1);
-            background-color: $primary-text;
+            background-color: colors.$primary-text;
         }
     }
 
     input[type="radio"]:focus-visible {
-        outline: max(2px, 0.1em) solid $primary-text;
+        outline: max(2px, 0.1em) solid colors.$primary-text;
         outline-offset: max(2px, 0.1em);
     }
 }

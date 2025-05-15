@@ -1,15 +1,17 @@
-@import "../../style/all";
+@use "../../style/mixins/transition";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-table {
   table {
     border-collapse: collapse;
     width: 100%;
-    font-family: $default-font;
-    color: $default-text;
+    font-family: typography.$default-font;
+    color: colors.$default-text;
     tr {
       th {
-        border-bottom: 2px solid $primary-brand;
-        color: $primary-text;
+        border-bottom: 2px solid colors.$primary-brand;
+        color: colors.$primary-text;
         font-weight: normal;
         height: 27px;
         line-height: 20px;
@@ -19,7 +21,7 @@ gn-table {
       }
       td {
         padding: 8px;
-        border-bottom: 1px solid $default-border;
+        border-bottom: 1px solid colors.$default-border;
         line-height: 20px;
       }
     }
@@ -28,9 +30,9 @@ gn-table {
     table {
       tbody {
         tr {
-          @include transition(background-color 0.15s ease-in-out);
+          @include transition.transition(background-color 0.15s ease-in-out);
           &:hover {
-            background-color: $hover-background;
+            background-color: colors.$hover-background;
           }
         }
       }

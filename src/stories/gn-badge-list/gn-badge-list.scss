@@ -1,4 +1,5 @@
-@import "../../style/all";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-badge-list {
     ul,
@@ -14,8 +15,8 @@ gn-badge-list {
         }
         li {
             display: inline-block;
-            background-color: $primary-background;
-            font-family: $default-font;
+            background-color: colors.$primary-background;
+            font-family: typography.$default-font;
             color: white;
             margin: 0 2px;
             padding: 0 8px;

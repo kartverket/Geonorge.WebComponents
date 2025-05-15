@@ -1,4 +1,8 @@
-@import "../../style/all";
+@use "../../style/mixins/border-radius";
+@use "../../style/mixins/box-shadow";
+@use "../../style/mixins/breakpoints";
+@use "../../style/mixins/calc";
+@use "../../style/variables/colors";
 
 .dialog-container {
     &:not(.visible) {
@@ -18,42 +22,42 @@
         z-index: 2;
         justify-content: center;
         box-sizing: border-box;
-        @include breakpoint(laptop) {
+        @include breakpoints.breakpoint(laptop) {
             padding: 36px;
         }
     }
     .dialog-content {
-        @include calc("max-height", "100% - 128px");
-        @include box-shadow(
+        @include calc.calc("max-height", "100% - 128px");
+        @include box-shadow.box-shadow(
             0 11px 15px -7px rgba(0, 0, 0, 0.2),
             0 24px 38px 3px rgba(0, 0, 0, 0.14),
             0 9px 46px 8px rgba(0, 0, 0, 0.12)
         );
-        @include border-radius(4px);
+        @include border-radius.border-radius(4px);
         max-width: 540px;
         width: 100%;
         background-color: #fff;
         position: relative;
         &:not(.noPadding) {
             padding: 28px 22px 22px;
-            @include breakpoint(tablet) {
+            @include breakpoints.breakpoint(tablet) {
                 padding: 38px 30px 30px;
             }
         }
         &.noPadding {
             padding: 28px 0 0;
-            @include breakpoint(tablet) {
+            @include breakpoints.breakpoint(tablet) {
                 padding: 38px 0 0;
             }
         }
-        @include breakpoint(laptop) {
-            @include calc("width", "100% - 128px");
+        @include breakpoints.breakpoint(laptop) {
+            @include calc.calc("width", "100% - 128px");
             max-height: 100%;
         }
         .close-dialog-button {
             background: none;
             border: none;
-            color: $default-text;
+            color: colors.$default-text;
             display: inline-block;
             position: absolute;
             right: 7px;
@@ -64,7 +68,7 @@
             padding: 0;
             right: 8px;
             top: 5px;
-            @include breakpoint(tablet) {
+            @include breakpoints.breakpoint(tablet) {
                 right: 15px;
                 top: 10px;
             }

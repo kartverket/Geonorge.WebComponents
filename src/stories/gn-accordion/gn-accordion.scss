@@ -1,7 +1,8 @@
-@import "../../style/all";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-accordion {
-    font-family: $default-font;
-    color: $default-text;
+    font-family: typography.$default-font;
+    color: colors.$default-text;
     display: block;
 }

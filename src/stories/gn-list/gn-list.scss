@@ -1,4 +1,5 @@
-@import "../../style/all";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-list {
     ul {
@@ -15,13 +16,13 @@ gn-list {
             display: block;
         }
         li {
-            font-family: $default-font;
-            color: $default-text;
+            font-family: typography.$default-font;
+            color: colors.$default-text;
             font-weight: normal;
             line-height: 1.4em;
             font-style: italic;
             &:before {
-                color: $primary-brand;
+                color: colors.$primary-brand;
                 content: "•";
                 font-size: 24px;
                 font-style: normal;
