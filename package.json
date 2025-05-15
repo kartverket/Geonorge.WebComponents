@@ -22,7 +22,8 @@
     "clean:lib": "shx rm -rf lib",
     "clean:tmp": "shx rm -rf tmp",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs"
+    "build-storybook": "build-storybook -o docs",
+    "test-release": "npm run build && npm run copy-files"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
