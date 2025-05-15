@@ -1,4 +1,5 @@
-@import "../../style/all";
+@use "../../style/mixins/transition";
+@use "../../style/variables/colors";
 
 .gn-bookmark-button {
     width: 40px;
@@ -9,27 +10,27 @@
     & svg {
         width: 25px;
         height: 25px;
-        stroke: $default-text;
+        stroke: colors.$default-text;
         fill: none;
-        @include transition(all 0.1s linear 0s);
+        @include transition.transition(all 0.1s linear 0s);
 
         stroke-width: 2px;
     }
     &:hover {
         & svg {
-            stroke: $primary-brand;
-            fill: $primary-brand;
+            stroke: colors.$primary-brand;
+            fill: colors.$primary-brand;
         }
     }
 
     &.bookmarked {
         & svg {
-            stroke: $primary-brand;
-            fill: $primary-brand;
+            stroke: colors.$primary-brand;
+            fill: colors.$primary-brand;
         }
         &:hover {
             & svg {
-                stroke: $default-font;
+                stroke: colors.$default-text;
                 fill: none;
             }
         }
