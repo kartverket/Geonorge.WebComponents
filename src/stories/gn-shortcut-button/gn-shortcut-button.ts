@@ -12,6 +12,9 @@ import {
 // Components
 import { GnButton } from "../gn-button/gn-button";
 import { GnDialog } from "../gn-dialog/gn-dialog";
+import { GnInput } from "../gn-input/gn-input";
+import { BodyText } from "../body-text/body-text";
+import { HeadingText } from "../heading-text/heading-text";
 
 // Helpers
 import { addGlobalStylesheet, getDocumentHeading } from "../../functions/guiHelpers";
@@ -34,6 +37,7 @@ interface GnShortcutButtonOptions extends CustomElementOptions {
 export class GnShortcutButton extends CustomElement {
     private shortcutButton: HTMLButtonElement;
     private dialogElement: HTMLElement;
+    private saveButtonElement: HTMLButtonElement;
     @Prop() id: string;
     @Prop() language: string;
     @Prop() environment: string;
@@ -54,9 +58,12 @@ export class GnShortcutButton extends CustomElement {
 
     connectedCallback() {
         this.dialogElement = getShadowRootElement(this, "gn-dialog");
-
+        this.saveButtonElement = getShadowRootElement(this, "#add-shortcut");
         const gnButton = new GnButton();
         const gnDialog = new GnDialog();
+        const gnInput = new GnInput();
+        const bodyText = new BodyText();
+        const headingText = new HeadingText();
     }
 
     disconnectedCallback() {}
