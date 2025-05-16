@@ -15,6 +15,7 @@ export default {
 const Template = (props) => {
     return html`<div>
         <gn-shortcut-button><button>Button</button></gn-shortcut-button>
+        <h1>Header</h1>
     </div>`;
 };
 
