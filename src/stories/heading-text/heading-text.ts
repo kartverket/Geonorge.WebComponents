@@ -1,17 +1,12 @@
 // Dependencies
 import { Component, CustomElement, CustomElementOptions, Prop, Toggle } from "super-custom-elements";
 
-// Helpers
-import { addGlobalStylesheet } from "../../functions/guiHelpers";
-
-// Stylesheets
-import style from "./heading-text.scss";
-
 interface HeadingTextOptions extends CustomElementOptions {}
 
 @Component({
     tag: "heading-text",
-    template: import("./heading-text.html")
+    template: import("./heading-text.html"),
+    style: import("./template.scss")
 })
 export class HeadingText extends CustomElement {
     @Prop() size: string;
@@ -20,7 +15,6 @@ export class HeadingText extends CustomElement {
 
     constructor() {
         super();
-        addGlobalStylesheet("heading-text-styles", style);
     }
 
     setup(options?: HeadingTextOptions): void {}
