@@ -1,0 +1,25 @@
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
+
+:host {
+    font-family: typography.$default-font;
+    color: colors.$default-text;
+    font-size: 1em;
+    line-height: 1.5em;
+    min-height: 21px;
+    font-weight: bold;
+}
+
+:host(:not([block])) {
+    display: inline-block;
+    ::slotted(gn-input:not([block])),
+    ::slotted(gn-select:not([block])),
+    ::slotted(gn-textarea:not([block])) {
+        margin-left: 0.5em;
+    }
+}
+
+:host([block]) {
+    display: block;
+    margin-bottom: 0.4em;
+}
