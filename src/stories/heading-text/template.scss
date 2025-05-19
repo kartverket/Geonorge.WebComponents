@@ -105,3 +105,13 @@
         font-size: 16px;
     }
 }
+
+::slotted(.no-margin) {
+    margin-top: 0;
+    &::before {
+        margin-top: 0;
+    }
+    &::after {
+        margin-bottom: 0;
+    }
+}
