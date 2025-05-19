@@ -4,11 +4,14 @@
 @use "../../style/variables/typography";
 
 :host([block]) {
-    background-color: aqua;
+    display: block;
+}
+
+:host(:not([block])) {
+    display: inline-block;
 }
 
 :host([fullwidth]) {
-    background-color: blue;
     display: block;
     ::slotted(input) {
         width: 100%;
