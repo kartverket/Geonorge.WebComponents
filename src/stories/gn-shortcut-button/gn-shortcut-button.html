@@ -1,20 +1,40 @@
 <template>
     <button id="gn-shortcut-button" class="gn-shortcut-button"></button>
-    <gn-dialog id="add-shortcut-dialog">
+    <gn-dialog id="add-shortcut-dialog" show width="400px">
         <body-text>
             <heading-text>
                 <h2>Lagre snarvei</h2>
             </heading-text>
-            <gn-label block>
-                <label for="shortcut-name-input">
-                    Velg et navn som gjøt det enkelt å huske snarveien, og finn den igjen under Mine snarveier.
-                </label>
-            </gn-label>
-            <gn-input block="">
-                <input id="shortcut-name-input" placeholder="Skriv inn snarveinavn" />
-            </gn-input>
-            <gn-button id="cancel-shortcut"><button>Avbryt</button></gn-button>
-            <gn-button id="add-shortcut" color="primary"><button>Lagre</button></gn-button>
+            <gn-field-container block>
+                <gn-label block>
+                    <label for="shortcut-name-input">
+                        Velg et navn som gjøt det enkelt å huske snarveien, og finn den igjen under Mine snarveier.
+                    </label>
+                </gn-label>
+                <gn-input block fullwidth>
+                    <input id="shortcut-name-input" placeholder="Skriv inn snarveinavn" />
+                </gn-input>
+            </gn-field-container>
+            <div class="align-right">
+                <gn-button id="cancel-add-shortcut-button"><button>Avbryt</button></gn-button>
+                <gn-button id="add-shortcut-button" color="primary"><button>Lagre</button></gn-button>
+            </div>
+        </body-text>
+    </gn-dialog>
+    <gn-dialog id="remove-shortcut-dialog" width="400px">
+        <body-text>
+            <heading-text>
+                <h2>Fjern snarvei</h2>
+            </heading-text>
+            <gn-field-container block>
+                <gn-label block>
+                    <label for="shortcut-name-input">Er du sikker på at du vil fjerne snarveien?</label>
+                </gn-label>
+            </gn-field-container>
+            <div class="align-right">
+                <gn-button id="cancel-remove-shortcut-button"><button>Avbryt</button></gn-button>
+                <gn-button id="remove-shortcut-button" color="primary"><button>Fjern snarvei</button></gn-button>
+            </div>
         </body-text>
     </gn-dialog>
 </template>

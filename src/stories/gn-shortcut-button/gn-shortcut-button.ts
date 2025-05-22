@@ -32,7 +32,8 @@ interface GnShortcutButtonOptions extends CustomElementOptions {
 
 @Component({
     tag: "gn-shortcut-button",
-    template: import("./gn-shortcut-button.html")
+    template: import("./gn-shortcut-button.html"),
+    style: import("./template.scss")
 })
 export class GnShortcutButton extends CustomElement {
     private shortcutButton: HTMLButtonElement;
