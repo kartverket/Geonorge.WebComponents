@@ -230,14 +230,20 @@ renderUserAccountItems() {
         loginIcon.classList.add("menu-user-icon");
         loginIcon.innerHTML = UserAccountIcon;
         const logOutLink = document.createElement("a");
+        logOutLink.setAttribute("role", "button");
+        logOutLink.href = "#";
         const logOutText = document.createElement("span");
         logOutText.innerText = this.language === "en" ? "Log out" : "Logg ut";
         logOutLink.appendChild(loginIcon);   
         logOutLink.appendChild(logOutText);
-        if(this.shouldShowAuthenticationButton()) {
-          logOutLink.onclick= () => this.onSignOutClick.emit();
-        }  else {
-          logOutLink.href = this.signouturl; }
+       if (this.shouldShowAuthenticationButton()) {
+        logOutLink.onclick = (event) => {
+          event.preventDefault(); 
+          this.onSignOutClick.emit();
+        };
+      } else {
+        logOutLink.href = this.signouturl;
+      }
         
         logOutBlock.appendChild(logOutLink);
         
