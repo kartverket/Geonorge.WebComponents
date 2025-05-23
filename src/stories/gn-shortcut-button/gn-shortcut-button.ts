@@ -157,7 +157,7 @@ export class GnShortcutButton extends CustomElement {
                     return;
                 }
                 this.removeShortcut(token);
-                this.shortcutButton.classList.remove("active");
+                this.appendShortcutButtonAfterFirstHeading(false);
                 this.closeDialog();
             });
         } else {
@@ -174,7 +174,7 @@ export class GnShortcutButton extends CustomElement {
                     return;
                 }
                 this.saveShortcut(token);
-                this.shortcutButton.classList.add("active");
+                this.appendShortcutButtonAfterFirstHeading(false);
                 this.closeDialog();
             });
         }
