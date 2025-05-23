@@ -21,11 +21,30 @@ export const fetchShortcutItem = async (environment: string = "", token: string,
             Authorization: `Bearer ${token}`
         })
     };
-    return fetch(apiUrl, fetchOptions)
-        .then((res) => res.json())
-        .then((shortcutItems) => {
-            return shortcutItems;
-        });
+    try {
+        return fetch(apiUrl, fetchOptions)
+            .then((res) => {
+                if (res.status === 401) {
+                    throw new Error("Unauthorized");
+                }
+                if (res.status === 404) {
+                    throw new Error("Not Found");
+                }
+                if (res.status === 500) {
+                    throw new Error("Internal Server Error");
+                }
+                if (res.status === 200) {
+                    return res.json();
+                }
+                throw new Error("Unknown error");
+            })
+            .then((shortcutItems) => {
+                return shortcutItems;
+            });
+    } catch (error) {
+        console.error("Error fetching shortcut items:", error);
+        return null;
+    }
 };
 
 export const postShortcutItem = async (
