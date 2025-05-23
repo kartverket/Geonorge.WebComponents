@@ -12,6 +12,7 @@ import {
 // Components
 import { GnButton } from "../gn-button/gn-button";
 import { GnDialog } from "../gn-dialog/gn-dialog";
+import { GnFieldContainer } from "../gn-field-container/gn-field-container";
 import { GnInput } from "../gn-input/gn-input";
 import { BodyText } from "../body-text/body-text";
 import { HeadingText } from "../heading-text/heading-text";
@@ -37,8 +38,10 @@ interface GnShortcutButtonOptions extends CustomElementOptions {
 })
 export class GnShortcutButton extends CustomElement {
     private shortcutButton: HTMLButtonElement;
-    private dialogElement: HTMLElement;
-    private saveButtonElement: HTMLButtonElement;
+    private addShortcutDialogElement: HTMLElement;
+    private removeShortcutDialogElement: HTMLElement;
+    private saveShortcutButtonElement: HTMLButtonElement;
+    private removeShortcutButtonElement: HTMLButtonElement;
     @Prop() id: string;
     @Prop() language: string;
     @Prop() environment: string;
@@ -58,10 +61,13 @@ export class GnShortcutButton extends CustomElement {
     }
 
     connectedCallback() {
-        this.dialogElement = getShadowRootElement(this, "gn-dialog");
-        this.saveButtonElement = getShadowRootElement(this, "#add-shortcut");
+        this.addShortcutDialogElement = getShadowRootElement(this, "#add-shortcut-dialog");
+        this.removeShortcutDialogElement = getShadowRootElement(this, "#remove-shortcut-dialog");
+        this.saveShortcutButtonElement = getShadowRootElement(this, "#save-shortcut-button");
+        this.removeShortcutButtonElement = getShadowRootElement(this, "#remove-shortcut-button");
         const gnButton = new GnButton();
         const gnDialog = new GnDialog();
+        const gnFieldContainer = new GnFieldContainer();
         const gnInput = new GnInput();
         const bodyText = new BodyText();
         const headingText = new HeadingText();
@@ -78,14 +84,14 @@ export class GnShortcutButton extends CustomElement {
         }
     }
 
-    addShortcut(token: string) {
+    saveShortcut(token: string) {
         const shortcutData = {
             name: document.title,
             url: window.location.href
         };
         postShortcutItem(this.environment, token, shortcutData)
             .then((data) => {
-                console.log("Shortcut added successfully:", data);
+                console.log("Shortcut saved successfully:", data);
                 this.shortcutButton.innerHTML = StarIcon;
                 this.shortcutButton.setAttribute(
                     "aria-label",
@@ -93,7 +99,7 @@ export class GnShortcutButton extends CustomElement {
                 );
             })
             .catch((error) => {
-                console.error("Error adding shortcut:", error);
+                console.error("Error saving shortcut:", error);
             });
     }
     removeShortcut(token: string) {
@@ -111,12 +117,86 @@ export class GnShortcutButton extends CustomElement {
             });
     }
 
-    openDialog() {
-        this.dialogElement.setAttribute("show", "true");
+    openDialog(shortcutIsAdded: boolean) {
+        if (shortcutIsAdded) {
+            this.removeShortcutDialogElement.setAttribute("show", "true");
+            this.removeShortcutDialogElement.setAttribute("aria-hidden", "false");
+            this.addShortcutDialogElement.removeAttribute("show");
+        } else {
+            this.addShortcutDialogElement.setAttribute("show", "true");
+            this.addShortcutDialogElement.setAttribute("aria-hidden", "false");
+            this.removeShortcutDialogElement.removeAttribute("show");
+        }
     }
 
-    appendShortcutButtonAfterFirstHeading() {
+    closeDialog() {
+        this.addShortcutDialogElement.removeAttribute("show");
+        this.addShortcutDialogElement.setAttribute("aria-hidden", "true");
+        this.removeShortcutDialogElement.removeAttribute("show");
+        this.removeShortcutDialogElement.setAttribute("aria-hidden", "true");
+    }
+
+    renderShortcutButton(shortcutIsAdded: boolean) {
+        this.shortcutButton.setAttribute("id", "gn-shortcut-button");
+        this.shortcutButton.setAttribute("aria-label", "Add shortcut to this page");
+        this.shortcutButton.setAttribute("aria-pressed", "false");
+        this.shortcutButton.setAttribute("role", "button");
+        this.shortcutButton.classList.add("gn-shortcut-button");
+
+        if (shortcutIsAdded) {
+            this.shortcutButton.innerHTML = StarIcon;
+            this.shortcutButton.setAttribute(
+                "aria-label",
+                this.language === "en" ? "Remove shortcut to this page" : "Fjern snarvei for denne siden"
+            );
+            this.shortcutButton.classList.add("active");
+            this.removeShortcutButtonElement.addEventListener("click", () => {
+                const token = this.getAuthToken();
+                if (!token) {
+                    console.error("No token found");
+                    return;
+                }
+                this.removeShortcut(token);
+            });
+        } else {
+            this.shortcutButton.innerHTML = StarIcon;
+            this.shortcutButton.setAttribute(
+                "aria-label",
+                this.language === "en" ? "Add shortcut to this page" : "Lagre snarvei for denne siden"
+            );
+            this.shortcutButton.classList.remove("active");
+            this.saveShortcutButtonElement.addEventListener("click", () => {
+                const token = this.getAuthToken();
+                if (!token) {
+                    console.error("No token found");
+                    return;
+                }
+                this.saveShortcut(token);
+            });
+        }
+        this.shortcutButton.addEventListener("click", () => {
+            this.openDialog(shortcutIsAdded);
+        });
+        this.shortcutButton.addEventListener("keydown", (event) => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                this.shortcutButton.click();
+            }
+        });
+        this.shortcutButton.addEventListener("focus", () => {
+            this.shortcutButton.setAttribute("aria-pressed", "true");
+        });
+        this.shortcutButton.addEventListener("blur", () => {
+            this.shortcutButton.setAttribute("aria-pressed", "false");
+        });
+        return this.shortcutButton;
+    }
+
+    appendShortcutButtonAfterFirstHeading(shortcutIsAdded: boolean) {
         const headingContainer = document.createElement("div");
+        headingContainer.style.display = "flex";
+        headingContainer.style.alignItems = "center";
+        headingContainer.style.justifyContent = "flex-start";
         const firstHeading = getDocumentHeading();
         if (firstHeading) {
             firstHeading.style.display = "inline-block";
@@ -124,20 +204,7 @@ export class GnShortcutButton extends CustomElement {
             headingContainer.appendChild(firstHeading);
         }
         if (firstHeading && this.shortcutButton) {
-            this.shortcutButton.innerHTML = StarIcon;
-            this.shortcutButton.onclick = () => {
-                this.openDialog();
-                /*const token = this.getAuthToken();
-                if (!token) {
-                    console.error("No token found");
-                    return;
-                }
-                this.addShortcut(token);*/
-            };
-            this.shortcutButton.setAttribute(
-                "aria-label",
-                this.language === "en" ? "Add shortcut to this page" : "Lagre snarvei for denne siden"
-            );
+            this.shortcutButton = this.renderShortcutButton(shortcutIsAdded);
             firstHeading.after(this.shortcutButton);
         } else {
             console.error("First heading or shortcut button is missing");
@@ -148,37 +215,20 @@ export class GnShortcutButton extends CustomElement {
     async tokenChanged() {
         const token = this?.token;
 
-        // Temporary fix for testing
-        /*if (!token) { 
+        if (!token) {
             console.error("No token found");
             return;
-        }*/
+        }
 
         this.environment = this.environment || "dev";
         this.language = this.language || "en";
         this.shortcutButton = getShadowRootElement(this, "#gn-shortcut-button");
 
         const shortcutItem = await this.getShortcutItem(this.environment, token);
-        console.log("shortcutItem", shortcutItem);
+        const shortcutIsAdded = shortcutItem ? shortcutItem : false;
 
         if (this.shortcutButton) {
-            this.appendShortcutButtonAfterFirstHeading();
-            // fetchShortcutItems(this.environment, "this.token").then((shortcutItems) => {
-            /* fetchShortcutItems("dev", "this.token").then((shortcutItems) => {
-                // Temporary fix for testing
-                const isAlreadyBookmarked = shortcutItems.some((item) => item.url === window.location.href);
-                this.bookmarkButton.innerHTML = isAlreadyBookmarked ? StarIcon : StarIcon;
-                this.bookmarkButton.setAttribute(
-                    "aria-label",
-                    this.language === "en" ? "Remove shortcut to this page" : "Fjern snarvei for denne siden"
-                );
-                this.bookmarkButton.addEventListener("click", () => {
-                    if (isAlreadyBookmarked) {
-                        this.removeBookmark();
-                    }
-                    this.addBookmark();
-                });
-            });*/
+            this.appendShortcutButtonAfterFirstHeading(shortcutIsAdded);
         } else {
             console.error("Shortcut button not found in shadow DOM");
         }

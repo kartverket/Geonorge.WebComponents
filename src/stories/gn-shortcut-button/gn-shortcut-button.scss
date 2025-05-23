@@ -23,7 +23,7 @@
         }
     }
 
-    &.added {
+    &.active {
         & svg {
             stroke: colors.$primary-brand;
             fill: colors.$primary-brand;
