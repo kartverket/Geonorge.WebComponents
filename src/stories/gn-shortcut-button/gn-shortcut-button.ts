@@ -157,6 +157,8 @@ export class GnShortcutButton extends CustomElement {
                     return;
                 }
                 this.removeShortcut(token);
+                this.shortcutButton.classList.remove("active");
+                this.closeDialog();
             });
         } else {
             this.shortcutButton.innerHTML = StarIcon;
@@ -172,6 +174,8 @@ export class GnShortcutButton extends CustomElement {
                     return;
                 }
                 this.saveShortcut(token);
+                this.shortcutButton.classList.add("active");
+                this.closeDialog();
             });
         }
         this.shortcutButton.addEventListener("click", () => {
