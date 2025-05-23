@@ -22,7 +22,15 @@ export class HeadingText extends CustomElement {
 
         const isInsideDialog = this.closest("gn-dialog") !== null;
 
-        if (slot && isInsideDialog) {
+        if (slot) {
+            const applyBaseClass = () => {
+                const assignedElements = slot.assignedElements({ flatten: true });
+                assignedElements.forEach((el) => {
+                    if (/^h[1-6]$/i.test(el.tagName)) {
+                        el.classList.add("heading");
+                    }
+                });
+            };
             const applyNoMargin = () => {
                 const assignedElements = slot.assignedElements({ flatten: true });
                 assignedElements.forEach((el) => {
@@ -33,10 +41,18 @@ export class HeadingText extends CustomElement {
             };
 
             // Initial attempt
-            applyNoMargin();
+            applyBaseClass();
+            if (isInsideDialog) {
+                applyNoMargin();
+            }
 
             // In case content is added after render
-            slot.addEventListener("slotchange", applyNoMargin);
+            slot.addEventListener("slotchange", () => {
+                applyBaseClass();
+                if (isInsideDialog) {
+                    applyNoMargin();
+                }
+            });
         }
     }
 

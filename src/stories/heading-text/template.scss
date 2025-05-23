@@ -2,113 +2,122 @@
 @use "../../style/variables/colors";
 @use "../../style/variables/typography";
 
-::slotted(h1),
-::slotted([size="1"]) {
-    font-family: typography.$header-font;
-    color: colors.$default-text;
-    font-size: 30px;
-    font-weight: 200;
-    @include breakpoints.breakpoint(tablet) {
-        font-size: 48px;
-        font-weight: 100;
-    }
-}
-
-::slotted(h1[underline]),
-::slotted([size="1"][underline]) {
-    &:after {
-        content: "";
-        display: block;
-        width: 75px;
-        border-bottom: 3px solid colors.$primary-brand;
-        margin: 5px 0 15px;
+:host {
+    h1.heading,
+    ::slotted(h1.heading),
+    ::slotted(.heading[size="1"]) {
+        font-family: typography.$header-font;
+        color: colors.$default-text;
+        font-size: 30px;
+        font-weight: 200;
         @include breakpoints.breakpoint(tablet) {
-            width: 100px;
-            border-bottom: 5px solid colors.$primary-brand;
-            margin: 10px 0 20px;
+            font-size: 48px;
+            font-weight: 100;
         }
     }
-}
 
-::slotted(h2),
-::slotted([size="2"]) {
-    font-family: typography.$header-font;
-    color: colors.$default-text;
-    font-size: 26px;
-    line-height: 30px;
-    font-weight: 300;
-    display: inline;
-    margin-bottom: 10px;
-    margin-top: 20px;
-    @include breakpoints.breakpoint(tablet) {
-        font-size: 32px;
-        line-height: 40px;
+    h1.heading[underline],
+    ::slotted(h1.heading[underline]),
+    ::slotted(.heading[size="1"][underline]) {
+        &:after {
+            content: "";
+            display: block;
+            width: 75px;
+            border-bottom: 3px solid colors.$primary-brand;
+            margin: 5px 0 15px;
+            @include breakpoints.breakpoint(tablet) {
+                width: 100px;
+                border-bottom: 5px solid colors.$primary-brand;
+                margin: 10px 0 20px;
+            }
+        }
     }
-    &:before {
-        content: "";
-        display: block;
-        margin-top: 46px;
-    }
-    &:after {
-        content: "";
-        display: block;
-        margin-bottom: 15px;
-    }
-}
 
-::slotted(h2[underline]),
-::slotted([size="2"][underline]) {
-    &:after {
-        content: "";
-        display: block;
-        width: 25px;
-        border-bottom: 2px solid colors.$primary-brand;
+    h2.heading,
+    ::slotted(h2.heading),
+    ::slotted(.heading[size="2"]) {
+        font-family: typography.$header-font;
+        color: colors.$default-text;
+        font-size: 26px;
+        line-height: 30px;
+        font-weight: 300;
+        display: inline;
+        margin-bottom: 10px;
+        margin-top: 20px;
         @include breakpoints.breakpoint(tablet) {
-            width: 50px;
+            font-size: 32px;
+            line-height: 40px;
+        }
+        &:before {
+            content: "";
+            display: block;
+            margin-top: 46px;
+        }
+        &:after {
+            content: "";
+            display: block;
+            margin-bottom: 15px;
+        }
+    }
+
+    h2.heading[underline],
+    ::slotted(h2.heading[underline]),
+    ::slotted(.heading[size="2"][underline]) {
+        &:after {
+            content: "";
+            display: block;
+            width: 25px;
             border-bottom: 2px solid colors.$primary-brand;
+            @include breakpoints.breakpoint(tablet) {
+                width: 50px;
+                border-bottom: 2px solid colors.$primary-brand;
+            }
         }
     }
-}
 
-::slotted(h3),
-::slotted([size="3"]) {
-    font-family: typography.$default-font;
-    color: colors.$default-text;
-    font-size: 22px;
-    font-weight: 300;
-    margin-bottom: 0;
-    margin-top: 20px;
-    @include breakpoints.breakpoint(tablet) {
-        font-size: 24px;
+    h3.heading,
+    ::slotted(h3.heading),
+    ::slotted(.heading[size="3"]) {
+        font-family: typography.$default-font;
+        color: colors.$default-text;
+        font-size: 22px;
+        font-weight: 300;
+        margin-bottom: 0;
+        margin-top: 20px;
+        @include breakpoints.breakpoint(tablet) {
+            font-size: 24px;
+        }
     }
-}
 
-::slotted(h4),
-::slotted([size="4"]) {
-    font-family: typography.$default-font;
-    color: colors.$default-text;
-    font-size: 18px;
-    font-weight: 300;
-    margin-bottom: 0;
-    margin-top: 12px;
-}
-
-::slotted(h5),
-::slotted([size="5"]) {
-    font-family: typography.$default-font;
-    color: colors.$default-text;
-    font-size: 15px;
-    font-weight: 600;
-    margin-bottom: 0;
-    margin-top: 8px;
-    @include breakpoints.breakpoint(tablet) {
-        font-size: 16px;
+    h4.heading,
+    ::slotted(h4.heading),
+    ::slotted(.heading[size="4"]) {
+        font-family: typography.$default-font;
+        color: colors.$default-text;
+        font-size: 18px;
+        font-weight: 300;
+        margin-bottom: 0;
+        margin-top: 12px;
     }
-}
 
-::slotted(.no-margin) {
-    margin-top: 0;
-    &::before {
+    h5.heading,
+    ::slotted(h5.heading),
+    ::slotted(.heading[size="5"]) {
+        font-family: typography.$default-font;
+        color: colors.$default-text;
+        font-size: 15px;
+        font-weight: 600;
+        margin-bottom: 0;
+        margin-top: 8px;
+        @include breakpoints.breakpoint(tablet) {
+            font-size: 16px;
+        }
+    }
+
+    ::slotted(.heading.no-margin) {
         margin-top: 0;
+        &::before {
+            margin-top: 0;
+        }
     }
 }
