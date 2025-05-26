@@ -42,6 +42,8 @@ export class GnShortcutButton extends CustomElement {
     private removeShortcutDialogElement: HTMLElement;
     private saveShortcutButtonElement: HTMLButtonElement;
     private removeShortcutButtonElement: HTMLButtonElement;
+    private cancelAddShortcutButtonElement: HTMLButtonElement;
+    private cancelRemoveShortcutButtonElement: HTMLButtonElement;
     private shortcutNameInputElement: HTMLInputElement;
     @Prop() id: string;
     @Prop() language: string;
@@ -67,6 +69,8 @@ export class GnShortcutButton extends CustomElement {
         this.removeShortcutDialogElement = getShadowRootElement(this, "#remove-shortcut-dialog");
         this.saveShortcutButtonElement = getShadowRootElement(this, "#save-shortcut-button");
         this.removeShortcutButtonElement = getShadowRootElement(this, "#remove-shortcut-button");
+        this.cancelAddShortcutButtonElement = getShadowRootElement(this, "#cancel-add-shortcut-button");
+        this.cancelRemoveShortcutButtonElement = getShadowRootElement(this, "#cancel-remove-shortcut-button");
         const gnButton = new GnButton();
         const gnDialog = new GnDialog();
         const gnFieldContainer = new GnFieldContainer();
@@ -180,6 +184,12 @@ export class GnShortcutButton extends CustomElement {
                 this.closeDialog();
             });
         }
+        this.cancelAddShortcutButtonElement.addEventListener("click", () => {
+            this.closeDialog();
+        });
+        this.cancelRemoveShortcutButtonElement.addEventListener("click", () => {
+            this.closeDialog();
+        });
         this.shortcutButton.addEventListener("click", () => {
             this.openDialog(shortcutIsAdded);
         });
