@@ -157,7 +157,7 @@ export class GnShortcutButton extends CustomElement {
                     return;
                 }
                 this.removeShortcut(token);
-                this.appendShortcutButtonAfterFirstHeading(false);
+                this.renderShortcutButton(false);
                 this.closeDialog();
             });
         } else {
@@ -174,7 +174,7 @@ export class GnShortcutButton extends CustomElement {
                     return;
                 }
                 this.saveShortcut(token);
-                this.appendShortcutButtonAfterFirstHeading(false);
+                this.renderShortcutButton(true);
                 this.closeDialog();
             });
         }
@@ -230,10 +230,11 @@ export class GnShortcutButton extends CustomElement {
 
         const shortcutItem = await this.getShortcutItem(this.environment, token);
         const shortcutIsAdded = shortcutItem ? shortcutItem : false;
-
         if (this.shortcutButton) {
+            this.style.display = "block";
             this.appendShortcutButtonAfterFirstHeading(shortcutIsAdded);
         } else {
+            this.style.display = "none";
             console.error("Shortcut button not found in shadow DOM");
         }
     }
@@ -241,6 +242,14 @@ export class GnShortcutButton extends CustomElement {
     public static setup(selector: string, options: GnShortcutButtonOptions) {
         setTimeout(() => {
             const element = getElement<GnShortcutButton>(selector);
+            if (!element) {
+                console.error(`Element with selector "${selector}" not found.`);
+                return;
+            }
+            if (!options || !options.getAuthToken) {
+                console.error("getAuthToken function is required in options.");
+                return;
+            }
             element.getAuthToken = options.getAuthToken;
             element.token = options.getAuthToken();
         });

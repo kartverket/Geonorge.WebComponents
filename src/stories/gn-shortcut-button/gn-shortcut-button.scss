@@ -13,7 +13,6 @@
         stroke: colors.$default-text;
         fill: none;
         @include transition.transition(all 0.1s linear 0s);
-
         stroke-width: 2px;
     }
     &:hover {
