@@ -42,11 +42,13 @@ export class GnShortcutButton extends CustomElement {
     private removeShortcutDialogElement: HTMLElement;
     private saveShortcutButtonElement: HTMLButtonElement;
     private removeShortcutButtonElement: HTMLButtonElement;
+    private shortcutNameInputElement: HTMLInputElement;
     @Prop() id: string;
     @Prop() language: string;
     @Prop() environment: string;
     @Prop() token: string;
     getAuthToken: Function;
+    shortcutName: string;
 
     constructor() {
         super();
@@ -71,6 +73,7 @@ export class GnShortcutButton extends CustomElement {
         const gnInput = new GnInput();
         const bodyText = new BodyText();
         const headingText = new HeadingText();
+        this.initShortcutNameInput();
     }
 
     disconnectedCallback() {}
@@ -86,12 +89,11 @@ export class GnShortcutButton extends CustomElement {
 
     saveShortcut(token: string) {
         const shortcutData = {
-            name: document.title,
+            name: this.shortcutName || document.title,
             url: window.location.href
         };
         postShortcutItem(this.environment, token, shortcutData)
             .then((data) => {
-                console.log("Shortcut saved successfully:", data);
                 this.shortcutButton.innerHTML = StarIcon;
                 this.shortcutButton.setAttribute(
                     "aria-label",
@@ -213,6 +215,27 @@ export class GnShortcutButton extends CustomElement {
         } else {
             console.error("First heading or shortcut button is missing");
         }
+    }
+
+    initShortcutNameInput() {
+        this.shortcutNameInputElement = getShadowRootElement(this, "#shortcut-name-input");
+        this.shortcutNameInputElement.value = document.title;
+        this.shortcutNameInputElement.addEventListener("input", () => {
+            this.shortcutName = this.shortcutNameInputElement.value;
+            if (this.shortcutName.trim()) {
+                this.saveShortcutButtonElement.firstElementChild?.removeAttribute("disabled");
+            } else {
+                this.saveShortcutButtonElement.firstElementChild?.setAttribute("disabled", "true");
+            }
+        });
+        this.shortcutNameInputElement.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();
+                if (this.shortcutName.trim()) {
+                    this.saveShortcutButtonElement.click();
+                }
+            }
+        });
     }
 
     @Watch("token")
