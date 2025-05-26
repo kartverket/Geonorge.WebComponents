@@ -68,11 +68,7 @@ export const deleteShortcutItem = async (environment: string = "", token: string
         }),
         body: JSON.stringify(shortcutItem)
     };
-    return fetch(apiUrl, fetchOptions)
-        .then((res) => res.json())
-        .then((shortcutItem) => {
-            return shortcutItem;
-        });
+    return fetch(apiUrl, fetchOptions);
 };
 
 export const getGeonorgeMenuUrl = (language: string, environment: string) => {
