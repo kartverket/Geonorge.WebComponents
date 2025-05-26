@@ -60,13 +60,6 @@ export class GnButton extends CustomElement {
             // Add :hover support via JS
             el.addEventListener("mouseenter", this.handleMouseEnter);
             el.addEventListener("mouseleave", this.handleMouseLeave);
-
-            // Add disabled class if applicable
-            if ((el as HTMLButtonElement).disabled) {
-                el.classList.add("is-disabled");
-            } else {
-                el.classList.remove("is-disabled");
-            }
         });
     }
 
