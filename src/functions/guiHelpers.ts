@@ -3,7 +3,11 @@ export const getFocusableElementsInsideElement = (element: HTMLElement) => {
 };
 
 export const getDocumentHeading = () => {
-    return document.querySelector("h1:not(.sb-nopreview_heading.sb-heading)") as HTMLElement | null; // Exclude the heading used by Storybook
+    let documentHeading = document.querySelector("heading-text") as HTMLElement | null; // This assumes that the heading is wrapped in a custom element called "heading-text"
+    if (!documentHeading) {
+        documentHeading = document.querySelector("h1:not(.sb-nopreview_heading.sb-heading)") as HTMLElement | null; // Exclude the heading used by Storybook
+    }
+    return documentHeading;
 };
 
 export const addGlobalStylesheet = (styleElementId: string, styles: string) => {
