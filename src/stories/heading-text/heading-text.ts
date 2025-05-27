@@ -1,17 +1,12 @@
 // Dependencies
 import { Component, CustomElement, CustomElementOptions, Prop, Toggle } from "super-custom-elements";
 
-// Helpers
-import { addGlobalStylesheet } from "../../functions/guiHelpers";
-
-// Stylesheets
-import style from "./heading-text.scss";
-
 interface HeadingTextOptions extends CustomElementOptions {}
 
 @Component({
     tag: "heading-text",
-    template: import("./heading-text.html")
+    template: import("./heading-text.html"),
+    style: import("./template.scss")
 })
 export class HeadingText extends CustomElement {
     @Prop() size: string;
@@ -20,7 +15,45 @@ export class HeadingText extends CustomElement {
 
     constructor() {
         super();
-        addGlobalStylesheet("heading-text-styles", style);
+    }
+
+    connectedCallback() {
+        const slot = this.shadowRoot?.querySelector("slot");
+
+        const isInsideDialog = this.closest("gn-dialog") !== null;
+
+        if (slot) {
+            const applyBaseClass = () => {
+                const assignedElements = slot.assignedElements({ flatten: true });
+                assignedElements.forEach((el) => {
+                    if (/^h[1-6]$/i.test(el.tagName)) {
+                        el.classList.add("heading");
+                    }
+                });
+            };
+            const applyNoMargin = () => {
+                const assignedElements = slot.assignedElements({ flatten: true });
+                assignedElements.forEach((el) => {
+                    if (/^h[1-6]$/i.test(el.tagName)) {
+                        el.classList.add("no-margin");
+                    }
+                });
+            };
+
+            // Initial attempt
+            applyBaseClass();
+            if (isInsideDialog) {
+                applyNoMargin();
+            }
+
+            // In case content is added after render
+            slot.addEventListener("slotchange", () => {
+                applyBaseClass();
+                if (isInsideDialog) {
+                    applyNoMargin();
+                }
+            });
+        }
     }
 
     setup(options?: HeadingTextOptions): void {}

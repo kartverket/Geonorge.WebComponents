@@ -1,18 +1,20 @@
+@use "../variables/breakpoints";
+
 @mixin breakpoint($point) {
     @if $point == desktop {
-        @media (min-width: $screen-desktop) {
+        @media (min-width: breakpoints.$screen-desktop) {
             @content;
         }
     } @else if $point == laptop {
-        @media (min-width: $screen-laptop) {
+        @media (min-width: breakpoints.$screen-laptop) {
             @content;
         }
     } @else if $point == tablet {
-        @media (min-width: $screen-tablet) {
+        @media (min-width: breakpoints.$screen-tablet) {
             @content;
         }
     } @else if $point == phablet {
-        @media (min-width: $screen-phablet) {
+        @media (min-width: breakpoints.$screen-phablet) {
             @content;
         }
     }

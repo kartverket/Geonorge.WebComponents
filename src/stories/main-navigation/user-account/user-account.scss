@@ -1,103 +1,103 @@
-@import "../../../style/all";
+@use "../../../style/mixins/breakpoints";
+@use "../../../style/mixins/transition";
+@use "../../../style/variables/typography";
 
 .user-account-content {
-  display: flex;
-  flex-direction: row;
-  padding: 6px 8px 6px 8px;
-  width: auto;
-  color: #403F3F;
-  gap: 6px;
-  font-family: $default-font;
-  font-size: 14px;
-  justify-content: space-between;
-  align-items: center;
-  margin: 0 6px 0 12px;
-  background: transparent;
-  &:hover {
-    color: #1073BC;
-    cursor: pointer;
-}
-  
-  border: none;    
-     span:last-child {
-        display: none;        
+    display: flex;
+    flex-direction: row;
+    padding: 6px 8px 6px 8px;
+    width: auto;
+    color: #403f3f;
+    gap: 6px;
+    font-family: typography.$default-font;
+    font-size: 14px;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 6px 0 12px;
+    background: transparent;
+    &:hover {
+        color: #1073bc;
+        cursor: pointer;
+    }
+
+    border: none;
+    span:last-child {
+        display: none;
         align-items: center;
         flex-direction: row;
         padding: 2px 1px;
         vertical-align: middle;
         font-weight: 500;
-        @include breakpoint(laptop) {
+        @include breakpoints.breakpoint(laptop) {
             display: inline-block;
-        }    
-    }
-    span:first-child {        
-            svg {
-                height: 24px;
-                width: 24px;                              
-                vertical-align: middle;                
-            
-           }
-           
         }
-       
+    }
+    span:first-child {
+        svg {
+            height: 24px;
+            width: 24px;
+            vertical-align: middle;
+        }
+    }
 }
 .menu-wrapper {
     font-size: 14px;
-    font-family: $default-font;
-    position: relative;        
-    @include transition(all .3s ease-in-out);
-    
-   
+    font-family: typography.$default-font;
+    position: relative;
+    @include transition.transition(all 0.3s ease-in-out);
+
     > div {
         max-height: 0;
         overflow: hidden;
-        @include transition(all 0.3s ease-in-out);
+        @include transition.transition(all 0.3s ease-in-out);
         position: absolute;
         display: flex;
         flex-direction: column;
-        background-color: white;             
-        box-shadow: 0px 1px 3px 0px #0000001A;
+        background-color: white;
+        box-shadow: 0px 1px 3px 0px #0000001a;
         width: 375px;
         z-index: 100;
         top: 10px;
-        right: -85px;          
+        right: -85px;
         > div:first-child > span {
             display: block;
             &:last-child {
-             font-weight: bolder;
+                font-weight: bolder;
             }
-        } 
+        }
         ul {
             list-style-type: none;
             li {
                 margin: 12px 0;
-                a, a:link, a:visited {
-                    color: #1A589F;
+                a,
+                a:link,
+                a:visited {
+                    color: #1a589f;
                 }
             }
         }
-        
-        > *:nth-child(odd)  {
-            background-color: #F9F9F9;
-            padding: 32px;            
-            display: flex
-        ;
+
+        > *:nth-child(odd) {
+            background-color: #f9f9f9;
+            padding: 32px;
+            display: flex;
             flex-direction: column;
             gap: 5px;
         }
         > *:nth-child(even) {
             background-color: white;
             margin-top: 10px;
-            display: flex
-        ;
+            display: flex;
             flex-direction: column;
             gap: 5px;
             padding: 0 32px;
         }
         > *:last-child {
-            padding: 32px;            
+            padding: 32px;
         }
-        a, a:link, a:visited {
+        a,
+        a:link,
+        a:visited {
             color: #000000;
             display: flex;
             text-decoration: underline;
@@ -114,14 +114,13 @@
             }
         }
     }
-    &.open {        
+    &.open {
         > div {
             max-height: 1000px;
         }
     }
-   
 }
-.user-account-container {   
+.user-account-container {
     text-align: right;
     background-color: #d2cecb;
     max-height: 0;
@@ -138,13 +137,10 @@
         color: transparent;
         cursor: pointer;
         border: none;
-        
         font-weight: normal;
-      
-        background: transparent;           
-        
+        background: transparent;
         &:not(:first-child) {
             border: none;
         }
-    }    
+    }
 }

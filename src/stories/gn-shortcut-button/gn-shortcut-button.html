@@ -1,0 +1,38 @@
+<template>
+    <button id="gn-shortcut-button" class="gn-shortcut-button"></button>
+    <gn-dialog id="add-shortcut-dialog" width="400px">
+        <body-text>
+            <heading-text>
+                <h2>Lagre snarvei</h2>
+            </heading-text>
+            <gn-field-container block>
+                <span id="input-description" style="margin-bottom: 4px; display: block">
+                    Velg et navn som gjør det enkelt å huske snarveien, og finn den igjen under Mine snarveier.
+                </span>
+                <gn-input block fullwidth>
+                    <input
+                        id="shortcut-name-input"
+                        placeholder="Skriv inn snarveinavn"
+                        aria-describedby="input-description"
+                    />
+                </gn-input>
+            </gn-field-container>
+            <div class="align-right">
+                <gn-button id="cancel-add-shortcut-button"><button>Avbryt</button></gn-button>
+                <gn-button id="save-shortcut-button" color="primary"><button>Lagre</button></gn-button>
+            </div>
+        </body-text>
+    </gn-dialog>
+    <gn-dialog id="remove-shortcut-dialog" width="400px">
+        <heading-text>
+            <h2>Fjern snarvei</h2>
+        </heading-text>
+        <body-text>
+            <span style="margin-bottom: 4px; display: block">Er du sikker på at du vil fjerne snarveien?</span>
+        </body-text>
+        <div class="align-right">
+            <gn-button id="cancel-remove-shortcut-button"><button>Avbryt</button></gn-button>
+            <gn-button id="remove-shortcut-button" color="primary"><button>Fjern snarvei</button></gn-button>
+        </div>
+    </gn-dialog>
+</template>

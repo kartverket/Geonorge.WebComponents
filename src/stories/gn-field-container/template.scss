@@ -1,0 +1,15 @@
+:host {
+    margin-bottom: 16px;
+}
+
+:host([block]) {
+    display: block;
+}
+
+:host:not([block]) {
+    display: inline-block;
+}
+
+:host([inlineblock]) {
+    margin-right: 16px;
+}

@@ -1,24 +1,18 @@
 // Dependencies
 import { Component, CustomElement, CustomElementOptions, Toggle } from "super-custom-elements";
 
-// Helpers
-import { addGlobalStylesheet } from "../../functions/guiHelpers";
-
-// Stylesheets
-import style from "./gn-label.scss";
-
 interface GnLabelOptions extends CustomElementOptions {}
 
 @Component({
     tag: "gn-label",
-    template: import("./gn-label.html")
+    template: import("./gn-label.html"),
+    style: import("./template.scss")
 })
 export class GnLabel extends CustomElement {
     @Toggle() block: boolean;
 
     constructor() {
         super();
-        addGlobalStylesheet("gn-label-styles", style);
     }
 
     setup(options?: GnLabelOptions): void {}

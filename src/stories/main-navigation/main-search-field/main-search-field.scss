@@ -1,19 +1,24 @@
-@import "../../../style/all";
+@use "../../../style/mixins/appearance";
+@use "../../../style/mixins/border-radius";
+@use "../../../style/mixins/box-shadow";
+@use "../../../style/mixins/breakpoints";
+@use "../../../style/variables/colors";
+@use "../../../style/variables/typography";
 
 * {
   box-sizing: border-box;
 }
 
 div.main-search-field {
-  font-family: $default-font;
+  font-family: typography.$default-font;
   display: flex;
   height: 37px;
   margin-top: 0.25em;
   position: relative;
   width: 100%;
   max-width: 440px;
-  
-  @include breakpoint(phablet) {
+
+  @include breakpoints.breakpoint(phablet) {
     margin-top: 0;
   }
 
@@ -25,15 +30,15 @@ div.main-search-field {
   }
 
   input {
-    @include appearance(none);
-    @include border-radius(4px 0 0 4px);
+    @include appearance.appearance(none);
+    @include border-radius.border-radius(4px 0 0 4px);
     height: 37px;
     width: 100%;
     outline-offset: -2px;
     background: #fff;
     border: 1px solid #dfdcda;
     border-right: 0;
-    font-family: $default-font;
+    font-family: typography.$default-font;
     font-size: 18px;
     font-weight: normal;
     flex: 1;
@@ -42,8 +47,8 @@ div.main-search-field {
   }
 
   button {
-    @include appearance(button);
-    @include border-radius(0 4px 4px 0);
+    @include appearance.appearance(button);
+    @include border-radius.border-radius(0 4px 4px 0);
     margin: 0;
     background: #fff;
     border: 1px solid #dfdcda;
@@ -60,12 +65,12 @@ div.main-search-field {
 }
 
 div.search-results-container {
-  @include box-shadow(
+  @include box-shadow.box-shadow(
     0 5px 5px -3px rgba(0, 0, 0, 0.2),
     0 8px 10px 1px rgba(0, 0, 0, 0.14),
     0 3px 14px 2px rgba(0, 0, 0, 0.12)
   );
-  @include border-radius(0 0 3px 3px);
+  @include border-radius.border-radius(0 0 3px 3px);
   position: absolute;
   background: #fbfcfd;
   display: none;
@@ -79,10 +84,10 @@ div.search-results-container {
   }
 
   a {
-    color: $primary-text;
+    color: colors.$primary-text;
     text-decoration: none;
     &:hover {
-      color: $primary-text-hover;
+      color: colors.$primary-text-hover;
       text-decoration: underline;
     }
   }
@@ -95,16 +100,16 @@ div.search-results-container {
       background-color: #f5f6f7;
     }
     a.search-results-for-type-title {
-      font-family: $default-font;
+      font-family: typography.$default-font;
       padding: 6px 16px;
       font-size: 18px;
       display: inline-block;
       font-weight: normal;
       span.search-results-for-type-number-badge {
-        @include border-radius(6px);
+        @include border-radius.border-radius(6px);
         padding: 1px 4px;
         color: #fff;
-        background-color: $primary-brand;
+        background-color: colors.$primary-brand;
         display: inline-block;
         font-size: 0.7em;
         vertical-align: middle;
@@ -119,7 +124,7 @@ div.search-results-container {
       margin: 0;
       li {
         a {
-          font-family: $default-font;
+          font-family: typography.$default-font;
           padding: 2px 0;
           display: block;
           font-size: 14px;

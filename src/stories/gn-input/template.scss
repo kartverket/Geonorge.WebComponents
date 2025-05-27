@@ -1,0 +1,164 @@
+@use "../../style/mixins/appearance";
+@use "../../style/mixins/border-radius";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
+
+:host([block]) {
+    display: block;
+}
+
+:host(:not([block])) {
+    display: inline-block;
+}
+
+:host([fullwidth]) {
+    display: block;
+    ::slotted(input) {
+        width: 100%;
+    }
+}
+
+:host([width]) {
+    ::slotted(input[type="text"]),
+    ::slotted(input[type="number"]),
+    ::slotted(input[type="email"]),
+    ::slotted(input[type="tel"]),
+    ::slotted(input[type="date"]),
+    ::slotted(input[type="datetime-local"]),
+    ::slotted(input[type="time"]),
+    ::slotted(input[type="url"]),
+    ::slotted(input[type="search"]),
+    ::slotted(input[type="password"]),
+    ::slotted(input:not([type])) {
+        width: 100%;
+    }
+}
+
+::slotted(input[type="text"]),
+::slotted(input[type="number"]),
+::slotted(input[type="email"]),
+::slotted(input[type="tel"]),
+::slotted(input[type="date"]),
+::slotted(input[type="datetime-local"]),
+::slotted(input[type="time"]),
+::slotted(input[type="url"]),
+::slotted(input[type="search"]),
+::slotted(input[type="password"]),
+::slotted(input:not([type])) {
+    @include appearance.appearance(none);
+    @include border-radius.border-radius(4px);
+    box-sizing: border-box;
+    font-family: typography.$default-font;
+    font-size: 16px;
+    font-size: 12pt;
+    padding: 0 8px;
+    height: 32px;
+    box-shadow: none;
+    position: relative;
+    z-index: 1;
+    background-color: #fff;
+    border: 1px solid colors.$default-border;
+    color: colors.$default-text;
+}
+
+::slotted(input[type="text"]:disabled),
+::slotted(input[type="number"]:disabled),
+::slotted(input[type="email"]:disabled),
+::slotted(input[type="tel"]:disabled),
+::slotted(input[type="date"]:disabled),
+::slotted(input[type="datetime-local"]:disabled),
+::slotted(input[type="time"]:disabled),
+::slotted(input[type="url"]:disabled),
+::slotted(input[type="search"]:disabled),
+::slotted(input[type="password"]:disabled),
+::slotted(input:not([type]):disabled) {
+    background-color: colors.$disabled-background;
+    color: colors.$disabled-text;
+    border: 1px solid colors.$disabled-border;
+    cursor: not-allowed;
+}
+
+::slotted(input[type="checkbox"]),
+::slotted(input[type="radio"]) {
+    @include appearance.appearance(none);
+    border: 2px solid colors.$default-text;
+    font: inherit;
+    color: currentColor;
+    width: 16px;
+    height: 16px;
+    margin: 0 6px 0 0;
+}
+
+::slotted(input[type="checkbox"]:checked),
+::slotted(input[type="radio"]:checked) {
+    border-color: colors.$primary-text;
+}
+
+::slotted(input[type="checkbox"]:focus-visible),
+::slotted(input[type="radio"]:focus-visible) {
+    outline: max(2px, 0.1em) solid colors.$primary-text;
+    outline-offset: max(2px, 0.1em);
+}
+
+::slotted(input[type="checkbox"]) {
+    @include border-radius.border-radius(3px);
+    vertical-align: text-top;
+}
+
+::slotted(input[type="checkbox"]:checked) {
+    &::before {
+        background-color: colors.$primary-text;
+        content: "✓";
+        line-height: 13px;
+        color: #fff;
+        display: inline-block;
+        vertical-align: top;
+        width: 100%;
+    }
+}
+
+::slotted(input[type="checkbox"]:disabled) {
+    background-color: colors.$disabled-border;
+    border-color: colors.$disabled-border;
+    cursor: not-allowed;
+}
+
+::slotted(input[type="checkbox"]:checked:disabled) {
+    &::before {
+        background-color: colors.$disabled-border;
+        color: colors.$disabled-text;
+    }
+}
+
+::slotted(input[type="radio"]) {
+    @include border-radius.border-radius(50%);
+    transform: translateY(-0.075em);
+    display: inline-grid;
+    place-content: center;
+    &::before {
+        @include border-radius.border-radius(50%);
+        content: "";
+        width: 8px;
+        height: 8px;
+        transform: scale(0);
+        transition: 120ms transform ease-in-out;
+    }
+}
+
+::slotted(input[type="radio"]:checked) {
+    &::before {
+        background-color: colors.$primary-text;
+        transform: scale(1);
+    }
+}
+
+::slotted(input[type="radio"]:disabled) {
+    border-color: colors.$disabled-border;
+}
+
+::slotted(input[type="radio"]:checked:disabled) {
+    &::before {
+        background-color: colors.$disabled-border;
+        transform: scale(1);
+    }
+}

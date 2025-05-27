@@ -22,7 +22,8 @@
     "clean:lib": "shx rm -rf lib",
     "clean:tmp": "shx rm -rf tmp",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook -o docs"
+    "build-storybook": "build-storybook -o docs",
+    "test-release": "npm run build && npm run copy-files"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",
@@ -59,5 +60,5 @@
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^5.0.3"
   },
-  "packageManager": "yarn@1.22.19+sha1.4ba7fc5c6e704fce2066ecbfb0b0d8976fe62447"
+  "packageManager": "yarn@4.9.1"
 }

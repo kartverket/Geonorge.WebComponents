@@ -1,0 +1,123 @@
+@use "../../style/mixins/breakpoints";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
+
+:host {
+    h1.heading,
+    ::slotted(h1.heading),
+    ::slotted(.heading[size="1"]) {
+        font-family: typography.$header-font !important;
+        color: colors.$default-text !important;
+        font-size: 30px !important;
+        font-weight: 200 !important;
+        @include breakpoints.breakpoint(tablet) {
+            font-size: 48px !important;
+            font-weight: 100 !important;
+        }
+    }
+
+    h1.heading[underline],
+    ::slotted(h1.heading[underline]),
+    ::slotted(.heading[size="1"][underline]) {
+        &:after {
+            content: "";
+            display: block;
+            width: 75px;
+            border-bottom: 3px solid colors.$primary-brand;
+            margin: 5px 0 15px;
+            @include breakpoints.breakpoint(tablet) {
+                width: 100px;
+                border-bottom: 5px solid colors.$primary-brand;
+                margin: 10px 0 20px;
+            }
+        }
+    }
+
+    h2.heading,
+    ::slotted(h2.heading),
+    ::slotted(.heading[size="2"]) {
+        font-family: typography.$header-font !important;
+        color: colors.$default-text !important;
+        font-size: 26px !important;
+        line-height: 30px !important;
+        font-weight: 300 !important;
+        display: inline !important;
+        margin-bottom: 10px !important;
+        margin-top: 20px !important;
+        @include breakpoints.breakpoint(tablet) {
+            font-size: 32px !important;
+            line-height: 40px !important;
+        }
+        &:before {
+            content: "";
+            display: block;
+            margin-top: 46px;
+        }
+        &:after {
+            content: "";
+            display: block;
+            margin-bottom: 15px;
+        }
+    }
+
+    h2.heading[underline],
+    ::slotted(h2.heading[underline]),
+    ::slotted(.heading[size="2"][underline]) {
+        &:after {
+            content: "";
+            display: block;
+            width: 25px;
+            border-bottom: 2px solid colors.$primary-brand;
+            @include breakpoints.breakpoint(tablet) {
+                width: 50px;
+                border-bottom: 2px solid colors.$primary-brand;
+            }
+        }
+    }
+
+    h3.heading,
+    ::slotted(h3.heading),
+    ::slotted(.heading[size="3"]) {
+        font-family: typography.$default-font !important;
+        color: colors.$default-text !important;
+        font-size: 22px !important;
+        font-weight: 300 !important;
+        margin-bottom: 0 !important;
+        margin-top: 20px !important;
+        @include breakpoints.breakpoint(tablet) {
+            font-size: 24px !important;
+        }
+    }
+
+    h4.heading,
+    ::slotted(h4.heading),
+    ::slotted(.heading[size="4"]) {
+        font-family: typography.$default-font !important;
+        color: colors.$default-text !important;
+        font-size: 18px !important;
+        font-weight: 300 !important;
+        margin-bottom: 0 !important;
+        margin-top: 12px !important;
+    }
+
+    h5.heading,
+    ::slotted(h5.heading),
+    ::slotted(.heading[size="5"]) {
+        font-family: typography.$default-font !important;
+        color: colors.$default-text !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        margin-bottom: 0 !important;
+        margin-top: 8px !important;
+        @include breakpoints.breakpoint(tablet) {
+            font-size: 16px !important;
+        }
+    }
+
+    ::slotted(.heading.no-margin) {
+        margin-top: 0;
+        &::before {
+            margin-top: 0;
+        }
+    }
+}

@@ -1,4 +1,5 @@
-@import "../../style/all";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 gn-breadcrumb-list {
     ul {
@@ -6,23 +7,23 @@ gn-breadcrumb-list {
         margin: 16px 0;
         padding: 0;
         li {
-            font-family: $default-font;
+            font-family: typography.$default-font;
             font-weight: 400;
             font-size: 15px;
-            color: $default-text;
+            color: colors.$default-text;
             list-style-type: none;
             padding: 0 6px 0 0;
             &:first-of-type {
                 padding-left: 10px;
             }
             span {
-                font-family: $default-font;
-                color: $default-text;
+                font-family: typography.$default-font;
+                color: colors.$default-text;
                 font-weight: 400;
             }
             a {
                 text-decoration: none;
-                color: $primary-text;
+                color: colors.$primary-text;
             }
             &:not(:last-of-type)::after {
                 content: "";
@@ -33,7 +34,7 @@ gn-breadcrumb-list {
                 margin: 1px 3px;
                 border-bottom: 2px solid;
                 border-right: 2px solid;
-                border-color: $default-text;
+                border-color: colors.$default-text;
                 transform: rotate(-45deg);
             }
         }

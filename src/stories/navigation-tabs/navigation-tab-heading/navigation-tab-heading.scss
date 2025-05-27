@@ -1,14 +1,16 @@
-@import "../../../style/all";
+@use "../../../style/mixins/border-radius";
+@use "../../../style/variables/colors";
+@use "../../../style/variables/typography";
 
 :host {
-    font-family: $default-font;
+    font-family: typography.$default-font;
     display: inline-flex;
     cursor: pointer;
 
     slot {
-        @include border-radius(4px 4px 0 0);
+        @include border-radius.border-radius(4px 4px 0 0);
         display: block;
-        background-color: $primary-background;
+        background-color: colors.$primary-background;
         padding: 10px 12px;
         transition: all 0.35s linear 0s;
         color: #fff;
@@ -20,7 +22,7 @@
         margin-right: 2px;
 
         &:hover {
-            background-color: $primary-brand;
+            background-color: colors.$primary-brand;
             color: #fff;
             border-color: transparent;
         }
@@ -31,8 +33,6 @@
             background-color: #fff;
             color: #555;
             cursor: default;
-            
         }
     }
-    
 }

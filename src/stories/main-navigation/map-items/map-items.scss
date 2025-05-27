@@ -1,5 +1,9 @@
-@import "../../../style/all";
-
+@use "../../../style/mixins/border-radius";
+@use "../../../style/mixins/box-shadow";
+@use "../../../style/mixins/breakpoints";
+@use "../../../style/mixins/transition";
+@use "../../../style/variables/colors";
+@use "../../../style/variables/typography";
 * {
     box-sizing: border-box;
 }
@@ -8,14 +12,14 @@ div.map-items-container {
     margin-right: 8px;
     .icon-toggle-button {
         margin-top: 0.4em;
-        @include transition(all 0.1s ease-in-out);
+        @include transition.transition(all 0.1s ease-in-out);
         border: none;
         background: transparent;
-        color: #403F3F;
+        color: #403f3f;
         cursor: pointer;
         padding: 0;
         position: relative;
-        @include breakpoint(phablet) {
+        @include breakpoints.breakpoint(phablet) {
             padding: 0 4px;
         }
         &.open {
@@ -25,38 +29,38 @@ div.map-items-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            @include border-radius(35%);
-            background-color: $primary-brand;
+            @include border-radius.border-radius(35%);
+            background-color: colors.$primary-brand;
             color: #fff;
             margin-top: -0.35em;
             margin-right: 0.2em;
             position: absolute;
-            text-align: center;            
-            left: 1.4em;            
+            text-align: center;
+            left: 1.4em;
             line-height: 1.4;
             height: 1.4em;
             font-size: 0.8em;
-            @include breakpoint(phablet) {
+            @include breakpoints.breakpoint(phablet) {
                 height: 1.5em;
-                min-width: 2em;                
+                min-width: 2em;
                 line-height: 1.5;
-                font-size: .8em;
+                font-size: 0.8em;
             }
             &.hidden {
                 display: none;
             }
         }
-        .map-icon {           
+        .map-icon {
             svg {
                 width: 21px;
                 height: 22px;
-                
-                @include breakpoint(phablet) {
+
+                @include breakpoints.breakpoint(phablet) {
                     width: 26px;
                     height: 27px;
                 }
                 &:hover {
-                    color: #1073BC;
+                    color: #1073bc;
                     cursor: pointer;
                 }
             }
@@ -65,8 +69,8 @@ div.map-items-container {
     .map-item-list-wrapper {
         position: absolute;
         .map-item-list-container {
-            @include border-radius(0 0 3px 3px);
-            @include transition(all 0.1s ease-in-out);
+            @include border-radius.border-radius(0 0 3px 3px);
+            @include transition.transition(all 0.1s ease-in-out);
             box-sizing: border-box;
             overflow: hidden;
             max-height: 0;
@@ -75,7 +79,7 @@ div.map-items-container {
             background-color: #fbfcfd;
             right: 205px;
             width: 260px;
-            @include breakpoint(phablet) {
+            @include breakpoints.breakpoint(phablet) {
                 right: 245px;
                 width: 300px;
             }
@@ -83,7 +87,7 @@ div.map-items-container {
                 display: none;
             }
             &.open {
-                @include box-shadow(
+                @include box-shadow.box-shadow(
                     0 5px 5px -3px rgba(0, 0, 0, 0.2),
                     0 8px 10px 1px rgba(0, 0, 0, 0.14),
                     0 3px 14px 2px rgba(0, 0, 0, 0.12)
@@ -96,17 +100,17 @@ div.map-items-container {
                 display: block;
                 text-align: center;
                 padding: 8px 16px;
-                color: $primary-text;
+                color: colors.$primary-text;
                 text-decoration: none;
                 cursor: pointer;
                 border: none;
                 font-size: 16px;
                 font-weight: 400;
                 width: 100%;
-                font-family: $default-font;
+                font-family: typography.$default-font;
                 &:hover {
                     text-decoration: underline;
-                    color: $primary-text-hover;
+                    color: colors.$primary-text-hover;
                 }
             }
             ul {
@@ -114,7 +118,7 @@ div.map-items-container {
                 padding: 0;
                 margin: 0;
                 li {
-                    @include transition(all 0.15s ease-in-out);
+                    @include transition.transition(all 0.15s ease-in-out);
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
@@ -122,7 +126,7 @@ div.map-items-container {
                     font-size: 14px;
                     font-weight: normal;
                     &:hover {
-                        background-color: $hover-background;
+                        background-color: colors.$hover-background;
                     }
                     .list-icon {
                         margin-left: 8px;
@@ -130,7 +134,7 @@ div.map-items-container {
                         background: none;
                         border: none;
                         svg {
-                            color: $danger-text;
+                            color: colors.$danger-text;
                             width: 20px;
                         }
                     }

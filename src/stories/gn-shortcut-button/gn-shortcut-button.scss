@@ -1,0 +1,37 @@
+@use "../../style/mixins/transition";
+@use "../../style/variables/colors";
+
+.gn-shortcut-button {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    & svg {
+        width: 25px;
+        height: 25px;
+        stroke: colors.$default-text;
+        fill: none;
+        @include transition.transition(all 0.1s linear 0s);
+        stroke-width: 2px;
+    }
+    &:hover {
+        & svg {
+            stroke: colors.$primary-brand;
+            fill: colors.$primary-brand;
+        }
+    }
+
+    &.active {
+        & svg {
+            stroke: colors.$primary-brand;
+            fill: colors.$primary-brand;
+        }
+        &:hover {
+            & svg {
+                stroke: colors.$default-text;
+                fill: none;
+            }
+        }
+    }
+}

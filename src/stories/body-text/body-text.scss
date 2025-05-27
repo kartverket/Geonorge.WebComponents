@@ -1,10 +1,11 @@
-@import "../../style/all";
+@use "../../style/variables/colors";
+@use "../../style/variables/typography";
 
 :host,
 ::slotted(*) {
-    font-family: $default-font;
-    font-size: $default-font-size;
-    color: $default-text;
+    font-family: typography.$default-font;
+    font-size: typography.$default-font-size;
+    color: colors.$default-text;
     line-height: 24px;
     font-weight: 300;
 }
