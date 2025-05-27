@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - run: corepack enable
       - run: yarn
 
   publish-npm:
@@ -31,6 +32,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org/
+      - run: corepack enable
       - run: yarn
       - run: yarn build
       - run: yarn copy-files
@@ -52,6 +54,7 @@ jobs:
         with:
           node-version: 22
           registry-url: https://npm.pkg.github.com/
+      - run: corepack enable
       - run: yarn
       - run: echo registry=https://npm.pkg.github.com >> .npmrc
       - run: yarn build
