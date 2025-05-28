@@ -216,10 +216,10 @@ export class MainNavigation extends CustomElement {
     @Watch("isloggedin")
     isLoggedInChanged() {
         if (this.isloggedin) {
-            setCookie('_loggedIn', 'true', 1);
+            setCookie('_loggedIn', 'true');
             this.userAccount.setAttribute("isLoggedIn", "");
         } else {
-            setCookie('_loggedIn', 'false', 1);
+            setCookie('_loggedIn', 'false');
             this.userAccount.removeAttribute("isLoggedIn");
         }
     }
