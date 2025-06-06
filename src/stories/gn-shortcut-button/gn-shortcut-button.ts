@@ -118,6 +118,7 @@ export class GnShortcutButton extends CustomElement {
     }
 
     openDialog(shortcutIsAdded: boolean) {
+        this.shortcutNameInputElement.value = document.title;
         if (shortcutIsAdded) {
             this.removeShortcutDialogElement.setAttribute("show", "true");
             this.removeShortcutDialogElement.setAttribute("aria-hidden", "false");
@@ -227,8 +228,7 @@ export class GnShortcutButton extends CustomElement {
     }
 
     initShortcutNameInput() {
-        this.shortcutNameInputElement = getShadowRootElement(this, "#shortcut-name-input");
-        this.shortcutNameInputElement.value = document.title;
+        this.shortcutNameInputElement = getShadowRootElement(this, "#shortcut-name-input");        
         this.shortcutNameInputElement.addEventListener("input", () => {
             this.shortcutName = this.shortcutNameInputElement.value;
             if (this.shortcutName.trim()) {
