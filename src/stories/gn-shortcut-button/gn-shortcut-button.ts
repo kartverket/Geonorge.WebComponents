@@ -148,8 +148,9 @@ export class GnShortcutButton extends CustomElement {
             shortcutButton.innerHTML = StarIcon;
             shortcutButton.setAttribute(
                 "aria-label",
-                this.language === "en" ? "Remove shortcut to this page" : "Fjern snarvei for denne siden"
+                this.language === "en" ? "This page is saved as a shortcut. Sure you want to remove it?" : "Denne siden er lagret som en snarvei. Er du sikker på at du vil fjerne den?"
             );
+            shortcutButton.setAttribute("title", this.language === "en" ? "Remove shortcut" : "Fjern snarvei");
             shortcutButton.classList.add("active");
         } else {
             shortcutButton.innerHTML = StarIcon;
@@ -157,6 +158,7 @@ export class GnShortcutButton extends CustomElement {
                 "aria-label",
                 this.language === "en" ? "Add shortcut to this page" : "Lagre snarvei for denne siden"
             );
+            shortcutButton.setAttribute("title", this.language === "en" ? "Add shortcut" : "Lagre snarvei");
             shortcutButton.classList.remove("active");
         }
 
