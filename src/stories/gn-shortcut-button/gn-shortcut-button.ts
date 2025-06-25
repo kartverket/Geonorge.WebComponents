@@ -256,7 +256,6 @@ export class GnShortcutButton extends CustomElement {
             return;
         }
 
-        this.environment = this.environment || "dev";
         this.language = this.language || "en";
 
         const shortcutItem = await this.getShortcutItem(this.environment, token);
