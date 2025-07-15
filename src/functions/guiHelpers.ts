@@ -21,6 +21,11 @@ export const addGlobalStylesheet = (styleElementId: string, styles: string) => {
 
 export const removeInnerHTML = (element: HTMLElement) => {
     while (element.firstChild) {
-        element.removeChild(element.firstChild);
+        if (element.contains(element.firstChild)) {
+            element.removeChild(element.firstChild);
+        } else {
+            // If not a child, break to avoid infinite loop
+            break;
+        }
     }
 };
