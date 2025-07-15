@@ -311,7 +311,7 @@ export class MainNavigation extends CustomElement {
             const searchTypeSelector = new SearchTypeSelector();
         } else {
             this.searchField.removeAttribute("showsearchtypeselector")
-            if (this.searchTypeSelector) {
+            if (this.searchTypeSelector && this.searchTypeSelector.parentNode === this.searchField.parentNode) {
                 this.searchField.parentNode.removeChild(this.searchTypeSelector);
             }
         }
