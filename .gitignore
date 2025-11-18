@@ -109,3 +109,4 @@ dist
 
 # npm package build files
 /lib
+.yarn/install-state.gz
