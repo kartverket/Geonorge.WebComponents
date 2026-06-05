@@ -1,22 +1,34 @@
 // Interfaces
 import { SearchResultsForType } from 'interfaces/search';
+import { getConfig } from './config';
 
 export const getKartkatalogUrl = (environment: string) => {
+    const config = getConfig();
+    if (config.kartkatalogUrl) return config.kartkatalogUrl;
     const environmentSlug = environment === 'dev' || environment === 'test' ? environment + '.' : '';
     return `https://kartkatalog.${environmentSlug}geonorge.no`;
 };
 export const getMinsideUrl = (environment: string) => {
+    const config = getConfig();
+    if (config.minsideUrl) return config.minsideUrl;
     const environmentSlug = environment === 'dev' || environment === 'test' ? environment + '.' : '';
     return `https://minside.${environmentSlug}geonorge.no`;
 };
 
 export const getGeonorgeUrl = (language: string, environment: string) => {
+    const config = getConfig();
+    if (config.geonorgeUrl) {
+        const selectedLanguageSlug = language === 'en' ? 'en/' : '';
+        return `${config.geonorgeUrl}/${selectedLanguageSlug}`;
+    }
     const environmentSlug = environment === 'dev' || environment === 'test' ? 'test.' : '';
     const selectedLanguageSlug = language === 'en' ? 'en/' : '';
     return `https://www.${environmentSlug}geonorge.no/${selectedLanguageSlug}`;
 };
 
 export const getGeonorgeNedlastingUrl = (environment: string) => {
+    const config = getConfig();
+    if (config.nedlastingUrl) return config.nedlastingUrl;
     const environmentSlug = environment === 'dev' || environment === 'test' ? 'test.' : '';
     return `https://nedlasting.${environmentSlug}geonorge.no`;
 };

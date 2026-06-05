@@ -1,4 +1,5 @@
 import "./style/fonts.css";
+export { configure } from "./functions/config";
 export * from "./stories/body-text/body-text";
 export * from "./stories/breadcrumb-list/breadcrumb-list";
 export * from "./stories/content-container/content-container";
