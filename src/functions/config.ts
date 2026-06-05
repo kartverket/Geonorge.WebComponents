@@ -6,10 +6,10 @@ export interface GeonorgeConfig {
     nedlastingUrl?: string;
 }
 
-let currentConfig: GeonorgeConfig = {};
+const CONFIG_KEY = '__geonorge_config__';
 
 export const configure = (config: Partial<GeonorgeConfig>) => {
-    currentConfig = { ...currentConfig, ...config };
+    (window as any)[CONFIG_KEY] = { ...(window as any)[CONFIG_KEY], ...config };
 };
 
-export const getConfig = (): GeonorgeConfig => currentConfig;
+export const getConfig = (): GeonorgeConfig => (window as any)[CONFIG_KEY] || {};
