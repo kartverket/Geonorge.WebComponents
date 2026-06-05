@@ -1,14 +1,22 @@
+import { getConfig } from './config';
+
 export const getKartkatalogApiUrl = (environment: string) => {
+    const config = getConfig();
+    if (config.kartkatalogApiUrl) return config.kartkatalogApiUrl;
     const environmentSlug = environment === "dev" || environment === "test" ? environment + "." : "";
     return `https://kartkatalog.${environmentSlug}geonorge.no/api`;
 };
 
 export const getMinSideShortcutApiUrl = (environment: string, shortcutUrl?: string) => {
-    const environmentSlug = environment === "dev" || environment === "test" ? environment + "." : "";
+    const config = getConfig();
     const urlParameterString = shortcutUrl?.length ? `?${new URLSearchParams({ url: shortcutUrl }).toString()}` : "";
+    if (config.minsideUrl) return `${config.minsideUrl}/api/shortcut${urlParameterString}`;
+    const environmentSlug = environment === "dev" || environment === "test" ? environment + "." : "";
     return `https://minside.${environmentSlug}geonorge.no/api/shortcut${urlParameterString}`;
 };
 export const getMinSideShortcutUrl = (environment: string) => {
+    const config = getConfig();
+    if (config.minsideUrl) return `${config.minsideUrl}/shortcuts`;
     const environmentSlug = environment === "dev" || environment === "test" ? environment + "." : "";
     return `https://minside.${environmentSlug}geonorge.no/shortcuts`;
 };
@@ -72,8 +80,10 @@ export const deleteShortcutItem = async (environment: string = "", token: string
 };
 
 export const getGeonorgeMenuUrl = (language: string, environment: string) => {
-    const environmentSlug = environment === "dev" || environment === "test" ? "test." : "";
+    const config = getConfig();
     const selectedLanguageSlug = language === "en" ? "en/" : "";
+    if (config.geonorgeUrl) return `${config.geonorgeUrl}/${selectedLanguageSlug}api/menu/get?omitLinks=1`;
+    const environmentSlug = environment === "dev" || environment === "test" ? "test." : "";
     if (environment === "dev") return `https://dev.geonorge.no/menu.xml`;
     else return `https://www.${environmentSlug}geonorge.no/${selectedLanguageSlug}api/menu/get?omitLinks=1`;
 };
